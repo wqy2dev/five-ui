@@ -1,5 +1,4 @@
 <script lang="ts">
-import { mergeClass } from "$lib/utils/index.js";
 import { onMount, type Snippet } from "svelte";
 import type { HTMLAttributeAnchorTarget } from "svelte/elements";
 
@@ -37,7 +36,6 @@ onMount(() => {
 
 <svelte:element 
     this={restProps["href"] ? "a":"button"}
-    class={mergeClass("button", className)}
     bind:this={el}
     {...{size, variant, type}}
     {...restProps}

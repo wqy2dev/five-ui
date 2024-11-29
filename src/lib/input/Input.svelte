@@ -1,5 +1,4 @@
 <script lang="ts">
-import { mergeClass } from "$lib/utils/index.js";
 import type { Snippet } from "svelte";
 import type { FullAutoFill, KeyboardEventHandler } from "svelte/elements";
 
@@ -42,7 +41,8 @@ let {
 
 </script>
 
-<div class={mergeClass("input", className)}>
+<div 
+>
 
 </div>
 

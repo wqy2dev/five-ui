@@ -1,5 +1,4 @@
 <script lang="ts">
-import { mergeClass } from "$lib/utils/index.js";
 import type { Snippet } from "svelte";
 
 interface CardProps {
@@ -21,7 +20,8 @@ let {
 
 </script>
 
-<div class={mergeClass("card", className)}>
+<div 
+>
     {#if header}
         <div class="card-header">
             {@render header?.()}
