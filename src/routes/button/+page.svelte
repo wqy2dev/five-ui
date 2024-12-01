@@ -32,9 +32,11 @@
     </h4>
     
     <Button size="mini" disabled> Mini </Button>
-    <Button size="sm" disabled> Small </Button>
-    <Button disabled> Default </Button>
-    <Button size="lg" disabled> Large </Button>
+    <Button size="sm" variant="danger" disabled> Danger </Button>
+    <Button variant="secondary" disabled> Secondary </Button>
+    <Button variant="reverse" size="lg" disabled> Reverse </Button>
+    <Button variant="outline" size="lg" disabled> Outline </Button>
+    <Button variant="ghost" size="lg" disabled> Ghost </Button>
 
     <h4 class="text-base indent-2 border-l-solid border-l-blue-600 border-l-2 bg-slate-50">
         With Icon
