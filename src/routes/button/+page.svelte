@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { Button } from "$lib/index.js";
+    import Icon from "$lib/icon/icon.svelte";
+import { Button } from "$lib/index.js";
 </script>
 
 <h2 class="text-lg font-bold leading-10">
