@@ -4,19 +4,19 @@ import { type Snippet, onMount } from "svelte";
 import { Icon } from "$lib/icon/index.js";
 
 const alertVariants = tv({
-	base: "flex rounded-md p-4 text-sm",
+	base: "flex rounded-md p-4 text-sm border border-solid border-transparent",
 	variants: {
 		variant: {
-			info: "bg-primary-50 text-primary-600 border-primary-600",
-			success: "bg-green-50 text-green-600 border-green-600",
-			warning: "bg-yellow-50 text-yellow-600 border-yellow-600",
-			error: "bg-red-50 text-red-600 border-red-600",
+			info: "bg-primary-50 text-primary-600",
+			success: "bg-green-50 text-green-600",
+			warning: "bg-yellow-50 text-yellow-600",
+			error: "bg-red-50 text-red-600",
 		},
 		border: {
-			info: "border border-solid border-primary-600",
-			success: "border border-solid border-green-600",
-			warning: "border border-solid border-yellow-600",
-			error: "border border-solid border-red-600",
+			info: "border-primary-600",
+			success: "border-green-600",
+			warning: "border-yellow-600",
+			error: "border-red-600",
 			none: "",
 		},
 	},
