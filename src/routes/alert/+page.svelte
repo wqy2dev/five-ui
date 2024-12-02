@@ -61,6 +61,42 @@
 
 <div class="space-y-4 mt-5">
     <h4 class="text-base indent-2 border-l-solid border-l-blue-600 border-l-2 bg-slate-50">
+        With Border
+    </h4>
+    <Alert
+        withIcon
+        withBorder
+    >
+        Hello, world!
+    </Alert>
+
+    <Alert 
+        withIcon
+        withBorder
+        variant="success"
+    >
+        Hello, world!
+    </Alert>
+
+    <Alert 
+        withIcon
+        withBorder
+        variant="warning"
+    >
+        Hello, world!
+    </Alert>
+
+    <Alert
+        withIcon
+        withBorder
+        variant="error"
+    >
+        Hello, world!
+    </Alert>
+</div>
+
+<div class="space-y-4 mt-5">
+    <h4 class="text-base indent-2 border-l-solid border-l-blue-600 border-l-2 bg-slate-50">
         With description
     </h4>
     <Alert

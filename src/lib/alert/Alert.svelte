@@ -7,11 +7,18 @@ const alertVariants = tv({
 	base: "flex rounded-md p-4 text-sm",
 	variants: {
 		variant: {
-			info: "bg-primary-50 text-primary-500",
-			success: "bg-green-50 text-green-500",
-			warning: "bg-yellow-50 text-yellow-500",
-			error: "bg-red-50 text-red-500",
-		}
+			info: "bg-primary-50 text-primary-600 border-primary-600",
+			success: "bg-green-50 text-green-600 border-green-600",
+			warning: "bg-yellow-50 text-yellow-600 border-yellow-600",
+			error: "bg-red-50 text-red-600 border-red-600",
+		},
+		border: {
+			info: "border border-solid border-primary-600",
+			success: "border border-solid border-green-600",
+			warning: "border border-solid border-yellow-600",
+			error: "border border-solid border-red-600",
+			none: "",
+		},
 	},
 	defaultVariants: {
 		variant: "info",
@@ -35,6 +42,7 @@ type AlertProps = {
 	onclick?: {():void};
     variant?: Variant;
 	withIcon?: boolean;
+	withBorder?: boolean;
     children: Snippet;
 }
 
@@ -44,8 +52,9 @@ type AlertProps = {
 
 let {
 	ref,
-    variant,
+    variant = "info",
 	withIcon,
+	withBorder,
     class:className,
 	description,
 	onclick,
@@ -60,7 +69,7 @@ onMount(() => {
 
 </script>
 
-<div class={alertVariants({variant, className})}>
+<div class={alertVariants({variant, border: withBorder ? variant : "none", className})}>
 	{#if withIcon}
 		<Icon 
 			variant={iconsMap[variant ?? "info"] as any} 
