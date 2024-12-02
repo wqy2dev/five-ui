@@ -20,15 +20,13 @@ const placements = [
     </h4>
     
     <div class="flex flex-row gap-2">
-        {#each placements as v, i}
-            <Tooltip placement={v as any}>
-                {#snippet target(ref)}
-                    <Button ref={ref}> {v.toUpperCase()} </Button>
-                {/snippet}
-    
-                This is a tooltip!
-            </Tooltip>
-        {/each}
+        <Tooltip>
+            {#snippet target(ref)}
+                <Button ref={ref}> Tooltip </Button>
+            {/snippet}
+
+            This is a tooltip!
+        </Tooltip>
     </div>
 
     <h4 class="text-base indent-2 border-l-solid border-l-blue-600 border-l-2 bg-slate-50">
@@ -47,6 +45,44 @@ const placements = [
         <Tooltip theme="light">
             {#snippet target(ref)}
                 <Button ref={ref}> Light </Button>
+            {/snippet}
+
+            This is a tooltip!
+        </Tooltip>
+    </div>
+
+    <h4 class="text-base indent-2 border-l-solid border-l-blue-600 border-l-2 bg-slate-50">
+        Placement
+    </h4>
+    
+    <div class="flex flex-row gap-2">
+        {#each placements as v, i}
+            <Tooltip placement={v as any}>
+                {#snippet target(ref)}
+                    <Button ref={ref}> {v.toUpperCase()} </Button>
+                {/snippet}
+    
+                This is a tooltip!
+            </Tooltip>
+        {/each}
+    </div>
+
+    <h4 class="text-base indent-2 border-l-solid border-l-blue-600 border-l-2 bg-slate-50">
+        Trigger
+    </h4>
+    
+    <div class="flex flex-row gap-2">
+        <Tooltip trigger="hover">
+            {#snippet target(ref)}
+                <Button ref={ref}> Hover </Button>
+            {/snippet}
+
+            This is a tooltip!
+        </Tooltip>
+
+        <Tooltip trigger="focus">
+            {#snippet target(ref)}
+                <Button ref={ref}> Focus </Button>
             {/snippet}
 
             This is a tooltip!
