@@ -19,7 +19,7 @@ const placements = [
         Default
     </h4>
     
-    <div class="h-20 flex flex-row gap-2">
+    <div class="flex flex-row gap-2">
         {#each placements as v, i}
             <Tooltip placement={v as any}>
                 {#snippet target(ref)}
@@ -35,7 +35,7 @@ const placements = [
         Theme
     </h4>
     
-    <div class="h-20 flex flex-row gap-2">
+    <div class="flex flex-row gap-2">
         <Tooltip theme="dark">
             {#snippet target(ref)}
                 <Button ref={ref}> Dark </Button>

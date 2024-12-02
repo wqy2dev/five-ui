@@ -162,7 +162,7 @@ import { fade } from "svelte/transition";
 let {
     target,
     class: className,
-    offset = 15,
+    offset = 12,
     zIndex = 1000,
     duration = 180,
     arrowShow,
