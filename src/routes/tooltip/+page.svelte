@@ -23,9 +23,7 @@ const placements = [
         {#each placements as v, i}
             <Tooltip placement={v as any}>
                 {#snippet target(ref)}
-                    <span use:ref>
-                        <Button ref={ref}> {v.toUpperCase()} </Button>
-                    </span>
+                    <Button ref={ref}> {v.toUpperCase()} </Button>
                 {/snippet}
     
                 This is a tooltip!
@@ -40,9 +38,7 @@ const placements = [
     <div class="h-20 flex flex-row gap-2">
         <Tooltip theme="dark">
             {#snippet target(ref)}
-                <span use:ref>
-                    <Button ref={ref}> Dark </Button>
-                </span>
+                <Button ref={ref}> Dark </Button>
             {/snippet}
 
             This is a tooltip!
@@ -50,9 +46,7 @@ const placements = [
 
         <Tooltip theme="light">
             {#snippet target(ref)}
-                <span use:ref>
-                    <Button ref={ref}> Light </Button>
-                </span>
+                <Button ref={ref}> Light </Button>
             {/snippet}
 
             This is a tooltip!
