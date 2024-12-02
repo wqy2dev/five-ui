@@ -1,8 +1,8 @@
 <script module lang="ts">
 
-type Trigger = "hover" | "focus";
+export type Trigger = "hover" | "focus";
 
-type PopperProps = {
+export type PopperProps = {
     style?: string;
     class?: string;
     trigger?: Trigger;
@@ -19,7 +19,7 @@ type PopperProps = {
     when?: {(targetEl:HTMLElement, floatEl:HTMLElement):boolean};
 }
 
-type Placement = "top" | "top-start" | "top-end" | 
+export type Placement = "top" | "top-start" | "top-end" | 
     "bottom" | "bottom-start" | "bottom-end" | 
     "left" | "left-start" | "left-end" | 
     "right" | "right-start" | "right-end";
@@ -162,7 +162,7 @@ import { fade } from "svelte/transition";
 let {
     target,
     class: className,
-    offset = 12,
+    offset = 15,
     zIndex = 1000,
     duration = 180,
     arrowShow,

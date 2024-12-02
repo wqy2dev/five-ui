@@ -10,6 +10,7 @@ let { children } = $props();
         <a class="block w-full leading-8" href="/alert">Alert</a>
         <a class="block w-full leading-8" href="/button">Button</a>
         <a class="block w-full leading-8" href="/card">Card</a>
+        <a class="block w-full leading-8" href="/tooltip">Tooltip</a>
     </div>
     <div class="grow shrink-0 p-5">
         {@render children()}
