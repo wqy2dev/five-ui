@@ -1,7 +1,7 @@
-Nine UI
+Five UI
 --
 
-NineUI is an open source UI component library built with Svelte5 + Tailwind that allows you to create reactive web interfaces using [Svelte](https://svelte.dev/) + [Tailwind CSS](https://tailwindcss.com/).
+FiveUI is an open source UI component library built with Svelte5 + Tailwind that allows you to create reactive web interfaces using [Svelte](https://svelte.dev/) + [Tailwind CSS](https://tailwindcss.com/).
 
 Documentation
 --

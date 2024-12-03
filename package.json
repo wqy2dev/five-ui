@@ -1,16 +1,19 @@
 {
-	"name": "nine-ui",
-	"description": "NineUI is an open source UI toolkit built with Svelte + Tailwind that allows you to create reactive web interfaces using Svelte + Tailwind CSS.",
-	"version": "0.1.0",
+	"name": "five-ui",
+	"description": "FiveUI is an open source UI toolkit built with Svelte + Tailwind that allows you to create reactive web interfaces using Svelte + Tailwind CSS.",
+	"version": "0.1.1",
 	"license": "MIT",
-	"repository": "github/wqy2dev/nine-ui",
+	"repository": {
+		"type": "github",
+		"url": "github/wqy2dev/five-ui"
+	},
 	"author": {
 		"name": "wqy2dev",
 		"email": "wqyn@aliyun.com",
 		"url": "https://github.com/wqy2dev"
 	},
 	"bugs": {
-		"url": "https://github.com/wqy2dev/nine-ui/issues"
+		"url": "https://github.com/wqy2dev/five-ui/issues"
 	},
 	"keywords": [
 		"svelte",

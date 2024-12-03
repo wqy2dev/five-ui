@@ -11,7 +11,7 @@ const config: Config = {
         extend: {
             // Set font family
             fontFamily: {
-                sans: ["Inter", ...defaultTheme.fontFamily.sans],
+                sans: [...defaultTheme.fontFamily.sans],
             },
             // Set theme colors (Required config!)
             colors: {
