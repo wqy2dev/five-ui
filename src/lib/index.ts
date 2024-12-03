@@ -5,6 +5,7 @@ export { Button } from "./button/index.js";
 export { Card } from "./card/index.js";
 export { Drawer } from "./drawer/index.js";
 export { Input } from "./input/index.js";
+export { Layout } from "./layout/index.js";
 export { Modal } from "./modal/index.js";
 export { Pagination } from "./pagination/index.js";
 export { Popper } from "./popper/index.js";
