@@ -27,7 +27,6 @@ type IconProps = {
     variant?: Variant;
     size?: string;
     class?: string;
-    onclick?: {(e:MouseEvent):void};
 }
 
 </script>
@@ -38,22 +37,18 @@ let {
     size = "16px",
     variant,
     class:className,
-    onclick,
 }:IconProps = $props();
 
 const parts = iconVariants({variant}).split(",");
 
 </script>
 
-<!-- svelte-ignore a11y_click_events_have_key_events -->
-<!-- svelte-ignore a11y_no_static_element_interactions -->
 <svg xmlns="http://www.w3.org/2000/svg" 
     viewBox={"0 0 "+parts[0]} 
     fill="currentColor" 
     class={className} 
     width={size} 
     height={size}
-    onclick={onclick}
 >
     {#each parts[1].split("|") as d}
         <path fill-rule="evenodd" clip-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" d={d}/>
