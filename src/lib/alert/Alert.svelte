@@ -39,10 +39,11 @@ type AlertProps = {
     class?: string;
     ref?: {(el:HTMLElement):void};
 	description?: Snippet | string;
-	onclick?: {():void};
+	onclose?: {():void};
     variant?: Variant;
 	withIcon?: boolean;
 	withBorder?: boolean;
+	withClose?: boolean,
     children: Snippet;
 }
 
@@ -55,9 +56,10 @@ let {
     variant = "info",
 	withIcon,
 	withBorder,
+	withClose,
     class:className,
 	description,
-	onclick,
+	onclose,
     children
 }:AlertProps = $props();
 
@@ -93,12 +95,14 @@ onMount(() => {
 		{/if}
 	</div>
 
-	<button 
-		aria-label="button"
-		type="button" 
-		class="ml-auto"
-		onclick={onclick}
-	>
-		<Icon variant="Close"/>
-	</button>
+	{#if withClose}
+		<button 
+			aria-label="button"
+			type="button" 
+			class="ml-auto"
+			onclick={onclose}
+		>
+			<Icon variant="Close"/>
+		</button>
+	{/if}
 </div>

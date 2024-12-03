@@ -8,6 +8,7 @@ let { children } = $props();
 <div class="flex flex-row w-screen h-screen">
     <div class="w-56 bg-slate-50 text-sm shrink-0">
         <a class="block w-full leading-8 pl-2 hover:bg-primary-100" href="/alert">Alert</a>
+        <a class="block w-full leading-8 pl-2 hover:bg-primary-100" href="/badge">Badge</a>
         <a class="block w-full leading-8 pl-2 hover:bg-primary-100" href="/button">Button</a>
         <a class="block w-full leading-8 pl-2 hover:bg-primary-100" href="/card">Card</a>
         <a class="block w-full leading-8 pl-2 hover:bg-primary-100" href="/tooltip">Tooltip</a>

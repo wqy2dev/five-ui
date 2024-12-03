@@ -50,7 +50,7 @@ type ButtonProps = {
     disabled?: boolean;
     children: Snippet;
 }
-    
+
 </script>
     
 <script lang="ts">
