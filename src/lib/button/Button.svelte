@@ -1,5 +1,4 @@
 <script module lang="ts">
-import { type HTMLAttributeAnchorTarget } from "svelte/elements";
 import { type VariantProps, tv } from "tailwind-variants";
 import { type Snippet, onMount } from "svelte";
 
@@ -39,7 +38,7 @@ type Radius = VariantProps<typeof buttonVariants>["radius"];
 
 type ButtonProps = {
     href?: string;
-    target?: HTMLAttributeAnchorTarget;
+    target?: "_self" | "_blank" | "_parent" | "_top";
     size?: Size;
     variant?: Variant;
     radius?: Radius;

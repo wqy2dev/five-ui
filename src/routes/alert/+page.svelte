@@ -2,6 +2,10 @@
     import { Alert } from "$lib/index.js";
 </script>
 
+<svelte:head>
+	<title>Alert</title>
+</svelte:head>
+
 <h2 class="text-lg font-bold leading-10">
     Alert
 </h2>
