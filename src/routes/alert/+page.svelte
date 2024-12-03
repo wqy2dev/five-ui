@@ -15,19 +15,19 @@
         Simple
     </h4>
     <Alert>
-        Hello, world!
+        Failure is the mother of success.
     </Alert>
 
     <Alert variant="success">
-        Hello, world!
+        Failure is the mother of success.
     </Alert>
 
     <Alert variant="warning">
-        Hello, world!
+        Failure is the mother of success.
     </Alert>
 
     <Alert variant="error">
-        Hello, world!
+        Failure is the mother of success.
     </Alert>
 </div>
 
@@ -38,28 +38,28 @@
     <Alert
         withIcon
     >
-        Hello, world!
+        Failure is the mother of success.
     </Alert>
 
     <Alert 
         withIcon
         variant="success"
     >
-        Hello, world!
+        Failure is the mother of success.
     </Alert>
 
     <Alert 
         withIcon
         variant="warning"
     >
-        Hello, world!
+        Failure is the mother of success.
     </Alert>
 
     <Alert 
         withIcon
         variant="error"
     >
-        Hello, world!
+        Failure is the mother of success.
     </Alert>
 </div>
 
@@ -71,7 +71,7 @@
         withIcon
         withBorder
     >
-        Hello, world!
+        Failure is the mother of success.
     </Alert>
 
     <Alert 
@@ -79,7 +79,7 @@
         withBorder
         variant="success"
     >
-        Hello, world!
+        Failure is the mother of success.
     </Alert>
 
     <Alert 
@@ -87,7 +87,7 @@
         withBorder
         variant="warning"
     >
-        Hello, world!
+        Failure is the mother of success.
     </Alert>
 
     <Alert
@@ -95,7 +95,7 @@
         withBorder
         variant="error"
     >
-        Hello, world!
+        Failure is the mother of success.
     </Alert>
 </div>
 
