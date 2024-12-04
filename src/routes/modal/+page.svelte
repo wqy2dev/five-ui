@@ -102,16 +102,15 @@ const backdrop = ["opaque", "blur", "transparent"];
     </Modal>
     {/if}
 
-
     <h4 class="text-base indent-2 bg-slate-50">
-        Close whene overlay clicked
+        Close when overlay clicked
     </h4>
 
     <div class="flex flex-row gap-2">
         <Button 
             onclick={() => showWhenOverlayClicked = true}
         > 
-            Close whene overlay clicked
+            Close when overlay clicked
         </Button>
     </div>
 
