@@ -18,22 +18,15 @@ const modalVariants = tv({
 			"4xl": "max-w-4xl rounded-lg",
 			"5xl": "max-w-5xl rounded-lg",
 			"6xl": "max-w-6xl rounded-lg",
-			full: "w-screen h-screen",
-		},
-		placement: {
-			top: "",
-			center: "",
-			bottom: "",
+			full: "w-full h-full",
 		},
 	},
 	defaultVariants: {
 		size: "md",
-		placement: "top",
 	},
 });
 
 type Size = VariantProps<typeof modalVariants>["size"];
-type Placement = VariantProps<typeof modalVariants>["placement"];
 
 type ModalProps = {
 	id?:string;
@@ -41,7 +34,6 @@ type ModalProps = {
     ref?: {(el:HTMLElement):void};
 	title?: string | Snippet;
     size?: Size;
-	placement?: Placement;
 	backdrop?: Backdrop;
 	overflowScroll?: "inside"|"outside";
 	overlayStyle?: string;
@@ -64,10 +56,9 @@ let {
     class:className,
 	title,
 	size,
-	placement,
 	overlayStyle,
 	overlayClosable,
-	overflowScroll = "inside",
+	overflowScroll = "outside",
 	backdrop = "opaque",
 	oncancel,
 	onok,
@@ -91,6 +82,7 @@ function onOverlay(ev:MouseEvent) {
 }
 
 const isInsideScroll = overflowScroll === "inside";
+const isFullScreen = size === "full";
 
 </script>
 
@@ -98,12 +90,12 @@ const isInsideScroll = overflowScroll === "inside";
 	style={overlayStyle}
 	backdrop={backdrop}
 	onclick={onOverlay}
-	class={"flex justify-center" + (isInsideScroll ? " items-center overflow-hidden":" items-start overflow-y-auto py-10")}
+	class={isFullScreen ? "" : ("flex justify-center" + (isInsideScroll ? " items-center overflow-hidden":" items-start overflow-y-auto py-8"))}
 >
 	<div 
 		bind:this={el}
 		id={id}
-		class={(isInsideScroll ? "max-h-[calc(100%-5rem)] ":"my-10") + modalVariants({size, placement, className})}
+		class={modalVariants({size, className}) + ((isInsideScroll && !isFullScreen) ? " max-h-[calc(100%-4rem)]":"") }
 	>
 		{#if title}
 			<div class="flex flex-row px-5 py-3 text-lg font-semibold">

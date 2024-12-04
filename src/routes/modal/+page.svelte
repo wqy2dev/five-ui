@@ -138,13 +138,13 @@ const backdrop = ["opaque", "blur", "transparent"];
         <Button 
             onclick={() => showOverflowScrollInside = true}
         > 
-            Overflow Scroll: Inside
+            Scroll inside body
         </Button>
 
         <Button 
             onclick={() => showOverflowScrollOutside = true}
         > 
-            Overflow Scroll: Outside
+            Scroll inside viewport
         </Button>
     </div>
 
@@ -152,6 +152,7 @@ const backdrop = ["opaque", "blur", "transparent"];
     <Modal
         title="Overflow Scroll: Inside"
         size="md"
+        overflowScroll="inside"
         oncancel={() => showOverflowScrollInside = false}
         onok={() => showOverflowScrollInside = false}
     >
