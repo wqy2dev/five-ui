@@ -13,6 +13,10 @@ let showModalWithBackdrop = $state({
 let showWhenOverlayClicked = $state(false);
 let showOverflowScrollInside = $state(false);
 let showOverflowScrollOutside = $state(false);
+let showWithPlacement = $state({
+    show: false,
+    placement: "",
+});
 
 const sizes = [
     "xs",
@@ -29,6 +33,7 @@ const sizes = [
 ];
 
 const backdrop = ["opaque", "blur", "transparent"];
+const placements = ["top", "center", "bottom"];
 
 </script>
     
@@ -131,6 +136,31 @@ const backdrop = ["opaque", "blur", "transparent"];
     {/if}
 
     <h4 class="text-base indent-2 bg-slate-50">
+        Placement
+    </h4>
+
+    <div class="flex flex-row gap-2">
+        {#each placements as placement}
+            <Button 
+                onclick={() => showWithPlacement = {show: true, placement}}
+            > 
+                Modal placement: {placement}
+            </Button>
+        {/each}
+    </div>
+
+    {#if showWithPlacement.show}
+    <Modal
+        title={`Modal placement: ${showWithPlacement.placement}`}
+        placement={showWithPlacement.placement as any}
+        oncancel={() => showWithPlacement.show = false}
+        onok={() => showWithPlacement.show = false}
+    >
+        Displays a dialog with a custom content that requires attention or provides additional information.
+    </Modal>
+    {/if}
+
+    <h4 class="text-base indent-2 bg-slate-50">
         Overflow scroll
     </h4>
 
@@ -200,6 +230,7 @@ const backdrop = ["opaque", "blur", "transparent"];
         title="Overflow Scroll: Outside"
         size="md"
         overflowScroll="outside"
+        placement="top"
         oncancel={() => showOverflowScrollOutside = false}
         onok={() => showOverflowScrollOutside = false}
     >

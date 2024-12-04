@@ -1,32 +1,83 @@
 <script lang="ts" module>
 import { type VariantProps, tv } from "tailwind-variants";
 import { onMount, type Snippet } from "svelte";
-import { Overlay } from "$lib/index.js";
+import { Overlay, Button, Icon } from "$lib/index.js";
 import { type Backdrop } from "$lib/overlay/Overlay.svelte";
 
 const modalVariants = tv({
-	base: "flex flex-col w-full text-gray-900 border-solid border-gray-200 border bg-white shadow-sm overflow-hidden",
+	slots: {
+		base: "flex flex-col w-full text-gray-900 border-solid border-gray-200 border bg-white shadow-sm overflow-hidden",
+		overlay: "flex justify-center py-10",
+		content: "px-5 grow text-sm",
+	},
 	variants: {
+		overflowScroll: {
+			inside: {
+				base: "max-h-full",
+				overlay: "overflow-hidden",
+				content: "overflow-y-auto",
+			},
+			outside: {
+				overlay: "overflow-y-auto",
+			},
+		},
 		size: {
-			xs: "max-w-xs rounded-lg",
-			sm: "max-w-sm rounded-lg",
-			md: "max-w-md rounded-lg",
-			lg: "max-w-lg rounded-lg",
-			xl: "max-w-xl rounded-lg",
-			"2xl": "max-w-2xl rounded-lg",
-			"3xl": "max-w-3xl rounded-lg",
-			"4xl": "max-w-4xl rounded-lg",
-			"5xl": "max-w-5xl rounded-lg",
-			"6xl": "max-w-6xl rounded-lg",
-			full: "w-full h-full",
+			xs: {
+				base: "max-w-xs rounded-lg",
+			},
+			sm: {
+				base: "max-w-sm rounded-lg",
+			},
+			md: {
+				base: "max-w-md rounded-lg",
+			},
+			lg: {
+				base: "max-w-lg rounded-lg",
+			},
+			xl: {
+				base: "max-w-xl rounded-lg",
+			},
+			"2xl": {
+				base: "max-w-2xl rounded-lg",
+			},
+			"3xl": {
+				base: "max-w-3xl rounded-lg",
+			},
+			"4xl": {
+				base: "max-w-4xl rounded-lg",
+			},
+			"5xl": {
+				base: "max-w-5xl rounded-lg",
+			},
+			"6xl": {
+				base: "max-w-6xl rounded-lg",
+			},
+			full: {
+				base: "w-screen h-screen max-h-screen",
+			}
+		},
+		placement: {
+			top: {
+				overlay: "items-start",
+			},
+			center: {
+				overlay: "items-center",
+			},
+			bottom: {
+				overlay: "items-end",
+			}
 		},
 	},
 	defaultVariants: {
 		size: "md",
+		placement: "center",
+		overflowScroll: "inside",
 	},
 });
 
 type Size = VariantProps<typeof modalVariants>["size"];
+type Placement = VariantProps<typeof modalVariants>["placement"];
+type OverflowScroll = VariantProps<typeof modalVariants>["overflowScroll"];
 
 type ModalProps = {
 	id?:string;
@@ -35,7 +86,8 @@ type ModalProps = {
 	title?: string | Snippet;
     size?: Size;
 	backdrop?: Backdrop;
-	overflowScroll?: "inside"|"outside";
+	placement?: Placement;
+	overflowScroll?: OverflowScroll;
 	overlayStyle?: string;
 	overlayClosable?: boolean;
 	okText?: string;
@@ -49,7 +101,6 @@ type ModalProps = {
 </script>
 
 <script lang="ts">
-import { Button, Icon } from "$lib/index.js";
 
 let {
 	id,
@@ -58,8 +109,9 @@ let {
 	size,
 	overlayStyle,
 	overlayClosable,
-	overflowScroll = "outside",
+	overflowScroll,
 	backdrop = "opaque",
+	placement,
 	oncancel,
 	onok,
 	okText = "OK",
@@ -81,8 +133,16 @@ function onOverlay(ev:MouseEvent) {
 	}
 }
 
-const isInsideScroll = overflowScroll === "inside";
-const isFullScreen = size === "full";
+const { 
+	base, 
+	overlay,
+	content,
+} = modalVariants({
+	placement,
+	overflowScroll,
+	size,
+	className
+});
 
 </script>
 
@@ -90,12 +150,12 @@ const isFullScreen = size === "full";
 	style={overlayStyle}
 	backdrop={backdrop}
 	onclick={onOverlay}
-	class={isFullScreen ? "" : ("flex justify-center" + (isInsideScroll ? " items-center overflow-hidden":" items-start overflow-y-auto py-8"))}
+	class={overlay()}
 >
 	<div 
 		bind:this={el}
 		id={id}
-		class={modalVariants({size, className}) + ((isInsideScroll && !isFullScreen) ? " max-h-[calc(100%-4rem)]":"") }
+		class={base()}
 	>
 		{#if title}
 			<div class="flex flex-row px-5 py-3 text-lg font-semibold">
@@ -120,7 +180,7 @@ const isFullScreen = size === "full";
 			</div>
 		{/if}
 	
-		<div class={"px-5 grow text-sm"+(isInsideScroll ? " overflow-y-auto":"")}>
+		<div class={content()}>
 			{@render children()}
 		</div>
 
