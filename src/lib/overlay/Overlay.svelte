@@ -1,10 +1,10 @@
 <script lang="ts" module>
 import { onMount, type Snippet } from "svelte";
-import { fade } from "svelte/transition";
 import { type VariantProps, tv } from "tailwind-variants";
+import { fade } from "svelte/transition";
 
 const overlayVariants = tv({
-    base: "flex items-center justify-center w-screen h-screen inset-0 z-50",
+    base: "w-screen h-screen inset-0 z-50",
     variants: {
         position: {
             fixed: "fixed",

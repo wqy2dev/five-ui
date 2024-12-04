@@ -11,6 +11,8 @@ let showModalWithBackdrop = $state({
     backdrop: "",
 });
 let showWhenOverlayClicked = $state(false);
+let showOverflowScrollInside = $state(false);
+let showOverflowScrollOutside = $state(false);
 
 const sizes = [
     "xs",
@@ -49,6 +51,7 @@ const backdrop = ["opaque", "blur", "transparent"];
     <Modal
         title="Title"
         oncancel={() => show = false}
+        onok={() => show = false}
     >
         Displays a dialog with a custom content that requires attention or provides additional information.
     </Modal>
@@ -73,6 +76,7 @@ const backdrop = ["opaque", "blur", "transparent"];
         title={`Modal Size: ${showModalWithSize.size}`}
         size={showModalWithSize.size as any}
         oncancel={() => showModalWithSize = {show:false, size: ""}}
+        onok={() => showModalWithSize = {show:false, size: ""}}
     >
         Displays a dialog with a custom content that requires attention or provides additional information.
     </Modal>
@@ -97,6 +101,7 @@ const backdrop = ["opaque", "blur", "transparent"];
         title={`Modal Backdrop: ${showModalWithBackdrop.backdrop}`}
         backdrop={showModalWithBackdrop.backdrop as any}
         oncancel={() => showModalWithBackdrop = {show:false, backdrop: ""}}
+        onok={() => showModalWithBackdrop = {show:false, backdrop: ""}}
     >
         Displays a dialog with a custom content that requires attention or provides additional information.
     </Modal>
@@ -119,8 +124,130 @@ const backdrop = ["opaque", "blur", "transparent"];
         title="Close when overlay clicked"
         overlayClosable={true}
         oncancel={() => showWhenOverlayClicked = false}
+        onok={() => showWhenOverlayClicked = false}
     >
         Displays a dialog with a custom content that requires attention or provides additional information.
+    </Modal>
+    {/if}
+
+    <h4 class="text-base indent-2 bg-slate-50">
+        Overflow scroll
+    </h4>
+
+    <div class="flex flex-row gap-2">
+        <Button 
+            onclick={() => showOverflowScrollInside = true}
+        > 
+            Overflow Scroll: Inside
+        </Button>
+
+        <Button 
+            onclick={() => showOverflowScrollOutside = true}
+        > 
+            Overflow Scroll: Outside
+        </Button>
+    </div>
+
+    {#if showOverflowScrollInside}
+    <Modal
+        title="Overflow Scroll: Inside"
+        size="md"
+        oncancel={() => showOverflowScrollInside = false}
+        onok={() => showOverflowScrollInside = false}
+    >
+        <p>
+            "The Red Cliff Ode"
+        </p>
+
+        <p>
+            The Red Cliff Ode is a famous prose-poem by Su Shi (also known as Su Dongpo), one of China's most celebrated poets and writers. It was written in the year 1082 during the Song Dynasty. The piece vividly describes a boat trip Su Shi took with friends to the Red Cliffs, the site of the famous Battle of Red Cliffs in 208 AD, where the allied forces of Sun Quan and Liu Bei defeated Cao Cao.
+        </p>
+
+        <p>
+            In the ode, Su Shi reflects on the passage of time, the impermanence of life, and the grandeur of nature. He contrasts the ephemeral nature of human achievements with the enduring beauty of the natural world. The work is renowned for its lyrical beauty, philosophical depth, and vivid imagery.
+        </p>
+
+        <p>
+            Here is a brief excerpt from the beginning of "The Red Cliff Ode":
+        </p>
+
+        <p>
+        "The great river eastward flows;
+        With its waves are gone all those
+        Gallant heroes of bygone years.
+        West of the ancient fortress appears
+        The Red Cliff of the Three-Kingdoms' fame.
+        </p>
+
+        <p>
+        Su Dongpo, the poet-monk,
+        Drank here with friends on a river-trip,
+        Feasting and reciting poems of old,
+        While the boat drifted with the current's hold.
+        The moon shone bright, the breeze was mild,
+        Such a night was a rare delight."
+        </p>
+
+        <p>
+        The full translation of "The Red Cliff Ode" is quite lengthy and intricate, capturing the essence of Su Shi's poetic and philosophical musings. If you are interested in a complete translation, it would be best to consult a scholarly translation or a collection of Su Shi's works.
+        </p>
+    </Modal>
+    {/if}
+
+    {#if showOverflowScrollOutside}
+    <Modal
+        title="Overflow Scroll: Outside"
+        size="md"
+        overflowScroll="outside"
+        oncancel={() => showOverflowScrollOutside = false}
+        onok={() => showOverflowScrollOutside = false}
+    >
+        <p>
+            "The Red Cliff Ode"
+        </p>
+
+        <p>
+            The Red Cliff Ode is a famous prose-poem by Su Shi (also known as Su Dongpo), one of China's most celebrated poets and writers. It was written in the year 1082 during the Song Dynasty. The piece vividly describes a boat trip Su Shi took with friends to the Red Cliffs, the site of the famous Battle of Red Cliffs in 208 AD, where the allied forces of Sun Quan and Liu Bei defeated Cao Cao.
+        </p>
+
+        <p>
+            In the ode, Su Shi reflects on the passage of time, the impermanence of life, and the grandeur of nature. He contrasts the ephemeral nature of human achievements with the enduring beauty of the natural world. The work is renowned for its lyrical beauty, philosophical depth, and vivid imagery.
+        </p>
+
+        <p>
+            Here is a brief excerpt from the beginning of "The Red Cliff Ode":
+        </p>
+
+        <p>
+        "The great river eastward flows;
+        </p>
+
+        <p>
+        With its waves are gone all those
+        Gallant heroes of bygone years.
+        </p>
+        <p>
+        West of the ancient fortress appears
+        The Red Cliff of the Three-Kingdoms' fame.
+        </p>
+
+        <p>
+        Su Dongpo, the poet-monk,
+        Drank here with friends on a river-trip,
+        Feasting and reciting poems of old,
+        While the boat drifted with the current's hold.
+        </p>
+        <p>
+        The moon shone bright, the breeze was mild,
+        Such a night was a rare delight."
+        </p>
+
+        <p>
+        The full translation of "The Red Cliff Ode" is quite lengthy and intricate, capturing the essence of Su Shi's poetic and philosophical musings. 
+        </p>
+        <p>
+            If you are interested in a complete translation, it would be best to consult a scholarly translation or a collection of Su Shi's works.
+        </p>
     </Modal>
     {/if}
 </div>

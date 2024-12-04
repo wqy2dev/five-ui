@@ -5,7 +5,7 @@ import { Overlay } from "$lib/index.js";
 import { type Backdrop } from "$lib/overlay/Overlay.svelte";
 
 const modalVariants = tv({
-	base: "flex flex-col w-full px-5 text-gray-900 border-solid border-gray-200 border bg-white shadow-sm overflow-hidden",
+	base: "flex flex-col w-full text-gray-900 border-solid border-gray-200 border bg-white shadow-sm overflow-hidden",
 	variants: {
 		size: {
 			xs: "max-w-xs rounded-lg",
@@ -43,12 +43,14 @@ type ModalProps = {
     size?: Size;
 	placement?: Placement;
 	backdrop?: Backdrop;
+	overflowScroll?: "inside"|"outside";
 	overlayStyle?: string;
 	overlayClosable?: boolean;
 	okText?: string;
 	cancelText?: string;
 	onok?: {():void};
 	oncancel?: {():void};
+	footer?: Snippet;
     children: Snippet;
 }
 
@@ -65,11 +67,13 @@ let {
 	placement,
 	overlayStyle,
 	overlayClosable,
+	overflowScroll = "inside",
 	backdrop = "opaque",
 	oncancel,
 	onok,
 	okText = "OK",
 	cancelText = "Cancel",
+	footer,
     ref,
     children,
 }:ModalProps = $props();
@@ -86,20 +90,23 @@ function onOverlay(ev:MouseEvent) {
 	}
 }
 
+const isInsideScroll = overflowScroll === "inside";
+
 </script>
 
 <Overlay
 	style={overlayStyle}
 	backdrop={backdrop}
 	onclick={onOverlay}
+	class={"flex justify-center" + (isInsideScroll ? " items-center overflow-hidden":" items-start overflow-y-auto py-10")}
 >
 	<div 
 		bind:this={el}
 		id={id}
-		class={modalVariants({size, placement, className})}
+		class={(isInsideScroll ? "max-h-[calc(100%-5rem)] ":"my-10") + modalVariants({size, placement, className})}
 	>
 		{#if title}
-			<div class="flex flex-row py-3 text-lg font-semibold">
+			<div class="flex flex-row px-5 py-3 text-lg font-semibold">
 				<div class="grow">
 					{#if typeof title === "string"}
 						{title}
@@ -121,22 +128,26 @@ function onOverlay(ev:MouseEvent) {
 			</div>
 		{/if}
 	
-		<div class="grow text-sm">
+		<div class={"px-5 grow text-sm"+(isInsideScroll ? " overflow-y-auto":"")}>
 			{@render children()}
 		</div>
 
-		<div class="flex justify-end py-3 gap-4">
-			<Button 
-				variant="outline"
-				onclick={oncancel}
-			>
-				{cancelText}
-			</Button>
-			<Button
-				onclick={onok}
-			>
-				{okText}
-			</Button>
+		<div class="px-5 flex justify-end py-3 gap-4">
+			{#if footer}
+				{@render footer()}
+			{:else}
+				<Button 
+					variant="outline"
+					onclick={oncancel}
+				>
+					{cancelText}
+				</Button>
+				<Button
+					onclick={onok}
+				>
+					{okText}
+				</Button>
+			{/if}
 		</div>
 	</div>
 </Overlay>
