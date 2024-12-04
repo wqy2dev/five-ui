@@ -7,7 +7,7 @@ import { type Backdrop } from "$lib/overlay/Overlay.svelte";
 const modalVariants = tv({
 	slots: {
 		base: "flex flex-col w-full text-gray-900 border-solid border-gray-200 border bg-white shadow-sm overflow-hidden",
-		overlay: "flex justify-center py-10",
+		overlay: "flex justify-center py-14",
 		content: "px-5 grow text-sm",
 	},
 	variants: {
