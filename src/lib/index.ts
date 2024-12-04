@@ -4,6 +4,7 @@ export { Badge } from "./badge/index.js";
 export { Button } from "./button/index.js";
 export { Card } from "./card/index.js";
 export { Drawer } from "./drawer/index.js";
+export { Icon } from "./icon/index.js";
 export { Input } from "./input/index.js";
 export { Layout } from "./layout/index.js";
 export { Modal } from "./modal/index.js";
