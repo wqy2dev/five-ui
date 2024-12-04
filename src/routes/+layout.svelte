@@ -15,7 +15,7 @@ let { children } = $props();
         <a class="block w-full pl-6 py-2 hover:bg-primary-100" href="/modal">Modal</a>
         <a class="block w-full pl-6 py-2 hover:bg-primary-100" href="/tooltip">Tooltip</a>
     </div>
-    <div class="grow p-5 overflow-y-auto">
+    <div class="grow py-5 px-8 overflow-y-auto">
         {@render children()}
     </div>
 </div>

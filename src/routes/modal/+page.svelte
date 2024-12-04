@@ -1,5 +1,8 @@
 <script lang="ts">
-    import { Modal } from "$lib/index.js";
+import { Modal, Button } from "$lib/index.js";
+
+let show = $state(false);
+
 </script>
     
 <svelte:head>
@@ -11,13 +14,17 @@
 </h2>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 border-l-solid border-l-blue-600 border-l-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-50">
         Default
     </h4>
 
+    <Button onclick={() => show = true}> Show Modal </Button>
+
+    {#if show}
     <Modal
         title="Title"
     >
         Failure is the mother of success.
     </Modal>
+    {/if}
 </div>

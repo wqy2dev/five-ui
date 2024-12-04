@@ -18,7 +18,7 @@
 </h2>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 border-l-solid border-l-blue-600 border-l-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-50">
         Simple
     </h4>
 
@@ -30,7 +30,7 @@
 </div>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 border-l-solid border-l-blue-600 border-l-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-50">
         With Icon
     </h4>
 
@@ -45,7 +45,7 @@
 </div>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 border-l-solid border-l-blue-600 border-l-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-50">
         With Close
     </h4>
     {#each variants as variant }
@@ -61,7 +61,7 @@
 </div>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 border-l-solid border-l-blue-600 border-l-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-50">
         With description
     </h4>
     {#each variants as variant }
@@ -81,7 +81,7 @@
 
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 border-l-solid border-l-blue-600 border-l-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-50">
         With Border
     </h4>
     {#each variants as variant }
