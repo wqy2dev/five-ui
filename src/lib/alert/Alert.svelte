@@ -97,7 +97,6 @@ onMount(() => {
 
 	{#if withClose}
 		<button 
-			aria-label="button"
 			type="button" 
 			class="ml-auto"
 			onclick={onclose}
