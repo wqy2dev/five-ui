@@ -22,6 +22,7 @@ const alertVariants = tv({
 	},
 	defaultVariants: {
 		variant: "info",
+		border: "info",
 	},
 });
 
@@ -52,6 +53,7 @@ type AlertProps = {
 <script lang="ts">
 
 let {
+	id,
 	ref,
     variant = "info",
 	withIcon,
@@ -71,7 +73,10 @@ onMount(() => {
 
 </script>
 
-<div class={alertVariants({variant, border: withBorder ? variant : "none", className})}>
+<div
+	id={id}
+	class={alertVariants({variant, border: withBorder ? variant : "none", className})}
+>
 	{#if withIcon}
 		<Icon 
 			variant={iconsMap[variant ?? "info"] as any} 

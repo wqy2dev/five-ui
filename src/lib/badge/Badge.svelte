@@ -65,6 +65,7 @@ type BadgeProps = {
 <script lang="ts">
 
 let {
+    id,
     variant,
     radius,
     size,
@@ -84,6 +85,7 @@ onMount(() => {
 </script>
 
 <span
+    id={id}
     bind:this={el}
     class={badgeVariants({variant, radius, size, className})}
 >
