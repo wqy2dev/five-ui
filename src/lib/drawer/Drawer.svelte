@@ -119,11 +119,10 @@ const {
 } = drawerVariants({
 	size,
 	placement,
-	className
 });
 
 const isX = placement === "left" || placement === "right";
-const drawerClass = (isX ? maxWidth() : maxHeight()) +" "+ base();
+const drawerClass = (isX ? maxWidth() : maxHeight()) +" "+ base({className});
 
 </script>
 

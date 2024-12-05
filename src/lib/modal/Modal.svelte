@@ -141,7 +141,6 @@ const {
 	placement,
 	overflowScroll,
 	size,
-	className
 });
 
 </script>
@@ -155,7 +154,7 @@ const {
 	<div 
 		bind:this={el}
 		id={id}
-		class={base()}
+		class={base({className})}
 	>
 		{#if title}
 			<div class="flex flex-row px-5 py-3 text-lg font-semibold">

@@ -25,7 +25,9 @@ let showWithPlacement = $state({
     </Button>
 
     {#if show}
-    <Drawer>
+    <Drawer
+        class="test-class"
+    >
         <Button 
             variant="danger"
             onclick={() => show = false}

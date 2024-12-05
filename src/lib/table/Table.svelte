@@ -1,5 +1,49 @@
 <script lang="ts" module>
-import type { Snippet } from "svelte";
+import { tv } from "tailwind-variants";
+import { onMount, type Snippet } from "svelte";
+
+const tableVariants = tv({
+	slots: {
+        wrapper: "relative min-w-full rounded-lg overflow-x-auto overflow-y-hidden",
+        table: "w-full border-collapse border-spacing-0 table table-fixed",
+        row: "h-12 border-solid border-b border-gray-100",
+        column: "text-sm text-gray-900 text-ellipsis whitespace-nowrap px-2 overflow-hidden",
+    },
+	variants: {
+        effect: {
+            header: {
+                row: "bg-gray-50",
+            },
+            hover: {
+                row: "hover:bg-gray-50",
+            },
+            striped: {
+                row: "even:bg-gray-50",
+            },
+        },
+        align: {
+            left: {
+                column: "text-left",
+            },
+            center: {
+                column: "text-center",
+            },
+            right: {
+                column: "text-right",
+            },
+        },
+        bordered: {
+            true: {
+                table: "border-solid border border-gray-100",
+                column: "border-solid border-r border-gray-100",
+            },
+        },
+	},
+	defaultVariants: {
+        align: "left",
+        bordered: false,
+	},
+});
 
 export type TableColumn = {
     // unique key
@@ -8,6 +52,8 @@ export type TableColumn = {
     label:string|Snippet;
     // default display
     placeholder?:string;
+    // text alignment
+    align?: "left"|"center"|"right",
     // custom render
     render?:Snippet<[Record<string, any>, number]>;
     // column width
@@ -15,16 +61,19 @@ export type TableColumn = {
 }
 
 type TableProps = {
+    id?:string;
+    class?:string;
+    ref?:{(el:HTMLElement):void};
     // table columns
     columns:TableColumn[];
     // data source
     source?:Record<string, any>[];
     // default display
     placeholder?:string|Snippet;
-    // caption header
-    header?:Snippet;
-    // caption footer
-    footer?:Snippet;
+    // row effect
+    effect?: "striped" | "hover";
+    // with border
+    bordered?:boolean;
 }
 
 </script>
@@ -32,23 +81,39 @@ type TableProps = {
 <script lang="ts">
 
 let {
+    id,
+    class: className,
+    ref,
     columns,
     source,
-    header,
-    footer,
+    effect,
+    bordered,
     placeholder,
 }:TableProps = $props();
 
+let el: HTMLElement;
+
+onMount(() => {
+    ref?.(el);
+});
+
+const {
+    wrapper,
+    table,
+    row,
+    column,
+} = tableVariants({
+    bordered,
+});
+
 </script>
 
-<div class="relative min-w-full overflow-x-auto overflow-y-hidden bg-white">
-    <table class="w-full border-collapse border-spacing-0 table table-fixed">
-        {#if header}
-            <caption class="caption-top pb-3">
-                {@render header()}
-            </caption>
-        {/if}
-
+<div
+    bind:this={el}
+    id={id}
+    class={wrapper({className})}
+>
+    <table class={table()}>
         <colgroup>
             {#each columns as column}
                 <col 
@@ -58,13 +123,13 @@ let {
         </colgroup>
 
         <thead>
-            <tr class="h-12 border-input border-b bg-gray-100">
-                {#each columns as column}
-                    <th class="text-left text-sm text-slate-800 text-ellipsis whitespace-nowrap px-2 overflow-hidden">
-                        {#if typeof column.label === "string"}
-                            {column.label}
+            <tr class={row({effect:"header"})}>
+                {#each columns as c}
+                    <th class={column({align:c.align})}>
+                        {#if typeof c.label === "string"}
+                            {c.label}
                         {:else}
-                            {@render column.label()}
+                            {@render c.label()}
                         {/if}
                     </th>
                 {/each}
@@ -73,14 +138,14 @@ let {
 
         <tbody>
             {#if source}
-                {#each source as row, i}
-                    <tr class="h-12 border-input border-b hover:bg-gray-100">
-                        {#each columns as column}
-                            <td class="text-left text-sm text-slate-800 text-ellipsis whitespace-nowrap px-2 overflow-hidden">
-                                {#if column.render}
-                                    {@render column.render(row, i)}
+                {#each source as r, i}
+                    <tr class={row({effect})}>
+                        {#each columns as c}
+                            <td class={column({align:c.align})}>
+                                {#if c.render}
+                                    {@render c.render(r, i)}
                                 {:else}
-                                    {row[column.key] ?? column.placeholder}
+                                    {r[c.key] ?? c.placeholder}
                                 {/if}
                             </td>
                         {/each}
@@ -105,11 +170,5 @@ let {
                 </tr>
             {/if}
         </tbody>
-
-        {#if footer}
-            <caption class="caption-bottom pt-3">
-                {@render footer()}
-            </caption>
-        {/if}
     </table>
 </div>
