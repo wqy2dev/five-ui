@@ -33,6 +33,15 @@ import { Button } from "$lib/index.js";
     <Button size="lg"> Large </Button>
 
     <h4 class="text-base indent-2 bg-slate-50">
+        Rounded
+    </h4>
+    
+    <Button size="xs" radius="full"> Xs </Button>
+    <Button size="sm" radius="full"> Small </Button>
+    <Button radius="full"> Default </Button>
+    <Button size="lg" radius="full"> Large </Button>
+
+    <h4 class="text-base indent-2 bg-slate-50">
         Disable
     </h4>
     
