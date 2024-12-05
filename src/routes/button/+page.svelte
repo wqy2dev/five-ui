@@ -27,7 +27,7 @@ import { Button } from "$lib/index.js";
         Size
     </h4>
     
-    <Button size="mini"> Mini </Button>
+    <Button size="xs"> Xs </Button>
     <Button size="sm"> Small </Button>
     <Button> Default </Button>
     <Button size="lg"> Large </Button>
@@ -36,7 +36,7 @@ import { Button } from "$lib/index.js";
         Disable
     </h4>
     
-    <Button size="mini" disabled> Mini </Button>
+    <Button size="xs" disabled> xs </Button>
     <Button size="sm" variant="danger" disabled> Danger </Button>
     <Button variant="secondary" disabled> Secondary </Button>
     <Button variant="reverse" size="lg" disabled> Reverse </Button>

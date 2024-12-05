@@ -31,8 +31,8 @@ import { Table, Button, Tooltip } from "$lib/index.js";
     {/snippet}
 
     {#snippet operateRender(row:Record<string, any>, index:number)}
-        <Button size="mini">编辑{index}</Button>
-        <Button size="mini">日志</Button>
+        <Button size="xs">编辑{index}</Button>
+        <Button size="xs">日志</Button>
     {/snippet}
 
     <Table

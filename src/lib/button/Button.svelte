@@ -3,7 +3,7 @@ import { type VariantProps, tv } from "tailwind-variants";
 import { type Snippet, onMount } from "svelte";
 
 const buttonVariants = tv({
-    base: "inline-flex items-center gap-1 border text-center text-sm font-medium transition-all focus:ring disabled:cursor-not-allowed",
+    base: "inline-flex items-center gap-1 border text-center font-medium transition-all focus:ring disabled:cursor-not-allowed",
     variants: {
         variant: {
             primary: "text-white border-primary-500 bg-primary-500 hover:border-primary-700 hover:bg-primary-700 focus:ring-primary-200 disabled:border-primary-300 disabled:bg-primary-300",
@@ -19,16 +19,16 @@ const buttonVariants = tv({
             none: "",
         },
         size: {
-            mini: "px-2 py-0.5",
-            sm: "px-3 py-1.5",
-            default: "px-4 py-2",
-            lg: "px-5 py-2.5",
+            xs: "px-2 py-0.5 text-xs",
+            sm: "px-3 py-1.5 text-sm",
+            md: "px-4 py-2 text-base",
+            lg: "px-5 py-2.5 text-lg",
         },
     },
     defaultVariants: {
         variant: "primary",
         radius: "lg",
-        size: "default",
+        size: "md",
     },
 });
 
