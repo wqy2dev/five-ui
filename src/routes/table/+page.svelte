@@ -1,6 +1,72 @@
 <script lang="ts">
 import { Table, Button, Tooltip } from "$lib/index.js";
 
+const dataSource = [
+    {
+        title: "未来能源安全和应急项目二期升级",
+        no: "202411050098",
+        company: "美国SpaceX太空探索公司",
+        progress: "二期(68%)",
+        duration: "6个月",
+        person: "艾隆.马斯克",
+        telphone: "021-5678908",
+    },
+    {
+        title: "未来能源安全和应急项目二期升级",
+        no: "202411050098",
+        company: "美国SpaceX太空探索公司",
+        progress: "二期(68%)",
+        duration: "6个月",
+        person: "艾隆.马斯克",
+        telphone: "021-5678908",
+    },
+    {
+        title: "未来能源安全和应急项目二期升级",
+        no: "202411050098",
+        company: "美国SpaceX太空探索公司",
+        progress: "二期(68%)",
+        duration: "6个月",
+        person: "艾隆.马斯克",
+        telphone: "021-5678908",
+    },
+    {
+        title: "未来能源安全和应急项目二期升级",
+        no: "202411050098",
+        company: "美国SpaceX太空探索公司",
+        progress: "二期(68%)",
+        duration: "6个月",
+        person: "艾隆.马斯克",
+        telphone: "021-5678908",
+    },
+    {
+        title: "未来能源安全和应急项目二期升级",
+        no: "202411050098",
+        company: "美国SpaceX太空探索公司",
+        progress: "二期(68%)",
+        duration: "6个月",
+        person: "艾隆.马斯克",
+        telphone: "021-5678908",
+    },
+    {
+        title: "未来能源安全和应急项目二期升级",
+        no: "202411050098",
+        company: "美国SpaceX太空探索公司",
+        progress: "二期(68%)",
+        duration: "6个月",
+        person: "艾隆.马斯克",
+        telphone: "021-5678908",
+    },
+    {
+        title: "未来能源安全和应急项目二期升级",
+        no: "202411050098",
+        company: "美国SpaceX太空探索公司",
+        progress: "二期(68%)",
+        duration: "6个月",
+        person: "艾隆.马斯克",
+        telphone: "021-5678908",
+    },
+];
+
 </script>
 
 <svelte:head>
@@ -31,7 +97,7 @@ import { Table, Button, Tooltip } from "$lib/index.js";
     {/snippet}
 
     {#snippet operateRender(row:Record<string, any>, index:number)}
-        <Button size="xs">编辑{index}</Button>
+        <Button size="xs">编辑</Button>
         <Button size="xs">日志</Button>
     {/snippet}
 
@@ -46,78 +112,14 @@ import { Table, Button, Tooltip } from "$lib/index.js";
             {key: "telphone", label: "联系电话"},
             {key: "operate", label: "操作", width: "150px",render:operateRender},
         ]}
-        source={[
-            {
-                title: "未来能源安全和应急项目二期升级",
-                no: "202411050098",
-                company: "美国SpaceX太空探索公司",
-                progress: "二期(68%)",
-                duration: "6个月",
-                person: "艾隆.马斯克",
-                telphone: "021-5678908",
-            },
-            {
-                title: "未来能源安全和应急项目二期升级",
-                no: "202411050098",
-                company: "美国SpaceX太空探索公司",
-                progress: "二期(68%)",
-                duration: "6个月",
-                person: "艾隆.马斯克",
-                telphone: "021-5678908",
-            },
-            {
-                title: "未来能源安全和应急项目二期升级",
-                no: "202411050098",
-                company: "美国SpaceX太空探索公司",
-                progress: "二期(68%)",
-                duration: "6个月",
-                person: "艾隆.马斯克",
-                telphone: "021-5678908",
-            },
-            {
-                title: "未来能源安全和应急项目二期升级",
-                no: "202411050098",
-                company: "美国SpaceX太空探索公司",
-                progress: "二期(68%)",
-                duration: "6个月",
-                person: "艾隆.马斯克",
-                telphone: "021-5678908",
-            },
-            {
-                title: "未来能源安全和应急项目二期升级",
-                no: "202411050098",
-                company: "美国SpaceX太空探索公司",
-                progress: "二期(68%)",
-                duration: "6个月",
-                person: "艾隆.马斯克",
-                telphone: "021-5678908",
-            },
-            {
-                title: "未来能源安全和应急项目二期升级",
-                no: "202411050098",
-                company: "美国SpaceX太空探索公司",
-                progress: "二期(68%)",
-                duration: "6个月",
-                person: "艾隆.马斯克",
-                telphone: "021-5678908",
-            },
-            {
-                title: "未来能源安全和应急项目二期升级",
-                no: "202411050098",
-                company: "美国SpaceX太空探索公司",
-                progress: "二期(68%)",
-                duration: "6个月",
-                person: "艾隆.马斯克",
-                telphone: "021-5678908",
-            },
-        ]}
+        source={dataSource}
     >
         {#snippet header()}
-        header caption
+            header caption
         {/snippet}
 
         {#snippet footer()}
-        footer caption
+            footer caption
         {/snippet}
     </Table>
 </div>
