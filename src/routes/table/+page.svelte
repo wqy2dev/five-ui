@@ -86,8 +86,8 @@ const dataSource = [
 {/snippet}
 
 {#snippet operateRender(row:Record<string, any>, index:number)}
-    <Button size="xs">编辑</Button>
-    <Button size="xs">日志</Button>
+    <Button size="xs">Edit</Button>
+    <Button size="xs">Log</Button>
 {/snippet}
 
 <div class="space-y-4 mt-5">
