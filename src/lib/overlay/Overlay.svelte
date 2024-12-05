@@ -34,7 +34,7 @@ type OverlayProps = {
     style?: string;
     ref?: {(el:HTMLElement):void};
     children: Snippet;
-    onclick?:{(e:MouseEvent):void};
+    onclose?:{(e:MouseEvent):void};
 }
 
 </script>
@@ -46,11 +46,11 @@ let {
     class:className,
     position,
     backdrop,
-    duration = 100,
+    duration = 200,
     style,
     ref,
     children,
-    onclick,
+    onclose,
 }:OverlayProps = $props();
 
 let el: HTMLElement;
@@ -78,7 +78,7 @@ onMount(() => {
     class={overlayVariants({position, backdrop, className})}
     style={style}
     transition:fade={{duration}}
-    onclick={onclick}
+    onclick={onclose}
 >
     {@render children()}
 </div>

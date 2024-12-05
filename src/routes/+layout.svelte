@@ -10,6 +10,7 @@ let { children } = $props();
         <a class="block w-full pl-6 py-2 hover:bg-primary-100" href="/alert">Alert</a>
         <a class="block w-full pl-6 py-2 hover:bg-primary-100" href="/badge">Badge</a>
         <a class="block w-full pl-6 py-2 hover:bg-primary-100" href="/button">Button</a>
+        <a class="block w-full pl-6 py-2 hover:bg-primary-100" href="/drawer">Drawer</a>
         <a class="block w-full pl-6 py-2 hover:bg-primary-100" href="/card">Card</a>
         <a class="block w-full pl-6 py-2 hover:bg-primary-100" href="/layout">Layout</a>
         <a class="block w-full pl-6 py-2 hover:bg-primary-100" href="/modal">Modal</a>

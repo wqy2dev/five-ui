@@ -149,7 +149,7 @@ const {
 <Overlay
 	style={overlayStyle}
 	backdrop={backdrop}
-	onclick={onOverlay}
+	onclose={onOverlay}
 	class={overlay()}
 >
 	<div 

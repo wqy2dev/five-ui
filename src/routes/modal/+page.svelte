@@ -116,13 +116,11 @@ const placements = ["top", "center", "bottom"];
         Close when overlay clicked
     </h4>
 
-    <div class="flex flex-row gap-2">
-        <Button 
-            onclick={() => showWhenOverlayClicked = true}
-        > 
-            Close when overlay clicked
-        </Button>
-    </div>
+    <Button 
+        onclick={() => showWhenOverlayClicked = true}
+    > 
+        Close when overlay clicked
+    </Button>
 
     {#if showWhenOverlayClicked}
     <Modal
