@@ -190,8 +190,8 @@ const dataSource = [
 
     <Table
         columns={[
-            {key: "company", label: "Company", width: "200px", render:titleRender},
-            {key: "address", label: "Address", width: "200px"},
+            {key: "company", label: "Company", width: "300px", render:titleRender},
+            {key: "address", label: "Address", width: "300px"},
             {key: "no", label: "No", width: "200px"},
             {key: "progress", label: "Process", width: "200px"},
             {key: "duration", label: "Time", width: "200px"},
