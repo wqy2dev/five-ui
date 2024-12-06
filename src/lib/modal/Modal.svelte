@@ -6,7 +6,7 @@ import { type Backdrop } from "$lib/overlay/Overlay.svelte";
 
 const modalVariants = tv({
 	slots: {
-		base: "flex flex-col w-full text-gray-900 border-solid border-gray-200 border bg-white shadow-sm overflow-hidden",
+		base: "flex flex-col w-full text-slate-900 border-solid border-slate-200 border bg-white shadow-sm overflow-hidden",
 		overlay: "flex justify-center py-14",
 		content: "px-5 grow text-sm",
 	},
@@ -167,7 +167,7 @@ const {
 				</div>
 
 				<button
-					class="ml-auto flex items-center justify-center rounded-lg w-7 h-7 text-gray-500 hover:bg-gray-100"
+					class="ml-auto flex items-center justify-center rounded-lg w-7 h-7 text-slate-500 hover:bg-slate-100"
 					type="button"
 					onclick={oncancel}
 				>

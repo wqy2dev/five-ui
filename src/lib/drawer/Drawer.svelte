@@ -7,7 +7,7 @@ import { type Backdrop } from "$lib/overlay/Overlay.svelte";
 
 const drawerVariants = tv({
 	slots: {
-		base: "w-full h-full text-gray-900 bg-white shadow-sm overflow-hidden",
+		base: "w-full h-full text-slate-900 bg-white shadow-sm overflow-hidden",
 		maxWidth: "",
 		maxHeight: "",
 		overlay: "flex",

@@ -6,19 +6,19 @@ const tableVariants = tv({
 	slots: {
         wrapper: "relative min-w-full rounded-lg overflow-x-auto overflow-y-hidden",
         table: "w-full border-collapse border-spacing-0 table table-fixed",
-        row: "h-12 border-solid border-b border-gray-100",
-        column: "text-sm text-gray-900 text-ellipsis whitespace-nowrap px-2 overflow-hidden",
+        row: "h-12 border-solid border-b border-slate-200",
+        column: "text-sm text-slate-900 text-ellipsis whitespace-nowrap px-2 overflow-hidden",
     },
 	variants: {
         effect: {
             header: {
-                row: "bg-gray-50",
+                row: "bg-slate-50",
             },
             hover: {
-                row: "hover:bg-gray-50",
+                row: "hover:bg-slate-50",
             },
             striped: {
-                row: "even:bg-gray-50",
+                row: "even:bg-slate-50",
             },
         },
         align: {
@@ -34,8 +34,8 @@ const tableVariants = tv({
         },
         bordered: {
             true: {
-                table: "border-solid border border-gray-100",
-                column: "border-solid border-r border-gray-100",
+                table: "border-solid border border-slate-200",
+                column: "border-solid border-r border-slate-200",
             },
         },
 	},
@@ -152,7 +152,7 @@ const {
                     </tr>
                 {/each}
             {:else}
-                <tr class="h-40 border-solid border-b border-gray-100">
+                <tr class="h-40 border-solid border-b border-slate-100">
                     <td 
                         class="text-center text-base text-slate-600 text-nowrap"
                         colspan={columns.length}

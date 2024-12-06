@@ -3,7 +3,7 @@
 import { Badge } from "$lib/index.js";
 
 const variants = [
-    "black", 
+    "black",
     "amber",
     "blue",
     "cyan",
@@ -15,12 +15,13 @@ const variants = [
     "purple",
     "pink", 
     "red", 
-    "rose", 
+    "rose",
     "sky",
+    "slate",
     "teal",
-    "indigo", 
-    "violet", 
-    "yellow", 
+    "indigo",
+    "violet",
+    "yellow",
     "lime"
 ];
 </script>
