@@ -1,7 +1,7 @@
 
 export { Accordion } from "./accordion/index.js";
 export { Alert } from "./alert/index.js";
-export { Avatar } from "./avatar/index.js";
+export { Avatar, AvatarGroup } from "./avatar/index.js";
 export { Badge } from "./badge/index.js";
 export { Breadcrumb } from "./breadcrumb/index.js";
 export { Button } from "./button/index.js";
