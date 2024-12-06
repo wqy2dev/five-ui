@@ -1,6 +1,6 @@
 <script lang="ts">
-    import Icon from "$lib/icon/icon.svelte";
-import { Badge } from "$lib/index.js";
+import Icon from "$lib/icon/icon.svelte";
+import { Tag } from "$lib/index.js";
 
 const variants = [
     "black",
@@ -27,11 +27,11 @@ const variants = [
 </script>
 
 <svelte:head>
-	<title>Badge</title>
+	<title>Tag</title>
 </svelte:head>
 
 <h2 class="text-lg font-bold leading-10">
-    Badge
+    Tag
 </h2>
 
 <div class="space-y-4 mt-5">
@@ -41,9 +41,9 @@ const variants = [
 
     <div class="flex flex-row gap-2">
         {#each variants as color }
-            <Badge variant={color as any}>
+            <Tag variant={color as any}>
                 {color}
-            </Badge>
+            </Tag>
         {/each}
     </div>
 </div>
@@ -54,9 +54,9 @@ const variants = [
     </h4>
     <div class="flex flex-row flex-wrap gap-2">
         {#each variants as color }
-            <Badge variant={color as any} size="lg">
+            <Tag variant={color as any} size="lg">
                 {color}
-            </Badge>
+            </Tag>
         {/each}
     </div>
 </div>
@@ -72,9 +72,9 @@ const variants = [
 
     <div class="flex flex-row flex-wrap gap-2">
         {#each variants as color }
-            <Badge variant={color as any} radius="sm">
+            <Tag variant={color as any} radius="sm">
                 {color}
-            </Badge>
+            </Tag>
         {/each}
     </div>
     
@@ -84,9 +84,9 @@ const variants = [
 
     <div class="flex flex-row flex-wrap gap-2">
         {#each variants as color }
-            <Badge variant={color as any} radius="full">
+            <Tag variant={color as any} radius="full">
                 {color}
-            </Badge>
+            </Tag>
         {/each}
     </div>
 
@@ -96,9 +96,9 @@ const variants = [
 
     <div class="flex flex-row flex-wrap gap-2">
         {#each variants as color }
-            <Badge variant={color as any} radius="none">
+            <Tag variant={color as any} radius="none">
                 {color}
-            </Badge>
+            </Tag>
         {/each}
     </div>
 </div>
@@ -110,9 +110,9 @@ const variants = [
 
     <div class="flex flex-row flex-wrap gap-2">
         {#each variants as color }
-            <Badge variant={color as any} radius="sm">
+            <Tag variant={color as any} radius="sm">
                 <Icon variant="CircleFillInfo"/> {color}
-            </Badge>
+            </Tag>
         {/each}
     </div>
 </div>
@@ -125,13 +125,13 @@ const variants = [
 
     <div class="flex flex-row flex-wrap gap-2">
         {#each variants as color }
-            <Badge 
+            <Tag 
                 variant={color as any} 
                 withClose
-                onclose={() => alert("Badge Clone")}
+                onclose={() => alert("Tag Clone")}
             >
                 {color}
-            </Badge>
+            </Tag>
         {/each}
     </div>
 </div>

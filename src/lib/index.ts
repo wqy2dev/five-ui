@@ -17,5 +17,6 @@ export { Pagination } from "./pagination/index.js";
 export { Popper } from "./popper/index.js";
 export { Steps } from "./steps/index.js";
 export { Table } from "./table/index.js";
+export { Tag } from "./tag/index.js";
 export { Timeline } from "./timeline/index.js";
 export { Tooltip } from "./tooltip/index.js";
