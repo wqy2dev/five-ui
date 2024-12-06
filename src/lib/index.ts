@@ -1,6 +1,8 @@
 
 export { Alert } from "./alert/index.js";
+export { Avatar } from "./avatar/index.js";
 export { Badge } from "./badge/index.js";
+export { Breadcrumb } from "./breadcrumb/index.js";
 export { Button } from "./button/index.js";
 export { Card } from "./card/index.js";
 export { Drawer } from "./drawer/index.js";
@@ -12,4 +14,5 @@ export { Overlay } from "./overlay/index.js";
 export { Pagination } from "./pagination/index.js";
 export { Popper } from "./popper/index.js";
 export { Table } from "./table/index.js";
+export { Timeline } from "./timeline/index.js";
 export { Tooltip } from "./tooltip/index.js";
