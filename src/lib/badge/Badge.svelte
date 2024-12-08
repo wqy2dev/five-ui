@@ -1,64 +1,128 @@
 <script lang="ts" module>
 import { type VariantProps, tv } from "tailwind-variants";
 import { type Snippet, onMount } from "svelte";
-import { Icon } from "$lib/icon/index.js";
 
 const badgeVariants = tv({
-    base: "inline-flex items-center gap-1 py-1 font-semibold",
+    slots: {
+        wrapper: "relative inline-block",
+        badge: "absolute flex items-center justify-center rounded-full ring-white ring-2 z-10",
+        xs: "",
+        sm: "",
+        md: "",
+        lg: "",
+    },
     variants: {
         variant: {
-            amber: "bg-amber-100 text-amber-600",
-            black: "bg-black text-white",
-            blue: "bg-blue-100 text-blue-600",
-            cyan: "bg-cyan-100 text-cyan-600",
-            emerald: "bg-emerald-100 text-emerald-600",
-            fuchsia: "bg-fuchsia-100 text-fuchsia-600",
-            green: "bg-green-100 text-green-600",
-            gray: "bg-gray-100 text-gray-600",
-            orange: "bg-orange-100 text-orange-600",
-            purple: "bg-purple-100 text-purple-600",
-            pink: "bg-pink-100 text-pink-600",
-            red: "bg-red-100 text-red-600",
-            rose: "bg-rose-100 text-rose-600",
-            sky: "bg-sky-100 text-sky-600",
-            slate: "bg-slate-100 text-slate-600",
-            teal: "bg-teal-100 text-teal-600",
-            indigo: "bg-indigo-100 text-indigo-600",
-            violet: "bg-violet-100 text-violet-600",
-            yellow: "bg-yellow-100 text-yellow-600",
-            lime: "bg-lime-100 text-lime-600",
+            amber: {
+                badge: "bg-amber-600 text-white",
+            },
+            black: {
+                badge: "bg-black text-white",
+            },
+            blue: {
+                badge: "bg-blue-600 text-white",
+            },
+            cyan: {
+                badge: "bg-cyan-600 text-white",
+            },
+            emerald: {
+                badge: "bg-emerald-600 text-white",
+            },
+            fuchsia: {
+                badge: "bg-fuchsia-600 text-white",
+            },
+            green: {
+                badge: "bg-green-600 text-white",
+            },
+            gray: {
+                badge: "bg-gray-600 text-white",
+            },
+            orange: {
+                badge: "bg-orange-600 text-white",
+            },
+            purple: {
+                badge: "bg-purple-600 text-white",
+            },
+            pink: {
+                badge: "bg-pink-600 text-white",
+            },
+            red: {
+                badge: "bg-red-600 text-white",
+            },
+            rose: {
+                badge: "bg-rose-600 text-white",
+            },
+            sky: {
+                badge: "bg-sky-600 text-white",
+            },
+            slate: {
+                badge: "bg-slate-600 text-white",
+            },
+            teal: {
+                badge: "bg-teal-600 text-white",
+            },
+            indigo: {
+                badge: "bg-indigo-600 text-white",
+            },
+            violet: {
+                badge: "bg-violet-600 text-white",
+            },
+            yellow: {
+                badge: "bg-yellow-600 text-white",
+            },
+            lime: {
+                badge: "bg-lime-600 text-white",
+            },
         },
         size: {
-            default: "px-2 text-xs",
-            lg: "px-3 text-sm",
+            xs: {
+                badge: "min-w-2 h-2 text-xs",
+            },
+            sm: {
+                badge: "min-w-3 h-3 text-xs",
+            },
+            md: {
+                badge: "min-w-4 h-4 text-xs",
+            },
+            lg: {
+                badge: "min-w-5 h-5 text-sm",
+            },
         },
-        radius: {
-            full: "rounded-full",
-            sm: "rounded-lg",
-            none: "",
+        placement: {
+            topLeft: {
+                badge: "-left-1 -top-1",
+            },
+            topRight: {
+                badge: "-right-1 -top-1",
+            },
+            bottomLeft: {
+                badge: "-left-1 -bottom-1",
+            },
+            bottomRight: {
+                badge: "-right-1 -bottom-1",
+            }
         },
     },
     defaultVariants: {
-        variant: "amber",
-        size: "default",
-        radius: "full",
+        size: "md",
+        variant: "red",
+        placement: "topRight",
     },
 });
 
-type Variant = VariantProps<typeof badgeVariants>["variant"];
-type Radius = VariantProps<typeof badgeVariants>["radius"];
 type Size = VariantProps<typeof badgeVariants>["size"];
+type Variant = VariantProps<typeof badgeVariants>["variant"];
+type Placement = VariantProps<typeof badgeVariants>["placement"];
 
 type BadgeProps = {
-    variant?: Variant;
-    radius?: Radius;
-    size?: Size;
-    withClose?: boolean;
-    onclose?: {(e:MouseEvent):void};
-	ref?: {(el:HTMLElement):void};
     id?:string;
-    class?: string;
-    children: Snippet;
+    class?:string;
+    ref?:{(el:HTMLElement):void};
+    size?:Size;
+    variant?:Variant;
+    placement?:Placement;
+    content?:string;
+    children?:Snippet;
 }
 
 </script>
@@ -67,13 +131,12 @@ type BadgeProps = {
 
 let {
     id,
-    variant,
-    radius,
-    size,
     class:className,
-    withClose,
-    onclose,
     ref,
+    size,
+    variant,
+    placement,
+    content,
     children,
 }:BadgeProps = $props();
 
@@ -83,24 +146,27 @@ onMount(() => {
     ref?.(el);
 });
 
+const {
+    xs,
+    sm,
+    md,
+    lg,
+    badge,
+    wrapper,
+} = badgeVariants({size, variant, placement});
+
 </script>
 
-<span
+<div
     id={id}
     bind:this={el}
-    class={badgeVariants({variant, radius, size, className})}
+    class={wrapper({className})}
 >
-    {@render children()}
+    <span
+        class={badge()}
+    >
+        {content}
+    </span>
 
-    {#if withClose}
-        <button 
-            type="button"
-            onclick={onclose}
-        >
-            <Icon 
-                variant="Close"
-                size="14px"
-            />
-        </button>
-	{/if}
-</span>
+    {@render children?.()}
+</div>

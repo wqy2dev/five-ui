@@ -23,7 +23,7 @@ const avatarVariants = tv({
             true: "bg-slate-100 text-slate-400",
         },
         bordered: {
-            true: "ring-2 ring-offset-2 ring-slate-200",
+            true: "ring-slate-200 ring-2 ring-offset-2",
         },
 	},
 	defaultVariants: {

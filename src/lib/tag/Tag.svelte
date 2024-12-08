@@ -29,7 +29,7 @@ const tagVariants = tv({
             lime: "bg-lime-100 text-lime-600",
         },
         size: {
-            default: "px-2 text-xs",
+            sm: "px-2 text-xs",
             lg: "px-3 text-sm",
         },
         radius: {
@@ -39,8 +39,8 @@ const tagVariants = tv({
         },
     },
     defaultVariants: {
+        size: "sm",
         variant: "amber",
-        size: "default",
         radius: "full",
     },
 });
@@ -50,15 +50,15 @@ type Radius = VariantProps<typeof tagVariants>["radius"];
 type Size = VariantProps<typeof tagVariants>["size"];
 
 type tagProps = {
-    variant?: Variant;
-    radius?: Radius;
-    size?: Size;
-    withClose?: boolean;
-    onclose?: {(e:MouseEvent):void};
-    ref?: {(el:HTMLElement):void};
     id?:string;
-    class?: string;
-    children: Snippet;
+    class?:string;
+    ref?:{(el:HTMLElement):void};
+    size?:Size;
+    radius?:Radius;
+    variant?:Variant;
+    withClose?:boolean;
+    onclose?:{(e:MouseEvent):void};
+    children:Snippet;
 }
 
 </script>

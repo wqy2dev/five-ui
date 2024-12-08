@@ -6,6 +6,7 @@ let { children } = $props();
 const routes = [
     {path: "/alert", title: "Alert"},
     {path: "/avatar", title: "Avatar"},
+    {path: "/badge", title: "Badge"},
     {path: "/button", title: "Button"},
     {path: "/drawer", title: "Drawer"},
     {path: "/card", title: "Card"},

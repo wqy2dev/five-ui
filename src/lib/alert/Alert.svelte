@@ -37,15 +37,15 @@ type Variant = VariantProps<typeof alertVariants>["variant"];
 
 type AlertProps = {
     id?:string;
-    class?: string;
-    ref?: {(el:HTMLElement):void};
-	description?: Snippet | string;
-	onclose?: {():void};
-    variant?: Variant;
-	withIcon?: boolean;
-	withBorder?: boolean;
-	withClose?: boolean,
-    children: Snippet;
+    class?:string;
+    ref?:{(el:HTMLElement):void};
+	description?:Snippet | string;
+	onclose?:{():void};
+    variant?:Variant;
+	withIcon?:boolean;
+	withBorder?:boolean;
+	withClose?:boolean,
+    children:Snippet;
 }
 
 </script>

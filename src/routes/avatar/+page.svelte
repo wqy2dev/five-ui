@@ -1,14 +1,6 @@
 <script lang="ts">
 import { Avatar, Icon } from "$lib/index.js";
 
-const sizes = [
-    "xs",
-    "sm",
-    "md",
-    "lg",
-    "xl"
-];
-
 const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800";
 
 </script>
@@ -49,7 +41,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
                     {rds}
                 </b>
                 <Avatar 
-                    radius={rds} 
+                    radius={rds as any} 
                     image={imageUrl}
                 />
             </div>
@@ -67,7 +59,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
                     {size}
                 </b>
                 <Avatar 
-                    size={size} 
+                    size={size as any} 
                     image={imageUrl}
                 />
             </div>
@@ -81,7 +73,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
                     {size}
                 </b>
                 <Avatar 
-                    size={size} 
+                    size={size as any} 
                     radius="full"
                     image={imageUrl}
                 />
@@ -97,7 +89,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
         {#each ["xs", "sm", "md", "lg", "xl"] as size}
             <Avatar
                 bordered
-                size={size} 
+                size={size as  any} 
                 image={imageUrl}
             />
         {/each}
@@ -108,7 +100,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
             <Avatar
                 bordered
                 radius="full"
-                size={size} 
+                size={size as any} 
                 image={imageUrl}
             />
         {/each}
@@ -121,7 +113,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
     <div class="flex flex-row gap-5">
         {#each ["xs", "sm", "md", "lg", "xl"] as size}
                 <Avatar 
-                    size={size}
+                    size={size as any}
                     radius="full"
                 >
                     <Icon 
@@ -138,7 +130,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
     <div class="flex flex-row gap-5">
         {#each ["xs", "sm", "md", "lg", "xl"] as size}
                 <Avatar 
-                    size={size}
+                    size={size as any}
                     radius="full"
                 >
                     AB
@@ -153,7 +145,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
     <div class="flex flex-row gap-5">
         {#each ["xs", "sm", "md", "lg", "xl"] as size}
                 <Avatar 
-                    size={size}
+                    size={size as any}
                     radius="full"
                 >
                     {#snippet badge()}
