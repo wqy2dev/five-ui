@@ -20,10 +20,10 @@ const avatarVariants = tv({
             full: "rounded-full",
         },
         bg: {
-            true: "bg-slate-100 text-slate-400",
+            true: "bg-slate-200 text-slate-400",
         },
         bordered: {
-            true: "ring-slate-200 ring-2 ring-offset-2",
+            true: "ring-white ring-2",
         },
 	},
 	defaultVariants: {
@@ -32,8 +32,8 @@ const avatarVariants = tv({
 	},
 });
 
-type Size = VariantProps<typeof avatarVariants>["size"];
-type Radius = VariantProps<typeof avatarVariants>["radius"];
+export type Size = VariantProps<typeof avatarVariants>["size"];
+export type Radius = VariantProps<typeof avatarVariants>["radius"];
 
 type AvatarProps = {
     id?:string;
@@ -43,7 +43,8 @@ type AvatarProps = {
     radius?:Radius;
     bordered?:boolean;
     image?:string;
-    imageAlt?:string;
+    alt?:string;
+    style?:string;
     children?:Snippet;
 }
 
@@ -58,7 +59,8 @@ let {
     radius,
     bordered,
     image,
-    imageAlt,
+    alt,
+    style,
     class:className,
     children
 }:AvatarProps = $props();
@@ -75,12 +77,13 @@ onMount(() => {
     bind:this={el}
     id={id}
     class={avatarVariants({size, radius, bordered, bg: !image, className})}
+    style={style}
 >
     {#if image}
         <img 
             class="h-full w-full object-cover object-center"
             src={image}
-            alt={imageAlt}
+            alt={alt}
         />
     {:else}
         {@render children?.()}

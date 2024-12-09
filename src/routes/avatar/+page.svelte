@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Avatar, Badge, Icon } from "$lib/index.js";
+import { Avatar, AvatarGroup, Badge, Icon } from "$lib/index.js";
 
 const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800";
 
@@ -172,5 +172,61 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
                 </Avatar>
             </Badge>
         {/each}
+    </div>
+
+    <h4 class="text-base indent-2 bg-slate-50">
+        Avatar Group
+    </h4>
+
+    <div class="flex flex-row gap-5">
+        <AvatarGroup
+            size="sm"
+            radius="full"
+            limit={3}
+            source={[
+                {image: imageUrl},
+                {image: imageUrl},
+                {image: imageUrl},
+                {image: imageUrl},
+                {image: imageUrl},
+            ]}
+        />
+
+        <AvatarGroup
+            size="sm"
+            radius="full"
+            limit={3}
+            source={[
+                {image: imageUrl},
+                {image: imageUrl},
+                {image: imageUrl},
+                {image: imageUrl},
+                {image: imageUrl},
+            ]}
+        />
+    
+        <AvatarGroup
+            limit={3}
+            radius="full"
+            source={[
+                {image: imageUrl},
+                {image: imageUrl},
+                {image: imageUrl},
+                {image: imageUrl},
+                {image: imageUrl},
+            ]}
+        />
+
+        <AvatarGroup
+            limit={3}
+            radius="full"
+            source={[
+                {image: imageUrl},
+                {image: imageUrl},
+                {image: imageUrl},
+                {image: imageUrl},
+                {image: imageUrl},
+            ]}
+        />
     </div>
 </div>
