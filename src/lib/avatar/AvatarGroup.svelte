@@ -29,7 +29,7 @@ let {
     avatarStyle,
     limit = 0,
     source = [],
-    class:className,
+    class:className = "",
 }:AvatarGroupProps = $props();
 
 let el:HTMLElement;
@@ -46,11 +46,11 @@ const rest = source.length - limit;
 <div 
     bind:this={el}
     id={id}
-    class="flex flex-row"
+    class={"flex flex-row"+(className === "" ? "":" "+className)}
 >
     {#each data as item, i}
         <Avatar
-            class={i>0 ? "-ml-2":""}
+            class={i>0 ? "-ml-2":undefined}
             image={item.image}
             alt={item.alt}
             style={item.style}
