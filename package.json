@@ -4,8 +4,8 @@
 	"version": "0.1.3",
 	"license": "MIT",
 	"repository": {
-		"type": "github",
-		"url": "github/wqy2dev/five-ui"
+		"type": "git",
+		"url": "git+https://github/wqy2dev/five-ui.git"
 	},
 	"author": {
 		"name": "wqy2dev",
