@@ -51,7 +51,7 @@ npm i five-ui@latest
 Documentation
 --
 
-[Visit](http://ui.trainci.com) to view the documentation.
+Document preparation in progress, please wait.
 
 License
 --
