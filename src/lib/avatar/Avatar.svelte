@@ -20,7 +20,7 @@ const avatarVariants = tv({
             full: "rounded-full",
         },
         bg: {
-            true: "bg-slate-200 text-slate-400",
+            true: "bg-slate-200 text-slate-600",
         },
         bordered: {
             true: "ring-white ring-2",

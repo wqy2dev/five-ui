@@ -225,7 +225,6 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
                 {image: imageUrl},
                 {image: imageUrl},
                 {image: imageUrl},
-                {image: imageUrl},
             ]}
         />
     </div>
