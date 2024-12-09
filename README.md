@@ -32,6 +32,13 @@ The component list of FiveUI includes, but is not limited to:
 | Timeline | |
 | Tooltip | ✔ |
 
+Local Preview
+--
+
+```
+npm run dev
+```
+
 Getting Started
 --
 
