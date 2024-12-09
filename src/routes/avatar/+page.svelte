@@ -150,7 +150,6 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
             >
                 <Avatar 
                     size={size as any}
-                    radius="full"
                     image={imageUrl}
                 >
                     XZ
@@ -162,12 +161,12 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
     <div>
         {#each ["xs", "sm", "md", "lg", "xl"] as size}
             <Badge 
-                size="xs"
+                size="sm"
                 class="mr-3"
+                content="10"
             >
                 <Avatar 
                     size={size as any}
-                    radius="full"
                 >
                     XZ
                 </Avatar>
