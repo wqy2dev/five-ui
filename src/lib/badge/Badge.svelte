@@ -5,73 +5,69 @@ import { type Snippet, onMount } from "svelte";
 const badgeVariants = tv({
     slots: {
         wrapper: "relative inline-block",
-        badge: "absolute flex items-center justify-center rounded-full ring-white ring-2 z-10",
-        xs: "",
-        sm: "",
-        md: "",
-        lg: "",
+        badge: "absolute p-[2px]  text-white  box-content flex items-center justify-center rounded-full ring-white ring-2 z-10",
     },
     variants: {
         variant: {
             amber: {
-                badge: "bg-amber-600 text-white",
+                badge: "bg-amber-600",
             },
             black: {
-                badge: "bg-black text-white",
+                badge: "bg-black",
             },
             blue: {
-                badge: "bg-blue-600 text-white",
+                badge: "bg-blue-600",
             },
             cyan: {
-                badge: "bg-cyan-600 text-white",
+                badge: "bg-cyan-600",
             },
             emerald: {
-                badge: "bg-emerald-600 text-white",
+                badge: "bg-emerald-600",
             },
             fuchsia: {
-                badge: "bg-fuchsia-600 text-white",
+                badge: "bg-fuchsia-600",
             },
             green: {
-                badge: "bg-green-600 text-white",
+                badge: "bg-green-600",
             },
             gray: {
-                badge: "bg-gray-600 text-white",
+                badge: "bg-gray-600",
             },
             orange: {
-                badge: "bg-orange-600 text-white",
+                badge: "bg-orange-600",
             },
             purple: {
-                badge: "bg-purple-600 text-white",
+                badge: "bg-purple-600",
             },
             pink: {
-                badge: "bg-pink-600 text-white",
+                badge: "bg-pink-600",
             },
             red: {
-                badge: "bg-red-600 text-white",
+                badge: "bg-red-600",
             },
             rose: {
-                badge: "bg-rose-600 text-white",
+                badge: "bg-rose-600",
             },
             sky: {
-                badge: "bg-sky-600 text-white",
+                badge: "bg-sky-600",
             },
             slate: {
-                badge: "bg-slate-600 text-white",
+                badge: "bg-slate-600",
             },
             teal: {
-                badge: "bg-teal-600 text-white",
+                badge: "bg-teal-600",
             },
             indigo: {
-                badge: "bg-indigo-600 text-white",
+                badge: "bg-indigo-600",
             },
             violet: {
-                badge: "bg-violet-600 text-white",
+                badge: "bg-violet-600",
             },
             yellow: {
-                badge: "bg-yellow-600 text-white",
+                badge: "bg-yellow-600",
             },
             lime: {
-                badge: "bg-lime-600 text-white",
+                badge: "bg-lime-600",
             },
         },
         size: {
@@ -82,7 +78,7 @@ const badgeVariants = tv({
                 badge: "min-w-3 h-3 text-xs",
             },
             md: {
-                badge: "min-w-4 h-4 text-xs",
+                badge: "min-w-4 h-4 text-sm",
             },
             lg: {
                 badge: "min-w-5 h-5 text-sm",
@@ -147,10 +143,6 @@ onMount(() => {
 });
 
 const {
-    xs,
-    sm,
-    md,
-    lg,
     badge,
     wrapper,
 } = badgeVariants({size, variant, placement});
