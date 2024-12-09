@@ -4,9 +4,9 @@ import { onMount, type Snippet } from "svelte";
 
 const tableVariants = tv({
 	slots: {
-        wrapper: "relative min-w-full rounded-lg overflow-x-auto overflow-y-hidden",
+        wrapper: "relative rounded-lg min-w-full overflow-x-auto overflow-y-hidden",
         table: "w-full border-collapse border-spacing-0 table table-fixed",
-        row: "h-12 border-solid border-b border-slate-200",
+        row: "h-12",
         column: "text-sm text-slate-900 text-ellipsis whitespace-nowrap px-2 overflow-hidden",
     },
 	variants: {
@@ -32,16 +32,27 @@ const tableVariants = tv({
                 column: "text-right",
             },
         },
+        rowBordered: {
+            true: {
+                row: "border-solid border-b border-slate-200",
+            },
+        },
+        columnBordered:{
+            true: {
+                column: "border-solid border-r border-slate-200",
+            },
+        },
         bordered: {
             true: {
-                table: "border-solid border border-slate-200",
-                column: "border-solid border-r border-slate-200",
+                wrapper: "border-solid border border-slate-200",
             },
         },
 	},
 	defaultVariants: {
         align: "left",
         bordered: false,
+        rowBordered: false,
+        columnBordered: false,
 	},
 });
 
@@ -123,9 +134,9 @@ const {
         </colgroup>
 
         <thead>
-            <tr class={row({effect:"header"})}>
-                {#each columns as c}
-                    <th class={column({align:c.align})}>
+            <tr class={row({effect:"header", rowBordered: true})}>
+                {#each columns as c,i}
+                    <th class={column({align:c.align, columnBordered: bordered && columns.length !== i+1})}>
                         {#if typeof c.label === "string"}
                             {c.label}
                         {:else}
@@ -139,9 +150,9 @@ const {
         <tbody>
             {#if source}
                 {#each source as r, i}
-                    <tr class={row({effect})}>
-                        {#each columns as c}
-                            <td class={column({align:c.align})}>
+                    <tr class={row({effect, rowBordered: source.length !== i+1})}>
+                        {#each columns as c,i}
+                            <td class={column({align:c.align, columnBordered: bordered && columns.length !== i+1})}>
                                 {#if c.render}
                                     {@render c.render(r, i)}
                                 {:else}

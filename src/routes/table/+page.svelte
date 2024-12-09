@@ -200,7 +200,29 @@ const dataSource = [
             {key: "operate", label: "Action", align: "center", width: "150px",render:operateRender},
         ]}
         source={dataSource}
+        bordered
     >
         
+    </Table>
+</div>
+
+
+<div class="space-y-4 mt-5">
+    <h4 class="text-base indent-2 bg-slate-50">
+        Empty
+    </h4>
+
+    <Table
+        columns={[
+            {key: "company", label: "Company", width: "160px",  render:titleRender},
+            {key: "address", label: "Address"},
+            {key: "no", label: "No"},
+            {key: "progress", label: "Process"},
+            {key: "duration", label: "Time"},
+            {key: "person", label: "Contacts", align: "center"},
+            {key: "telphone", label: "Telphone"},
+            {key: "operate", label: "Action", align: "center", width: "150px",render:operateRender},
+        ]}
+    >
     </Table>
 </div>
