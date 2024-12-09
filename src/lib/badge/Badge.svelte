@@ -5,7 +5,7 @@ import { type Snippet, onMount } from "svelte";
 const badgeVariants = tv({
     slots: {
         wrapper: "relative inline-block",
-        badge: "absolute p-[2px]  text-white  box-content flex items-center justify-center rounded-full ring-white ring-2 z-10",
+        badge: "absolute p-[2px] text-white box-content flex items-center justify-center rounded-full ring-white ring-2 z-10",
     },
     variants: {
         variant: {

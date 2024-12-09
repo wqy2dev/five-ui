@@ -44,7 +44,6 @@ type AvatarProps = {
     bordered?:boolean;
     image?:string;
     imageAlt?:string;
-    badge?:Snippet;
     children?:Snippet;
 }
 
@@ -61,7 +60,6 @@ let {
     image,
     imageAlt,
     class:className,
-    badge,
     children
 }:AvatarProps = $props();
 
@@ -86,11 +84,5 @@ onMount(() => {
         />
     {:else}
         {@render children?.()}
-    {/if}
-
-    {#if badge}
-        <span class="absolute top-0 right-0">
-            {@render badge()}
-        </span>
     {/if}
 </div>

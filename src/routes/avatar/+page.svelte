@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Avatar, Icon } from "$lib/index.js";
+import { Avatar, Badge, Icon } from "$lib/index.js";
 
 const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800";
 
@@ -142,16 +142,36 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
         Badge
     </h4>
 
-    <div class="flex flex-row gap-5">
+    <div>
         {#each ["xs", "sm", "md", "lg", "xl"] as size}
+            <Badge
+                size="xs"
+                class="mr-3"
+            >
+                <Avatar 
+                    size={size as any}
+                    radius="full"
+                    image={imageUrl}
+                >
+                    XZ
+                </Avatar>
+            </Badge>
+        {/each}
+    </div>
+
+    <div>
+        {#each ["xs", "sm", "md", "lg", "xl"] as size}
+            <Badge 
+                size="xs"
+                class="mr-3"
+            >
                 <Avatar 
                     size={size as any}
                     radius="full"
                 >
-                    {#snippet badge()}
-                        1
-                    {/snippet}
+                    XZ
                 </Avatar>
+            </Badge>
         {/each}
     </div>
 </div>
