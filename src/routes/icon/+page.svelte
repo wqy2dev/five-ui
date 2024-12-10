@@ -20,7 +20,7 @@ let collapsible = $state(false);
     >
         {#snippet target(ref)}
         <div 
-            class="w-10 h-10 flex items-center justify-center bg-slate-100"
+            class="w-10 h-10 flex items-center justify-center bg-slate-100 text-slate-600"
             use:ref
         >
             <Icon

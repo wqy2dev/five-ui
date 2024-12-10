@@ -5,11 +5,11 @@ export const icons:string[] = [
     "CircleFillSuccess",
     "CircleFillError",
     "FillWarning",
-    "Close",
     "Download",
     "Upload",
     "Delete",
     "Logout",
     "Plus",
+    "Close",
     "User",
 ];
