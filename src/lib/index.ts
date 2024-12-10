@@ -9,7 +9,7 @@ export { Card } from "./card/index.js";
 export { Drawer } from "./drawer/index.js";
 export { Icon } from "./icon/index.js";
 export { Input } from "./input/index.js";
-export { Layout } from "./layout/index.js";
+export { Layout, Side, Header, Content } from "./layout/index.js";
 export { Message } from "./message/index.js";
 export { Modal } from "./modal/index.js";
 export { Overlay } from "./overlay/index.js";
