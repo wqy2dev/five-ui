@@ -4,16 +4,23 @@ import "./style.css";
 let { children } = $props();
 
 const routes = [
+    {path: "/accordion", title: "Accordion"},
     {path: "/alert", title: "Alert"},
     {path: "/avatar", title: "Avatar"},
     {path: "/badge", title: "Badge"},
+    {path: "/breadcrumb", title: "Breadcrumb"},
     {path: "/button", title: "Button"},
     {path: "/drawer", title: "Drawer"},
+    {path: "/form", title: "Form"},
     {path: "/card", title: "Card"},
     {path: "/layout", title: "Layout"},
+    {path: "/message", title: "Message"},
     {path: "/modal", title: "Modal"},
+    {path: "/pagination", title: "Pagination"},
+    {path: "/steps", title: "Steps"},
     {path: "/table", title: "Table"},
     {path: "/tag", title: "Tag"},
+    {path: "/timeline", title: "Timeline"},
     {path: "/tooltip", title: "Tooltip"},
 ];
 
