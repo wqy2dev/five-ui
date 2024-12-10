@@ -32,6 +32,10 @@ const variants = [
 	<title>Badge</title>
 </svelte:head>
 
+<h2 class="text-lg font-bold leading-10">
+    Badge
+</h2>
+
 <div class="space-y-4 mt-5">
     <h4 class="text-base indent-2 bg-slate-50">
         Default

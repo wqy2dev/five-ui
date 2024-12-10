@@ -44,7 +44,7 @@ type AlertProps = {
     variant?:Variant;
 	withIcon?:boolean;
 	withBorder?:boolean;
-	withClose?:boolean,
+	withClose?:boolean;
     children:Snippet;
 }
 

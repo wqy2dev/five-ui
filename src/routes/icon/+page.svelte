@@ -5,6 +5,10 @@ let collapsible = $state(false);
 
 </script>
 
+<svelte:head>
+	<title>Icon</title>
+</svelte:head>
+
 <h2 class="text-lg font-bold leading-10">
     Icon
 </h2>
@@ -24,7 +28,7 @@ let collapsible = $state(false);
             use:ref
         >
             <Icon
-                variant={icon}
+                variant={icon as any}
                 size={20}
             />
         </div>

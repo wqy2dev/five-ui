@@ -3,7 +3,7 @@ import { hasContext, onMount, type Snippet } from "svelte";
 import { twMerge } from "tailwind-merge";
 
 if(!hasContext("layout")) {
-    throw new Error("side not in the layout context!");
+    throw new Error("Side not in the layout context!");
 }
 
 type SideProps = {

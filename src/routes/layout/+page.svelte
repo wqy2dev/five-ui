@@ -4,6 +4,9 @@ import { Layout, Side, Header, Content, Button } from "$lib/index.js";
 let collapsible = $state(false);
 
 </script>
+<svelte:head>
+	<title>Layout</title>
+</svelte:head>
 
 <h2 class="text-lg font-bold leading-10">
     Layout

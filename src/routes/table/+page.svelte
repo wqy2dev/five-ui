@@ -73,6 +73,10 @@ const dataSource = [
 	<title>Table</title>
 </svelte:head>
 
+<h2 class="text-lg font-bold leading-10">
+    Table
+</h2>
+
 {#snippet titleRender(row:Record<string, any>, index:number)}
     <Tooltip>
         {#snippet target(ref)}

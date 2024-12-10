@@ -173,7 +173,7 @@ const {
 				>
 					<Icon 
 						variant="Close"
-						size="20px"
+						size={20}
 					/>
 				</button>
 			</div>

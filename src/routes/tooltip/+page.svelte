@@ -10,6 +10,10 @@ const placements = [
 
 </script>
 
+<svelte:head>
+	<title>Tooltip</title>
+</svelte:head>
+
 <h2 class="text-lg font-bold leading-10">
     Tooltip
 </h2>
