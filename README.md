@@ -20,7 +20,7 @@ The component list of FiveUI includes, but is not limited to:
 | Drawer | ✔ |
 | Icon | ✔ |
 | Input | |
-| Layout | |
+| Layout | ✔ |
 | Message | |
 | Modal | ✔ |
 | Overlay | ✔ |
