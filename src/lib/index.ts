@@ -7,7 +7,7 @@ export { Breadcrumb } from "./breadcrumb/index.js";
 export { Button } from "./button/index.js";
 export { Card } from "./card/index.js";
 export { Drawer } from "./drawer/index.js";
-export { Icon } from "./icon/index.js";
+export { Icon, icons } from "./icon/index.js";
 export { Input } from "./input/index.js";
 export { Layout, Side, Header, Content } from "./layout/index.js";
 export { Message } from "./message/index.js";

@@ -99,7 +99,7 @@ onMount(() => {
         >
             <Icon 
                 variant="Close"
-                size="14px"
+                size={14}
             />
         </button>
     {/if}

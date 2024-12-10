@@ -19,10 +19,7 @@ export type PopperProps = {
     when?: {(targetEl:HTMLElement, floatEl:HTMLElement):boolean};
 }
 
-export type Placement = "top" | "top-start" | "top-end" | 
-    "bottom" | "bottom-start" | "bottom-end" | 
-    "left" | "left-start" | "left-end" | 
-    "right" | "right-start" | "right-end";
+export type Placement = "top" | "topStart" | "topEnd" | "bottom" | "bottomStart" | "bottomEnd" | "left" | "leftStart" | "leftEnd" | "right" | "rightStart" | "rightEnd";
 
 // Calculate the position of the popper
 function position(refEl:HTMLElement, floatEl:HTMLElement, placement:Placement, offset:number) {
@@ -36,10 +33,10 @@ function position(refEl:HTMLElement, floatEl:HTMLElement, placement:Placement, o
             top  = top - floatEl.offsetHeight - offset;
             left = left + (refEl.offsetWidth - floatEl.offsetWidth) / 2;
             break;
-        case "top-start":
+        case "topStart":
             top  = top - floatEl.offsetHeight - offset;
             break;
-        case "top-end":
+        case "topEnd":
             top  = top - floatEl.offsetHeight - offset;
             left = refEl.offsetWidth - floatEl.offsetWidth + left;
             break;
@@ -47,10 +44,10 @@ function position(refEl:HTMLElement, floatEl:HTMLElement, placement:Placement, o
             top  = top + refEl.offsetHeight + offset;
             left = left + (refEl.offsetWidth - floatEl.offsetWidth) / 2;
             break;
-        case "bottom-start":
+        case "bottomStart":
             top  = top + refEl.offsetHeight + offset;
             break;
-        case "bottom-end":
+        case "bottomEnd":
             top  = top + refEl.offsetHeight + offset;
             left = refEl.offsetWidth - floatEl.offsetWidth + left;
             break;
@@ -58,10 +55,10 @@ function position(refEl:HTMLElement, floatEl:HTMLElement, placement:Placement, o
             left = left - floatEl.offsetWidth - offset;
             top  = top + (refEl.offsetHeight - floatEl.offsetHeight) / 2;
             break;
-        case "left-start":
+        case "leftStart":
             left = left - floatEl.offsetWidth - offset;
             break;
-        case "left-end":
+        case "leftEnd":
             left = left - floatEl.offsetWidth - offset;
             top  = refEl.offsetHeight - floatEl.offsetHeight + top;
             break;
@@ -69,10 +66,10 @@ function position(refEl:HTMLElement, floatEl:HTMLElement, placement:Placement, o
             top  = top + (refEl.offsetHeight - floatEl.offsetHeight) / 2;
             left = left + refEl.offsetWidth + offset;
             break;
-        case "right-start":
+        case "rightStart":
             left = left + refEl.offsetWidth + offset;
             break;
-        case "right-end":
+        case "rightEnd":
             top  = refEl.offsetHeight - floatEl.offsetHeight + top;
             left = left + refEl.offsetWidth + offset;
             break;
@@ -101,11 +98,11 @@ function arrowPosition(refEl:HTMLElement, floatEl:HTMLElement, arrowEl:HTMLEleme
             top = floatEl.offsetHeight - arrowEl.offsetHeight / 2;
             left = (floatEl.offsetWidth - arrowEl.offsetWidth) / 2;
             break;
-        case "top-start":
+        case "topStart":
             top = floatEl.offsetHeight - arrowEl.offsetHeight / 2;
             left = (floatEl.offsetWidth <= refEl.offsetWidth ? floatEl.offsetWidth : refEl.offsetWidth) / 2 - (arrowEl.offsetWidth / 2);
             break;
-        case "top-end":
+        case "topEnd":
             top = floatEl.offsetHeight - arrowEl.offsetHeight / 2;
             left = (floatEl.offsetWidth <= refEl.offsetWidth ? floatEl.offsetWidth / 2 : floatEl.offsetWidth - (refEl.offsetWidth / 2)) - (arrowEl.offsetWidth / 2);
             break;
@@ -113,11 +110,11 @@ function arrowPosition(refEl:HTMLElement, floatEl:HTMLElement, arrowEl:HTMLEleme
             top = - arrowEl.offsetHeight / 2;
             left = (floatEl.offsetWidth - arrowEl.offsetWidth) / 2;
             break;
-        case "bottom-start":
+        case "bottomStart":
             top = - arrowEl.offsetHeight / 2;
             left = (floatEl.offsetWidth <= refEl.offsetWidth ? floatEl.offsetWidth : refEl.offsetWidth) / 2 - (arrowEl.offsetWidth / 2);
             break;
-        case "bottom-end":
+        case "bottomEnd":
             top = - arrowEl.offsetHeight / 2;
             left = (floatEl.offsetWidth <= refEl.offsetWidth ? floatEl.offsetWidth / 2 : floatEl.offsetWidth - (refEl.offsetWidth / 2)) - (arrowEl.offsetWidth / 2);
             break;
@@ -125,11 +122,11 @@ function arrowPosition(refEl:HTMLElement, floatEl:HTMLElement, arrowEl:HTMLEleme
             left = floatEl.offsetWidth - arrowEl.offsetWidth / 2;
             top = (floatEl.offsetHeight - arrowEl.offsetHeight) / 2;
             break;
-        case "left-start":
+        case "leftStart":
             left = floatEl.offsetWidth - arrowEl.offsetWidth / 2;
             top = (floatEl.offsetHeight <= refEl.offsetHeight ? floatEl.offsetHeight : refEl.offsetHeight) / 2 - (arrowEl.offsetHeight / 2);
             break;
-        case "left-end":
+        case "leftEnd":
             left = floatEl.offsetWidth - arrowEl.offsetWidth / 2;
             top = (floatEl.offsetHeight <= refEl.offsetHeight ? floatEl.offsetHeight / 2 : floatEl.offsetHeight - (refEl.offsetHeight / 2)) - (arrowEl.offsetHeight / 2);
             break;
@@ -137,11 +134,11 @@ function arrowPosition(refEl:HTMLElement, floatEl:HTMLElement, arrowEl:HTMLEleme
             left = - arrowEl.offsetWidth / 2;
             top = (floatEl.offsetHeight - arrowEl.offsetHeight) / 2;
             break;
-        case "right-start":
+        case "rightStart":
             left = - arrowEl.offsetWidth / 2;
             top = (floatEl.offsetHeight <= refEl.offsetHeight ? floatEl.offsetHeight : refEl.offsetHeight) / 2 - (arrowEl.offsetHeight / 2);
             break;
-        case "right-end":
+        case "rightEnd":
             left = - arrowEl.offsetWidth / 2;
             top = (floatEl.offsetHeight <= refEl.offsetHeight ? floatEl.offsetHeight / 2 : floatEl.offsetHeight - (refEl.offsetHeight / 2)) - (arrowEl.offsetHeight / 2);
             break;

@@ -81,7 +81,7 @@ onMount(() => {
 		<Icon 
 			variant={iconsMap[variant ?? "info"] as any} 
 			class="mr-2"
-			size="18px"
+			size={18}
 		/>
 	{/if}
 

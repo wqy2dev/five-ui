@@ -12,6 +12,7 @@ const routes = [
     {path: "/button", title: "Button"},
     {path: "/drawer", title: "Drawer"},
     {path: "/form", title: "Form"},
+    {path: "/icon", title: "Icon"},
     {path: "/card", title: "Card"},
     {path: "/layout", title: "Layout"},
     {path: "/message", title: "Message"},

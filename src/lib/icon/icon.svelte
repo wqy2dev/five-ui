@@ -26,7 +26,7 @@ type Variant = VariantProps<typeof iconVariants>["variant"];
 
 type IconProps = {
     variant?: Variant;
-    size?: string;
+    size?: number;
     class?: string;
 }
 
@@ -35,7 +35,7 @@ type IconProps = {
 <script lang="ts">
 
 let {
-    size = "16px",
+    size = 16,
     variant,
     class:className,
 }:IconProps = $props();
@@ -48,8 +48,8 @@ const parts = iconVariants({variant}).split(",");
     viewBox={"0 0 "+parts[0]} 
     fill="currentColor" 
     class={className} 
-    width={size} 
-    height={size}
+    width={`${size}px`} 
+    height={`${size}px`}
 >
     {#each parts[1].split("|") as d}
         <path fill-rule="evenodd" clip-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" d={d}/>
