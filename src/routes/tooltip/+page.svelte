@@ -2,13 +2,17 @@
 import { Tooltip, Button } from "$lib/index.js";
 
 const placements = [
-    "top-start", "top", "top-end", 
-    "bottom-start", "bottom", "bottom-end", 
-    "left-start", "left", "left-end", 
-    "right-start", "right", "right-end"
+    "topStart", "top", "topEnd", 
+    "bottomStart", "bottom", "bottomEnd", 
+    "leftStart", "left", "leftEnd", 
+    "rightStart", "right", "rightEnd"
 ];
 
 </script>
+
+<svelte:head>
+	<title>Tooltip</title>
+</svelte:head>
 
 <h2 class="text-lg font-bold leading-10">
     Tooltip
