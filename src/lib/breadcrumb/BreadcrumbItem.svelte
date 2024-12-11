@@ -1,19 +1,22 @@
-<script lang="ts">
+<script lang="ts" module>
 import { getContext, onMount, type Snippet } from "svelte";
-
-const context = getContext("breadcrumb") as any;
-if(!context) {
-    throw new Error("BreadcrumbItem not in the breadcrumb context!");
-}
-
-context.count += 1;
 
 type BreadcrumbItemProps = {
     id?:string;
     href?:string;
     class?:string;
     ref?:{(el:HTMLElement):void};
-    children?:Snippet;
+    children:Snippet;
+}
+
+</script>
+
+<script lang="ts">
+import { type BreadcrumbContext } from "./Breadcrumb.svelte";
+
+const context = getContext("breadcrumb") as BreadcrumbContext;
+if(!context) {
+    throw new Error("BreadcrumbItem not in the breadcrumb context!");
 }
 
 let {
@@ -24,10 +27,16 @@ let {
     children,
 }:BreadcrumbItemProps = $props();
 
+// sequence
+const sequence = ++context.sequence;
+
+let last = $state(true);
 let el:HTMLElement;
 
 onMount(() => {
     ref?.(el);
+
+    last = context.sequence === sequence;
 });
 
 </script>
@@ -37,17 +46,17 @@ onMount(() => {
     id={id}
     class={className}
 >
-    {#if context.count > 1}
-        <span class="text-secondary-400 px-3">
-            {context.separator}
-        </span>
-    {/if}
-
     <svelte:element
         this={href ? "a":"span"}
         href={href}
-        class="text-secondary-500 hover:text-secondary-600 last:hidden"
+        class={last ? "text-secondary-700":"text-secondary-500 hover:text-secondary-600"}
     >
-        {@render children?.()}
+        {@render children()}
     </svelte:element>
+
+    {#if !last}
+        <span class="text-secondary-400 px-2">
+            {context.separator}
+        </span>
+    {/if}
 </li>

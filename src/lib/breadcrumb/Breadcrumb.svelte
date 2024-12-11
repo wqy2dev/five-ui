@@ -1,6 +1,10 @@
-<script lang="ts">
+<script lang="ts" module>
 import { onMount, setContext, type Snippet } from "svelte";
-import { twMerge } from "tailwind-merge";
+
+export type BreadcrumbContext = {
+    separator:string;
+    sequence:number;
+}
 
 type BreadcrumbProps = {
     id?:string;
@@ -9,6 +13,11 @@ type BreadcrumbProps = {
     separator?:string|Snippet;
     children:Snippet;
 }
+
+</script>
+
+<script lang="ts">
+import { twMerge } from "tailwind-merge";
 
 let {
     id,
@@ -25,8 +34,8 @@ onMount(() => {
 });
 
 setContext("breadcrumb", {
-    count: 0,
     separator,
+    sequence:0,
 });
 
 </script>
