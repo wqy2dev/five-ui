@@ -45,7 +45,7 @@ const routes = [
             <a class="block w-full pl-6 py-2 hover:bg-primary-100" href={route.path}>{route.title}</a>
         {/each}
     </div>
-    <div class="grow py-5 px-8 overflow-y-auto">
+    <div class="relative grow py-5 px-8 overflow-y-auto">
         {@render children()}
     </div>
 </div>

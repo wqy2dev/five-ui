@@ -42,7 +42,7 @@ The component list of FiveUI includes, but is not limited to:
 | Timeline | |
 | TimePicker ||
 | Tooltip | ✔ |
-| Watermark ||
+| Watermark | ✔ |
 
 Local Preview
 --
