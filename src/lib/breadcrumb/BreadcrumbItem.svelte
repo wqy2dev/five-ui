@@ -1,5 +1,23 @@
 <script lang="ts" module>
 import { getContext, onMount, type Snippet } from "svelte";
+import { type VariantProps, tv } from "tailwind-variants";
+
+const breadcrumbItemVariants = tv({
+	base: "",
+	variants: {
+		last: {
+			true: "text-slate-900",
+            false: "text-slate-500",
+		},
+		link: {
+			true: "hover:underline",
+		},
+	},
+	defaultVariants: {
+		last: false,
+		link: false,
+	},
+});
 
 type BreadcrumbItemProps = {
     id?:string;
@@ -49,7 +67,7 @@ onMount(() => {
     <svelte:element
         this={href ? "a":"span"}
         href={href}
-        class={last ? "text-secondary-700":"text-secondary-500 hover:text-secondary-600"}
+        class={breadcrumbItemVariants({last, link: !!href && !last})}
     >
         {@render children()}
     </svelte:element>
