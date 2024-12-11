@@ -14,9 +14,14 @@ The component list of FiveUI includes, but is not limited to:
 | Alert | ✔ |
 | Avatar | ✔ |
 | Badge | ✔ |
-| Breadcrumb | |
+| Breadcrumb | ✔ |
 | Button | ✔ |
+| Calendar | |
 | Card | |
+| Carousel ||
+| Cascader ||
+| Checkbox ||
+| DatePicker ||
 | Drawer | ✔ |
 | Icon | ✔ |
 | Input | |
@@ -26,11 +31,18 @@ The component list of FiveUI includes, but is not limited to:
 | Overlay | ✔ |
 | Pagination | |
 | Popper | ✔ |
+| Radio ||
+| Select ||
+| Slider ||
 | Steps | |
+| Switch ||
 | Table | ✔ |
+| Tabs ||
 | Tag | ✔ |
 | Timeline | |
+| TimePicker ||
 | Tooltip | ✔ |
+| Watermark ||
 
 Local Preview
 --
