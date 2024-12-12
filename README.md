@@ -10,7 +10,7 @@ The component list of FiveUI includes, but is not limited to:
 
 | Name | Finish |
 | --- | --- |
-| Accordion |  |
+| Accordion | ✔ |
 | Alert | ✔ |
 | Avatar | ✔ |
 | Badge | ✔ |

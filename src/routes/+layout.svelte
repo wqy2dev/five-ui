@@ -6,7 +6,7 @@ import "./style.css";
 let { children } = $props();
 
 const routes = [
-    {path: "/accordion", title: "Accordion"},
+    {path: "/accordion", title: "Accordion", achieve: true},
     {path: "/alert", title: "Alert", achieve: true},
     {path: "/avatar", title: "Avatar", achieve: true},
     {path: "/badge", title: "Badge", achieve: true},
