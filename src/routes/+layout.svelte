@@ -51,7 +51,7 @@ const routes = [
                 </span>
 
                 {#if route.achieve}
-                    <span class="px-3 flex items-center">
+                    <span class="px-3 flex items-center justify-center">
                         <Badge 
                             bordered={false}
                             variant="lime"
