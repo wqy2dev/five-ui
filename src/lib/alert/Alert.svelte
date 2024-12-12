@@ -1,7 +1,7 @@
 <script module lang="ts">
 import { type VariantProps, tv } from "tailwind-variants";
 import { type Snippet, onMount } from "svelte";
-import { Icon } from "$lib/index.js";
+import { InfoCircleSolid, SuccessCircleSolid, ErrorCircleSolid, WarnCircleSolid, Close } from "$lib/icons/index.js";
 
 const alertVariants = tv({
 	base: "flex rounded-md p-4 text-sm border border-solid border-transparent",
@@ -27,10 +27,10 @@ const alertVariants = tv({
 });
 
 const iconsMap = {
-	info: "CircleFillInfo",
-	success: "CircleFillSuccess",
-	warning: "FillWarning",
-	error: "CircleFillError",
+	info: "InfoCircleSolid",
+	success: "SuccessCircleSolid",
+	warning: "WarnCircleSolid",
+	error: "ErrorCircleSolid",
 };
 
 type Variant = VariantProps<typeof alertVariants>["variant"];
@@ -79,22 +79,28 @@ onMount(() => {
 	class={alertVariants({variant, border: withBorder ? variant : "none", className})}
 >
 	{#if withIcon}
-		<Icon 
-			variant={iconsMap[variant ?? "info"] as any} 
-			class="mr-2"
-			size={18}
-		/>
+		<span class="mr-2">
+			{#if variant === "info"}
+				<InfoCircleSolid/>
+			{:else if variant === "success"}
+				<SuccessCircleSolid/>
+			{:else if variant === "warning"}
+				<WarnCircleSolid/>
+			{:else if variant === "error"}
+				<ErrorCircleSolid/>
+			{/if}
+		</span>
 	{/if}
 
 	<div>
-		<p>
+		<div>
 			{@render children()}
-		</p>
+		</div>
 		{#if description}
 			{#if typeof description === "string"}
-				<p>
+				<div>
 					{description}
-				</p>
+				</div>
 			{:else}
 				{@render description()}
 			{/if}
@@ -107,7 +113,7 @@ onMount(() => {
 			class="ml-auto"
 			onclick={onclose}
 		>
-			<Icon variant="Close"/>
+			<Close size={16}/>
 		</button>
 	{/if}
 </div>

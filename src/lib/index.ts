@@ -13,7 +13,6 @@ export { Checkbox, CheckboxGroup } from "./checkbox/index.js";
 export { DatePicker } from "./datepicker/index.js";
 export { Drawer } from "./drawer/index.js";
 export { Form } from "./form/index.js";
-export { Icon, icons } from "./icon/index.js";
 export { Input } from "./input/index.js";
 export { Layout, Side, Header, Content } from "./layout/index.js";
 export { Message } from "./message/index.js";

@@ -1,5 +1,5 @@
 <script lang="ts">
-import Icon from "$lib/icon/icon.svelte";
+import { InfoCircleSolid } from "$lib/icons/index.js";
 import { Tag } from "$lib/index.js";
 
 const variants = [
@@ -111,7 +111,7 @@ const variants = [
     <div class="flex flex-row flex-wrap gap-2">
         {#each variants as color }
             <Tag variant={color as any} radius="sm">
-                <Icon variant="CircleFillInfo"/> {color}
+                <InfoCircleSolid/> {color}
             </Tag>
         {/each}
     </div>

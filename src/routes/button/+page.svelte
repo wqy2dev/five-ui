@@ -1,5 +1,6 @@
 <script lang="ts">
-import Icon from "$lib/icon/icon.svelte";
+    import { Download } from "$lib/icons/index.js";
+    import TrashOutline from "$lib/icons/TrashOutline.svelte";
 import { Button } from "$lib/index.js";
 </script>
 
@@ -57,12 +58,12 @@ import { Button } from "$lib/index.js";
     </h4>
     
     <Button> 
-        <Icon variant="Download"/>
+        <Download/>
         Download 
     </Button>
 
     <Button variant="danger">
-        <Icon variant="Delete"/>
+        <TrashOutline/>
         Delete
     </Button>
 </div>

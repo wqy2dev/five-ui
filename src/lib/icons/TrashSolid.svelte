@@ -2,7 +2,7 @@
 import { type IconProps } from "./index.js";
 
 let {
-    size = 20,
+    size = 18,
 }:IconProps = $props();
 
 </script>
