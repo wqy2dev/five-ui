@@ -22,6 +22,7 @@ const routes = [
     {path: "/layout", title: "Layout"},
     {path: "/message", title: "Message"},
     {path: "/modal", title: "Modal"},
+    {path: "/notification", title: "Notification"},
     {path: "/pagination", title: "Pagination"},
     {path: "/radio", title: "Radio"},
     {path: "/select", title: "Select"},

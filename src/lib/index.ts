@@ -18,6 +18,7 @@ export { Input } from "./input/index.js";
 export { Layout, Side, Header, Content } from "./layout/index.js";
 export { Message } from "./message/index.js";
 export { Modal } from "./modal/index.js";
+export { Notification } from "./notification/index.js";
 export { Overlay } from "./overlay/index.js";
 export { Pagination } from "./pagination/index.js";
 export { Popper } from "./popper/index.js";

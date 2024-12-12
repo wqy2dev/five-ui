@@ -28,6 +28,7 @@ The component list of FiveUI includes, but is not limited to:
 | Layout | ✔ |
 | Message | |
 | Modal | ✔ |
+| Notification | |
 | Overlay | ✔ |
 | Pagination | |
 | Popper | ✔ |
