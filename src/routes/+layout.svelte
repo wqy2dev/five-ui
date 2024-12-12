@@ -51,9 +51,10 @@ const routes = [
                 </span>
 
                 {#if route.achieve}
-                    <span class="ml-auto text-red-600 px-3">
+                    <span class="px-3 flex items-center">
                         <Badge 
-                            variant="pink"
+                            bordered={false}
+                            variant="lime"
                             content="✔"
                         />
                     </span>
