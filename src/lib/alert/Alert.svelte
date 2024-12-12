@@ -81,13 +81,13 @@ onMount(() => {
 	{#if withIcon}
 		<span class="mr-2">
 			{#if variant === "info"}
-				<InfoCircleSolid/>
+				<InfoCircleSolid size={20}/>
 			{:else if variant === "success"}
-				<SuccessCircleSolid/>
+				<SuccessCircleSolid size={20}/>
 			{:else if variant === "warning"}
-				<WarnCircleSolid/>
+				<WarnCircleSolid size={20}/>
 			{:else if variant === "error"}
-				<ErrorCircleSolid/>
+				<ErrorCircleSolid size={20}/>
 			{/if}
 		</span>
 	{/if}
