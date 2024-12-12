@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { Component } from "svelte";
+import { onMount, type Component } from "svelte";
 
 type LoadProps = {
     icon:string;
@@ -15,8 +15,10 @@ async function load(icon:string) {
     C = (await import(`$lib/icons/${icon}.svelte`)).default;
 }
 
-load(icon);
-
+onMount(() => {
+    load(icon);
+});
+console.log(C);
 </script>
 
 {#if C}

@@ -1,7 +1,8 @@
 <script lang="ts" module>
 import { type VariantProps, tv } from "tailwind-variants";
 import { onMount, type Snippet } from "svelte";
-import { Overlay, Button, Icon } from "$lib/index.js";
+import { Overlay, Button } from "$lib/index.js";
+import { Close } from "$lib/icons/index.js";
 import { type Backdrop } from "$lib/overlay/Overlay.svelte";
 
 const modalVariants = tv({
@@ -171,9 +172,8 @@ const {
 					type="button"
 					onclick={oncancel}
 				>
-					<Icon 
-						variant="Close"
-						size={20}
+					<Close 
+						size={18}
 					/>
 				</button>
 			</div>

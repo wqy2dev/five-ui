@@ -2,7 +2,7 @@
 import { tv } from "tailwind-variants";
 import { type Snippet, getContext, onMount } from "svelte";
 import { type AccordionContext } from "./Accordion.svelte";
-import { Icon } from "$lib/index.js";
+import { ChevronRight } from "$lib/icons/index.js";
 import { slide } from "svelte/transition";
 
 const accordionItemVariants = tv({
@@ -79,10 +79,7 @@ function onclick() {
             {/if}
         </div>
         <div class="flex items-center ml-auto shrink-0">
-            <Icon
-                variant="Plus"
-                size={20}
-            />
+            <ChevronRight size={14}/>
         </div>
     </button>
     {#if expand}
