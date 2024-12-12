@@ -1,7 +1,7 @@
 <script lang="ts">
-import { Icon, icons, Tooltip } from "$lib/index.js";
-
-let collapsible = $state(false);
+import { Tooltip } from "$lib/index.js";
+import { icons } from "$lib/icons/index.js";
+import LoadIcon from "./LoadIcon.svelte";
 
 </script>
 
@@ -27,10 +27,7 @@ let collapsible = $state(false);
             class="w-10 h-10 flex items-center justify-center bg-slate-100 text-slate-600"
             use:ref
         >
-            <Icon
-                variant={icon as any}
-                size={20}
-            />
+            <LoadIcon icon={icon}/>
         </div>
         {/snippet}
         {icon}
