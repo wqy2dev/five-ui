@@ -18,7 +18,7 @@ async function load(icon:string) {
 onMount(() => {
     load(icon);
 });
-console.log(C);
+
 </script>
 
 {#if C}
