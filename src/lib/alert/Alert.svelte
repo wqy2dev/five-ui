@@ -1,7 +1,7 @@
 <script module lang="ts">
 import { type VariantProps, tv } from "tailwind-variants";
 import { type Snippet, onMount } from "svelte";
-import { Icon } from "$lib/icon/index.js";
+import { Icon } from "$lib/index.js";
 
 const alertVariants = tv({
 	base: "flex rounded-md p-4 text-sm border border-solid border-transparent",
@@ -74,6 +74,7 @@ onMount(() => {
 </script>
 
 <div
+	bind:this={el}
 	id={id}
 	class={alertVariants({variant, border: withBorder ? variant : "none", className})}
 >

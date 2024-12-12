@@ -1,5 +1,5 @@
 
-export { Accordion } from "./accordion/index.js";
+export { Accordion, AccordionItem } from "./accordion/index.js";
 export { Alert } from "./alert/index.js";
 export { Avatar, AvatarGroup } from "./avatar/index.js";
 export { Badge } from "./badge/index.js";
