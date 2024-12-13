@@ -78,8 +78,7 @@ onMount(() => {
     ref?.(el);
 
     context.shrink(key, () => {
-        expand = false;
-        context.onchange?.(key, false);
+        context.onchange?.(key, expand = false);
     });
 });
 
