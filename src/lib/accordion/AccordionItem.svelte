@@ -79,6 +79,7 @@ onMount(() => {
 
     context.shrink(key, () => {
         expand = false;
+        context.onchange?.(key, false);
     });
 });
 
