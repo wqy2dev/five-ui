@@ -1,5 +1,6 @@
 <script lang="ts">
-import { SuccessCircleOutline, SuccessCircleSolid } from "$lib/icons/index.js";
+import { SuccessCircleSolid } from "$lib/icons/index.js";
+import { Layout, Side, Header, Content } from "$lib/index.js";
 
 import "./style.css";
 
@@ -42,10 +43,15 @@ const routes = [
 
 </script>
 
-<div class="flex flex-row w-screen h-screen">
-    <div class="flex flex-col w-64 h-full bg-slate-100 text-sm shrink-0">
-        <div class="pl-6 py-3 font-bold">
-            Components({routes.length})
+<Layout
+    class="w-screen h-screen"
+>
+    <Side
+        class="flex flex-col h-full bg-slate-100 text-sm shrink-0"
+        width="260px"
+    >
+        <div class="pl-6 py-5 font-bold">
+            FiveUI Components({routes.length})
         </div>
         <div
             class="grow overflow-y-auto"
@@ -64,8 +70,19 @@ const routes = [
                 </a>
             {/each}
         </div>
-    </div>
-    <div class="relative grow py-5 px-8 overflow-y-auto">
-        {@render children()}
-    </div>
-</div>
+    </Side>
+    <Layout
+        layout="col"
+        class="grow w-0"
+    >
+        <Header>
+
+        </Header>
+        <Content
+            class="h-0 px-5 overflow-y-auto"
+        >
+            {@render children()}
+        </Content>
+    </Layout>
+</Layout>
+
