@@ -7,6 +7,9 @@ export { default as ArrowDown } from "./ArrowDown.svelte";
 export { default as ArrowLeft } from "./ArrowLeft.svelte";
 export { default as ArrowRight } from "./ArrowRight.svelte";
 export { default as ArrowUp } from "./ArrowUp.svelte";
+export { default as Calendar } from "./Calendar.svelte";
+export { default as CalendarDateRange } from "./CalendarDateRange.svelte";
+export { default as CalendarDay } from "./CalendarDay.svelte";
 export { default as Check } from "./Check.svelte";
 export { default as ChevronDown } from "./ChevronDown.svelte";
 export { default as ChevronLeft } from "./ChevronLeft.svelte";
@@ -15,6 +18,7 @@ export { default as ChevronUp } from "./ChevronUp.svelte";
 export { default as ChevronUpDown } from "./ChevronUpDown.svelte";
 export { default as ClipboardOutline } from "./ClipboardOutline.svelte";
 export { default as ClipboardSolid } from "./ClipboardSolid.svelte";
+export { default as Clock } from "./Clock.svelte";
 export { default as Close } from "./Close.svelte";
 export { default as CloudDownloadOutline } from "./CloudDownloadOutline.svelte";
 export { default as CloudDownloadSolid } from "./CloudDownloadSolid.svelte";
@@ -22,6 +26,7 @@ export { default as CloudUploadOutline } from "./CloudUploadOutline.svelte";
 export { default as CloudUploadSolid } from "./CloudUploadSolid.svelte";
 export { default as CogOutline } from "./CogOutline.svelte";
 export { default as CogSolid } from "./CogSolid.svelte";
+export { default as Copy } from "./Copy.svelte";
 export { default as Download } from "./Download.svelte";
 export { default as EllipsisHorizontal } from "./EllipsisHorizontal.svelte";
 export { default as EllipsisVertical } from "./EllipsisVertical.svelte";
@@ -57,6 +62,9 @@ export const icons = [
     "ArrowRight",
     "ArrowUp",
     "ArrowLeft",
+    "Calendar",
+    "CalendarDateRange",
+    "CalendarDay",
     "Check",
     "ChevronDown",
     "ChevronLeft",
@@ -65,6 +73,7 @@ export const icons = [
     "ChevronUpDown",
     "ClipboardOutline",
     "ClipboardSolid",
+    "Clock",
     "Close",
     "CloudDownloadOutline",
     "CloudDownloadSolid",
@@ -72,6 +81,7 @@ export const icons = [
     "CloudUploadSolid",
     "CogOutline",
     "CogSolid",
+    "Copy",
     "Download",
     "EllipsisHorizontal",
     "EllipsisVertical",
@@ -87,6 +97,7 @@ export const icons = [
     "LockOpenSolid",
     "Minus",
     "Plus",
+    "Refresh",
     "Search",
     "SuccessCircleOutline",
     "SuccessCircleSolid",

@@ -43,20 +43,27 @@ const routes = [
 </script>
 
 <div class="flex flex-row w-screen h-screen">
-    <div class="w-56 h-full bg-slate-100 text-sm shrink-0 overflow-y-auto">
-        {#each routes as route}
-            <a class="flex flex-row w-full pl-6 py-2 hover:bg-primary-100" href={route.path}>
-                <span class="grow">
-                    {route.title}
-                </span>
-
-                {#if route.achieve}
-                    <span class="px-3 flex items-center justify-center text-lime-600">
-                        <SuccessCircleSolid/>
+    <div class="flex flex-col w-64 h-full bg-slate-100 text-sm shrink-0">
+        <div class="pl-6 py-3 font-bold">
+            Components({routes.length})
+        </div>
+        <div
+            class="grow overflow-y-auto"
+        >
+            {#each routes as route}
+                <a class="flex flex-row w-full pl-6 py-2 hover:bg-primary-100" href={route.path}>
+                    <span class="grow">
+                        {route.title}
                     </span>
-                {/if}
-            </a>
-        {/each}
+    
+                    {#if route.achieve}
+                        <span class="px-3 flex items-center justify-center text-lime-600">
+                            <SuccessCircleSolid/>
+                        </span>
+                    {/if}
+                </a>
+            {/each}
+        </div>
     </div>
     <div class="relative grow py-5 px-8 overflow-y-auto">
         {@render children()}
