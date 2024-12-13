@@ -46,7 +46,7 @@ const placements = ["top", "center", "bottom"];
 </h2>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Default
     </h4>
 
@@ -62,7 +62,7 @@ const placements = ["top", "center", "bottom"];
     </Modal>
     {/if}
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Size
     </h4>
 
@@ -87,7 +87,7 @@ const placements = ["top", "center", "bottom"];
     </Modal>
     {/if}
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Backdrop
     </h4>
 
@@ -112,7 +112,7 @@ const placements = ["top", "center", "bottom"];
     </Modal>
     {/if}
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Close when overlay clicked
     </h4>
 
@@ -133,7 +133,7 @@ const placements = ["top", "center", "bottom"];
     </Modal>
     {/if}
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Placement
     </h4>
 
@@ -158,7 +158,7 @@ const placements = ["top", "center", "bottom"];
     </Modal>
     {/if}
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Overflow scroll
     </h4>
 

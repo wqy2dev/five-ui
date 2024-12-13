@@ -19,7 +19,7 @@ interface WatermarkParams {
     offsetX?:number;
     // text offset y
     offsetY?:number;
-    //
+    // watermark background
     backgroundColor?:string;
 }
 
@@ -48,7 +48,7 @@ let {
     width = 200,
     height = 100,
     text = "FiveUI",
-    textSize = 16,
+    textSize = 15,
     textColor = "#CBD5E1",
     textWeight = "thin",
     backgroundColor = "#F8FAFC",

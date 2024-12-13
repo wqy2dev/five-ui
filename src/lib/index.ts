@@ -1,5 +1,5 @@
 
-export { Accordion } from "./accordion/index.js";
+export { Accordion, AccordionItem } from "./accordion/index.js";
 export { Alert } from "./alert/index.js";
 export { Avatar, AvatarGroup } from "./avatar/index.js";
 export { Badge } from "./badge/index.js";
@@ -13,11 +13,11 @@ export { Checkbox, CheckboxGroup } from "./checkbox/index.js";
 export { DatePicker } from "./datepicker/index.js";
 export { Drawer } from "./drawer/index.js";
 export { Form } from "./form/index.js";
-export { Icon, icons } from "./icon/index.js";
 export { Input } from "./input/index.js";
 export { Layout, Side, Header, Content } from "./layout/index.js";
 export { Message } from "./message/index.js";
 export { Modal } from "./modal/index.js";
+export { Notification } from "./notification/index.js";
 export { Overlay } from "./overlay/index.js";
 export { Pagination } from "./pagination/index.js";
 export { Popper } from "./popper/index.js";

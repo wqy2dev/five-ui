@@ -1,5 +1,5 @@
 <script lang="ts">
-import Icon from "$lib/icon/icon.svelte";
+import { InfoCircleSolid } from "$lib/icons/index.js";
 import { Tag } from "$lib/index.js";
 
 const variants = [
@@ -35,7 +35,7 @@ const variants = [
 </h2>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Default
     </h4>
 
@@ -49,7 +49,7 @@ const variants = [
 </div>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Large
     </h4>
     <div class="flex flex-row flex-wrap gap-2">
@@ -62,7 +62,7 @@ const variants = [
 </div>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Radius
     </h4>
 
@@ -104,14 +104,14 @@ const variants = [
 </div>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         With Icon
     </h4>
 
     <div class="flex flex-row flex-wrap gap-2">
         {#each variants as color }
             <Tag variant={color as any} radius="sm">
-                <Icon variant="CircleFillInfo"/> {color}
+                <InfoCircleSolid/> {color}
             </Tag>
         {/each}
     </div>
@@ -119,7 +119,7 @@ const variants = [
 
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         With Close
     </h4>
 

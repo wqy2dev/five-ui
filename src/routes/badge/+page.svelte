@@ -37,7 +37,7 @@ const variants = [
 </h2>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Default
     </h4>
 
@@ -55,7 +55,7 @@ const variants = [
         </Badge>
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Size
     </h4>
 
@@ -67,7 +67,7 @@ const variants = [
         {/each}
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Placement
     </h4>
 
@@ -79,7 +79,7 @@ const variants = [
         {/each}
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Colors
     </h4>
 
@@ -97,7 +97,7 @@ const variants = [
     </div>
 
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Dot
     </h4>
 
