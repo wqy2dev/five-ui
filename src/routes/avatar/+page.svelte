@@ -14,7 +14,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
 </h2>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Default
     </h4>
 
@@ -30,7 +30,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
         {/each}
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Radius
     </h4>
 
@@ -48,7 +48,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
         {/each}
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Size
     </h4>
 
@@ -81,7 +81,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
         {/each}
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Bordered
     </h4>
 
@@ -106,7 +106,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
         {/each}
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Icon
     </h4>
 
@@ -123,7 +123,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
         {/each}
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Text
     </h4>
 
@@ -138,7 +138,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
         {/each}
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Badge
     </h4>
 
@@ -174,7 +174,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
         {/each}
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Avatar Group
     </h4>
 

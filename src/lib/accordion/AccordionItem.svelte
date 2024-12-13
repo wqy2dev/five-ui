@@ -31,10 +31,11 @@ const accordionItemVariants = tv({
 
 type AccordionItemProps = {
     id?:string;
-    class?:string;
     ref?:{(el:HTMLElement):void};
+    class?:string;
     key:string;
     title:string|Snippet;
+    icon?:Snippet<[boolean]>;
     children?:Snippet;
 }
 
@@ -53,6 +54,7 @@ let {
     key,
     title,
     class:className,
+    icon,
     children
 }:AccordionItemProps = $props();
 
@@ -104,10 +106,14 @@ onMount(() => {
             {/if}
         </div>
         <div class="flex items-center ml-auto shrink-0">
-            <ChevronRight 
-                size={14}
-                class={arrow({expand})}
-            />
+            {#if icon}
+                {@render icon(!!expand)}
+            {:else}
+                <ChevronRight 
+                    size={14}
+                    class={arrow({expand})}
+                />
+            {/if}
         </div>
     </button>
     {#if expand}

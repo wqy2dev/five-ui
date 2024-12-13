@@ -13,7 +13,7 @@ import LoadIcon from "./LoadIcon.svelte";
     Icon
 </h2>
 
-<h4 class="my-5 text-base indent-2 bg-slate-50">
+<h4 class="my-5 text-base indent-2 bg-slate-100">
     Base
 </h4>
 

@@ -12,7 +12,7 @@ let collapsible = $state(false);
     Layout
 </h2>
 
-<h4 class="my-5 text-base indent-2 bg-slate-50">
+<h4 class="my-5 text-base indent-2 bg-slate-100">
     Base
 </h4>
 
@@ -115,7 +115,7 @@ let collapsible = $state(false);
 
 <br/>
 
-<h4 class="my-5 text-base indent-2 bg-slate-50">
+<h4 class="my-5 text-base indent-2 bg-slate-100">
     Collapsible Side
 </h4>
 

@@ -13,7 +13,7 @@ import { Button } from "$lib/index.js";
 </h2>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Default
     </h4>
     
@@ -24,7 +24,7 @@ import { Button } from "$lib/index.js";
     <Button variant="outline"> Outline Button </Button>
     <Button variant="ghost"> Ghost Button </Button>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Size
     </h4>
     
@@ -33,7 +33,7 @@ import { Button } from "$lib/index.js";
     <Button> Default </Button>
     <Button size="lg"> Large </Button>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Rounded
     </h4>
     
@@ -42,7 +42,7 @@ import { Button } from "$lib/index.js";
     <Button radius="full"> Default </Button>
     <Button size="lg" radius="full"> Large </Button>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         Disable
     </h4>
     
@@ -53,7 +53,7 @@ import { Button } from "$lib/index.js";
     <Button variant="outline" size="lg" disabled> Outline </Button>
     <Button variant="ghost" size="lg" disabled> Ghost </Button>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100">
         With Icon
     </h4>
     
