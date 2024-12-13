@@ -14,7 +14,7 @@ import LoadIcon from "./LoadIcon.svelte";
 </h2>
 
 <h4 class="my-5 text-base indent-2 bg-slate-100">
-    Base
+    Base({icons.length})
 </h4>
 
 <div class="flex flex-row flex-wrap gap-5">
