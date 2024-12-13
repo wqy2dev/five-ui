@@ -1,5 +1,6 @@
 <script lang="ts">
-import { Avatar, AvatarGroup, Badge, Icon } from "$lib/index.js";
+import { UserSolid } from "$lib/icons/index.js";
+import { Avatar, AvatarGroup, Badge } from "$lib/index.js";
 
 const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800";
 
@@ -116,9 +117,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
                     size={size as any}
                     radius="full"
                 >
-                    <Icon 
-                        variant="User"
-                    />
+                    <UserSolid/>
                 </Avatar>
         {/each}
     </div>
