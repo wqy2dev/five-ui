@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Badge } from "$lib/index.js";
+import { SuccessCircleOutline, SuccessCircleSolid } from "$lib/icons/index.js";
 
 import "./style.css";
 
@@ -51,12 +51,8 @@ const routes = [
                 </span>
 
                 {#if route.achieve}
-                    <span class="px-3 flex items-center justify-center">
-                        <Badge 
-                            bordered={false}
-                            variant="lime"
-                            content="✔"
-                        />
+                    <span class="px-3 flex items-center justify-center text-lime-600">
+                        <SuccessCircleSolid/>
                     </span>
                 {/if}
             </a>
