@@ -1,16 +1,19 @@
 <script lang="ts" module>
 
 export type AccordionOnChange = {(key:string, expand:boolean):void};
+export type AccordionShrink = {(key:string, fn:{():void}):void};
 
 export interface AccordionContext {
-    accordion?:boolean;
+    expandKeys?:string[];
     disableKeys?:string[];
+    shrink:AccordionShrink;
     onchange?:AccordionOnChange;
 }
 
-interface AccordionItemProps extends AccordionContext {
+interface AccordionItemProps extends Omit<AccordionContext, "shrink"> {
     id?:string;
     class?:string;
+    accordion?:boolean;
     ref?:{(el:HTMLElement):void};
     children?:Snippet;
 }
@@ -26,7 +29,9 @@ let {
 	ref,
     class:className,
     accordion,
-    onchange,
+    disableKeys,
+    expandKeys,
+    onchange:onChange,
     children
 }:AccordionItemProps = $props();
 
@@ -36,15 +41,42 @@ onMount(() => {
     ref?.(el);
 });
 
+const shrinkList:{
+    key:string,
+    fn:{():void}
+}[] = [];
+
+function shrink(key:string, fn:{():void}) {
+    if(accordion) {
+        shrinkList.push({key, fn});
+    }
+}
+
+function onchange(key:string, expand:boolean) {
+    if(expand && accordion) {
+        shrinkList.forEach(item => {
+            if(item.key !== key){
+                item.fn();
+            }
+        });
+    }
+
+    onChange?.(key, expand);
+}
+
 setContext("accordion", {
-    accordion,
+    disableKeys,
+    expandKeys,
     onchange,
+    shrink,
 });
 
 </script>
 
 <div
-  class={twMerge("relative w-full divide-y", className)}
+    bind:this={el}
+    id={id}
+    class={twMerge("relative w-full divide-y", className)}
 >
     {@render children?.()}
 </div>

@@ -9,6 +9,7 @@ const accordionItemVariants = tv({
     slots: {
         base: "relative w-full",
         arrow: "transition-transform",
+        button: "w-full flex flex-row items-center py-3 text-base",
     },
     variants: {
         expand: {
@@ -16,10 +17,16 @@ const accordionItemVariants = tv({
                 arrow: "rotate-90",
             },
         },
+        disable: {
+            true: {
+                button: "text-slate-400 cursor-not-allowed",
+            },
+            false: {
+                button: "text-slate-900",
+            }
+        },
     },
-    defaultVariants: {
-        expand: false,
-    },
+    defaultVariants: {},
 });
 
 type AccordionItemProps = {
@@ -49,23 +56,31 @@ let {
     children
 }:AccordionItemProps = $props();
 
+const {
+    base,
+    arrow,
+    button,
+} = accordionItemVariants();
+
+let expand = $state(context.expandKeys && context.expandKeys.indexOf(key) !== -1);
+let disable = context.disableKeys && context.disableKeys.indexOf(key) !== -1;
+
+function onclick() {
+    if(!disable) {
+        expand = !expand;
+        context.onchange?.(key, expand);
+    }
+}
+
 let el:HTMLElement;
 
 onMount(() => {
     ref?.(el);
+
+    context.shrink(key, () => {
+        expand = false;
+    });
 });
-
-let expand = $state(false);
-
-function onclick() {
-    expand = !expand;
-    context.onchange?.(key, expand);
-}
-
-const {
-    base,
-    arrow,
-} = accordionItemVariants();
 
 </script>
 
@@ -76,12 +91,12 @@ const {
 >
     <button
         type="button"
-        class="w-full flex flex-row items-center py-3"
+        class={button({disable})}
         onclick={onclick}
     >
         <div class="grow text-start">
             {#if typeof title === "string"}
-                <span class="text-base text-slate-900">
+                <span>
                     {title}
                 </span>
             {:else}
@@ -97,7 +112,7 @@ const {
     </button>
     {#if expand}
         <div 
-            class="pb-3"
+            class="relative pb-3"
             transition:slide={{duration:300}}
         >
             {@render children?.()}

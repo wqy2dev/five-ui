@@ -16,6 +16,9 @@ import { Accordion, AccordionItem } from "$lib/index.js";
     </h4>
 
     <Accordion
+        accordion={true}
+        disableKeys={["B"]}
+        expandKeys={["A", "B"]}
         onchange={(key, expand) => {
             console.log("Accordion:", key, expand);
         }}
