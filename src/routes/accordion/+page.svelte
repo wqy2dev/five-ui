@@ -43,7 +43,7 @@ import { Accordion, AccordionItem } from "$lib/index.js";
     </Accordion>
 
     <h4 class="text-base indent-2 bg-slate-100">
-        Default Expand
+        Default AccordionItem Expand
     </h4>
 
     <Accordion
