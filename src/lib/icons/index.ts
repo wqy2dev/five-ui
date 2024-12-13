@@ -1,5 +1,6 @@
 export type IconProps = {
     size?:number;
+    class?:string;
 }
 
 export { default as ArrowDown } from "./ArrowDown.svelte";
