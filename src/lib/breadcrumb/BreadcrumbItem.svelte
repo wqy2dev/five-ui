@@ -1,6 +1,6 @@
 <script lang="ts" module>
 import { getContext, onMount, type Snippet } from "svelte";
-import { type VariantProps, tv } from "tailwind-variants";
+import { tv } from "tailwind-variants";
 
 const breadcrumbItemVariants = tv({
 	base: "",

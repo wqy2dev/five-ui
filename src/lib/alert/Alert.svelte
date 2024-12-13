@@ -26,13 +26,6 @@ const alertVariants = tv({
 	},
 });
 
-const iconsMap = {
-	info: "InfoCircleSolid",
-	success: "SuccessCircleSolid",
-	warning: "WarnCircleSolid",
-	error: "ErrorCircleSolid",
-};
-
 type Variant = VariantProps<typeof alertVariants>["variant"];
 
 type AlertProps = {

@@ -1,45 +1,70 @@
-<script lang="ts">
-import type { Snippet } from "svelte";
+<script lang="ts" module>
 
-interface CardProps {
+type CardProps = {
     id?:string;
-    class?: string;
-    ref?: {(el:HTMLElement):void};
-    variant?: "info"|"success"|"warning"|"danger";
-    header?: Snippet;
-    footer?: Snippet;
-    children: Snippet;
+    class?:string;
+    style?:string;
+    ref?:{(el:HTMLElement):void};
+    header?:string|Snippet;
+    footer?:string|Snippet;
+    children?:Snippet;
 }
 
+</script>
+
+<script lang="ts">
+import { onMount, type Snippet } from "svelte";
+import { twMerge } from "tailwind-merge";
+
 let {
+    id,
+    ref,
     class:className,
+    style,
     header,
     footer,
     children
 }:CardProps = $props();
 
+let el:HTMLElement;
+
+onMount(() => {
+    ref?.(el);
+});
+
 </script>
 
-<div 
+<div
+    bind:this={el}
+    id={id}
+    style={style}
+    class={twMerge("shadow-md ring-offset-0 rounded-lg", className)}
 >
     {#if header}
-        <div class="card-header">
-            {@render header?.()}
+        <div>
+            {#if header}
+                {#if typeof header === "string"}
+                    {header}
+                {:else}
+                    {@render header()}
+                {/if}
+            {/if}
         </div>
     {/if}
 
-    <div class="card-body">
-        {@render children()}
+    <div>
+        {@render children?.()}
     </div>
 
     {#if footer}
-        <div class="card-footer">
-            {@render footer?.()}
+        <div>
+            {#if footer}
+                {#if typeof footer === "string"}
+                    {footer}
+                {:else}
+                    {@render footer()}
+                {/if}
+            {/if}
         </div>
     {/if}
 </div>
-
-<style lang="scss">
-
-</style>
-    
