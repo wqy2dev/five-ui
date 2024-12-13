@@ -6,14 +6,19 @@ import { ChevronRight } from "$lib/icons/index.js";
 import { slide } from "svelte/transition";
 
 const accordionItemVariants = tv({
-    base: "relative w-full",
+    slots: {
+        base: "relative w-full",
+        arrow: "transition-transform",
+    },
     variants: {
-        bordered: {
-            true: "border-solid border-b border-b-slate-200",
+        expand: {
+            true: {
+                arrow: "rotate-90",
+            },
         },
     },
     defaultVariants: {
-        bordered: true,
+        expand: false,
     },
 });
 
@@ -57,12 +62,17 @@ function onclick() {
     context.onchange?.(key, expand);
 }
 
+const {
+    base,
+    arrow,
+} = accordionItemVariants();
+
 </script>
 
 <div
     bind:this={el}
     id={id}
-    class={accordionItemVariants({bordered:true, className})}
+    class={base({className})}
 >
     <button
         type="button"
@@ -79,7 +89,10 @@ function onclick() {
             {/if}
         </div>
         <div class="flex items-center ml-auto shrink-0">
-            <ChevronRight size={14}/>
+            <ChevronRight 
+                size={14}
+                class={arrow({expand})}
+            />
         </div>
     </button>
     {#if expand}

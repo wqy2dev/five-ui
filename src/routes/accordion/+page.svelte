@@ -23,6 +23,7 @@ import { Accordion, AccordionItem } from "$lib/index.js";
         <AccordionItem
             key="A"
             title="Golden Quotes Collection"
+            class="AccordionItem"
         >
             "‘I’m fine’ doesn’t mean you’ve finally reached a point where you have money, friends, and people to care for you. Instead, it means you’ve finally grown accustomed to days without money, without friends, and without anyone to look after you. ‘I’m fine’ is telling them that you are increasingly able to accept reality, rather than becoming more pragmatic. I’m not as fragile as you think; even without you, I can still live very well."
         </AccordionItem>

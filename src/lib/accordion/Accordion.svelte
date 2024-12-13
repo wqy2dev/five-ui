@@ -44,7 +44,7 @@ setContext("accordion", {
 </script>
 
 <div
-  class={twMerge("relative w-full", className)}
+  class={twMerge("relative w-full divide-y", className)}
 >
     {@render children?.()}
 </div>
