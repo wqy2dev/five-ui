@@ -4,10 +4,10 @@ import { tv, type VariantProps } from "tailwind-variants";
 
 const cardVariants = tv({
     slots: {
-        base: "border border-solid border-slate-200 rounded-lg overflow-hidden",
-        header: "p-2 border-b border-solid border-slate-200",
-        body: "p-2",
-        footer: "p-2 border-t border-solid border-slate-200",
+        base: "h-fit rounded-lg overflow-hidden",
+        header: "border-b border-solid border-slate-200",
+        body: "",
+        footer: "border-t border-solid border-slate-200",
         cover: "w-full object-cover aspect-square overflow-hidden",
     },
 	variants: {
@@ -27,31 +27,46 @@ const cardVariants = tv({
                 footer: "p-4",
                 body: "p-4",
             },
+            xl: {
+                header: "p-5",
+                footer: "p-5",
+                body: "p-5",
+            },
+        },
+        bordered: {
+            true: {
+                base: "border border-solid border-slate-200",
+            }
+        },
+        shadow: {
+            true: {
+                base: "shadow-outline-sm",
+            }
         },
 	},
 	defaultVariants: {
         size: "md",
+        bordered: true,
 	},
 });
 
 type Size = VariantProps<typeof cardVariants>["size"];
-
-type CardCover = {
-    src:string;
-    alt?:string;
-    class?:string;
-}
 
 type CardProps = {
     id?:string;
     class?:string;
     style?:string;
     ref?:{(el:HTMLElement):void};
-    title?:string;
-    header?:string|Snippet;
+    title?:string|Snippet;
     footer?:string|Snippet;
-    cover?:CardCover;
+    cover?:{
+        src:string;
+        alt?:string;
+        class?:string;
+    };
     size?:Size;
+    shadow?:boolean;
+    bordered?:boolean;
     children?:Snippet;
 }
 
@@ -63,10 +78,12 @@ let {
     ref,
     class:className,
     style,
-    header,
+    title,
     footer,
     cover,
     size,
+    shadow,
+    bordered,
     children
 }:CardProps = $props();
 
@@ -82,7 +99,7 @@ const {
     header:h,
     footer:f,
     cover:cov,
-} = cardVariants({size});
+} = cardVariants({size, bordered, shadow});
 
 </script>
 
@@ -92,14 +109,12 @@ const {
     style={style}
     class={base({className})}
 >
-    {#if header}
+    {#if title}
         <div class={h()}>
-            {#if header}
-                {#if typeof header === "string"}
-                    {header}
-                {:else}
-                    {@render header()}
-                {/if}
+            {#if typeof title === "string"}
+                <span class="text-base font-bold">{title}</span>
+            {:else}
+                {@render title()}
             {/if}
         </div>
     {/if}
