@@ -23,6 +23,7 @@ The component list of FiveUI includes, but is not limited to:
 | Checkbox ||
 | DatePicker ||
 | Drawer | ✔ |
+| Dropdown |  |
 | Icon | ✔ |
 | Input | |
 | Layout | ✔ |

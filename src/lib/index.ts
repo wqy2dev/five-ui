@@ -12,6 +12,7 @@ export { Cascader } from "./cascader/index.js";
 export { Checkbox, CheckboxGroup } from "./checkbox/index.js";
 export { DatePicker } from "./datepicker/index.js";
 export { Drawer } from "./drawer/index.js";
+export { Dropdown } from "./dropdown/index.js";
 export { Form } from "./form/index.js";
 export { Input } from "./input/index.js";
 export { Layout, Side, Header, Content } from "./layout/index.js";

@@ -19,6 +19,7 @@ const routes = [
     {path: "/cascader", title: "Cascader"},
     {path: "/datepicker", title: "DatePicker"},
     {path: "/drawer", title: "Drawer", achieve: true},
+    {path: "/dropdown", title: "Dropdown"},
     {path: "/form", title: "Form"},
     {path: "/icon", title: "Icon", achieve: true},
     {path: "/input", title: "Input"},
