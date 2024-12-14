@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { UserOutline, CogOutline, EllipsisHorizontal } from "$lib/icons/index.js";
 import { Card } from "$lib/index.js";
 </script>
 
@@ -29,5 +30,53 @@ import { Card } from "$lib/index.js";
         </Card>
     </div>
 
+
+    <h4 class="text-base indent-2 bg-slate-100">
+       Body
+    </h4>
+
+    <div class="px-10 w-80">
+        <Card>
+            Body
+        </Card>
+    </div>
+
+    <h4 class="text-base indent-2 bg-slate-100">
+        With Cover
+    </h4>
+
+    <div class="px-10 w-96">
+        <Card
+            cover={{
+                src: "https://gips1.baidu.com/it/u=2494520725,904297620&fm=3042&app=3042&f=JPEG&wm=1,huayi,0,0,13,9&wmo=0,0&w=720&h=1280",
+                class: "aspect-video",
+            }}
+        >
+            Body
+        </Card>
+    </div>
+
+    <h4 class="text-base indent-2 bg-slate-100">
+        With Footer
+    </h4>
+
+    <div class="px-10 w-80">
+        <Card>
+            Body
     
+            {#snippet footer()}
+                <div class="flex flex-row divide-x">
+                    <span class="flex items-center justify-center grow cursor-pointer hover:text-primary-600">
+                        <UserOutline/>
+                    </span>
+                    <span class="flex items-center justify-center grow cursor-pointer hover:text-primary-600">
+                        <CogOutline/>
+                    </span>
+                    <span class="flex items-center justify-center grow cursor-pointer hover:text-primary-600">
+                        <EllipsisHorizontal/>
+                    </span>
+                </div>
+            {/snippet}
+        </Card>
+    </div>
 </div>
