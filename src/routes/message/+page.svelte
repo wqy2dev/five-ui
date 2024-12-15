@@ -24,18 +24,22 @@ let max = $state(0);
 />
 
 <Button onclick={() => {
+    max = 0;
     message.push("Hello, world!");
 }}> Info </Button>
 
 <Button onclick={() => {
+    max = 0;
     message.push("Hello, world!", {variant: "success", onclose: () => {console.log("close ---")}});
 }}> success </Button>
 
 <Button onclick={() => {
+    max = 0;
     message.push("Hello, world!", {variant: "warn"});
 }}> warn </Button>
 
 <Button onclick={() => {
+    max = 0;
     message.push("Hello, world!", {variant: "error"});
 }}> error </Button>
 
