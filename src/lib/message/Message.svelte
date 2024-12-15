@@ -7,7 +7,7 @@ import { InfoCircleSolid, SuccessCircleSolid, ErrorCircleSolid, WarnCircleSolid,
 let {
     variant = "info",
     duration = 5000,
-    closable = true,
+    closable = false,
     onclose,
     children,
 }:MessageOption & { 

@@ -55,4 +55,8 @@ export class Controller {
     subscribe(sub:Subscriber<MessagePayload[]>) {
         this.queue.subscribe(sub);
     }
+
+    limit(max:number) {
+        this.max = max;
+    }
 }

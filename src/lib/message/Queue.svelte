@@ -43,6 +43,10 @@ onMount(() => {
     });
 });
 
+$effect(() => {
+    ctrol.limit(max);
+});
+
 </script>
 
 {#if queue}
