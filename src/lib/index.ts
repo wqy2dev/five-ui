@@ -16,7 +16,7 @@ export { Dropdown } from "./dropdown/index.js";
 export { Form } from "./form/index.js";
 export { Input } from "./input/index.js";
 export { Layout, Side, Header, Content } from "./layout/index.js";
-export { Message } from "./message/index.js";
+export { Message, type MessageInstance } from "./message/index.js";
 export { Modal } from "./modal/index.js";
 export { Notification } from "./notification/index.js";
 export { Overlay } from "./overlay/index.js";

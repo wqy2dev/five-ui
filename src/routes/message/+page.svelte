@@ -1,7 +1,7 @@
 <script lang="ts">
-import { Message, Button } from "$lib/index.js";
+import { Message, type MessageInstance, Button } from "$lib/index.js";
 
-let m;
+let message:MessageInstance;
 
 </script>
 
@@ -19,25 +19,24 @@ let m;
 
 <!-- create message global instance -->
 <Message 
-    bind:this={m}
+    bind:this={message}
     max={6}
 />
 
 <Button onclick={() => {
-    m.push("MMM");
+    message.push("MMM");
 }}> Info </Button>
 
 <Button onclick={() => {
-    m.push("MMM", {variant: "success", onclose: () => {alert("---")}});
+    message.push("MMM", {variant: "success", onclose: () => {console.log("close ---")}});
 }}> success </Button>
 
-
 <Button onclick={() => {
-    m.push("MMM", {variant: "warn"});
+    message.push("MMM", {variant: "warn"});
 }}> warn </Button>
 
 <Button onclick={() => {
-    m.push("MMM", {variant: "error"});
+    message.push("MMM", {variant: "error"});
 }}> error </Button>
 <!-- <Message
     variant="success"

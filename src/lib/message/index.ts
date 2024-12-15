@@ -1,2 +1,2 @@
 
-export { default as Message } from "./Queue.svelte";
+export { default as Message, type MessageInstance } from "./Queue.svelte";

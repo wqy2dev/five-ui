@@ -1,3 +1,12 @@
+<script lang="ts" module>
+
+export type MessageInstance = {
+    push: {(msg:string, option?:MessageOption):number};
+    remove: {(id:number):void};
+}
+
+</script>
+
 <script lang="ts">
 import { onMount } from "svelte";
 import { twMerge } from "tailwind-merge";
