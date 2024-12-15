@@ -20,7 +20,7 @@ let m;
 <!-- create message global instance -->
 <Message 
     bind:this={m}
-    max={3}
+    max={6}
 />
 
 <Button onclick={() => {
@@ -28,7 +28,7 @@ let m;
 }}> Info </Button>
 
 <Button onclick={() => {
-    m.push("MMM", {variant: "success"});
+    m.push("MMM", {variant: "success", onclose: () => {alert("---")}});
 }}> success </Button>
 
 
