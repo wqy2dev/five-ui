@@ -48,7 +48,7 @@ onMount(() => {
 {#if queue}
     <div
         id={id}
-        class={twMerge("fixed left-0 top-5 w-full", className)}
+        class={twMerge("fixed left-0 top-5 z-50 w-full pointer-events-none", className)}
     >
         {#each queue as item (item.id)}
             <Message 

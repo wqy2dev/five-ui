@@ -34,10 +34,10 @@ onMount(() => {
 </script>
 
 <div
-    class="w-full py-1 mt-1 flex justify-center bg-transparent"
+    class="w-full py-1 mt-1 z-50 flex justify-center bg-transparent"
     transition:slide
 >
-    <div class="flex flex-row items-center shadow-outline-sm text-sm rounded-lg px-3 py-2 bg-white">
+    <div class="flex flex-row items-center shadow-outline-sm text-sm rounded-lg px-3 py-2 bg-white pointer-events-auto">
         <span class="mr-2">
             {#if variant === "info"}
                 <InfoCircleSolid size={20} class="text-primary-600"/>
@@ -56,7 +56,7 @@ onMount(() => {
 
         {#if closable}
             <button
-                class="flex items-center ml-2 text-slate-400"
+                class="flex items-center ml-3 text-slate-400"
                 onclick={handleClose}
             >
                 <Close size={15}/>

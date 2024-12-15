@@ -24,20 +24,26 @@ let message:MessageInstance;
 />
 
 <Button onclick={() => {
-    message.push("MMM");
+    message.push("Hello, world!");
 }}> Info </Button>
 
 <Button onclick={() => {
-    message.push("MMM", {variant: "success", onclose: () => {console.log("close ---")}});
+    message.push("Hello, world!", {variant: "success", onclose: () => {console.log("close ---")}});
 }}> success </Button>
 
 <Button onclick={() => {
-    message.push("MMM", {variant: "warn"});
+    message.push("Hello, world!", {variant: "warn"});
 }}> warn </Button>
 
 <Button onclick={() => {
-    message.push("MMM", {variant: "error"});
+    message.push("Hello, world!", {variant: "error"});
 }}> error </Button>
+
+<h4 class="my-5 text-base indent-2 bg-slate-100">
+    Base
+</h4>
+
+
 <!-- <Message
     variant="success"
 >
