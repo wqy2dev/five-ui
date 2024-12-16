@@ -9,13 +9,13 @@ const alertVariants = tv({
 		variant: {
 			info: "bg-primary-50 text-primary-600",
 			success: "bg-green-50 text-green-600",
-			warning: "bg-yellow-50 text-yellow-600",
+			warn: "bg-yellow-50 text-yellow-600",
 			error: "bg-red-50 text-red-600",
 		},
 		border: {
 			info: "border-primary-600",
 			success: "border-green-600",
-			warning: "border-yellow-600",
+			warn: "border-yellow-600",
 			error: "border-red-600",
 			none: "",
 		},
@@ -25,13 +25,6 @@ const alertVariants = tv({
 		border: "info",
 	},
 });
-
-const iconsMap = {
-	info: "InfoCircleSolid",
-	success: "SuccessCircleSolid",
-	warning: "WarnCircleSolid",
-	error: "ErrorCircleSolid",
-};
 
 type Variant = VariantProps<typeof alertVariants>["variant"];
 
@@ -84,7 +77,7 @@ onMount(() => {
 				<InfoCircleSolid size={20}/>
 			{:else if variant === "success"}
 				<SuccessCircleSolid size={20}/>
-			{:else if variant === "warning"}
+			{:else if variant === "warn"}
 				<WarnCircleSolid size={20}/>
 			{:else if variant === "error"}
 				<ErrorCircleSolid size={20}/>

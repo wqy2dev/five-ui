@@ -4,7 +4,7 @@
     const variants = [
         "info",
         "success",
-        "warning",
+        "warn",
         "error"
     ];
 </script>

@@ -36,7 +36,7 @@ onMount(() => {
     id={id}
     style={style}
     style:height={height}
-    class={twMerge("shrink-0 p-1", className)}
+    class={twMerge("shrink-0 p-1 shadow-sm", className)}
 >
     {@render children?.()}
 </div>
