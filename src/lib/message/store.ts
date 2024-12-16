@@ -1,32 +1,24 @@
 import { get, writable, type Subscriber } from "svelte/store";
 
-export type MessageVariant = "success"|"error"|"warn"|"info"|"loading";
-
-export type MessageOption = {
-    variant?:MessageVariant;
-    duration?:number;
-    onclose?:{():void};
-    closable?:boolean;
-}
-
-export type MessagePayload = {
+export type MessagePayload<Option> = {
     id:number;
-    message:string;
-    option?:MessageOption;
+    option:Option;
 }
 
-export class Controller {
+export class Store<Option> {
+    // message id
     id = 0;
     // message max
     max = 0;
     // message queue
-    queue = writable<MessagePayload[]>([]);
+    queue = writable<MessagePayload<Option>[]>([]);
 
     constructor(max:number) {
         this.max = max;
     }
 
-    push(message:string, option?:MessageOption) {
+    // publish message
+    push(option:Option) {
         if (this.max > 0 && get(this.queue).length === this.max) {
             return -1;
         }
@@ -34,14 +26,15 @@ export class Controller {
         const id = ++this.id;
 
         this.queue.update(q => {
-            q.push({id, message, option});
+            q.push({id, option});
             return q;
         });
 
         return id;
     }
 
-    remove(id:number) {
+    // destory message
+    destory(id:number) {
         this.queue.update(q => {
             for (let i = 0; i < q.length; i++) {
                 if (q[i].id === id) {
@@ -52,10 +45,12 @@ export class Controller {
         });
     }
 
-    subscribe(sub:Subscriber<MessagePayload[]>) {
+    // subscribe message
+    subscribe(sub:Subscriber<MessagePayload<Option>[]>) {
         this.queue.subscribe(sub);
     }
 
+    // max message limit
     limit(max:number) {
         this.max = max;
     }

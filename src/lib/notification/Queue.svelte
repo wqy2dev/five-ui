@@ -1,8 +1,8 @@
 <script lang="ts" module>
-import Message, { type MessageOption } from "./Message.svelte";
+import Notification, { type NotificationOption } from "./Notification.svelte";
 
-export type MessageInstance = {
-    push: {(msg:string, option?:MessageOption):number};
+export type NotificationInstance = {
+    push: {(msg:string, option?:NotificationOption):number};
     remove: {(id:number):void};
 }
 
@@ -11,9 +11,9 @@ export type MessageInstance = {
 <script lang="ts">
 import { onMount } from "svelte";
 import { twMerge } from "tailwind-merge";
-import { Store, type MessagePayload } from "./store.js";
+import { Store, type MessagePayload } from "../message/store.js";
 
-type MessageProps = {
+type NotificationProps = {
     id?:string;
     class?:string;
     max?:number;
@@ -23,13 +23,13 @@ const {
     id,
     class:className,
     max = 0,
-}:MessageProps = $props();
+}:NotificationProps = $props();
 
-let queue = $state<MessagePayload<MessageOption>[]>([]);
+let queue = $state<MessagePayload<any>[]>([]);
 
-const store = new Store<MessageOption>(max);
+const store = new Store(max);
 
-export function push(option:MessageOption) {
+export function push(option:NotificationOption) {
     return store.push(option);
 }
 
@@ -55,7 +55,7 @@ $effect(() => {
         class={twMerge("fixed left-0 top-5 z-50 w-full pointer-events-none", className)}
     >
         {#each queue as item (item.id)}
-            <Message 
+            <Notification 
                 {...item.option}
                 onclose={() => {
                     destory(item.id), item.option.onclose?.();
