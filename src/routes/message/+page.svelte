@@ -3,6 +3,7 @@ import { Message, type MessageInstance, Button } from "$lib/index.js";
 
 let message:MessageInstance;
 let max = $state(0);
+
 </script>
 
 <svelte:head>
@@ -25,22 +26,34 @@ let max = $state(0);
 
 <Button onclick={() => {
     max = 0;
-    message.push("Hello, world!");
+    message.push({
+        message: "Hello, world!",
+    });
 }}> Info </Button>
 
 <Button onclick={() => {
     max = 0;
-    message.push("Hello, world!", {variant: "success", onclose: () => {console.log("close ---")}});
+    message.push({
+        message: "Hello, world!",
+        variant: "success", 
+        onclose: () => {console.log("close ---")}
+    });
 }}> success </Button>
 
 <Button onclick={() => {
     max = 0;
-    message.push("Hello, world!", {variant: "warn"});
+    message.push({
+        message: "Hello, world!", 
+        variant: "warn"
+    });
 }}> warn </Button>
 
 <Button onclick={() => {
     max = 0;
-    message.push("Hello, world!", {variant: "error"});
+    message.push({
+        message: "Hello, world!", 
+        variant: "error"
+    });
 }}> error </Button>
 
 <h4 class="my-5 text-base indent-2 bg-slate-100">
@@ -48,19 +61,19 @@ let max = $state(0);
 </h4>
 
 <Button onclick={() => {
-    message.push("Hello, world!", {closable:true});
+    message.push({message: "Hello, world!", closable:true});
 }}> Info </Button>
 
 <Button onclick={() => {
-    message.push("Hello, world!", {variant: "success", closable:true, onclose: () => {console.log("message close")}});
+    message.push({message: "Hello, world!", variant: "success", closable:true, onclose: () => {console.log("message close")}});
 }}> success </Button>
 
 <Button onclick={() => {
-    message.push("Hello, world!", {variant: "warn", closable:true});
+    message.push({message: "Hello, world!", variant: "warn", closable:true});
 }}> warn </Button>
 
 <Button onclick={() => {
-    message.push("Hello, world!", {variant: "error", closable:true});
+    message.push({message: "Hello, world!", variant: "error", closable:true});
 }}> error </Button>
 
 <h4 class="my-5 text-base indent-2 bg-slate-100">
@@ -69,38 +82,20 @@ let max = $state(0);
 
 <Button onclick={() => {
     max = 6;
-    message.push("Hello, world!");
+    message.push({message: "Hello, world!"});
 }}> Info </Button>
 
 <Button onclick={() => {
     max = 6;
-    message.push("Hello, world!", {variant: "success", onclose: () => {console.log("message close")}});
+    message.push({message: "Hello, world!", variant: "success", onclose: () => {console.log("message close")}});
 }}> success </Button>
 
 <Button onclick={() => {
     max = 6;
-    message.push("Hello, world!", {variant: "warn"});
+    message.push({message: "Hello, world!", variant: "warn"});
 }}> warn </Button>
 
 <Button onclick={() => {
     max = 6;
-    message.push("Hello, world!", {variant: "error"});
+    message.push({message: "Hello, world!", variant: "error"});
 }}> error </Button>
-
-<!-- <Message
-    variant="success"
->
-    Hello, world!
-</Message>
-
-<Message
-    variant="warn"
->
-    Hello, world!
-</Message>
-
-<Message
-    variant="error"
->
-    Hello, world!
-</Message> -->

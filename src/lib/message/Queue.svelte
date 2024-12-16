@@ -2,8 +2,8 @@
 import Message, { type MessageOption } from "./Message.svelte";
 
 export type MessageInstance = {
-    push: {(msg:string, option?:MessageOption):number};
-    remove: {(id:number):void};
+    push: {(option:MessageOption):number};
+    destory: {(id:number):void};
 }
 
 </script>
