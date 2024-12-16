@@ -1,44 +1,10 @@
 <script lang="ts" module>
-import { type VariantProps, tv } from "tailwind-variants";
 import { onMount, type Snippet } from "svelte";
 
-const notificationVariants = tv({
-    base: "flex flex-row shadow-outline-md rounded-lg px-3 py-2 bg-white",
-    variants: {
-        placement: {
-            top: {
-                base: "items-center",
-            },
-            topStart: {
-                base: "items-start",
-            },
-            topEnd: {
-                base: "items-end",
-            },
-            bottom: {
-                base: "items-center",
-            },
-            bottomStart: {
-                base: "items-start",
-            },
-            bottomEnd: {
-                base: "items-end",
-            }
-        },
-
-    },
-    defaultVariants: {
-        placement: "bottomEnd",
-    },
-});
-
-type Placement = VariantProps<typeof notificationVariants>["placement"];
-
-export type NotificationOption = {
+export interface NotificationProps {
     title:string;
     content:string|Snippet;
     variant?:"success"|"error"|"warn"|"info";
-    placement?:Placement;
     duration?:number;
     onclose?:{():void};
 }
@@ -52,10 +18,9 @@ let {
     title,
     content,
     variant = "info",
-    placement,
-    duration = 5000,
+    duration = 50000,
     onclose,
-}:NotificationOption = $props();
+}:NotificationProps = $props();
 
 let timerId:number;
 
@@ -76,7 +41,9 @@ onMount(() => {
 
 </script>
 
-<div class={notificationVariants({placement})}>
+<div 
+    class="flex flex-row w-80 shadow-outline-md rounded-lg p-3 bg-white pointer-events-auto"
+>
     <div class="mr-2 shrink-0">
         {#if variant === "info"}
             <InfoCircleSolid size={24} class="text-primary-600"/>

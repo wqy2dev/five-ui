@@ -1,33 +1,70 @@
 <script lang="ts" module>
-import Notification, { type NotificationOption } from "./Notification.svelte";
+import { tv, type VariantProps } from "tailwind-variants";
+import Notification, { type NotificationProps } from "./Notification.svelte";
+
+const variants = tv({
+    base: "flex w-full",
+    variants: {
+        placement: {
+            top: "justify-center mb-3",
+            topStart: "justify-start mb-3",
+            topEnd: "justify-end mb-3",
+            bottom: "justify-center mt-3",
+            bottomStart: "justify-start mt-3",
+            bottomEnd: "justify-end mt-3",
+        },
+    },
+    defaultVariants: {
+        placement: "bottomEnd",
+    },
+});
+
+const ctr:Record<string, HTMLElement> = {};
+
+function container(name:Exclude<Placement, undefined>):HTMLElement {
+    if(name in ctr) {
+        return ctr[name];
+    }
+
+    const el = document.createElement("div");
+    el.className = "fixed left-2 right-2 pointer-events-none box-border ";
+
+    if(name.slice(0, 3) === "top") {
+        el.className += "top-2";
+    } else {
+        el.className += "bottom-2";
+    }
+
+    return document.body.appendChild(el), ctr[name] = el;
+}
+
+type Placement = VariantProps<typeof variants>["placement"];
+
+type NotificationOption = NotificationProps & {
+    placement?:Placement;
+}
 
 export type NotificationInstance = {
-    push: {(msg:string, option?:NotificationOption):number};
-    remove: {(id:number):void};
+    push: {(option:NotificationOption):number};
+    destory: {(id:number):void};
 }
 
 </script>
 
 <script lang="ts">
 import { onMount } from "svelte";
-import { twMerge } from "tailwind-merge";
 import { Store, type MessagePayload } from "../message/store.js";
-
-type NotificationProps = {
-    id?:string;
-    class?:string;
-    max?:number;
-}
+    import { slide } from "svelte/transition";
 
 const {
-    id,
-    class:className,
     max = 0,
-}:NotificationProps = $props();
+}:{
+    max?:number;
+} = $props();
 
-let queue = $state<MessagePayload<any>[]>([]);
+let queue = $state<MessagePayload<NotificationOption>[]>([]);
 
-const store = new Store(max);
+const store = new Store<NotificationOption>(max);
 
 export function push(option:NotificationOption) {
     return store.push(option);
@@ -35,6 +72,10 @@ export function push(option:NotificationOption) {
 
 export function destory(id:number) {
     store.destory(id);
+}
+
+function mount(node:HTMLElement, placement:Placement) {
+    container(placement!).appendChild(node);
 }
 
 onMount(() => {
@@ -49,18 +90,18 @@ $effect(() => {
 
 </script>
 
-{#if queue}
+{#each queue as item (item.id)}
+    {@const { onclose, placement, ...resetProps } = item.option}
     <div
-        id={id}
-        class={twMerge("fixed left-0 top-5 z-50 w-full pointer-events-none", className)}
+        class={variants({placement})}
+        use:mount={placement}
+        transition:slide
     >
-        {#each queue as item (item.id)}
-            <Notification 
-                {...item.option}
-                onclose={() => {
-                    destory(item.id), item.option.onclose?.();
-                }}
-            />
-        {/each}
+        <Notification 
+            {...resetProps}
+            onclose={() => {
+                destory(item.id), onclose?.();
+            }}
+        />
     </div>
-{/if}
+{/each}
