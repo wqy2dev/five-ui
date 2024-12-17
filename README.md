@@ -29,7 +29,7 @@ The component list of FiveUI includes, but is not limited to:
 | Layout | ✔ |
 | Message | ✔ |
 | Modal | ✔ |
-| Notification | |
+| Notification | ✔ |
 | Overlay | ✔ |
 | Pagination | |
 | Popper | ✔ |
@@ -46,10 +46,12 @@ The component list of FiveUI includes, but is not limited to:
 | Tooltip | ✔ |
 | Watermark | ✔ |
 
-Local Preview
+Preview
 --
 
 ```
+git clone https://github.com/wqy2dev/five-ui.git
+cd five-ui && npm i
 npm run dev
 ```
 
