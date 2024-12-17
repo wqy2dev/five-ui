@@ -20,18 +20,23 @@ export type Direction = VariantProps<typeof carouselVariants>["direction"];
 type CarouselProps = {
     id?:string;
     class?:string;
-    index?:number;
     duration?:number;
     interval?:number;
+    defaultIndex?:number;
     direction?:Direction;
     ref?:{(el:HTMLElement):void};
     children:Snippet;
 }
 
+export type CarouselAction = "next"|"prev";
+export type CarouselScene = "enter"|"exit";
+
+type CarouselHandler = {(direction:Direction, action:CarouselAction, scene:CarouselScene):void};
+
 export type CarouselContext = {
-    direction?:Direction;
-    count:number;
     index:number;
+    direction?:Direction;
+    handlers:CarouselHandler[];
 }
 
 </script>
@@ -44,26 +49,12 @@ const {
     id,
     ref,
     class:className,
-    index = 0,
+    defaultIndex = 0,
     duration = 3000,
     interval = 5000,
     direction = "row",
     children
 }:CarouselProps = $props();
-
-let offset = $state("0");
-
-function onprev() {
-    offset = "100%";
-}
-
-function onnext() {
-    offset = "-100%";
-}
-
-function ontransitionend() {
-
-}
 
 let el:HTMLElement;
 
@@ -74,11 +65,30 @@ onMount(() => {
     }, interval);
 });
 
+const handlers:CarouselHandler[] = [];
+
+let current = defaultIndex;
+
+function onprev() {
+    handlers[current](direction, "prev", "exit");
+
+    current = (current === 0 ? handlers.length : current) - 1;
+
+    handlers[current](direction, "prev", "enter");
+}
+
+function onnext() {
+    handlers[current](direction, "next", "exit");
+
+    current = current === handlers.length - 1 ? 0 : current + 1;
+
+    handlers[current](direction, "next", "enter");
+}
 
 setContext<CarouselContext>("carousel", {
+    index: current,
     direction,
-    count:0,
-    index,
+    handlers,
 });
 
 </script>
@@ -88,7 +98,7 @@ setContext<CarouselContext>("carousel", {
     id={id}
     class={twMerge("relative w-full h-full overflow-hidden", className)}
 >
-    <div class="w-full h-full flex justify-between items-center pointer-events-none absolute left-0 top-0 z-10">
+    <div class="w-full h-full flex justify-between items-center pointer-events-none absolute left-0 top-0 z-30">
         <button
             class="flex items-center justify-center rounded-lg w-16 h-16 text-base text-white cursor-pointer pointer-events-auto"
             onclick={onprev}
