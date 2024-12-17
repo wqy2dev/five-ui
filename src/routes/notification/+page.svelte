@@ -46,7 +46,7 @@ let max = $state(0);
 
 <Button onclick={() => {
     max = 0;
-    notification.push({title: "Tips", content, placement:"bottom"});
+    notification.push({title: "Tips", content, variant: "error", placement:"bottom"});
 }}> Bottom </Button>
 
 <Button onclick={() => {
