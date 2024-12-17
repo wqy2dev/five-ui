@@ -7,7 +7,7 @@ export { Breadcrumb, BreadcrumbItem } from "./breadcrumb/index.js";
 export { Button } from "./button/index.js";
 export { Calendar } from "./calendar/index.js";
 export { Card, CardContent } from "./card/index.js";
-export { Carousel } from "./carousel/index.js";
+export { Carousel, CarouselItem } from "./carousel/index.js";
 export { Cascader } from "./cascader/index.js";
 export { Checkbox, CheckboxGroup } from "./checkbox/index.js";
 export { DatePicker } from "./datepicker/index.js";
