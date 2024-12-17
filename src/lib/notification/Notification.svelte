@@ -18,7 +18,7 @@ let {
     title,
     content,
     variant = "info",
-    duration = 50000,
+    duration = 5000,
     onclose,
 }:NotificationProps = $props();
 
