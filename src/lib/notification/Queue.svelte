@@ -19,6 +19,17 @@ const variants = tv({
     },
 });
 
+type Placement = VariantProps<typeof variants>["placement"];
+
+type NotificationOption = NotificationProps & {
+    placement?:Placement;
+}
+
+export type NotificationInstance = {
+    push: {(option:NotificationOption):number};
+    destory: {(id:number):void};
+}
+
 const ctr:Record<string, HTMLElement> = {};
 
 function portal(name:Exclude<Placement, undefined>):HTMLElement {
@@ -36,17 +47,6 @@ function portal(name:Exclude<Placement, undefined>):HTMLElement {
     }
 
     return document.body.appendChild(el), ctr[name] = el;
-}
-
-type Placement = VariantProps<typeof variants>["placement"];
-
-type NotificationOption = NotificationProps & {
-    placement?:Placement;
-}
-
-export type NotificationInstance = {
-    push: {(option:NotificationOption):number};
-    destory: {(id:number):void};
 }
 
 </script>
