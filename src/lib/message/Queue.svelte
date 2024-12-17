@@ -55,10 +55,11 @@ $effect(() => {
         class={twMerge("fixed left-0 top-5 z-50 w-full pointer-events-none", className)}
     >
         {#each queue as item (item.id)}
+            {@const { onclose, ...restProps} = item.option}
             <Message 
-                {...item.option}
+                {...restProps}
                 onclose={() => {
-                    destory(item.id), item.option.onclose?.();
+                    destory(item.id), onclose?.();
                 }}
             />
         {/each}

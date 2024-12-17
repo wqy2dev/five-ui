@@ -21,7 +21,7 @@ const variants = tv({
 
 const ctr:Record<string, HTMLElement> = {};
 
-function container(name:Exclude<Placement, undefined>):HTMLElement {
+function portal(name:Exclude<Placement, undefined>):HTMLElement {
     if(name in ctr) {
         return ctr[name];
     }
@@ -75,7 +75,7 @@ export function destory(id:number) {
 }
 
 function mount(node:HTMLElement, placement:Placement) {
-    container(placement!).appendChild(node);
+    portal(placement!).appendChild(node);
 }
 
 onMount(() => {
@@ -91,14 +91,14 @@ $effect(() => {
 </script>
 
 {#each queue as item (item.id)}
-    {@const { onclose, placement, ...resetProps } = item.option}
+    {@const { onclose, placement, ...restProps } = item.option}
     <div
         class={variants({placement})}
         use:mount={placement}
         transition:slide
     >
         <Notification 
-            {...resetProps}
+            {...restProps}
             onclose={() => {
                 destory(item.id), onclose?.();
             }}
