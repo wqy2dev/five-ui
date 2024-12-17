@@ -25,33 +25,37 @@ let max = $state(0);
     bind:this={notification}
 />
 
+{#snippet content()}
+    A new version of the package five-ui was published at 2024-05-15T08:26:43.062Z.
+{/snippet}
+
 <Button onclick={() => {
     max = 0;
-    notification.push({title: "Tips", content: "Hello, world!", placement:"top"});
+    notification.push({title: "Tips", content, placement:"top"});
 }}> Top </Button>
 
 <Button onclick={() => {
     max = 0;
-    notification.push({title: "Tips", content: "Hello, world!", variant: "success", placement:"topStart"});
+    notification.push({title: "Tips", content, variant: "success", placement:"topStart"});
 }}> TopStart </Button>
 
 <Button onclick={() => {
     max = 0;
-    notification.push({title: "Tips", content: "Hello, world!", variant: "warn", placement:"topEnd"});
+    notification.push({title: "Tips", content, variant: "warn", placement:"topEnd"});
 }}> TopEnd </Button>
 
 <Button onclick={() => {
     max = 0;
-    notification.push({title: "Tips", content: "Hello, world!", placement:"bottom"});
+    notification.push({title: "Tips", content, placement:"bottom"});
 }}> Bottom </Button>
 
 <Button onclick={() => {
     max = 0;
-    notification.push({title: "Tips", content: "Hello, world!", variant: "success", placement:"bottomStart"});
+    notification.push({title: "Tips", content, variant: "success", placement:"bottomStart"});
 }}> BottomStart </Button>
 
 <Button onclick={() => {
     max = 0;
-    notification.push({title: "Tips", content: "Hello, world!", variant: "warn", placement:"bottomEnd"});
+    notification.push({title: "Tips", content, variant: "warn", placement:"bottomEnd"});
 }}> BottomEnd </Button>
 

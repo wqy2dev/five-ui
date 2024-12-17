@@ -42,17 +42,17 @@ onMount(() => {
 </script>
 
 <div 
-    class="flex flex-row w-80 shadow-outline-md rounded-lg p-3 bg-white pointer-events-auto"
+    class="flex flex-row w-96 shadow-outline-lg rounded-lg p-3 bg-white pointer-events-auto"
 >
     <div class="mr-2 shrink-0">
         {#if variant === "info"}
-            <InfoCircleSolid size={24} class="text-primary-600"/>
+            <InfoCircleSolid size={26} class="text-primary-600"/>
         {:else if variant === "success"}
-            <SuccessCircleSolid size={24} class="text-green-600"/>
+            <SuccessCircleSolid size={26} class="text-green-600"/>
         {:else if variant === "warn"}
-            <WarnCircleSolid size={24} class="text-yellow-600"/>
+            <WarnCircleSolid size={26} class="text-yellow-600"/>
         {:else if variant === "error"}
-            <ErrorCircleSolid size={24} class="text-red-600"/>
+            <ErrorCircleSolid size={26} class="text-red-600"/>
         {/if}
     </div>
     <div class="grow">

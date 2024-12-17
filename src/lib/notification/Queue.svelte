@@ -54,7 +54,7 @@ export type NotificationInstance = {
 <script lang="ts">
 import { onMount } from "svelte";
 import { Store, type MessagePayload } from "../message/store.js";
-    import { slide } from "svelte/transition";
+import { slide } from "svelte/transition";
 
 const {
     max = 0,
