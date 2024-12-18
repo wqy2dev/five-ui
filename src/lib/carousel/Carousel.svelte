@@ -10,7 +10,7 @@ export type CarouselInstance = {
 
 const carouselVariants = tv({
     slots: {
-        carousel: "relative w-full h-full group overflow-hidden",
+        carousel: "relative w-full h-full rounded-lg group overflow-hidden",
         control: "flex w-full h-full justify-between items-center pointer-events-none absolute left-0 top-0 z-50 invisible group-hover:visible",
         chevron: "flex items-center justify-center rounded-lg w-16 h-16 text-base text-white cursor-pointer pointer-events-auto",
         indicator: "flex flex-row justify-center w-full absolute bottom-5 left-0 gap-2 z-50 bg-transparent",
