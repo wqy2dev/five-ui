@@ -1,9 +1,9 @@
 <script lang="ts" module>
-import { getContext, type Snippet } from "svelte";
+import { getContext, onMount, tick, type Snippet } from "svelte";
 import { tv } from "tailwind-variants";
 import type { CarouselAction, CarouselContext, CarouselScene, Direction } from "./Carousel.svelte";
 
-function position(direction:Direction, action:"next"|"prev", scene:"enter"|"exit") {
+function position(direction:Direction, action:CarouselAction, scene:CarouselScene) {
     if(action === "next") {
         if(scene === "enter") {
             if(direction === "row") {
@@ -74,49 +74,34 @@ const {
     children
 }:CarouselItemProps = $props();
 
-let cache:{
-    direction?:Direction,
-    scene?:CarouselScene,
-} = {
-    direction:undefined, 
-    scene:undefined
-};
-
 let className = $state(outClass);
 
 function handler(direction:Direction, action:CarouselAction, scene:CarouselScene) {
     const [ from, to ] = position(direction, action, scene);
 
-    cache = {direction, scene};
-    className = outClass + " transition-none " + from;
+    // immediately reactive
+    className = `${outClass} ${from} transition-none`;
 
     setTimeout(() => {
-        className = outClass + " transition-all " + to;
-    }, 10);
+        // delay reactive
+        className = `${outClass} ${to} transition-all`;
+    }, 30);
 }
-
-context.handlers.push(handler);
 
 // carousel item index
-const index = context.handlers.length - 1;
+let index:number = $state(-1);
 
-function ontransitionend() {
-    if(cache.scene === "exit") {
-        className = outClass + " transition-none ";
+onMount(() => {
+    context.handlers.push(handler), index = context.handlers.length - 1;
+});
 
-        if(cache.direction === "row") {
-            className += " left-full";
-        } else {
-            className += " -top-full";
-        }
-    }
-}
 </script>
 
+{#if index > -1}
 <div
     class={carouselItemVariants({direction: context.index === index ? true : context.direction, className})}
-    ontransitionend={ontransitionend}
-    style="transition-duration:2000ms;"
+    style={`transition-duration:${context.duration}ms;`}
 >
     {@render children()}
 </div>
+{/if}
