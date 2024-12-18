@@ -2,21 +2,27 @@
 import { onMount, setContext, type Snippet } from "svelte";
 import { tv } from "tailwind-variants";
 
+export type CarouselInstance = {
+    next:{():void};
+    prev:{():void};
+    position:{(index:number):void};
+}
+
 const carouselVariants = tv({
     slots: {
         carousel: "relative w-full h-full group overflow-hidden",
         control: "flex w-full h-full justify-between items-center pointer-events-none absolute left-0 top-0 z-50 invisible group-hover:visible",
         chevron: "flex items-center justify-center rounded-lg w-16 h-16 text-base text-white cursor-pointer pointer-events-auto",
         indicator: "flex flex-row justify-center w-full absolute bottom-5 left-0 gap-2 z-50 bg-transparent",
-        indicatorItem: "h-1 bg-white rounded-lg transition-all",
+        indicatorItem: "h-0.5 bg-white rounded-lg transition-all",
     },
     variants: {
         activeIndicator: {
             true: {
-                indicatorItem: "w-5",
+                indicatorItem: "w-4",
             },
             false: {
-                indicatorItem: "w-4 opacity-50 cursor-pointer",
+                indicatorItem: "w-3 opacity-50 cursor-pointer",
             },
         }
     },
@@ -36,6 +42,7 @@ export type CarouselContext = {
     duration?:number;
     direction?:Direction;
     handlers:CarouselHandler[];
+    lock:boolean;
 }
 
 type CarouselProps = {
@@ -80,26 +87,26 @@ const {
 
 const handlers:CarouselHandler[] = [];
 
+let context:CarouselContext = {
+    index: defaultIndex,
+    duration,
+    direction,
+    handlers,
+    lock:false,
+};
+
+setContext("carousel", context);
+
 let current = $state(defaultIndex);
-
-// play prev
-function onprev() {
-    play("prev");
-}
-
-// play next
-function onnext() {
-    play("next");
-}
-
-function onindicator(index:number) {
-    if(index !== current) {
-        play(index > current ? "next" : "prev", index);
-    }
-}
 
 // play next or prev
 function play(action:CarouselAction, index?:number) {
+    if(context.lock) {
+        return
+    }
+
+    context.lock = true;
+
     handlers[current](direction, action, "exit");
 
     if(index !== undefined) {
@@ -115,6 +122,20 @@ function play(action:CarouselAction, index?:number) {
     handlers[current](direction, action, "enter");
 }
 
+export function prev() {
+    play("prev");
+}
+
+export function next() {
+    play("next");
+}
+
+export function position(index:number) {
+    if(index !== current) {
+        play(index > current ? "next" : "prev", index);
+    }
+}
+
 let timer:number;
 
 function onmouseenter() {
@@ -124,15 +145,8 @@ function onmouseenter() {
 }
 
 function onmouseleave() {
-    timer = setInterval(onnext, interval * 1000);
+    timer = setInterval(next, interval * 1000);
 }
-
-setContext<CarouselContext>("carousel", {
-    index: defaultIndex,
-    duration,
-    direction,
-    handlers,
-});
 
 let mountIndicator:boolean = $state(false);
 let el:HTMLElement;
@@ -141,7 +155,7 @@ onMount(() => {
     ref?.(el);
 
     if(autoplay) {
-        timer = setInterval(onnext, interval * 1000);
+        timer = setInterval(next, interval * 1000);
     }
 
     mountIndicator = true;
@@ -166,7 +180,7 @@ const {
     <div class={control()}>
         <button
             class={chevron()}
-            onclick={onprev}
+            onclick={prev}
         >
             <ChevronLeft 
                 size={25}
@@ -174,7 +188,7 @@ const {
         </button>
         <button 
             class={chevron()}
-            onclick={onnext}
+            onclick={next}
         > 
             <ChevronRight
                 size={25}
@@ -190,7 +204,7 @@ const {
                 <div
                     class={indicatorItem({activeIndicator})}
                     style={`transition-duration:${duration}ms;`}
-                    {...(activeIndicator ? {}:{onmouseup: () => onindicator(i)})}
+                    {...(activeIndicator ? {}:{onmouseup: () => position(i)})}
                 ></div>
             {/each}
         </div>

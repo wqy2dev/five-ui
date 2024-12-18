@@ -15,7 +15,7 @@ const routes = [
     {path: "/button", title: "Button", achieve: true},
     {path: "/calendar", title: "Calendar"},
     {path: "/card", title: "Card", achieve: true},
-    {path: "/carousel", title: "Carousel"},
+    {path: "/carousel", title: "Carousel", achieve: true},
     {path: "/cascader", title: "Cascader"},
     {path: "/datepicker", title: "DatePicker"},
     {path: "/drawer", title: "Drawer", achieve: true},

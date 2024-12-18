@@ -75,9 +75,12 @@ const {
 }:CarouselItemProps = $props();
 
 let className = $state(outClass);
+let carouselScene = "";
 
 function handler(direction:Direction, action:CarouselAction, scene:CarouselScene) {
     const [ from, to ] = position(direction, action, scene);
+
+    carouselScene = scene;
 
     // immediately reactive
     className = `${outClass} ${from} transition-none`;
@@ -95,12 +98,19 @@ onMount(() => {
     context.handlers.push(handler), index = context.handlers.length - 1;
 });
 
+function ontransitionend() {
+    if(carouselScene === "exit") {
+        context.lock = false;
+    }
+}
+
 </script>
 
 {#if index > -1}
 <div
     class={carouselItemVariants({direction: context.index === index ? true : context.direction, className})}
     style={`transition-duration:${context.duration}ms;`}
+    ontransitionend={ontransitionend}
 >
     {@render children()}
 </div>

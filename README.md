@@ -18,7 +18,7 @@ The component list of FiveUI includes, but is not limited to:
 | Button | ✔ |
 | Calendar | |
 | Card | ✔ |
-| Carousel ||
+| Carousel | ✔ |
 | Cascader ||
 | Checkbox ||
 | DatePicker ||

@@ -15,12 +15,16 @@ import { Carousel, CarouselItem } from "$lib/index.js";
     <Carousel class="w-[550px] h-60">
         <CarouselItem class="bg-slate-600">A</CarouselItem>
         <CarouselItem class="bg-black">B</CarouselItem>
-        <CarouselItem class="bg-purple-600">C</CarouselItem>
+        <CarouselItem class="bg-cyan-600">C</CarouselItem>
     </Carousel>
     
-    <Carousel class="w-[550px] h-60" direction="col">
+    <Carousel 
+        class="w-[550px] h-60" 
+        direction="col"
+        defaultIndex={1}
+    >
         <CarouselItem class="bg-slate-600">A</CarouselItem>
         <CarouselItem class="bg-black">B</CarouselItem>
-        <CarouselItem class="bg-purple-600">C</CarouselItem>
+        <CarouselItem class="bg-cyan-600">C</CarouselItem>
     </Carousel>
 </div>
