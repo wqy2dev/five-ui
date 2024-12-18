@@ -36,6 +36,7 @@ export type CarouselAction = "next"|"prev";
 export type CarouselScene = "enter"|"exit";
 
 type CarouselHandler = {(direction:Direction, action:CarouselAction, scene:CarouselScene):void};
+type CarouselListener = {(index:number):void};
 
 export type CarouselContext = {
     index:number;
@@ -43,6 +44,10 @@ export type CarouselContext = {
     direction?:Direction;
     handlers:CarouselHandler[];
     lock:boolean;
+    onenterstart?:CarouselListener;
+    onenterend?:CarouselListener;
+    onexitstart?:CarouselListener;
+    onexitend?:CarouselListener;
 }
 
 type CarouselProps = {
@@ -64,6 +69,11 @@ type CarouselProps = {
     hover?:boolean;
     // display indicator
     indicator?:boolean;
+    // event
+    onenterstart?:CarouselListener;
+    onenterend?:CarouselListener;
+    onexitstart?:CarouselListener;
+    onexitend?:CarouselListener;
 }
 
 </script>
@@ -82,6 +92,10 @@ const {
     indicator:showIndicator = true,
     autoplay = true,
     hover = true,
+    onenterstart,
+    onenterend,
+    onexitstart,
+    onexitend,
     children
 }:CarouselProps = $props();
 
@@ -93,6 +107,10 @@ let context:CarouselContext = {
     direction,
     handlers,
     lock:false,
+    onenterstart,
+    onenterend,
+    onexitstart,
+    onexitend,
 };
 
 setContext("carousel", context);

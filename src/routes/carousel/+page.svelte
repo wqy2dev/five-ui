@@ -12,7 +12,11 @@ import { Carousel, CarouselItem } from "$lib/index.js";
 </h2>
 
 <div class="flex flex-grow gap-5 transition-all">
-    <Carousel class="w-[550px] h-60">
+    <Carousel 
+        class="w-[550px] h-60"
+        onexitstart={v => console.log("exit-start:", v)}
+        onexitend={v => console.log("exit-end:", v)}
+    >
         <CarouselItem class="bg-slate-600">A</CarouselItem>
         <CarouselItem class="bg-black">B</CarouselItem>
         <CarouselItem class="bg-cyan-600">C</CarouselItem>
@@ -22,6 +26,8 @@ import { Carousel, CarouselItem } from "$lib/index.js";
         class="w-[550px] h-60" 
         direction="col"
         defaultIndex={1}
+        onenterstart={v => console.log("enter-start:", v)}
+        onenterend={v => console.log("enter-end:", v)}
     >
         <CarouselItem class="bg-slate-600">A</CarouselItem>
         <CarouselItem class="bg-black">B</CarouselItem>

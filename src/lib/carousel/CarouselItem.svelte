@@ -78,9 +78,15 @@ let className = $state(outClass);
 let carouselScene = "";
 
 function handler(direction:Direction, action:CarouselAction, scene:CarouselScene) {
-    const [ from, to ] = position(direction, action, scene);
+    if(scene === "exit") {
+        context.onexitstart?.(index);
+    } else {
+        context.onenterstart?.(index);
+    }
 
     carouselScene = scene;
+
+    const [ from, to ] = position(direction, action, scene);
 
     // immediately reactive
     className = `${outClass} ${from} transition-none`;
@@ -101,6 +107,9 @@ onMount(() => {
 function ontransitionend() {
     if(carouselScene === "exit") {
         context.lock = false;
+        context.onexitend?.(index);
+    } else {
+        context.onenterend?.(index);
     }
 }
 
