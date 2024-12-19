@@ -67,8 +67,10 @@ type CarouselProps = {
     autoplay?:boolean;
     // stop when the mouse hovers over it
     hoverstop?:boolean;
-    // display indicator
+    // whether to display indicator
     indicator?:boolean;
+    // whether to display next and prev
+    control?:boolean;
     // event
     onenterstart?:CarouselListener;
     onenterend?:CarouselListener;
@@ -92,6 +94,7 @@ const {
     indicator:showIndicator = true,
     autoplay = true,
     hoverstop = true,
+    control:showControl = true,
     onenterstart,
     onenterend,
     onexitstart,
@@ -195,24 +198,26 @@ const {
     class={carousel({className})}
     {...(hoverstop && autoplay ? {onmouseenter, onmouseleave}:{})}
 >
-    <div class={control()}>
-        <button
-            class={chevron()}
-            onclick={prev}
-        >
-            <ChevronLeft 
-                size={25}
-            />
-        </button>
-        <button 
-            class={chevron()}
-            onclick={next}
-        > 
-            <ChevronRight
-                size={25}
-            />
-        </button>
-    </div>
+    {#if showControl}
+        <div class={control()}>
+            <button
+                class={chevron()}
+                onclick={prev}
+            >
+                <ChevronLeft 
+                    size={25}
+                />
+            </button>
+            <button 
+                class={chevron()}
+                onclick={next}
+            > 
+                <ChevronRight
+                    size={25}
+                />
+            </button>
+        </div>
+    {/if}
 
     {#if mountIndicator && showIndicator}
         <div class={indicator()}>
