@@ -19,7 +19,7 @@ const placements = [
 </h2>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Default
     </h4>
     
@@ -33,7 +33,7 @@ const placements = [
         </Tooltip>
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Theme
     </h4>
     
@@ -55,7 +55,7 @@ const placements = [
         </Tooltip>
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Placement
     </h4>
     
@@ -71,7 +71,7 @@ const placements = [
         {/each}
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Trigger
     </h4>
     

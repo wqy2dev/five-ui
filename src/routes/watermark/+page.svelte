@@ -12,7 +12,7 @@ import { Watermark } from "$lib/index.js";
 </h2>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Default
     </h4>
 
@@ -20,7 +20,7 @@ import { Watermark } from "$lib/index.js";
         <Watermark/>
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Rotate & Offset(x, y) & TextSize & TextWeight
     </h4>
 

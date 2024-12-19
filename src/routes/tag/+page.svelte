@@ -35,7 +35,7 @@ const variants = [
 </h2>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Default
     </h4>
 
@@ -49,7 +49,7 @@ const variants = [
 </div>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Large
     </h4>
     <div class="flex flex-row flex-wrap gap-2">
@@ -62,7 +62,7 @@ const variants = [
 </div>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Radius
     </h4>
 
@@ -104,7 +104,7 @@ const variants = [
 </div>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         With Icon
     </h4>
 
@@ -119,7 +119,7 @@ const variants = [
 
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         With Close
     </h4>
 

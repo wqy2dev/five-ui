@@ -11,6 +11,10 @@ import { Breadcrumb, BreadcrumbItem } from "$lib/index.js";
     Breadcrumb
 </h2>
 
+<h4 class="text-base indent-2 bg-slate-100 my-3">
+    Default
+</h4>
+
 <div>
     <Breadcrumb>
         <BreadcrumbItem>Home</BreadcrumbItem>
