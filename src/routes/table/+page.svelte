@@ -95,7 +95,7 @@ const dataSource = [
 {/snippet}
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Default
     </h4>
 
@@ -117,7 +117,7 @@ const dataSource = [
 </div>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Row with Hover
     </h4>
 
@@ -140,7 +140,7 @@ const dataSource = [
 </div>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Striped Row
     </h4>
 
@@ -164,7 +164,7 @@ const dataSource = [
 
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Bordered
     </h4>
 
@@ -188,7 +188,7 @@ const dataSource = [
 
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Overflow Scroll
     </h4>
 
@@ -212,7 +212,7 @@ const dataSource = [
 
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Empty
     </h4>
 

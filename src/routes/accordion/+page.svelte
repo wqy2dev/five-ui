@@ -12,7 +12,7 @@ import { Accordion, AccordionItem } from "$lib/index.js";
 </h2>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Default
     </h4>
 
@@ -42,7 +42,7 @@ import { Accordion, AccordionItem } from "$lib/index.js";
         </AccordionItem>
     </Accordion>
 
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Default AccordionItem Expand
     </h4>
 
@@ -73,7 +73,7 @@ import { Accordion, AccordionItem } from "$lib/index.js";
         </AccordionItem>
     </Accordion>
 
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Accordion Effect
     </h4>
 
@@ -106,7 +106,7 @@ import { Accordion, AccordionItem } from "$lib/index.js";
     </Accordion>
 
 
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Disabled AccordionItem
     </h4>
 
@@ -138,7 +138,7 @@ import { Accordion, AccordionItem } from "$lib/index.js";
     </Accordion>
 
 
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Custom AccordionItem Icon
     </h4>
 

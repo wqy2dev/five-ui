@@ -1,8 +1,9 @@
 <script lang="ts" module>
+import Message, { type MessageOption } from "./Message.svelte";
 
 export type MessageInstance = {
-    push: {(msg:string, option?:MessageOption):number};
-    remove: {(id:number):void};
+    push: {(option:MessageOption):number};
+    destory: {(id:number):void};
 }
 
 </script>
@@ -10,8 +11,7 @@ export type MessageInstance = {
 <script lang="ts">
 import { onMount } from "svelte";
 import { twMerge } from "tailwind-merge";
-import { Controller, type MessageOption, type MessagePayload } from "./controller.js";
-import Message from "./Message.svelte";
+import { Store, type MessagePayload } from "./store.js";
 
 type MessageProps = {
     id?:string;
@@ -25,26 +25,26 @@ const {
     max = 0,
 }:MessageProps = $props();
 
-let queue = $state<MessagePayload[]>([]);
+let queue = $state<MessagePayload<MessageOption>[]>([]);
 
-const ctrol = new Controller(max);
+const store = new Store<MessageOption>(max);
 
-export function push(msg:string, option?:MessageOption) {
-    return ctrol.push(msg, option);
+export function push(option:MessageOption) {
+    return store.push(option);
 }
 
-export function remove(id:number) {
-    ctrol.remove(id);
+export function destory(id:number) {
+    store.destory(id);
 }
 
 onMount(() => {
-    ctrol.subscribe(q => {
+    store.subscribe(q => {
         queue = q;
     });
 });
 
 $effect(() => {
-    ctrol.limit(max);
+    store.limit(max);
 });
 
 </script>
@@ -55,14 +55,13 @@ $effect(() => {
         class={twMerge("fixed left-0 top-5 z-50 w-full pointer-events-none", className)}
     >
         {#each queue as item (item.id)}
+            {@const { onclose, ...restProps} = item.option}
             <Message 
-                {...item.option}
+                {...restProps}
                 onclose={() => {
-                    remove(item.id), item.option?.onclose?.();
+                    destory(item.id), onclose?.();
                 }}
-            >
-                {item.message}
-            </Message>
+            />
         {/each}
     </div>
 {/if}

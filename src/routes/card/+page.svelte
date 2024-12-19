@@ -13,7 +13,7 @@ import { Card, CardContent } from "$lib/index.js";
 </h2>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Default
     </h4>
 
@@ -27,7 +27,7 @@ import { Card, CardContent } from "$lib/index.js";
         </Card>
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
        Only Body
     </h4>
 
@@ -47,7 +47,7 @@ import { Card, CardContent } from "$lib/index.js";
         </Card>
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         With Shadow 
     </h4>
  
@@ -89,7 +89,7 @@ import { Card, CardContent } from "$lib/index.js";
         </div>
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         With Cover
     </h4>
 
@@ -137,7 +137,7 @@ import { Card, CardContent } from "$lib/index.js";
         </div>
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         With Footer
     </h4>
 
@@ -171,7 +171,7 @@ import { Card, CardContent } from "$lib/index.js";
         </Card>
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         With Size
     </h4>
 

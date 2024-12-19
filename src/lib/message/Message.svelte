@@ -1,7 +1,18 @@
-<script lang="ts">
+<script lang="ts" module>
 import { onMount, type Snippet } from "svelte";
+
+export type MessageOption = {
+    message:string|Snippet;
+    variant?:"success"|"error"|"warn"|"info"|"loading";
+    duration?:number;
+    closable?:boolean;
+    onclose?:{():void};
+}
+
+</script>
+
+<script lang="ts">
 import { slide } from "svelte/transition";
-import type {  MessageOption } from "./controller.js";
 import { InfoCircleSolid, SuccessCircleSolid, ErrorCircleSolid, WarnCircleSolid, Close } from "$lib/icons/index.js";
 
 let {
@@ -9,10 +20,8 @@ let {
     duration = 5000,
     closable = false,
     onclose,
-    children,
-}:MessageOption & { 
-    children:Snippet;
-} = $props();
+    message,
+}:MessageOption = $props();
 
 let timerId:number;
 
@@ -34,7 +43,7 @@ onMount(() => {
 </script>
 
 <div
-    class="w-full py-1 mt-1 z-50 flex justify-center bg-transparent"
+    class="w-full py-1 mp-1 z-50 flex justify-center bg-transparent"
     transition:slide
 >
     <div class="flex flex-row items-center shadow-outline-md text-sm rounded-lg px-3 py-2 bg-white pointer-events-auto">
@@ -51,7 +60,11 @@ onMount(() => {
         </span>
     
         <span>
-            {@render children()}
+            {#if typeof message === "string"}
+                {message}
+            {:else}
+                {@render message()}
+            {/if}
         </span>
 
         {#if closable}

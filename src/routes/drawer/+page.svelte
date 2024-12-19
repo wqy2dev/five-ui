@@ -20,7 +20,7 @@ let showWithPlacement = $state({
 </h2>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Default
     </h4>
 
@@ -41,7 +41,7 @@ let showWithPlacement = $state({
     </Drawer>
     {/if}
 
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Close when overlay clicked
     </h4>
 
@@ -60,7 +60,7 @@ let showWithPlacement = $state({
     </Drawer>
     {/if}
 
-    <h4 class="text-base indent-2 bg-slate-100">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Placement & Size
     </h4>
 
