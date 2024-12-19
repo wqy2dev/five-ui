@@ -1,6 +1,6 @@
 # Introduction
 
-FiveUI is an **beautiful,modern,open-source UI** toolkit built with [**Svelte**](https://svelte.dev/) and [**Tailwind CSS**](https://tailwindcss.com/), designed to help developers create reactive web interfaces. Whether you are building a simple prototype or a complex web application, FiveUI provides a set of reusable components and utilities to speed up the development process.
+FiveUI is a **beautiful,modern,open-source UI** toolkit built with [**Svelte**](https://svelte.dev/) and [**Tailwind CSS**](https://tailwindcss.com/), designed to help developers create reactive web interfaces. Whether you are building a simple prototype or a complex web application, FiveUI provides a set of reusable components and utilities to speed up the development process.
 
 ## Features
 
