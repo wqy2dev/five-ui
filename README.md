@@ -4,12 +4,11 @@ FiveUI is a **beautiful,modern,open-source UI** toolkit built with [**Svelte**](
 
 ## Features
 
-- **Svelte + Tailwind CSS Integration**: Leverage the power of Svelte's reactivity and Tailwind CSS's utility-first approach to build modern, responsive UIs.
+- **Svelte5 + Tailwind CSS Integration**: Leverage the power of Svelte's reactivity and Tailwind CSS's utility-first approach to build modern, responsive UIs.
 - **Reusable Components**: A collection of pre-built, customizable UI components like buttons, forms, modals, carousel, popper, and more.
 - **Customizable Themes**: Easily customize the look and feel of your application with Tailwind's built-in theming capabilities.
-- ***Responsive Design**: Built-in support for responsive design, ensuring your interfaces look great on all devices.
+- **Responsive Design**: Built-in support for responsive design, ensuring your interfaces look great on all devices.
 - **Open Source**: FiveUI is free and open-source, allowing you to contribute, modify, and share the toolkit.
-
 
 ## Installation
 
@@ -91,5 +90,5 @@ FiveUI is open-source software licensed under the [MIT license](https://github.c
 
 FiveUI is built with love and powered by the following technologies:
 
-- [**Svelte**](https://svelte.dev/)
+- [**Svelte5**](https://svelte.dev/)
 - [**Tailwind CSS**](https://tailwindcss.com/)
