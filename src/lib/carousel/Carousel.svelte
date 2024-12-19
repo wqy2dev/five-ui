@@ -66,7 +66,7 @@ type CarouselProps = {
     // whether to play automatically, default true
     autoplay?:boolean;
     // stop when the mouse hovers over it
-    hover?:boolean;
+    hoverstop?:boolean;
     // display indicator
     indicator?:boolean;
     // event
@@ -91,7 +91,7 @@ const {
     interval = 5,
     indicator:showIndicator = true,
     autoplay = true,
-    hover = true,
+    hoverstop = true,
     onenterstart,
     onenterend,
     onexitstart,
@@ -193,7 +193,7 @@ const {
     bind:this={el}
     id={id}
     class={carousel({className})}
-    {...(hover && autoplay ? {onmouseenter, onmouseleave}:{})}
+    {...(hoverstop && autoplay ? {onmouseenter, onmouseleave}:{})}
 >
     <div class={control()}>
         <button
