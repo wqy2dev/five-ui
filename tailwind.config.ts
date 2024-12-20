@@ -39,6 +39,9 @@ const config: Config = {
                     "--tw-shadow": "0 0 6px 0 #DDD",
                     "box-shadow": "var(--tw-shadow)",
                 },
+                ".cursor-inherit": {
+                    "cursor": "inherit",
+                },
             });
         }),
     ],

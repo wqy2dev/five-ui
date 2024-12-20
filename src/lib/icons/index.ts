@@ -11,6 +11,10 @@ export { default as Calendar } from "./Calendar.svelte";
 export { default as CalendarDateRange } from "./CalendarDateRange.svelte";
 export { default as CalendarDay } from "./CalendarDay.svelte";
 export { default as Check } from "./Check.svelte";
+export { default as ChevronDoubleDown } from "./ChevronDoubleDown.svelte";
+export { default as ChevronDoubleLeft } from "./ChevronDoubleLeft.svelte";
+export { default as ChevronDoubleRight } from "./ChevronDoubleRight.svelte";
+export { default as ChevronDoubleUp } from "./ChevronDoubleUp.svelte";
 export { default as ChevronDown } from "./ChevronDown.svelte";
 export { default as ChevronLeft } from "./ChevronLeft.svelte";
 export { default as ChevronRight } from "./ChevronRight.svelte";
@@ -66,6 +70,10 @@ export const icons = [
     "CalendarDateRange",
     "CalendarDay",
     "Check",
+    "ChevronDoubleDown",
+    "ChevronDoubleLeft",
+    "ChevronDoubleRight",
+    "ChevronDoubleUp",
     "ChevronDown",
     "ChevronLeft",
     "ChevronRight",

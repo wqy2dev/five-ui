@@ -80,7 +80,7 @@ const routes = [
 
         </Header>
         <Content
-            class="h-0 px-5 overflow-y-auto"
+            class="h-0 px-5 overflow-y-auto pb-20"
         >
             {@render children()}
         </Content>
