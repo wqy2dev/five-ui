@@ -196,7 +196,7 @@ const {
     id={id}
     class={base({className})}
 >
-    {#if control}
+    {#if control && current > 1}
         <button
             class={button()}
             type="button"
@@ -228,7 +228,7 @@ const {
         </button>
     {/each}
 
-    {#if control}
+    {#if control && current < pages}
         <button
             class={button()}
             type="button"
