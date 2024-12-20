@@ -27,7 +27,7 @@ const routes = [
     {path: "/message", title: "Message", achieve: true},
     {path: "/modal", title: "Modal", achieve: true},
     {path: "/notification", title: "Notification", achieve: true},
-    {path: "/pagination", title: "Pagination"},
+    {path: "/pagination", title: "Pagination", achieve: true},
     {path: "/radio", title: "Radio"},
     {path: "/select", title: "Select"},
     {path: "/slider", title: "Slider"},
