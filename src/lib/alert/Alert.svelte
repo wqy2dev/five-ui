@@ -67,6 +67,7 @@ onMount(() => {
 </script>
 
 <div
+	aria-label="Alert"
 	bind:this={el}
 	id={id}
 	class={alertVariants({variant, border: withBorder ? variant : "none", className})}

@@ -163,6 +163,7 @@ const {
 </script>
 
 <div
+    aria-label="Badge"
     id={id}
     bind:this={el}
     class={wrapper({className})}

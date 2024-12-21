@@ -104,6 +104,7 @@ const {
 </script>
 
 <div
+    aria-label="Card"
     bind:this={el}
     id={id}
     style={style}

@@ -78,6 +78,7 @@ onMount(() => {
 </script>
 
 <svelte:element 
+    aria-label="Button"
     class={buttonVariants({variant, size, radius})}
     this={restProps["href"] ? "a":"button"}
     bind:this={el}

@@ -3,6 +3,7 @@
 export type Trigger = "hover" | "focus";
 
 export type PopperProps = {
+    ariaLabel?: string;
     style?: string;
     class?: string;
     trigger?: Trigger;
@@ -157,6 +158,7 @@ import { onMount, tick, type Snippet } from "svelte";
 import { fade } from "svelte/transition";
 
 let {
+    ariaLabel = "Popper",
     target,
     class: className,
     offset = 12,
@@ -329,6 +331,7 @@ onMount(() => {
 
 {#if show}
     <div
+        aria-label="Popper"
         class={className}
         {...restProps}
         in:fade={{delay: 50, duration: 100}}

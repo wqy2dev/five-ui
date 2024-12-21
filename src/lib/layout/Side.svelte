@@ -37,6 +37,7 @@ onMount(() => {
 </script>
     
 <div
+    aria-label="LayoutSide"
     id={id}
     style={style}
     style:width={collapsible ? collapsedWidth : width}

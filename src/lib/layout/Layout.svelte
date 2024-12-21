@@ -56,6 +56,7 @@ setContext("layout", {});
 </script>
 
 <div
+    aria-label="Layout"
 	id={id}
 	class={layoutVariants({layout, grow: isGrow, className})}
 	style={style}

@@ -133,6 +133,7 @@ const drawerClass = (isX ? maxWidth() : maxHeight()) +" "+ base({className});
     class={overlay()}
 >
     <div
+        aria-label="Drawer"
         bind:this={el}
         id={id}
         class={drawerClass}

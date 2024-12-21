@@ -34,6 +34,7 @@ let {
 </script>
 
 <Popper
+    ariaLabel="Tooltip"
     class={tooltipVariants({theme, className})}
     arrowShow={true}
     {...restProps}

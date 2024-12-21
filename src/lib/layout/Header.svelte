@@ -33,6 +33,7 @@ onMount(() => {
 </script>
     
 <div
+    aria-label="LayoutHeader"
     id={id}
     style={style}
     style:height={height}

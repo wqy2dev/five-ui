@@ -41,6 +41,7 @@ setContext("breadcrumb", {
 </script>
 
 <ul
+    aria-label="Breadcrumb"
     bind:this={el}
     id={id}
     class={twMerge("inline-flex items-center text-sm", className)}

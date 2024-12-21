@@ -73,6 +73,7 @@ onMount(() => {
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- svelte-ignore attribute_global_event_reference -->
 <div
+    aria-label="Overlay"
     bind:this={el}
     id={id}
     class={overlayVariants({position, backdrop, className})}

@@ -43,6 +43,7 @@ onMount(() => {
 </script>
 
 <div
+    aria-label="Message"
     class="w-full py-1 mp-1 z-50 flex justify-center bg-transparent"
     transition:slide
 >
