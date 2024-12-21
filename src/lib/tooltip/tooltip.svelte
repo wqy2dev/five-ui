@@ -5,7 +5,7 @@ const tooltipVariants = tv({
     base: "rounded-lg text-sm p-1.5",
     variants: {
         theme: {
-            light: "bg-white text-gray-900 shadow-lg",
+            light: "bg-white text-gray-900 shadow-outline-md",
             dark: "bg-gray-900 text-white",
         },
     },
