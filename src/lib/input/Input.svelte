@@ -45,8 +45,3 @@ let {
 >
 
 </div>
-
-<style lang="scss">
-
-</style>
-    
