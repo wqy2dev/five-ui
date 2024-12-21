@@ -38,6 +38,9 @@ const sizes = ["sm", "md", "lg"];
     {#each radius as rds}
         <Pagination pages={50} radius={rds as any} onchange={(page) => console.log(page)} />
     {/each}
+    {#each radius as rds}
+        <Pagination pages={50} variant="outline" radius={rds as any} onchange={(page) => console.log(page)} />
+    {/each}
 </div>
 
 <h4 class="my-5 text-base indent-2 bg-slate-100">

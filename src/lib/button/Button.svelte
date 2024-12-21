@@ -6,13 +6,13 @@ const buttonVariants = tv({
     base: "inline-flex items-center h-fit gap-1 border text-center transition-all outline-none disabled:cursor-not-allowed",
     variants: {
         variant: {
-            primary: "text-white border-primary-600 bg-primary-600 hover:border-primary-700 hover:bg-primary-700 focus:ring focus:ring-primary-200 disabled:border-primary-300 disabled:bg-primary-300",
-            secondary: "text-white border-slate-700 bg-slate-700 hover:border-slate-900 hover:bg-slate-900 focus:ring focus:ring-slate-200 disabled:border-slate-300 disabled:bg-slate-300",
-            reverse: "border-primary-100 bg-primary-100 text-primary-600 hover:border-primary-200 hover:bg-primary-200 focus:ring focus:ring-primary-50 disabled:border-primary-50 disabled:bg-primary-50 disabled:text-primary-400",
-            danger: "text-white border-red-600 bg-red-600 hover:border-red-700 hover:bg-red-700 focus:ring focus:ring-red-200 disabled:border-red-300 disabled:bg-red-300",
-            outline: "border-slate-300 bg-white text-slate-700 hover:bg-slate-100 focus:ring focus:ring-slate-100 disabled:border-slate-100 disabled:bg-slate-50 disabled:text-slate-400",
-            ghost: "border-transparent bg-transparent font-medium text-slate-700 hover:bg-slate-100 disabled:bg-transparent disabled:text-slate-400",
-            flat: "border-slate-100 bg-slate-100 hover:bg-slate-200 focus:bg-slate-200 text-slate-700 disabled:bg-slate-50 disabled:border-slate-50 disabled:text-slate-400",
+            primary: "text-white border-primary-500 bg-primary-500 hover:border-primary-600 hover:bg-primary-600 focus:ring focus:ring-primary-200 disabled:border-primary-300 disabled:bg-primary-300",
+            secondary: "text-white border-slate-600 bg-slate-600 hover:border-slate-900 hover:bg-slate-900 focus:ring focus:ring-slate-200 disabled:border-slate-300 disabled:bg-slate-300",
+            reverse: "border-primary-100 bg-primary-100 text-primary-500 hover:border-primary-200 hover:bg-primary-200 focus:ring focus:ring-primary-50 disabled:border-primary-50 disabled:bg-primary-50 disabled:text-primary-400",
+            danger: "text-white border-red-500 bg-red-500 hover:border-red-600 hover:bg-red-600 focus:ring focus:ring-red-200 disabled:border-red-300 disabled:bg-red-300",
+            outline: "border-slate-300 bg-white text-slate-600 hover:bg-slate-100 focus:ring focus:ring-slate-100 disabled:border-slate-100 disabled:bg-slate-50 disabled:text-slate-400",
+            ghost: "border-transparent bg-transparent font-medium text-slate-600 hover:bg-slate-100 disabled:bg-transparent disabled:text-slate-400",
+            flat: "border-slate-100 bg-slate-100 hover:bg-slate-200 focus:bg-slate-200 text-slate-600 disabled:bg-slate-50 disabled:border-slate-50 disabled:text-slate-400",
         },
         radius: {
             full: "rounded-full",
