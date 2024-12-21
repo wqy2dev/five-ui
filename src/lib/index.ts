@@ -28,7 +28,7 @@ export { Slider } from "./slider/index.js";
 export { Steps } from "./steps/index.js";
 export { Switch } from "./switch/index.js";
 export { Table } from "./table/index.js";
-export { Tabs } from "./tabs/index.js";
+export { Tab, TabContent, Tabs, TabsContext } from "./tabs/index.js";
 export { Tag } from "./tag/index.js";
 export { Timeline } from "./timeline/index.js";
 export { TimePicker } from "./timepicker/index.js";

@@ -16,9 +16,10 @@ const buttonVariants = tv({
         },
         radius: {
             full: "rounded-full",
-            lg: "rounded-lg",
-            md: "rounded-md",
             sm: "rounded-sm",
+            md: "rounded-md",
+            lg: "rounded-lg",
+            xl: "rounded-xl",
             none: "",
         },
         size: {

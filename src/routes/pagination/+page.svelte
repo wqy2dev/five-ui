@@ -2,7 +2,7 @@
 import { Pagination } from "$lib/index.js";
 
 const variants = ["flat", "outline", "ghost"];
-const radius = ["lg", "md", "sm", "full", "none"];
+const radius = ["xl","lg", "md", "sm", "full", "none"];
 const sizes = ["sm", "md", "lg"];
 
 </script>
