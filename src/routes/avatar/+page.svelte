@@ -1,5 +1,6 @@
 <script lang="ts">
-import { Avatar, AvatarGroup, Badge, Icon } from "$lib/index.js";
+import { UserSolid } from "$lib/icons/index.js";
+import { Avatar, AvatarGroup, Badge } from "$lib/index.js";
 
 const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800";
 
@@ -14,7 +15,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
 </h2>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Default
     </h4>
 
@@ -30,7 +31,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
         {/each}
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Radius
     </h4>
 
@@ -48,7 +49,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
         {/each}
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Size
     </h4>
 
@@ -81,7 +82,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
         {/each}
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Bordered
     </h4>
 
@@ -106,7 +107,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
         {/each}
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Icon
     </h4>
 
@@ -116,14 +117,12 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
                     size={size as any}
                     radius="full"
                 >
-                    <Icon 
-                        variant="User"
-                    />
+                    <UserSolid/>
                 </Avatar>
         {/each}
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Text
     </h4>
 
@@ -138,7 +137,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
         {/each}
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Badge
     </h4>
 
@@ -174,7 +173,7 @@ const imageUrl = "https://img1.baidu.com/it/u=475211666,2221012503&fm=253&fmt=au
         {/each}
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Avatar Group
     </h4>
 

@@ -2,20 +2,24 @@
 import { Tooltip, Button } from "$lib/index.js";
 
 const placements = [
-    "top-start", "top", "top-end", 
-    "bottom-start", "bottom", "bottom-end", 
-    "left-start", "left", "left-end", 
-    "right-start", "right", "right-end"
+    "topStart", "top", "topEnd", 
+    "bottomStart", "bottom", "bottomEnd", 
+    "leftStart", "left", "leftEnd", 
+    "rightStart", "right", "rightEnd"
 ];
 
 </script>
+
+<svelte:head>
+	<title>Tooltip</title>
+</svelte:head>
 
 <h2 class="text-lg font-bold leading-10">
     Tooltip
 </h2>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Default
     </h4>
     
@@ -29,7 +33,7 @@ const placements = [
         </Tooltip>
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Theme
     </h4>
     
@@ -51,7 +55,7 @@ const placements = [
         </Tooltip>
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Placement
     </h4>
     
@@ -67,7 +71,7 @@ const placements = [
         {/each}
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Trigger
     </h4>
     

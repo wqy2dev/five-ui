@@ -1,59 +1,94 @@
-Introduction
---
+# Introduction
 
-FiveUI is an open source UI component library built with Svelte5 + Tailwind that allows you to create reactive web interfaces using [Svelte](https://svelte.dev/) + [Tailwind CSS](https://tailwindcss.com/).
+FiveUI is a **beautiful,modern,open-source UI** toolkit built with [**Svelte**](https://svelte.dev/) and [**Tailwind CSS**](https://tailwindcss.com/), designed to help developers create reactive web interfaces. Whether you are building a simple prototype or a complex web application, FiveUI provides a set of reusable components and utilities to speed up the development process.
 
-Components
---
+## Features
 
-The component list of FiveUI includes, but is not limited to:
+- **Svelte5 + Tailwind CSS Integration**: Leverage the power of Svelte's reactivity and Tailwind CSS's utility-first approach to build modern, responsive UIs.
+- **Reusable Components**: A collection of pre-built, customizable UI components like buttons, forms, modals, carousel, popper, and more.
+- **Customizable Themes**: Easily customize the look and feel of your application with Tailwind's built-in theming capabilities.
+- **Responsive Design**: Built-in support for responsive design, ensuring your interfaces look great on all devices.
+- **Open Source**: FiveUI is free and open-source, allowing you to contribute, modify, and share the toolkit.
 
-| Name | Finish |
-| --- | --- |
-| Accordion |  |
-| Alert | ✔ |
-| Avatar | ✔ |
-| Badge | ✔ |
-| Breadcrumb | |
-| Button | ✔ |
-| Card | |
-| Drawer | ✔ |
-| Icon | ✔ |
-| Input | |
-| Layout | |
-| Message | |
-| Modal | ✔ |
-| Overlay | ✔ |
-| Pagination | |
-| Popper | ✔ |
-| Steps | |
-| Table | ✔ |
-| Tag | ✔ |
-| Timeline | |
-| Tooltip | ✔ |
+## Installation
 
-Local Preview
---
+To get started with FiveUI, you can install it via npm:
 
-```
-npm run dev
-```
-
-Getting Started
---
-
-Currently under development, those interested can install and experience it.
-
-```
+```bash
 npm i five-ui@latest
 ```
 
-Documentation
---
+## Component List
 
-Document preparation in progress, please wait.
+FiveUI already includes the following components, but is not limited to:
 
-License
---
+| Name | Finish |
+| --- | --- |
+| Accordion | ✔ |
+| Alert | ✔ |
+| Avatar | ✔ |
+| Badge | ✔ |
+| Breadcrumb | ✔ |
+| Button | ✔ |
+| Calendar | |
+| Card | ✔ |
+| Carousel | ✔ |
+| Cascader ||
+| Checkbox ||
+| DatePicker ||
+| Drawer | ✔ |
+| Dropdown |  |
+| Icon | ✔ |
+| Input | |
+| Layout | ✔ |
+| Message | ✔ |
+| Modal | ✔ |
+| Notification | ✔ |
+| Overlay | ✔ |
+| Pagination | ✔ |
+| Popper | ✔ |
+| Radio ||
+| Select ||
+| Slider ||
+| Steps | |
+| Switch ||
+| Table | ✔ |
+| Tabs ||
+| Tag | ✔ |
+| Timeline | |
+| TimePicker ||
+| Tooltip | ✔ |
+| Watermark | ✔ |
 
-Licensed under the [MIT license]().
+## Documentation
+
+For detailed documentation, examples, and API references, please visit the [FiveUI Documentation](/).
+
+## Contributing
+
+We welcome contributions from the community! If you'd like to contribute to FiveUI, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (git checkout -b feature/your-feature).
+3. Make your changes and commit them (git commit -m 'Add some feature').
+4. Push to the branch (git push origin feature/your-feature).
+5. Open a pull request.
+
+```bash
+git clone https://github.com/wqy2dev/five-ui.git .
+cd five-ui && npm i
+npm run dev
+```
+
+Please read our Contributing Guide for more details.
+
+## License
+
+FiveUI is open-source software licensed under the [MIT license](https://github.com/wqy2dev/five-ui/blob/main/LICENSE).
+
+## Acknowledgements
+
+FiveUI is built with love and powered by the following technologies:
+
+- [**Svelte5**](https://svelte.dev/)
+- [**Tailwind CSS**](https://tailwindcss.com/)

@@ -1,6 +1,11 @@
 <script lang="ts">
-import Icon from "$lib/icon/icon.svelte";
+import { Download, TrashOutline } from "$lib/icons/index.js";
 import { Button } from "$lib/index.js";
+
+const variants = ["primary", "danger", "secondary", "reverse", "outline", "ghost", "flat"];
+const sizes = ["xs", "sm", "md", "lg"];
+const radius = ["full", "sm", "md", "lg", "none"];
+
 </script>
 
 <svelte:head>
@@ -12,57 +17,61 @@ import { Button } from "$lib/index.js";
 </h2>
 
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Default
     </h4>
-    
-    <Button> Primary Button </Button>
-    <Button variant="danger"> Danger Button </Button>
-    <Button variant="secondary"> Secondary Button </Button>
-    <Button variant="reverse"> Reverse Button </Button>
-    <Button variant="outline"> Outline Button </Button>
-    <Button variant="ghost"> Ghost Button </Button>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <div class="flex flex-wrap gap-2">
+        {#each variants as variant}
+            <Button variant={variant as any}> {variant} </Button>
+        {/each}
+    </div>
+
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Size
     </h4>
     
-    <Button size="xs"> Xs </Button>
-    <Button size="sm"> Small </Button>
-    <Button> Default </Button>
-    <Button size="lg"> Large </Button>
+    <div class="flex flex-wrap gap-2">
+        {#each sizes as size}
+            <Button size={size as any}> {size} </Button>
+        {/each}
+    </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Rounded
     </h4>
     
-    <Button size="xs" radius="full"> Xs </Button>
-    <Button size="sm" radius="full"> Small </Button>
-    <Button radius="full"> Default </Button>
-    <Button size="lg" radius="full"> Large </Button>
+    {#each radius as radius}
+        <div class="flex flex-wrap gap-2">
+            {#each sizes as size}
+                <Button radius={radius as any} size={size as any}> 
+                    radius: {radius}
+                </Button>
+            {/each}
+        </div>
+    {/each}
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Disable
     </h4>
     
-    <Button size="xs" disabled> xs </Button>
-    <Button size="sm" variant="danger" disabled> Danger </Button>
-    <Button variant="secondary" disabled> Secondary </Button>
-    <Button variant="reverse" size="lg" disabled> Reverse </Button>
-    <Button variant="outline" size="lg" disabled> Outline </Button>
-    <Button variant="ghost" size="lg" disabled> Ghost </Button>
+    <div class="flex flex-wrap gap-2">
+        {#each variants as variant}
+            <Button variant={variant as any} disabled> {variant} </Button>
+        {/each}
+    </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         With Icon
     </h4>
     
     <Button> 
-        <Icon variant="Download"/>
+        <Download/>
         Download 
     </Button>
 
     <Button variant="danger">
-        <Icon variant="Delete"/>
+        <TrashOutline/>
         Delete
     </Button>
 </div>

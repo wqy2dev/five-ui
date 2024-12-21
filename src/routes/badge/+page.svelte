@@ -32,8 +32,12 @@ const variants = [
 	<title>Badge</title>
 </svelte:head>
 
+<h2 class="text-lg font-bold leading-10">
+    Badge
+</h2>
+
 <div class="space-y-4 mt-5">
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Default
     </h4>
 
@@ -51,7 +55,7 @@ const variants = [
         </Badge>
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Size
     </h4>
 
@@ -63,7 +67,7 @@ const variants = [
         {/each}
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Placement
     </h4>
 
@@ -75,7 +79,7 @@ const variants = [
         {/each}
     </div>
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Colors
     </h4>
 
@@ -93,7 +97,7 @@ const variants = [
     </div>
 
 
-    <h4 class="text-base indent-2 bg-slate-50">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Dot
     </h4>
 
