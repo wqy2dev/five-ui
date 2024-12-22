@@ -180,6 +180,12 @@ onMount(() => {
     }
 
     mountIndicator = true;
+
+    return () => {
+        if(timer) {
+            clearInterval(timer), timer = 0;
+        }
+    }
 });
 
 const {

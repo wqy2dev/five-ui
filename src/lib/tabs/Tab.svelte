@@ -2,40 +2,30 @@
 import { tv } from "tailwind-variants";
 
 const tabVariants = tv({
-	base: "px-3 py-1.5 bg-white rounded-md text-sm text-slate-700 overflow-hidden",
+	base: "px-3 py-1.5 rounded-md shadow-outline-sm text-sm text-white overflow-hidden",
 	variants: {
-        variant: {
-            flat: {
-                button: "bg-slate-100 border-slate-100 hover:bg-slate-200 hover:border-slate-200 text-slate-700",
-            },
-            outline: {
-                button: "bg-white hover:bg-slate-100 hover:border-slate-200 text-slate-700",
-            },
-            ghost: {
-                button: "bg-white border-white hover:bg-slate-100 hover:border-slate-100 text-slate-700",
-            },
-        },
         color: {
-            amber: "bg-amber-100 text-amber-600",
-            black: "bg-black text-white",
-            blue: "bg-blue-100 text-blue-600",
-            cyan: "bg-cyan-100 text-cyan-600",
-            emerald: "bg-emerald-100 text-emerald-600",
-            fuchsia: "bg-fuchsia-100 text-fuchsia-600",
-            green: "bg-green-100 text-green-600",
-            gray: "bg-gray-100 text-gray-600",
-            orange: "bg-orange-100 text-orange-600",
-            purple: "bg-purple-100 text-purple-600",
-            pink: "bg-pink-100 text-pink-600",
-            red: "bg-red-100 text-red-600",
-            rose: "bg-rose-100 text-rose-600",
-            sky: "bg-sky-100 text-sky-600",
-            slate: "bg-slate-100 text-slate-600",
-            teal: "bg-teal-100 text-teal-600",
-            indigo: "bg-indigo-100 text-indigo-600",
-            violet: "bg-violet-100 text-violet-600",
-            yellow: "bg-yellow-100 text-yellow-600",
-            lime: "bg-lime-100 text-lime-600",
+            amber: "active+bg-amber-100",
+            black: "bg-black",
+            blue: "bg-blue-100",
+            cyan: "bg-cyan-100",
+            emerald: "bg-emerald-100",
+            fuchsia: "bg-fuchsia-100",
+            green: "bg-green-100",
+            gray: "bg-gray-100",
+            orange: "bg-orange-100",
+            purple: "bg-purple-100",
+            pink: "bg-pink-100",
+            red: "bg-red-100",
+            rose: "bg-rose-100",
+            sky: "bg-sky-100",
+            slate: "bg-slate-100",
+            teal: "bg-teal-100",
+            indigo: "bg-indigo-100",
+            violet: "bg-violet-100",
+            yellow: "bg-yellow-100",
+            lime: "bg-lime-100",
+            white: "current:bg-white text-slate-700",
         },
         radius: {
             sm: "rounded-sm",
@@ -45,12 +35,13 @@ const tabVariants = tv({
             full: "rounded-full",
         },
         disabled: {
-            true: "bg-gray-200 cursor-not-allowed",
-            false: "bg-white",
-        },
+            true: " cursor-not-allowed",
+            false: "",
+        }
 	},
 	defaultVariants: {
         radius: "lg",
+        color: "white",
         disabled: false,
 	},
 });
@@ -59,11 +50,11 @@ const tabVariants = tv({
 
 <script lang="ts">
 import { getContext, onMount, type Snippet } from "svelte";
-import type { TabsContext } from "./Tabs.svelte";
+import type { TabBarContext } from "./TabBar.svelte";
 
-const context = getContext("tabs") as TabsContext;
+const context = getContext("tabbar") as TabBarContext;
 if(!context) {
-    throw new Error("Tab not in the Tabs!");
+    throw new Error("Tab not in the TabBar!");
 }
 
 type TabProps = {
@@ -95,6 +86,12 @@ onMount(() => {
     ref?.(el);
 });
 
+function onclick() {
+    context.key = key;
+
+    console.log(key);
+}
+
 </script>
 
 <svelte:element
@@ -104,6 +101,8 @@ onMount(() => {
     id={id}
     class={tabVariants({radius:context.radius, disabled, class:className})}
     {...(link ? {target: "_blank", href} : {})}
+    {...(context.key === key ? {current:""}:{})}
+    {...{onclick}}
 >
     {@render children()}
 </svelte:element>

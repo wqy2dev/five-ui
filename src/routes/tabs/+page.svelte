@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Tab, TabContent, Tabs, TabsContext } from "$lib/index.js";
+import { Tab, TabContent, Tabs, TabBar } from "$lib/index.js";
 
 const radius = ["sm", "md", "lg", "xl", "full"];
 
@@ -17,25 +17,68 @@ const radius = ["sm", "md", "lg", "xl", "full"];
     Default
 </h4>
 
-<TabsContext>
-    <Tabs>
-        <Tab key="1" title="Tab 1">
-            <p>Tab 1</p>
-        </Tab>
-        <Tab key="2" title="Tab 2">
-            <p>Tab 2</p>
-        </Tab>
-        <Tab key="3" title="Tab 3">
-            <p>Tab 3</p>
-        </Tab>
-        <Tab key="4">
-            {#snippet title()}
-                Tab AA
-            {/snippet}
-            <p>Tab 4</p>
-        </Tab>
+<div class="flex flex-col gap-5">
+    <Tabs defaultKey="1">
+        <TabBar>
+            <Tab key="1" title="Tab 1">
+                <p>Tab 1</p>
+            </Tab>
+            <Tab key="2" title="Tab 2">
+                <p>Tab 2</p>
+            </Tab>
+            <Tab key="3" title="Tab 3">
+                <p>Tab 3</p>
+            </Tab>
+            <Tab key="4">
+                {#snippet title()}
+                    Tab AA
+                {/snippet}
+                <p>Tab 4</p>
+            </Tab>
+        </TabBar>
     </Tabs>
-</TabsContext>
+    
+    <Tabs defaultKey="1">
+        <TabBar variant="light">
+            <Tab key="1" title="Tab 1">
+                <p>Tab 1</p>
+            </Tab>
+            <Tab key="2" title="Tab 2">
+                <p>Tab 2</p>
+            </Tab>
+            <Tab key="3" title="Tab 3">
+                <p>Tab 3</p>
+            </Tab>
+            <Tab key="4">
+                {#snippet title()}
+                    Tab AA
+                {/snippet}
+                <p>Tab 4</p>
+            </Tab>
+        </TabBar>
+    </Tabs>
+
+    <Tabs defaultKey="1">
+        <TabBar variant="underlined">
+            <Tab key="1" title="Tab 1">
+                <p>Tab 1</p>
+            </Tab>
+            <Tab key="2" title="Tab 2">
+                <p>Tab 2</p>
+            </Tab>
+            <Tab key="3" title="Tab 3">
+                <p>Tab 3</p>
+            </Tab>
+            <Tab key="4">
+                {#snippet title()}
+                    Tab AA
+                {/snippet}
+                <p>Tab 4</p>
+            </Tab>
+        </TabBar>
+    </Tabs>
+</div>
+
 
 <h4 class="text-base indent-2 bg-slate-100 my-3">
     Radius
@@ -43,8 +86,8 @@ const radius = ["sm", "md", "lg", "xl", "full"];
 
 <div class="space-y-4 mt-5">
     {#each radius as rds}
-        <TabsContext>
-            <Tabs radius={rds as any}>
+        <Tabs defaultKey="1">
+            <TabBar radius={rds as any}>
                 <Tab key="1" title="Tab 1">
                     <p>Tab 1</p>
                 </Tab>
@@ -57,7 +100,7 @@ const radius = ["sm", "md", "lg", "xl", "full"];
                 <Tab key="4" title="Tab 4">
                     <p>Tab 4</p>
                 </Tab>
-            </Tabs>
+            </TabBar>
 
             <TabContent key="1">
                 <p>Tab 1</p>
@@ -74,6 +117,6 @@ const radius = ["sm", "md", "lg", "xl", "full"];
             <TabContent key="4">
                 <p>Tab 4</p>
             </TabContent>
-        </TabsContext>
+        </Tabs>
     {/each}
 </div>

@@ -1,8 +1,8 @@
 <script lang="ts">
-import { hasContext, onMount } from "svelte";
+import { hasContext, onMount, type Snippet } from "svelte";
 
-if(!hasContext("tabscontext")) {
-    throw new Error("TabContent not in the TabsContext!");
+if(!hasContext("tabs")) {
+    throw new Error("TabContent not in the Tabs!");
 }
 
 type TabContentProps = {

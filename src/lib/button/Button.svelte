@@ -11,8 +11,8 @@ const buttonVariants = tv({
             reverse: "border-primary-100 bg-primary-100 text-primary-500 hover:border-primary-200 hover:bg-primary-200 focus:ring focus:ring-primary-50 disabled:border-primary-50 disabled:bg-primary-50 disabled:text-primary-400",
             danger: "text-white border-red-500 bg-red-500 hover:border-red-600 hover:bg-red-600 focus:ring focus:ring-red-200 disabled:border-red-300 disabled:bg-red-300",
             outline: "border-slate-300 bg-white text-slate-600 hover:bg-slate-100 focus:ring focus:ring-slate-100 disabled:border-slate-100 disabled:bg-slate-50 disabled:text-slate-400",
-            ghost: "border-transparent bg-transparent font-medium text-slate-600 hover:bg-slate-100 disabled:bg-transparent disabled:text-slate-400",
-            flat: "border-slate-100 bg-slate-100 hover:bg-slate-200 focus:bg-slate-200 text-slate-600 disabled:bg-slate-50 disabled:border-slate-50 disabled:text-slate-400",
+            ghost: "border-transparent bg-transparent font-medium text-slate-600 hover:bg-slate-100 focus:bg-slate-200 focus:ring focus:ring-slate-100 disabled:bg-transparent disabled:text-slate-400",
+            flat: "border-slate-100 bg-slate-100 hover:bg-slate-200 focus:bg-slate-200 focus:ring focus:ring-slate-100 text-slate-600 disabled:bg-slate-50 disabled:border-slate-50 disabled:text-slate-400",
         },
         radius: {
             full: "rounded-full",
