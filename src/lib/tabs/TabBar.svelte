@@ -8,8 +8,8 @@ const tabsVariants = tv({
 	variants: {
         variant: {
             solid: "bg-slate-100",
-            light: "bg-transparent",
-            underlined: "border-solid border-b-2 border-slate-200",
+            light: "bg-white",
+            underline: "border-solid border-b-2 border-slate-200",
         },
         direction: {
             row: "flex-row",

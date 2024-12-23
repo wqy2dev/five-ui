@@ -1,31 +1,23 @@
 <script lang="ts" module>
 import { tv } from "tailwind-variants";
 
+const colors = ["amber", "black", "blue", "cyan", "emerald", "fuchsia", "green", "gray", "orange", "purple", "pink", "red", "rose", "sky", "slate", "teal", "indigo", "violet", "yellow", "lime", "white"];
+
+const color:Record<string, string> = {};
+
+colors.forEach(v => {
+    color[v] = "";
+});
+
+
 const tabVariants = tv({
 	base: "px-3 py-1.5 rounded-md shadow-outline-sm text-sm text-white overflow-hidden",
 	variants: {
-        color: {
-            amber: "active+bg-amber-100",
-            black: "bg-black",
-            blue: "bg-blue-100",
-            cyan: "bg-cyan-100",
-            emerald: "bg-emerald-100",
-            fuchsia: "bg-fuchsia-100",
-            green: "bg-green-100",
-            gray: "bg-gray-100",
-            orange: "bg-orange-100",
-            purple: "bg-purple-100",
-            pink: "bg-pink-100",
-            red: "bg-red-100",
-            rose: "bg-rose-100",
-            sky: "bg-sky-100",
-            slate: "bg-slate-100",
-            teal: "bg-teal-100",
-            indigo: "bg-indigo-100",
-            violet: "bg-violet-100",
-            yellow: "bg-yellow-100",
-            lime: "bg-lime-100",
-            white: "current:bg-white text-slate-700",
+        color,
+        variant: {
+            solid: "bg-slate-100",
+            light: "bg-white",
+            underline: "border-solid border-b-2 border-slate-200",
         },
         radius: {
             sm: "rounded-sm",
@@ -39,6 +31,23 @@ const tabVariants = tv({
             false: "",
         }
 	},
+    compoundVariants: [
+        {
+            color: "amber",
+            variant: "solid",
+            class: "bg-amber-600",
+        },
+        {
+            color: "amber",
+            variant: "light",
+            class: "bg-amber-600",
+        },
+        {
+            color: "amber",
+            variant: "underline",
+            class: "bg-white text-slate-700",
+        },
+    ],  
 	defaultVariants: {
         radius: "lg",
         color: "white",
@@ -88,8 +97,6 @@ onMount(() => {
 
 function onclick() {
     context.key = key;
-
-    console.log(key);
 }
 
 </script>
