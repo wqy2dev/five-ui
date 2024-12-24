@@ -1,7 +1,9 @@
 <script lang="ts">
-import { hasContext, onMount, type Snippet } from "svelte";
+import { getContext, onMount, type Snippet } from "svelte";
+import type { TabsContext } from "./Tabs.svelte";
 
-if(!hasContext("tabs")) {
+const context = getContext("tabs") as TabsContext;
+if(!context) {
     throw new Error("TabContent not in the Tabs!");
 }
 
@@ -21,19 +23,29 @@ let {
     children,
 }:TabContentProps = $props();
 
-let el: HTMLElement;
+let open = $state(context.key === key);
+
+function handler(current:string) {
+    open = current === key;
+}
+
+function mount(el:HTMLElement) {
+    ref?.(el);
+}
 
 onMount(() => {
-    ref?.(el);
+    context.install(key, handler);
 });
 
 </script>
 
+{#if open}
 <div 
     aria-label="TabContent"
-    bind:this={el}
     id={id}
     class={className}
+    use:mount
 >
     {@render children()}
 </div>
+{/if}

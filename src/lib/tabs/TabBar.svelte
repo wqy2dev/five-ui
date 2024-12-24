@@ -1,67 +1,119 @@
 <script lang="ts" module>
 import { tv, type VariantProps } from "tailwind-variants";
-import { getContext, onMount, setContext, type Snippet } from "svelte";
-import { type TabsContext} from "./Tabs.svelte";
+import { hasContext, onMount, setContext, type Snippet } from "svelte";
+import type { Color } from "./Tab.svelte";
 
 const tabsVariants = tv({
-    base: "flex w-fit h-fit gap-2",
+    base: "flex w-fit h-fit p-1.5 gap-2",
 	variants: {
         variant: {
             solid: "bg-slate-100",
             light: "bg-white",
-            underline: "border-solid border-b-2 border-slate-200",
+            underlined: "border-solid border-slate-200",
         },
-        direction: {
-            row: "flex-row",
-            col: "flex-col",
+        placement: {
+            top: "flex-row",
+            bottom: "flex-row",
+            left: "flex-col",
+            right: "flex-col",
         },
         radius: {
-            sm: "rounded-sm",
-            md: "rounded-md",
-            lg: "rounded-lg",
-            xl: "rounded-xl",
-            full: "rounded-full",
-        },
-        size: {
-            sm: "p-1",
-            md: "p-1.5",
-            lg: "p-2",
-        },
+            sm: "",
+            md: "",
+            lg: "",
+            xl: "",
+            full: "",
+            none: "rounded-none",
+        }
 	},
+    compoundVariants: [
+        {
+            variant: "underlined",
+            class: "p-0",
+        },
+
+        {
+            variant: "underlined",
+            placement: "top",
+            class: "border-b",
+        },
+        {
+            variant: "underlined",
+            placement: "bottom",
+            class: "border-t",
+        },
+        {
+            variant: "underlined",
+            placement: "left",
+            class: "border-r",
+        },
+        {
+            variant: "underlined",
+            placement: "right",
+            class: "border-l",
+        },
+
+        {
+            variant: "solid",
+            radius: "sm",
+            class: "rounded-sm",
+        },
+        {
+            variant: "solid",
+            radius: "md",
+            class: "rounded-md",
+        },
+        {
+            variant: "solid",
+            radius: "lg",
+            class: "rounded-lg",
+        },
+        {
+            variant: "solid",
+            radius: "xl",
+            class: "rounded-xl",
+        },
+        {
+            variant: "solid",
+            radius: "full",
+            class: "rounded-full",
+        },
+    ],
 	defaultVariants: {
         variant: "solid",
-        direction: "row",
+        placement: "top",
         radius: "lg",
-        size: "md",
 	},
 });
 
 type Radius = VariantProps<typeof tabsVariants>["radius"];
 type Variant = VariantProps<typeof tabsVariants>["variant"];
-type Direction = VariantProps<typeof tabsVariants>["direction"];
+type Placement = VariantProps<typeof tabsVariants>["placement"];
 
 type TabBarProps = {
     id?:string;
     class?:string;
     ref?:{(el:HTMLElement):void};
     radius?:Radius;
-    direction?:Direction;
+    placement?:Placement;
     variant?:Variant;
+    color?:Color;
     onchange?:{(key:string):void};
     children:Snippet;
 }
 
 export type TabBarContext = {
-    key:string;
     radius:Radius;
+    color:Color;
+    variant:Variant;
+    placement:Placement;
 }
 
 </script>
 
 <script lang="ts">
 
-const context = getContext<TabsContext>("tabs");
-if(!context) {
+if(!hasContext("tabs")) {
     throw new Error("TabBar not in the Tabs!");
 }
 
@@ -70,20 +122,23 @@ let {
     class:className,
     ref,
     radius = "lg",
-    direction = "row",
+    placement = "top",
     variant = "solid",
+    color = "default",
     children,
 }:TabBarProps = $props();
+
+setContext<TabBarContext>("tabbar", {
+    radius,
+    color,
+    variant,
+    placement,
+});
 
 let el: HTMLElement;
 
 onMount(() => {
     ref?.(el);
-});
-
-setContext<TabBarContext>("tabbar", {
-    key:context.key,
-    radius,
 });
 
 </script>
@@ -92,7 +147,7 @@ setContext<TabBarContext>("tabbar", {
     aria-label="Tabs"
     bind:this={el}
     id={id}
-    class={tabsVariants({variant, direction, radius, className})}
+    class={tabsVariants({variant, placement, radius, className})}
 >
     {@render children()}
 </div>

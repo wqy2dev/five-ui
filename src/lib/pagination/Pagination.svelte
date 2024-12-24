@@ -35,6 +35,9 @@ const paginationVariants = tv({
             full: {
                 button: "rounded-full",
             },
+            none: {
+                button: "rounded-none",
+            },
         },
         active: {
             true: {

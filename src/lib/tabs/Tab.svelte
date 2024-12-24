@@ -1,23 +1,23 @@
 <script lang="ts" module>
-import { tv } from "tailwind-variants";
-
-const colors = ["amber", "black", "blue", "cyan", "emerald", "fuchsia", "green", "gray", "orange", "purple", "pink", "red", "rose", "sky", "slate", "teal", "indigo", "violet", "yellow", "lime", "white"];
-
-const color:Record<string, string> = {};
-
-colors.forEach(v => {
-    color[v] = "";
-});
-
+import { tv, type VariantProps } from "tailwind-variants";
 
 const tabVariants = tv({
-	base: "px-3 py-1.5 rounded-md shadow-outline-sm text-sm text-white overflow-hidden",
+	base: "px-3 py-2 text-sm transition-all",
 	variants: {
-        color,
+        color: {
+            default: "",
+            primary: "",
+        },
         variant: {
-            solid: "bg-slate-100",
-            light: "bg-white",
-            underline: "border-solid border-b-2 border-slate-200",
+            solid: "",
+            light: "",
+            underlined: "border-solid border-transparent",
+        },
+        placement: {
+            top: "",
+            bottom: "",
+            left: "",
+            right: "",
         },
         radius: {
             sm: "rounded-sm",
@@ -25,6 +25,7 @@ const tabVariants = tv({
             lg: "rounded-lg",
             xl: "rounded-xl",
             full: "rounded-full",
+            none: "rounded-none",
         },
         disabled: {
             true: " cursor-not-allowed",
@@ -33,38 +34,103 @@ const tabVariants = tv({
 	},
     compoundVariants: [
         {
-            color: "amber",
+            variant: "underlined",
+            class: "rounded-none",
+        },
+
+        {
+            color: "primary",
             variant: "solid",
-            class: "bg-amber-600",
+            class: "open:bg-primary-600 open:text-white open:hover:text-white text-slate-500 hover:text-slate-900",
         },
         {
-            color: "amber",
+            color: "primary",
             variant: "light",
-            class: "bg-amber-600",
+            class: "open:bg-primary-600 open:text-white open:hover:text-white text-slate-500 hover:text-slate-900",
         },
         {
-            color: "amber",
-            variant: "underline",
-            class: "bg-white text-slate-700",
+            color: "primary",
+            variant: "underlined",
+            placement: "top",
+            class: "open:border-primary-600 border-b-2 open:text-primary-600 hover:text-primary-600 text-slate-500",
+        },
+        {
+            color: "primary",
+            variant: "underlined",
+            placement: "bottom",
+            class: "open:border-primary-600 border-t-2 open:text-primary-600 hover:text-primary-600 text-slate-500",
+        },
+        {
+            color: "primary",
+            variant: "underlined",
+            placement: "left",
+            class: "open:border-primary-600 border-r-2 open:text-primary-600 hover:text-primary-600 text-slate-500",
+        },
+        {
+            color: "primary",
+            variant: "underlined",
+            placement: "right",
+            class: "open:border-primary-600 border-l-2 open:text-primary-600 hover:text-primary-600 text-slate-500",
+        },
+
+        {
+            color: "default",
+            variant: "solid",
+            class: "open:bg-white open:text-slate-900 open:shadow-outline-md text-slate-500 hover:text-slate-900",
+        },
+        {
+            color: "default",
+            variant: "light",
+            class: "open:bg-white open:text-slate-900 open:shadow-outline-md text-slate-500 hover:text-slate-900",
+        },
+        {
+            color: "default",
+            variant: "underlined",
+            placement: "top",
+            class: "open:border-slate-900 border-b-2 open:text-slate-900 hover:text-slate-900 text-slate-500",
+        },
+        {
+            color: "default",
+            variant: "underlined",
+            placement: "bottom",
+            class: "open:border-slate-900 border-t-2 open:text-slate-900 hover:text-slate-900 text-slate-500",
+        },
+        {
+            color: "default",
+            variant: "underlined",
+            placement: "left",
+            class: "open:border-slate-900 border-r-2 open:text-slate-900 hover:text-slate-900 text-slate-500",
+        },
+        {
+            color: "default",
+            variant: "underlined",
+            placement: "right",
+            class: "open:border-slate-900 border-l-2 open:text-slate-900 hover:text-slate-900 text-slate-500",
         },
     ],  
 	defaultVariants: {
         radius: "lg",
-        color: "white",
+        color: "default",
+        variant: "solid",
         disabled: false,
 	},
 });
+
+export type Color = VariantProps<typeof tabVariants>["color"];
 
 </script>
 
 <script lang="ts">
 import { getContext, onMount, type Snippet } from "svelte";
 import type { TabBarContext } from "./TabBar.svelte";
+import type { TabsContext } from "./Tabs.svelte";
 
 const context = getContext("tabbar") as TabBarContext;
 if(!context) {
     throw new Error("Tab not in the TabBar!");
 }
+
+let tabsContext = getContext("tabs") as TabsContext;
 
 type TabProps = {
     id?:string;
@@ -89,15 +155,25 @@ const {
     children,
 }:TabProps = $props();
 
+const { placement, variant, radius, color } = context;
+
+let open = $state(tabsContext.key === key);
+
+function onclick() {
+    tabsContext.use(key);
+}
+
+function handler(current:string) {
+    open = current === key;
+}
+
 let el: HTMLElement;
 
 onMount(() => {
     ref?.(el);
-});
 
-function onclick() {
-    context.key = key;
-}
+    tabsContext.install(key, handler);
+});
 
 </script>
 
@@ -106,9 +182,9 @@ function onclick() {
     bind:this={el}
     this={link ? "a" : "button"}
     id={id}
-    class={tabVariants({radius:context.radius, disabled, class:className})}
+    class={tabVariants({variant, placement, radius, color, disabled, class:className})}
     {...(link ? {target: "_blank", href} : {})}
-    {...(context.key === key ? {current:""}:{})}
+    {...(open ? {open:""}:{})}
     {...{onclick}}
 >
     {@render children()}
