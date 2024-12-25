@@ -41,12 +41,12 @@ const tabVariants = tv({
         {
             color: "primary",
             variant: "solid",
-            class: "open:bg-primary-600 open:text-white open:hover:text-white text-slate-500 hover:text-slate-900",
+            class: "open:bg-primary-600 open:text-white open:hover:text-white text-slate-500 hover:text-slate-700",
         },
         {
             color: "primary",
             variant: "light",
-            class: "open:bg-primary-600 open:text-white open:hover:text-white text-slate-500 hover:text-slate-900",
+            class: "open:bg-primary-600 open:text-white open:hover:text-white text-slate-500 hover:text-slate-700",
         },
         {
             color: "primary",
@@ -76,36 +76,41 @@ const tabVariants = tv({
         {
             color: "default",
             variant: "solid",
-            class: "open:bg-white open:text-slate-900 open:shadow-outline-md text-slate-500 hover:text-slate-900",
+            class: "open:bg-white open:text-slate-700 open:shadow-outline-md text-slate-500 hover:text-slate-700",
         },
         {
             color: "default",
             variant: "light",
-            class: "open:bg-white open:text-slate-900 open:shadow-outline-md text-slate-500 hover:text-slate-900",
+            class: "open:bg-white open:text-slate-700 open:shadow-outline-md text-slate-500 hover:text-slate-700",
+        },
+        {
+            color: "default",
+            variant: "underlined",
+            class: "hover:bg-slate-50",
         },
         {
             color: "default",
             variant: "underlined",
             placement: "top",
-            class: "open:border-slate-900 border-b-2 open:text-slate-900 hover:text-slate-900 text-slate-500",
+            class: "open:border-slate-700 border-b-2 open:text-slate-700 hover:text-slate-700 text-slate-500",
         },
         {
             color: "default",
             variant: "underlined",
             placement: "bottom",
-            class: "open:border-slate-900 border-t-2 open:text-slate-900 hover:text-slate-900 text-slate-500",
+            class: "open:border-slate-700 border-t-2 open:text-slate-700 hover:text-slate-700 text-slate-500",
         },
         {
             color: "default",
             variant: "underlined",
             placement: "left",
-            class: "open:border-slate-900 border-r-2 open:text-slate-900 hover:text-slate-900 text-slate-500",
+            class: "open:border-slate-700 border-r-2 open:text-slate-700 hover:text-slate-700 text-slate-500",
         },
         {
             color: "default",
             variant: "underlined",
             placement: "right",
-            class: "open:border-slate-900 border-l-2 open:text-slate-900 hover:text-slate-900 text-slate-500",
+            class: "open:border-slate-700 border-l-2 open:text-slate-700 hover:text-slate-700 text-slate-500",
         },
     ],  
 	defaultVariants: {
