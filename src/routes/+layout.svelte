@@ -25,6 +25,7 @@ const routes = [
     {path: "/input", title: "Input"},
     {path: "/layout", title: "Layout", achieve: true},
     {path: "/message", title: "Message", achieve: true},
+    {path: "/menu", title: "Menu"},
     {path: "/modal", title: "Modal", achieve: true},
     {path: "/notification", title: "Notification", achieve: true},
     {path: "/pagination", title: "Pagination", achieve: true},
