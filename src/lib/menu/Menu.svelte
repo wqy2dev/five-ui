@@ -41,7 +41,7 @@ setContext("menu", {
 <div
     bind:this={el}
     id={id}
-    class={twMerge("min-w-32 max-w-96 h-fit bg-white shadow-outline-md p-2 rounded-md", className)}
+    class={twMerge("min-w-32 h-fit bg-white shadow-outline-md p-2 rounded-md", className)}
 >
     {@render children()}
 </div>

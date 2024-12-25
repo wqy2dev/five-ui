@@ -13,16 +13,19 @@ import { Menu, MenuItem, MenuGroup } from "$lib/index.js";
 <h4 class="my-5 text-base indent-2 bg-slate-100">
     Base
 </h4>
-<Menu>
-    <MenuGroup title="Action">
-        <MenuItem key="new">New</MenuItem>
-        <MenuItem key="copy">Copy</MenuItem>
+
+<div class="w-32">
+    <Menu>
+        <MenuGroup title="Action">
+            <MenuItem key="new">New</MenuItem>
+            <MenuItem key="copy">Copy</MenuItem>
+            <MenuItem key="delete">Delete</MenuItem>
+            <MenuItem key="export">Export</MenuItem>
+            <MenuItem key="import">Import</MenuItem>
+        </MenuGroup>
+        <MenuItem key="copy" disabled>Copy</MenuItem>
         <MenuItem key="delete">Delete</MenuItem>
         <MenuItem key="export">Export</MenuItem>
         <MenuItem key="import">Import</MenuItem>
-    </MenuGroup>
-    <MenuItem key="copy" disabled>Copy</MenuItem>
-    <MenuItem key="delete">Delete</MenuItem>
-    <MenuItem key="export">Export</MenuItem>
-    <MenuItem key="import">Import</MenuItem>
-</Menu>
+    </Menu>
+</div>
