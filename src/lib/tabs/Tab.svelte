@@ -10,7 +10,7 @@ const tabVariants = tv({
         },
         variant: {
             solid: "",
-            light: "",
+            light: "hover:bg-primary-50",
             underlined: "border-solid border-transparent",
         },
         placement: {
@@ -46,7 +46,7 @@ const tabVariants = tv({
         {
             color: "primary",
             variant: "light",
-            class: "open:bg-primary-600 open:text-white open:hover:text-white text-slate-500 hover:text-slate-700",
+            class: "open:bg-primary-600 open:text-white text-slate-500 open:hover:text-white open:hover:bg-primary-600 hover:text-slate-700",
         },
         {
             color: "primary",
@@ -86,7 +86,7 @@ const tabVariants = tv({
         {
             color: "default",
             variant: "light",
-            class: "open:bg-white open:text-slate-700 open:shadow-outline-md text-slate-500 hover:text-slate-700",
+            class: "open:bg-white open:text-slate-700 open:hover:bg-white open:shadow-outline-md text-slate-500 hover:text-slate-700",
         },
         {
             color: "default",
