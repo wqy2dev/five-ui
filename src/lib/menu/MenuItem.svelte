@@ -1,14 +1,20 @@
 <script lang="ts">
-import { onMount, type Snippet } from "svelte";
+import { getContext, onMount, type Snippet } from "svelte";
 import { twMerge } from "tailwind-merge";
+import type { MenuContext } from "./Menu.svelte";
+
+const context = getContext<MenuContext>("menu");
+if(!context) {
+    throw new Error("MenuItem not in the Menu!");
+}
 
 type MenuItemProps = {
     id?:string;
     class?:string;
     ref?:{(el:HTMLElement):void};
-    children:Snippet;
-    key?:string;
     disabled?:boolean;
+    key:string;
+    children:Snippet;
 }
 
 let {
@@ -19,6 +25,12 @@ let {
     key,
     disabled,
 }:MenuItemProps = $props();
+
+function oncommand() {
+    if(!disabled) {
+        context.oncommand?.(key);
+    }
+}
 
 let el:HTMLElement;
 
@@ -33,7 +45,8 @@ onMount(() => {
     id={id}
     type="button"
     disabled={disabled}
-    class={twMerge("flex flex-row w-full h-fit truncate hover:bg-slate-100 text-sm text-left text-slate-700 p-2 rounded-md", className)}
+    class={twMerge("flex flex-row w-full h-fit hover:bg-slate-100 disabled:hover:bg-transparent truncate text-sm text-left text-slate-700 disabled:text-slate-500 disabled:cursor-not-allowed p-2 rounded-md", className)}
+    onclick={oncommand}
 >
     {@render children()}
 </button>

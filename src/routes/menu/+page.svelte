@@ -15,14 +15,14 @@ import { Menu, MenuItem, MenuGroup } from "$lib/index.js";
 </h4>
 <Menu>
     <MenuGroup title="Action">
-        <MenuItem>New</MenuItem>
-        <MenuItem>Copy</MenuItem>
-        <MenuItem>Delete</MenuItem>
-        <MenuItem>Export</MenuItem>
-        <MenuItem>Import</MenuItem>
+        <MenuItem key="new">New</MenuItem>
+        <MenuItem key="copy">Copy</MenuItem>
+        <MenuItem key="delete">Delete</MenuItem>
+        <MenuItem key="export">Export</MenuItem>
+        <MenuItem key="import">Import</MenuItem>
     </MenuGroup>
-    <MenuItem>Copy</MenuItem>
-    <MenuItem>Delete</MenuItem>
-    <MenuItem>Export</MenuItem>
-    <MenuItem>Import</MenuItem>
+    <MenuItem key="copy" disabled>Copy</MenuItem>
+    <MenuItem key="delete">Delete</MenuItem>
+    <MenuItem key="export">Export</MenuItem>
+    <MenuItem key="import">Import</MenuItem>
 </Menu>

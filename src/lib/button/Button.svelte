@@ -41,22 +41,22 @@ type Size = VariantProps<typeof buttonVariants>["size"];
 type Radius = VariantProps<typeof buttonVariants>["radius"];
 
 type ButtonProps = {
-    href?: string;
-    target?: "_self" | "_blank" | "_parent" | "_top";
-    size?: Size;
-    variant?: Variant;
-    radius?: Radius;
-    type?: "submit" | "reset" | "button";
-    onclick?: {():void};
-	ref?: {(el:HTMLElement):void};
+    href?:string;
+    target?:"_self" | "_blank" | "_parent" | "_top";
+    size?:Size;
+    variant?:Variant;
+    radius?:Radius;
+    type?:"submit" | "reset" | "button";
+    onclick?:{():void};
+	ref?:{(el:HTMLElement):void};
     id?:string;
-    class?: string;
-    disabled?: boolean;
-    children: Snippet;
+    class?:string;
+    disabled?:boolean;
+    children:Snippet;
 }
 
 </script>
-    
+
 <script lang="ts">
 
 let {

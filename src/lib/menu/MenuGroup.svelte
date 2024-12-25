@@ -1,13 +1,17 @@
 <script lang="ts">
-import { onMount, type Snippet } from "svelte";
+import { hasContext, onMount, type Snippet } from "svelte";
 import { twMerge } from "tailwind-merge";
+
+if(!hasContext("menu")) {
+    throw new Error("MenuGroup not in the Menu!");
+}
 
 type MenuGroupProps = {
     id?:string;
     class?:string;
     ref?:{(el:HTMLElement):void};
-    children:Snippet;
     title:string;
+    children:Snippet;
 }
 
 let {
