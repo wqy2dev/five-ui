@@ -309,89 +309,6 @@ const placements = ["top", "bottom", "left","right"];
     </div>
 </div>
 
-<div class="w-full h-[200px] flex flex-col">
-    <Tabs defaultKey="2">
-        <TabBar 
-            variant="underlined" 
-            placement="top"
-            class="w-full flex justify-center"
-        >
-            <Tab key="1" title="Tab 1">
-                <p>Tab 1</p>
-            </Tab>
-            <Tab key="2" title="Tab 2">
-                <p>Tab 2</p>
-            </Tab>
-            <Tab key="3" title="Tab 3">
-                <p>Tab 3</p>
-            </Tab>
-            <Tab key="4">
-                {#snippet title()}
-                    Tab AA
-                {/snippet}
-                <p>Tab 4</p>
-            </Tab>
-        </TabBar>
-
-        <div class="grow bg-slate-100">
-            <TabContent key="1">
-                A
-            </TabContent>
-            <TabContent key="2">
-                B
-            </TabContent>
-            <TabContent key="3">
-                C
-            </TabContent>
-            <TabContent key="4">
-                D
-            </TabContent>
-        </div>
-    </Tabs>
-</div>
-
-
-<div class="w-full h-[200px] flex flex-col mt-10">
-    <Tabs defaultKey="2">
-        <div class="grow bg-slate-100">
-            <TabContent key="1">
-                A
-            </TabContent>
-            <TabContent key="2">
-                B
-            </TabContent>
-            <TabContent key="3">
-                C
-            </TabContent>
-            <TabContent key="4">
-                D
-            </TabContent>
-        </div>
-        
-        <TabBar 
-            variant="underlined" 
-            placement="bottom"
-            class="w-full flex justify-center"
-        >
-            <Tab key="1" title="Tab 1">
-                <p>Tab 1</p>
-            </Tab>
-            <Tab key="2" title="Tab 2">
-                <p>Tab 2</p>
-            </Tab>
-            <Tab key="3" title="Tab 3">
-                <p>Tab 3</p>
-            </Tab>
-            <Tab key="4">
-                {#snippet title()}
-                    Tab AA
-                {/snippet}
-                <p>Tab 4</p>
-            </Tab>
-        </TabBar>
-    </Tabs>
-</div>
-
 <div class="flex flex-row w-full h-[200px] mt-10 gap-2 ">
     <div class="grow h-full flex flex-row">
         <Tabs defaultKey="2">
@@ -474,5 +391,86 @@ const placements = ["top", "bottom", "left","right"];
             </TabBar>
         </Tabs>
     </div>
-    
+</div>
+
+<div class="w-full h-[200px] flex flex-col mt-10">
+    <Tabs defaultKey="2">
+        <TabBar 
+            variant="underlined" 
+            placement="top"
+            class="w-full flex justify-center"
+        >
+            <Tab key="1" title="Tab 1">
+                <p>Tab 1</p>
+            </Tab>
+            <Tab key="2" title="Tab 2">
+                <p>Tab 2</p>
+            </Tab>
+            <Tab key="3" title="Tab 3">
+                <p>Tab 3</p>
+            </Tab>
+            <Tab key="4">
+                {#snippet title()}
+                    Tab AA
+                {/snippet}
+                <p>Tab 4</p>
+            </Tab>
+        </TabBar>
+
+        <div class="grow bg-slate-100">
+            <TabContent key="1">
+                A
+            </TabContent>
+            <TabContent key="2">
+                B
+            </TabContent>
+            <TabContent key="3">
+                C
+            </TabContent>
+            <TabContent key="4">
+                D
+            </TabContent>
+        </div>
+    </Tabs>
+</div>
+
+<div class="w-full h-[200px] flex flex-col mt-10">
+    <Tabs defaultKey="2">
+        <div class="grow bg-slate-100">
+            <TabContent key="1">
+                A
+            </TabContent>
+            <TabContent key="2">
+                B
+            </TabContent>
+            <TabContent key="3">
+                C
+            </TabContent>
+            <TabContent key="4">
+                D
+            </TabContent>
+        </div>
+        
+        <TabBar 
+            variant="underlined" 
+            placement="bottom"
+            class="w-full flex justify-center"
+        >
+            <Tab key="1" title="Tab 1">
+                <p>Tab 1</p>
+            </Tab>
+            <Tab key="2" title="Tab 2">
+                <p>Tab 2</p>
+            </Tab>
+            <Tab key="3" title="Tab 3">
+                <p>Tab 3</p>
+            </Tab>
+            <Tab key="4">
+                {#snippet title()}
+                    Tab AA
+                {/snippet}
+                <p>Tab 4</p>
+            </Tab>
+        </TabBar>
+    </Tabs>
 </div>
