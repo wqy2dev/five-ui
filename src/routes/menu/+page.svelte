@@ -17,15 +17,12 @@ import { Menu, MenuItem, MenuGroup } from "$lib/index.js";
 <div class="w-32">
     <Menu>
         <MenuGroup title="Action">
-            <MenuItem key="new">New</MenuItem>
             <MenuItem key="copy">Copy</MenuItem>
             <MenuItem key="delete">Delete</MenuItem>
             <MenuItem key="export">Export</MenuItem>
             <MenuItem key="import">Import</MenuItem>
         </MenuGroup>
-        <MenuItem key="copy" disabled>Copy</MenuItem>
-        <MenuItem key="delete">Delete</MenuItem>
-        <MenuItem key="export">Export</MenuItem>
-        <MenuItem key="import">Import</MenuItem>
+        <MenuItem key="Share" disabled>Copy</MenuItem>
+        <MenuItem key="About">Delete</MenuItem>
     </Menu>
 </div>
