@@ -54,7 +54,7 @@ FiveUI already includes the following components, but is not limited to:
 | Steps | |
 | Switch ||
 | Table | ✔ |
-| Tabs ||
+| Tabs | ✔ |
 | Tag | ✔ |
 | Timeline | |
 | TimePicker ||

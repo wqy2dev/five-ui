@@ -51,6 +51,11 @@ const tabVariants = tv({
         {
             color: "primary",
             variant: "underlined",
+            class: "open:bg-primary-50 hover:bg-primary-50",
+        },
+        {
+            color: "primary",
+            variant: "underlined",
             placement: "top",
             class: "open:border-primary-600 border-b-2 open:text-primary-600 hover:text-primary-600 text-slate-500",
         },
@@ -86,7 +91,7 @@ const tabVariants = tv({
         {
             color: "default",
             variant: "underlined",
-            class: "hover:bg-slate-50",
+            class: "open:bg-slate-50 hover:bg-slate-50",
         },
         {
             color: "default",

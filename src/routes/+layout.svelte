@@ -34,7 +34,7 @@ const routes = [
     {path: "/steps", title: "Steps"},
     {path: "/switch", title: "Switch"},
     {path: "/table", title: "Table", achieve: true},
-    {path: "/tabs", title: "Tabs"},
+    {path: "/tabs", title: "Tabs", achieve: true},
     {path: "/tag", title: "Tag", achieve: true},
     {path: "/timeline", title: "Timeline"},
     {path: "/timepicker", title: "TimePicker"},
