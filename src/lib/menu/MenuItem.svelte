@@ -41,11 +41,12 @@ onMount(() => {
 </script>
 
 <button
+    aria-label="MenuItem"
     bind:this={el}
     id={id}
     type="button"
     disabled={disabled}
-    class={twMerge("flex flex-row w-full h-fit hover:bg-slate-100 disabled:hover:bg-transparent truncate text-sm text-left text-slate-700 disabled:text-slate-500 disabled:cursor-not-allowed p-2 rounded-md", className)}
+    class={twMerge("flex flex-row w-full h-fit hover:bg-slate-100 disabled:hover:bg-transparent truncate text-sm text-left text-slate-700 disabled:text-slate-400 disabled:cursor-not-allowed p-2 rounded-md", className)}
     onclick={oncommand}
 >
     {@render children()}

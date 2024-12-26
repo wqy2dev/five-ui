@@ -144,7 +144,7 @@ onMount(() => {
 </script>
 
 <div 
-    aria-label="Tabs"
+    aria-label="TabBar"
     bind:this={el}
     id={id}
     class={tabsVariants({variant, placement, radius, className})}
