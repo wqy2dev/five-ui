@@ -51,31 +51,31 @@ const tabVariants = tv({
         {
             color: "primary",
             variant: "underlined",
-            class: "open:bg-primary-50 hover:bg-primary-50",
+            class: "open:bg-primary-50 open:border-primary-600 hover:border-primary-100",
         },
         {
             color: "primary",
             variant: "underlined",
             placement: "top",
-            class: "open:border-primary-600 border-b-2 open:text-primary-600 hover:text-primary-600 text-slate-500",
+            class: "border-b-2 open:text-primary-600 hover:text-primary-600 text-slate-500",
         },
         {
             color: "primary",
             variant: "underlined",
             placement: "bottom",
-            class: "open:border-primary-600 border-t-2 open:text-primary-600 hover:text-primary-600 text-slate-500",
+            class: "border-t-2 open:text-primary-600 hover:text-primary-600 text-slate-500",
         },
         {
             color: "primary",
             variant: "underlined",
             placement: "left",
-            class: "open:border-primary-600 border-r-2 open:text-primary-600 hover:text-primary-600 text-slate-500",
+            class: "border-r-2 open:text-primary-600 hover:text-primary-600 text-slate-500",
         },
         {
             color: "primary",
             variant: "underlined",
             placement: "right",
-            class: "open:border-primary-600 border-l-2 open:text-primary-600 hover:text-primary-600 text-slate-500",
+            class: "border-l-2 open:text-primary-600 hover:text-primary-600 text-slate-500",
         },
 
         {
@@ -91,31 +91,31 @@ const tabVariants = tv({
         {
             color: "default",
             variant: "underlined",
-            class: "open:bg-slate-50 hover:bg-slate-50",
+            class: "open:bg-slate-50 open:border-slate-700 hover:bg-slate-50",
         },
         {
             color: "default",
             variant: "underlined",
             placement: "top",
-            class: "open:border-slate-700 border-b-2 open:text-slate-700 hover:text-slate-700 text-slate-500",
+            class: "border-b-2 open:text-slate-700 hover:text-slate-700 text-slate-500",
         },
         {
             color: "default",
             variant: "underlined",
             placement: "bottom",
-            class: "open:border-slate-700 border-t-2 open:text-slate-700 hover:text-slate-700 text-slate-500",
+            class: "border-t-2 open:text-slate-700 hover:text-slate-700 text-slate-500",
         },
         {
             color: "default",
             variant: "underlined",
             placement: "left",
-            class: "open:border-slate-700 border-r-2 open:text-slate-700 hover:text-slate-700 text-slate-500",
+            class: "border-r-2 open:text-slate-700 hover:text-slate-700 text-slate-500",
         },
         {
             color: "default",
             variant: "underlined",
             placement: "right",
-            class: "open:border-slate-700 border-l-2 open:text-slate-700 hover:text-slate-700 text-slate-500",
+            class: "border-l-2 open:text-slate-700 hover:text-slate-700 text-slate-500",
         },
     ],  
 	defaultVariants: {
