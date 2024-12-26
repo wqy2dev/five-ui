@@ -14,7 +14,7 @@ import { Menu, MenuItem, MenuGroup } from "$lib/index.js";
     Base
 </h4>
 
-<div class="w-32">
+<div class="w-full">
     <Menu>
         <MenuGroup title="Action">
             <MenuItem key="copy">Copy</MenuItem>
