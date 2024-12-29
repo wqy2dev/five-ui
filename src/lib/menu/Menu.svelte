@@ -42,7 +42,7 @@ setContext("menu", {
     aria-label="Menu"
     bind:this={el}
     id={id}
-    class={twMerge("min-w-32 w-20 h-fit p-1 rounded-md bg-white border border-solid border-slate-200 shadow-outline-sm", className)}
+    class={twMerge("min-w-32 w-20 h-fit p-1 rounded-md bg-white border border-solid border-slate-200", className)}
 >
     {@render children()}
 </div>
