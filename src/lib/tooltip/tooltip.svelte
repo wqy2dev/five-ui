@@ -2,10 +2,10 @@
 import { type VariantProps, tv } from "tailwind-variants";
 
 const tooltipVariants = tv({
-    base: "rounded-lg text-sm p-1.5",
+    base: "rounded-lg text-sm py-1.5 px-2",
     variants: {
         theme: {
-            light: "bg-white text-gray-900 shadow-outline-md",
+            light: "bg-white text-gray-900 shadow-outline-sm",
             dark: "bg-gray-900 text-white",
         },
     },
@@ -37,5 +37,6 @@ let {
     ariaLabel="Tooltip"
     class={tooltipVariants({theme, className})}
     arrowShow={true}
+    arrowClass={theme === "light" ? "shadow-outline-sm":undefined}
     {...restProps}
 />

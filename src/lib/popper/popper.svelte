@@ -1,23 +1,24 @@
 <script module lang="ts">
 
-export type Trigger = "hover" | "focus";
+export type Trigger = "hover" | "focus" | "click";
 
 export type PopperProps = {
-    ariaLabel?: string;
-    style?: string;
-    class?: string;
-    trigger?: Trigger;
-    placement?: Placement;
-    offset?: number;
-    zIndex?: number;
-    duration?: number;
-    arrowShow?: boolean;
-    arrowSize?: number;
-    arrowStyle?: Partial<CSSStyleDeclaration>;
-    target: Snippet<[{(ref:HTMLElement):void}]>;
-    children: Snippet;
+    ariaLabel?:string;
+    style?:string;
+    class?:string;
+    trigger?:Trigger;
+    placement?:Placement;
+    offset?:number;
+    zIndex?:number;
+    duration?:number;
+    arrowClass?:string;
+    arrowShow?:boolean;
+    arrowSize?:number;
+    arrowStyle?:Partial<CSSStyleDeclaration>;
+    target:Snippet<[{(ref:HTMLElement):void}]>;
+    children:Snippet;
     // popper hide strategy
-    when?: {(targetEl:HTMLElement, floatEl:HTMLElement):boolean};
+    when?:{(targetEl:HTMLElement, floatEl:HTMLElement):boolean};
 }
 
 export type Placement = "top" | "topStart" | "topEnd" | "bottom" | "bottomStart" | "bottomEnd" | "left" | "leftStart" | "leftEnd" | "right" | "rightStart" | "rightEnd";
@@ -151,19 +152,24 @@ function arrowPosition(refEl:HTMLElement, floatEl:HTMLElement, arrowEl:HTMLEleme
     };
 }
 
+const arrowBeforeOffset = "2px";
+
 </script>
 
 <script lang="ts">
 import { onMount, tick, type Snippet } from "svelte";
 import { fade } from "svelte/transition";
+import { twMerge } from "tailwind-merge";
 
 let {
-    ariaLabel = "Popper",
+    ariaLabel = "popper",
     target,
+    style,
     class: className,
     offset = 12,
-    zIndex = 1000,
+    zIndex = 1,
     duration = 180,
+    arrowClass,
     arrowShow,
     arrowSize = 11,
     arrowStyle = {},
@@ -171,7 +177,6 @@ let {
     placement = "top",
     when,
     children,
-    ...restProps
 }:PopperProps = $props();
 
 let ticking = false;
@@ -187,32 +192,14 @@ function ref(el:HTMLElement) {
 
 // render popper element
 function portal(el:HTMLElement) {
-    const style:Partial<CSSStyleDeclaration> = {
-        position: "absolute",
-        display: "block",
-        width: "max-content",
-        zIndex: `${zIndex}`,
-    };
-
-    Object.assign(
-        el.style, 
-        style
-    );
-
-    document.body.appendChild(el), floatEl = el;
-
-    tick().then(update);
+    document.body.appendChild(floatEl = el), tick().then(update);
 }
 
 // render arrow element
 function arrow(el:HTMLElement) {
     const style:Partial<CSSStyleDeclaration> = {
-        position: "absolute",
         width: `${arrowSize}px`,
         height: `${arrowSize}px`,
-        zIndex: "-1",
-        transform: "rotate(45deg)",
-        backgroundColor: "inherit", // inherit
     };
 
     Object.assign(
@@ -222,6 +209,53 @@ function arrow(el:HTMLElement) {
     );
 
     arrowEl = el;
+
+    const pseudoStyle:Partial<CSSStyleDeclaration>  = {
+        display: "block",
+        content: "",
+        width: "100%",
+        height: "100%",
+        zIndex: "1",
+        boxSizing: "content-box",
+        backgroundColor: "inherit",
+    };
+
+    if(placement.indexOf("top") > -1) {
+        pseudoStyle.paddingTop = arrowBeforeOffset;
+        pseudoStyle.paddingLeft = arrowBeforeOffset;
+        pseudoStyle.marginTop = `-${arrowBeforeOffset}`;
+        pseudoStyle.marginLeft = `-${arrowBeforeOffset}`;
+    }
+
+    if(placement.indexOf("bottom") > -1) {
+        pseudoStyle.paddingBottom = arrowBeforeOffset;
+        pseudoStyle.paddingRight = arrowBeforeOffset;
+        pseudoStyle.marginBottom = `-${arrowBeforeOffset}`;
+        pseudoStyle.marginRight = `-${arrowBeforeOffset}`;
+    }
+
+    if(placement.indexOf("left") > -1) {
+        pseudoStyle.paddingBottom = arrowBeforeOffset;
+        pseudoStyle.paddingLeft = arrowBeforeOffset;
+        pseudoStyle.marginBottom = `-${arrowBeforeOffset}`;
+        pseudoStyle.marginLeft = `-${arrowBeforeOffset}`;
+    }
+
+    if(placement.indexOf("right") > -1) {
+        pseudoStyle.paddingTop = arrowBeforeOffset;
+        pseudoStyle.paddingRight = arrowBeforeOffset;
+        pseudoStyle.marginTop = `-${arrowBeforeOffset}`;
+        pseudoStyle.marginRight = `-${arrowBeforeOffset}`;
+    }
+
+    const pseudo = document.createElement("before");
+    
+    Object.assign(
+        pseudo.style, 
+        pseudoStyle
+    );
+    
+    el.appendChild(pseudo);
 }
 
 // watch window resize
@@ -234,12 +268,10 @@ function watch() {
 
         if(overflow) {
             if(index === -1) {
-                overflowElements.push(parentEl);
-                parentEl.addEventListener("scroll", update);
+                overflowElements.push(parentEl), parentEl.addEventListener("scroll", update);
             }
         } else if(index > -1) {
-            overflowElements.splice(index, 1);
-            parentEl.removeEventListener("scroll", update);
+            overflowElements.splice(index, 1), parentEl.removeEventListener("scroll", update);
         }
 
         parentEl = parentEl.parentElement;
@@ -287,34 +319,44 @@ function resize() {
 
 let show = $state(false);
 
-function showPopper() {
-    show = true;
+function onclick(e:Event) {
+    show = !show;
 }
 
-function hidePopper() {
-    show = false;
+function on(e:Event) {
+    if(e.type === "mouseleave") {
+        show = false;
+    } else {
+        show = true;
+    }
 }
 
-function blur(e:Event) {
-    if(trigger === "focus" && show && 
-        e.target !== anchorEl && !anchorEl.contains(e.target as any)
-    ) {
-        if(when) {
-            when(e.target as HTMLElement, floatEl as HTMLElement) && hidePopper();
-        } else {
-            hidePopper();
+function onblur(e:Event) {
+    if(trigger === "focus" && show) {
+        if(e.target !== anchorEl && !anchorEl.contains(e.target as any)) {
+            if(when) {
+                if(when(e.target as HTMLElement, floatEl as HTMLElement)) {
+                    show = false;
+                }
+            } else {
+                show = false;
+            }
         }
     }
 }
 
 onMount(() => {
-    if(trigger === "focus") {
-        anchorEl.addEventListener("mousedown", showPopper, false);
-    }
-
-    if(trigger === "hover") {
-        anchorEl.addEventListener("mouseenter", showPopper, false);
-        anchorEl.addEventListener("mouseleave", hidePopper, false);
+    switch(trigger) {
+        case "click":
+            anchorEl.addEventListener("mousedown", onclick, false);
+            break;
+        case "focus":
+            anchorEl.addEventListener("mousedown", on, false);
+            break;
+        case "hover":
+            anchorEl.addEventListener("mouseenter", on, false);
+            anchorEl.addEventListener("mouseleave", on, false);
+            break;
     }
 
     watch();
@@ -322,26 +364,35 @@ onMount(() => {
 
 </script>
 
-{@render target(ref)}
-
 <svelte:window 
-    onresize={resize}
-    onmousedown={blur}
+    onresize={resize} 
+    onmousedown={onblur}
 />
 
+{@render target(ref)}
+
 {#if show}
-    <div
-        aria-label="Popper"
-        class={className}
-        {...restProps}
-        in:fade={{delay: 50, duration: 100}}
-        out:fade={{delay: 100, duration: 100}}
+    <div 
+        aria-label={ariaLabel}
+        class="absolute"
+        role="contentinfo"
+        transition:fade={{duration}}
+        style:z-index={zIndex}
         use:portal
     >
-        {@render children()}
+        <div
+            class={twMerge(`relative max-w-max`, className)}
+            style={style}
+        >
+            {@render children()}
 
-        {#if arrowShow}
-            <div use:arrow></div>
-        {/if}
+            {#if arrowShow}
+                <div 
+                    class={twMerge("absolute rotate-45 bg-inherit", arrowClass)}
+                    style:z-index={1}
+                    use:arrow
+                ></div>
+            {/if}
+        </div>
     </div>
 {/if}
