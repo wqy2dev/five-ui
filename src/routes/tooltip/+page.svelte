@@ -93,7 +93,7 @@ const triggers = ["hover", "focus", "click"];
             </Tooltip>
         {/each}
 
-        <Tooltip trigger="click" theme="light">
+        <Tooltip trigger="click" theme="light" placement="bottom">
             {#snippet target(ref)}
                 <Button ref={ref}> 
                     <span>

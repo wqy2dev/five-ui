@@ -2,7 +2,7 @@
 import { type VariantProps, tv } from "tailwind-variants";
 
 const tooltipVariants = tv({
-    base: "rounded-lg text-sm py-1.5 px-2",
+    base: "rounded-lg text-sm p-2",
     variants: {
         theme: {
             light: "bg-white text-gray-900 shadow-outline-sm",

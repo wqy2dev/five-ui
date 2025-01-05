@@ -16,22 +16,25 @@ const dropdownVariants = tv({
 <script lang="ts">
 import { type PopperProps, default as Popper } from "$lib/popper/popper.svelte";
 
-interface DropdownProps extends Omit<PopperProps, "style"|"when"> {
+interface DropdownProps extends Omit<PopperProps, "style"|"when"|"trigger"> {
     
 }
 
 let {
     class: className,
     children,
+    placement = "bottom",
     ...restProps
 }:DropdownProps = $props();
 
 </script>
 
 <Popper
-    ariaLabel="Dropdown"
     class={dropdownVariants({className})}
+    ariaLabel="Dropdown"
     arrowShow={true}
+    trigger="hover"
+    placement={placement}
     {...restProps}
 >
     {@render children()}

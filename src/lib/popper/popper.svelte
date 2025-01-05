@@ -318,29 +318,38 @@ function resize() {
 }
 
 let show = $state(false);
+let timer:number = 0;
 
 function onclick(e:Event) {
     show = !show;
 }
 
-function on(e:Event) {
-    if(e.type === "mouseleave") {
-        show = false;
-    } else {
-        show = true;
+function onshow(e:Event) {
+    if(timer > 0) {
+        window.clearTimeout(timer), timer = 0;
     }
+
+    show = true;
+}
+
+function onleave(e:Event) {
+    timer = window.setTimeout(() => {
+        show = false, timer = 0;
+    }, 100);
 }
 
 function onblur(e:Event) {
-    if(trigger === "focus" && show) {
-        if(e.target !== anchorEl && !anchorEl.contains(e.target as any)) {
-            if(when) {
-                if(when(e.target as HTMLElement, floatEl as HTMLElement)) {
-                    show = false;
-                }
-            } else {
+    if(show && 
+        trigger === "focus" && 
+        !anchorEl.contains(e.target as any) && 
+        !floatEl!.contains(e.target as any)
+    ) {
+        if(when) {
+            if(when(e.target as HTMLElement, floatEl as HTMLElement)) {
                 show = false;
             }
+        } else {
+            show = false;
         }
     }
 }
@@ -351,11 +360,11 @@ onMount(() => {
             anchorEl.addEventListener("mousedown", onclick, false);
             break;
         case "focus":
-            anchorEl.addEventListener("mousedown", on, false);
+            anchorEl.addEventListener("mousedown", onshow, false);
             break;
         case "hover":
-            anchorEl.addEventListener("mouseenter", on, false);
-            anchorEl.addEventListener("mouseleave", on, false);
+            anchorEl.addEventListener("mouseenter", onshow, false);
+            anchorEl.addEventListener("mouseleave", onleave, false);
             break;
     }
 
@@ -376,8 +385,12 @@ onMount(() => {
         aria-label={ariaLabel}
         class="absolute"
         role="contentinfo"
-        transition:fade={{duration}}
         style:z-index={zIndex}
+        { ...(trigger === "hover" ? {
+            onmouseenter:onshow,
+            onmouseleave:onleave,
+        } : {})}
+        transition:fade={{duration}}
         use:portal
     >
         <div
