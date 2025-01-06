@@ -1,39 +1,25 @@
-<script lang="ts" module>
-import { type VariantProps, tv } from "tailwind-variants";
-
-const dropdownVariants = tv({
-    base: "rounded-lg text-sm p-1.5",
-    variants: {
-        
-    },
-    defaultVariants: {
-
-    },
-});
-
-</script>
-
 <script lang="ts">
 import { type PopperProps, default as Popper } from "$lib/popper/popper.svelte";
+import { twMerge } from "tailwind-merge";
 
-interface DropdownProps extends Omit<PopperProps, "style"|"when"|"trigger"> {
+interface DropdownProps extends Omit<PopperProps, "style"|"when"> {
     
 }
 
 let {
     class: className,
     children,
-    placement = "bottom",
+    placement = "bottomStart",
     ...restProps
 }:DropdownProps = $props();
 
 </script>
 
 <Popper
-    class={dropdownVariants({className})}
+    class={twMerge("rounded-lg text-sm p-1 bg-white shadow-outline-md", className)}
     ariaLabel="Dropdown"
     arrowShow={true}
-    trigger="hover"
+    arrowClass="shadow-outline-md"
     placement={placement}
     {...restProps}
 >

@@ -5,7 +5,7 @@ const tooltipVariants = tv({
     base: "rounded-lg text-sm p-2",
     variants: {
         theme: {
-            light: "bg-white text-gray-900 shadow-outline-sm",
+            light: "bg-white text-gray-900 shadow-outline-md",
             dark: "bg-gray-900 text-white",
         },
     },
@@ -37,6 +37,6 @@ let {
     ariaLabel="Tooltip"
     class={tooltipVariants({theme, className})}
     arrowShow={true}
-    arrowClass={theme === "light" ? "shadow-outline-sm":undefined}
+    arrowClass={theme === "light" ? "shadow-outline-md":undefined}
     {...restProps}
 />

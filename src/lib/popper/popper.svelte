@@ -339,8 +339,8 @@ function onleave(e:Event) {
 }
 
 function onblur(e:Event) {
-    if(show && 
-        trigger === "focus" && 
+    if(trigger === "focus" &&
+        show &&
         !anchorEl.contains(e.target as any) && 
         !floatEl!.contains(e.target as any)
     ) {
