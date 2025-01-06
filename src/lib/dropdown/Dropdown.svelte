@@ -16,7 +16,7 @@ let {
 </script>
 
 <Popper
-    class={twMerge("rounded-lg text-sm p-1 bg-white shadow-outline-md", className)}
+    class={twMerge("rounded-lg text-sm p-2 bg-white shadow-outline-md", className)}
     ariaLabel="Dropdown"
     arrowShow={true}
     arrowClass="shadow-outline-md"

@@ -402,7 +402,7 @@ onMount(() => {
             {#if arrowShow}
                 <div 
                     class={twMerge("absolute rotate-45 bg-inherit", arrowClass)}
-                    style:z-index={1}
+                    style:z-index={0}
                     use:arrow
                 ></div>
             {/if}
