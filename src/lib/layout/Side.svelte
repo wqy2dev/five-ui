@@ -21,10 +21,7 @@ let {
     id,
     ref,
     class:className = "",
-    width = "200px",
     style,
-    collapsible,
-    collapsedWidth = "60px",
     children
 }:SideProps = $props();
 
@@ -40,8 +37,7 @@ onMount(() => {
     aria-label="LayoutSide"
     id={id}
     style={style}
-    style:width={collapsible ? collapsedWidth : width}
-    class={twMerge("shrink-0 transition-all", className)}
+    class={twMerge("w-64 shrink-0 transition-all", className)}
 >
     {@render children?.()}
 </div>
