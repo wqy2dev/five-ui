@@ -9,10 +9,7 @@ if(!hasContext("layout")) {
 type SideProps = {
     id?:string;
     class?:string;
-    width?:string;
     style?:string;
-    collapsible?:boolean;
-    collapsedWidth?:string;
     ref?:{(el:HTMLElement):void};
     children?:Snippet;
 }
