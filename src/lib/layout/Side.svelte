@@ -41,7 +41,7 @@ onMount(() => {
     id={id}
     style={style}
     style:width={collapsible ? collapsedWidth : width}
-    class={twMerge("bg-slate-100 shrink-0 transition-all", className)}
+    class={twMerge("shrink-0 transition-all", className)}
 >
     {@render children?.()}
 </div>
