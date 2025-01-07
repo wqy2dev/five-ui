@@ -19,7 +19,6 @@ let {
     id,
     ref,
     class:className,
-    height = "60px",
     style,
     children
 }:HeaderProps = $props();
@@ -33,11 +32,11 @@ onMount(() => {
 </script>
     
 <div
+    bind:this={el}
     aria-label="LayoutHeader"
     id={id}
     style={style}
-    style:height={height}
-    class={twMerge("shrink-0 p-1 shadow-sm", className)}
+    class={twMerge("h-16 shrink-0 p-1 shadow-sm", className)}
 >
     {@render children?.()}
 </div>

@@ -31,6 +31,7 @@ onMount(() => {
 </script>
     
 <div
+    bind:this={el}
     aria-label="LayoutContent"
     id={id}
     style={style}
