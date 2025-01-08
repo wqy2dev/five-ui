@@ -108,7 +108,7 @@ onMount(() => {
     {...restProps}
 >
     {#if checked}
-        <Check size={18}/>
+        <Check size={16}/>
     {/if}
 </button>
 

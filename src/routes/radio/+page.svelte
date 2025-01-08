@@ -17,13 +17,15 @@ const sizes = ["sm", "md", "lg"];
 </h4>
 
 <div class="w-full">
-    <RadioGroup>
-        {#each [
-            {label:"A", value:"A"},
-            {label:"B", value:"B"},
-            {label:"C", value:"C"}
-        ] as item}
-            <Radio value={item.value}/>
-        {/each}
-    </RadioGroup>
+    <div class="flex flex-row gap-5">
+        <RadioGroup>
+            {#each [
+                {label:"A", value:"A"},
+                {label:"B", value:"B"},
+                {label:"C", value:"C"}
+            ] as item}
+                <Radio value={item.value}/>
+            {/each}
+        </RadioGroup>
+    </div>
 </div>
