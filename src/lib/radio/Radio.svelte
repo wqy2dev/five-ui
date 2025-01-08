@@ -5,11 +5,11 @@ import { Check } from "$lib/icons/index.js";
 import { type RadioContext } from "./RadioGroup.svelte";
 
 const radioVariants = tv({
-    base: "relative align-top inline-flex items-center justify-center w-4 h-4 leading-none box-content rounded-full cursor-pointer transition bg-white border border-solid",
+    base: "relative align-top inline-flex items-center justify-center w-4 h-4 leading-none box-content rounded-full cursor-pointer transition-all bg-white border border-solid",
     variants: {
         disabled:{
-            true: "cursor-not-allowed border-slate-400",
-            false: "border-primary-600",
+            true: "cursor-not-allowed border-slate-200",
+            false: "border-slate-400",
         },
         focus: {
             true: "",
