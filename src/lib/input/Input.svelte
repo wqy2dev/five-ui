@@ -6,7 +6,7 @@ import type { FullAutoFill } from "svelte/elements";
 
 const inputVariants = tv({
 	slots: {
-		base: "w-full align-top inline-flex flex-row items-center px-2 rounded-md bg-white border border-solid border-slate-200 overflow-hidden transition",
+		base: "w-full align-top inline-flex flex-row items-center px-2 bg-white border border-solid border-slate-200 overflow-hidden transition",
 		input: "grow shrink min-w-5 text-sm text-slate-700 disabled:text-slate-400 placeholder:text-slate-400 bg-transparent cursor-inherit outline-none",
 		slot: "w-5 shrink-0 flex items-center justify-center text-slate-600 z-1 cursor-inherit",
 	},
@@ -35,6 +35,26 @@ const inputVariants = tv({
 				slot: "h-10",
 			},
 		},
+		radius: {
+            full: {
+				base: "rounded-full",
+			},
+            sm: {
+				base: "rounded-sm",
+			},
+            md: {
+				base: "rounded-md",
+			},
+            lg: {
+				base: "rounded-lg",
+			},
+            xl: {
+				base: "rounded-xl",
+			},
+            none: {
+
+			},
+        },
 		slot: {
 			head: {
 				slot: "justify-start",
@@ -49,6 +69,7 @@ const inputVariants = tv({
 	},
 	defaultVariants: {
 		size: "md",
+		radius: "md",
 	},
 });
 
