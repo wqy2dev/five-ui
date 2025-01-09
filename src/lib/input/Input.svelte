@@ -6,8 +6,8 @@ import type { FullAutoFill } from "svelte/elements";
 
 const inputVariants = tv({
 	slots: {
-		base: "w-full align-top inline-flex flex-row items-center px-2 bg-white border border-solid border-slate-200 overflow-hidden transition",
-		input: "grow shrink min-w-5 text-sm text-slate-700 disabled:text-slate-400 placeholder:text-slate-400 bg-transparent cursor-inherit outline-none",
+		base: "w-full align-top inline-flex flex-row items-center px-2 bg-white border border-solid border-slate-200 overflow-hidden transition-all",
+		input: "grow shrink min-w-5 h-full text-sm text-slate-700 disabled:text-slate-400 placeholder:text-slate-400 bg-transparent cursor-inherit outline-none",
 		slot: "w-5 shrink-0 flex items-center justify-center text-slate-600 z-1 cursor-inherit",
 	},
 	variants: {
@@ -18,7 +18,7 @@ const inputVariants = tv({
 		},
 		focus: {
 			true: {
-				base: "ring-offset-1 ring-2 ring-primary",
+				base: "ring ring-primary-200 border-primary-600",
 			},
 		},
 		size: {
