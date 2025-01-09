@@ -42,6 +42,7 @@ onMount(() => {
 {#if open}
 <div 
     aria-label="TabContent"
+    role="tabpanel"
     id={id}
     class={className}
     use:mount

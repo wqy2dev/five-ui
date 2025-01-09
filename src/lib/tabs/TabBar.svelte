@@ -145,6 +145,7 @@ onMount(() => {
 
 <div 
     aria-label="TabBar"
+    role="tablist"
     bind:this={el}
     id={id}
     class={tabsVariants({variant, placement, radius, className})}

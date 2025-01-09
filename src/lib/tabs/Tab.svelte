@@ -192,6 +192,7 @@ onMount(() => {
     bind:this={el}
     this={link ? "a" : "button"}
     id={id}
+    role="tab"
     class={tabVariants({variant, placement, radius, color, disabled, class:className})}
     {...(link ? {target: "_blank", href} : {})}
     {...(open ? {open:""}:{})}
