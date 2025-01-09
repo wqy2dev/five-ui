@@ -124,8 +124,7 @@ let collapsible = $state(false);
     class="w-full"
 >
     <Side 
-        class="bg-slate-900"
-        collapsible={collapsible}
+        class={`bg-slate-900${collapsible ? "":" w-16"}`}
     />
 
     <Layout 

@@ -4,7 +4,7 @@ import { Button } from "$lib/index.js";
 
 const variants = ["primary", "danger", "secondary", "reverse", "outline", "ghost", "flat"];
 const sizes = ["xs", "sm", "md", "lg"];
-const radius = ["full", "sm", "md", "lg", "none"];
+const radius = ["full", "sm", "md", "lg", "xl", "none"];
 
 </script>
 

@@ -60,6 +60,7 @@ onMount(() => {
 </script>
 
 <li
+    aria-label="BreadcrumbItem"
     bind:this={el}
     id={id}
     class={className}

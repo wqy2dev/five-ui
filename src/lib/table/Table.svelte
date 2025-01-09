@@ -120,6 +120,7 @@ const {
 </script>
 
 <div
+    aria-label="Table"
     bind:this={el}
     id={id}
     class={wrapper({className})}

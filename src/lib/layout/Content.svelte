@@ -31,9 +31,11 @@ onMount(() => {
 </script>
     
 <div
+    bind:this={el}
+    aria-label="LayoutContent"
     id={id}
     style={style}
-    class={twMerge("grow shrink-1", className)}
+    class={twMerge("grow shrink-0", className)}
 >
     {@render children?.()}
 </div>

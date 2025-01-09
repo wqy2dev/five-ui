@@ -180,6 +180,12 @@ onMount(() => {
     }
 
     mountIndicator = true;
+
+    return () => {
+        if(timer) {
+            clearInterval(timer), timer = 0;
+        }
+    }
 });
 
 const {
@@ -193,6 +199,7 @@ const {
 </script>
 
 <div
+    aria-label="Carousel"
     bind:this={el}
     id={id}
     class={carousel({className})}

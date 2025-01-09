@@ -19,22 +19,23 @@ const routes = [
     {path: "/cascader", title: "Cascader"},
     {path: "/datepicker", title: "DatePicker"},
     {path: "/drawer", title: "Drawer", achieve: true},
-    {path: "/dropdown", title: "Dropdown"},
+    {path: "/dropdown", title: "Dropdown", achieve: true},
     {path: "/form", title: "Form"},
     {path: "/icon", title: "Icon", achieve: true},
-    {path: "/input", title: "Input"},
+    {path: "/input", title: "Input", achieve: true},
     {path: "/layout", title: "Layout", achieve: true},
     {path: "/message", title: "Message", achieve: true},
+    {path: "/menu", title: "Menu"},
     {path: "/modal", title: "Modal", achieve: true},
     {path: "/notification", title: "Notification", achieve: true},
     {path: "/pagination", title: "Pagination", achieve: true},
-    {path: "/radio", title: "Radio"},
+    {path: "/radio", title: "Radio", achieve: true},
     {path: "/select", title: "Select"},
     {path: "/slider", title: "Slider"},
     {path: "/steps", title: "Steps"},
     {path: "/switch", title: "Switch"},
     {path: "/table", title: "Table", achieve: true},
-    {path: "/tabs", title: "Tabs"},
+    {path: "/tabs", title: "Tabs", achieve: true},
     {path: "/tag", title: "Tag", achieve: true},
     {path: "/timeline", title: "Timeline"},
     {path: "/timepicker", title: "TimePicker"},
@@ -49,7 +50,6 @@ const routes = [
 >
     <Side
         class="flex flex-col h-full bg-slate-100 text-sm shrink-0"
-        width="260px"
     >
         <div class="pl-6 py-5 font-bold">
             FiveUI Components({routes.length})

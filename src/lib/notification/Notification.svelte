@@ -42,6 +42,7 @@ onMount(() => {
 </script>
 
 <div 
+    aria-label="Notification"
     class="flex flex-row w-96 shadow-outline-lg rounded-lg p-3 bg-white pointer-events-auto"
 >
     <div class="mr-2 shrink-0">

@@ -2,7 +2,7 @@
 import { Pagination } from "$lib/index.js";
 
 const variants = ["flat", "outline", "ghost"];
-const radius = ["lg", "md", "sm", "full", "none"];
+const radius = ["xl","lg", "md", "sm", "full", "none"];
 const sizes = ["sm", "md", "lg"];
 
 </script>
@@ -37,6 +37,9 @@ const sizes = ["sm", "md", "lg"];
 <div class="flex flex-col flex-wrap gap-5">
     {#each radius as rds}
         <Pagination pages={50} radius={rds as any} onchange={(page) => console.log(page)} />
+    {/each}
+    {#each radius as rds}
+        <Pagination pages={50} variant="outline" radius={rds as any} onchange={(page) => console.log(page)} />
     {/each}
 </div>
 

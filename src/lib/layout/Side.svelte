@@ -9,10 +9,7 @@ if(!hasContext("layout")) {
 type SideProps = {
     id?:string;
     class?:string;
-    width?:string;
     style?:string;
-    collapsible?:boolean;
-    collapsedWidth?:string;
     ref?:{(el:HTMLElement):void};
     children?:Snippet;
 }
@@ -21,10 +18,7 @@ let {
     id,
     ref,
     class:className = "",
-    width = "200px",
     style,
-    collapsible,
-    collapsedWidth = "60px",
     children
 }:SideProps = $props();
 
@@ -37,10 +31,11 @@ onMount(() => {
 </script>
     
 <div
+    bind:this={el}
+    aria-label="LayoutSide"
     id={id}
     style={style}
-    style:width={collapsible ? collapsedWidth : width}
-    class={twMerge("bg-slate-100 shrink-0 transition-all", className)}
+    class={twMerge("w-64 shrink-0 transition-all", className)}
 >
     {@render children?.()}
 </div>

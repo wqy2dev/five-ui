@@ -33,8 +33,11 @@ const tagVariants = tv({
             lg: "px-3 text-sm",
         },
         radius: {
+            sm: "rounded-sm",
+            md: "rounded-md",
+            lg: "rounded-lg",
+            xl: "rounded-xl",
             full: "rounded-full",
-            sm: "rounded-lg",
             none: "",
         },
     },
@@ -86,6 +89,7 @@ onMount(() => {
 </script>
 
 <span
+    aria-label="Tag"
     id={id}
     bind:this={el}
     class={tagVariants({variant, radius, size, className})}

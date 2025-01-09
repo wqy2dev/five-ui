@@ -87,6 +87,7 @@ onMount(() => {
 </script>
 
 <div
+    aria-label="AccordionItem"
     bind:this={el}
     id={id}
     class={base({className})}

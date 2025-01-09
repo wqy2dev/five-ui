@@ -74,6 +74,7 @@ onMount(() => {
 </script>
 
 <div
+    aria-label="Avatar"
     bind:this={el}
     id={id}
     class={avatarVariants({size, radius, bordered, bg: !image, className})}

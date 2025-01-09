@@ -2,12 +2,13 @@
 import { Tooltip, Button } from "$lib/index.js";
 
 const placements = [
-    "topStart", "top", "topEnd", 
-    "bottomStart", "bottom", "bottomEnd", 
-    "leftStart", "left", "leftEnd", 
-    "rightStart", "right", "rightEnd"
+    ["topStart", "top", "topEnd"],
+    ["bottomStart", "bottom", "bottomEnd"],
+    ["leftStart", "left", "leftEnd"],
+    ["rightStart", "right", "rightEnd"],
 ];
 
+const triggers = ["hover", "focus", "click"];
 </script>
 
 <svelte:head>
@@ -59,34 +60,46 @@ const placements = [
         Placement
     </h4>
     
-    <div class="flex flex-row flex-wrap gap-2">
-        {#each placements as v, i}
-            <Tooltip placement={v as any}>
-                {#snippet target(ref)}
-                    <Button ref={ref}> {v.toUpperCase()} </Button>
-                {/snippet}
-    
-                This is a tooltip!
-            </Tooltip>
-        {/each}
-    </div>
+    {#each placements as rows}
+        <div class="flex flex-row flex-wrap gap-2">
+            {#each rows as row}
+                <Tooltip placement={row as any}>
+                    {#snippet target(ref)}
+                        <Button ref={ref}> {row.toUpperCase()} </Button>
+                    {/snippet}
+        
+                    This is a tooltip!
+                </Tooltip>
+            {/each}
+        </div>
+    {/each}
 
     <h4 class="text-base indent-2 bg-slate-100 my-3">
         Trigger
     </h4>
     
     <div class="flex flex-row gap-2">
-        <Tooltip trigger="hover">
-            {#snippet target(ref)}
-                <Button ref={ref}> Hover </Button>
-            {/snippet}
+        {#each triggers as trigger}
+            <Tooltip trigger={trigger as any}>
+                {#snippet target(ref)}
+                    <Button ref={ref}> 
+                        <span>
+                            {trigger}
+                        </span>    
+                    </Button>
+                {/snippet}
 
-            This is a tooltip!
-        </Tooltip>
+                This is a tooltip!
+            </Tooltip>
+        {/each}
 
-        <Tooltip trigger="focus">
+        <Tooltip trigger="click" theme="light" placement="bottom">
             {#snippet target(ref)}
-                <Button ref={ref}> Focus </Button>
+                <Button ref={ref}> 
+                    <span>
+                        Click
+                    </span>    
+                </Button>
             {/snippet}
 
             This is a tooltip!

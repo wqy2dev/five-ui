@@ -20,17 +20,23 @@ const paginationVariants = tv({
             },
         },
         radius: {
-            lg: {
-                button: "rounded-lg",
+            sm: {
+                button: "rounded-sm",
             },
             md: {
                 button: "rounded-md",
             },
-            sm: {
-                button: "rounded-sm",
+            lg: {
+                button: "rounded-lg",
+            },
+            xl: {
+                button: "rounded-xl",
             },
             full: {
                 button: "rounded-full",
+            },
+            none: {
+                button: "rounded-none",
             },
         },
         active: {
@@ -50,7 +56,10 @@ const paginationVariants = tv({
             },
             lg: {
                 button: "min-w-9 w-9 h-9",
-            }
+            },
+            xl: {
+                button: "min-w-10 w-10 h-10",
+            },
         },
         disabled: {
             true: {
@@ -63,7 +72,7 @@ const paginationVariants = tv({
     },
     defaultVariants: {
         variant: "flat",
-        radius: "md",
+        radius: "lg",
         size: "md",
         disabled: false,
     },
@@ -192,6 +201,7 @@ const {
 </script>
 
 <div
+    aria-label="Pagination"
 	bind:this={el}
     id={id}
     class={base({className})}

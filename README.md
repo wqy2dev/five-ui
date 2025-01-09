@@ -37,9 +37,10 @@ FiveUI already includes the following components, but is not limited to:
 | Checkbox ||
 | DatePicker ||
 | Drawer | ✔ |
-| Dropdown |  |
-| Icon | ✔ |
-| Input | |
+| Dropdown | ✔ |
+| Form |  |
+| Icons | ✔ |
+| Input | ✔ |
 | Layout | ✔ |
 | Message | ✔ |
 | Modal | ✔ |
@@ -47,13 +48,13 @@ FiveUI already includes the following components, but is not limited to:
 | Overlay | ✔ |
 | Pagination | ✔ |
 | Popper | ✔ |
-| Radio ||
+| Radio | ✔ |
 | Select ||
 | Slider ||
 | Steps | |
 | Switch ||
 | Table | ✔ |
-| Tabs ||
+| Tabs | ✔ |
 | Tag | ✔ |
 | Timeline | |
 | TimePicker ||
