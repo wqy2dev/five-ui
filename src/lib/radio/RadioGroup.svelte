@@ -2,11 +2,12 @@
 import { getContext, setContext, type Snippet } from "svelte";
 
 export type RadioContext = {
+    name:string;
 	value:string|number;
 }
 
 type RadioGroupProps = {
-    name?:string;
+    name:string;
     value?:string|number;
     children:Snippet;
     onchange?:{(value?:string|number):void};
@@ -32,6 +33,7 @@ let {
 // }
 
 let context = $state({
+    name,
     value,
 });
 
@@ -44,5 +46,3 @@ $effect(() => {
 </script>
 
 {@render children()}
-
-<input type="hidden" name={name} {...context}/>
