@@ -6,7 +6,7 @@ import { twMerge } from "tailwind-merge";
 import { type RadioContext } from "./RadioGroup.svelte";
 
 const radioVariants = tv({
-    base: "relative flex items-center justify-center w-4 h-4 rounded-full cursor-pointer box-content bg-white border-2 border-solid transition-all",
+    base: "relative flex items-center justify-center w-4 h-4 rounded-full cursor-pointer box-content bg-white border-2 border-solid transition-all overflow-hidden",
     variants: {
         disabled:{
             true: "cursor-not-allowed",
@@ -48,8 +48,6 @@ const radioVariants = tv({
             class: "bg-slate-50 border-slate-200",
         },
     ],
-    defaultVariants: {
-    },
 });
 
 type RadioProps = {
@@ -127,7 +125,7 @@ onMount(() => {
         />
 
         {#if checked}
-            <Check size={15} class="pointer-events-none"/>
+            <Check size={16} class="pointer-events-none"/>
         {/if}
     </span>
 
