@@ -34,7 +34,7 @@ const routes = [
     {path: "/select", title: "Select"},
     {path: "/slider", title: "Slider"},
     {path: "/steps", title: "Steps"},
-    {path: "/switch", title: "Switch"},
+    {path: "/switch", title: "Switch", achieve: true},
     {path: "/table", title: "Table", achieve: true},
     {path: "/tabs", title: "Tabs", achieve: true},
     {path: "/tag", title: "Tag", achieve: true},

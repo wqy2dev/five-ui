@@ -52,7 +52,7 @@ FiveUI already includes the following components, but is not limited to:
 | Select ||
 | Slider ||
 | Steps | |
-| Switch ||
+| Switch | ✔ |
 | Table | ✔ |
 | Tabs | ✔ |
 | Tag | ✔ |
