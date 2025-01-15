@@ -45,10 +45,12 @@ export { default as LockCloseSolid } from "./LockCloseSolid.svelte";
 export { default as LockOpenOutline } from "./LockOpenOutline.svelte";
 export { default as LockOpenSolid } from "./LockOpenSolid.svelte";
 export { default as Minus } from "./Minus.svelte";
+export { default as Moon } from "./Moon.svelte";
 export { default as Plus } from "./Plus.svelte";
 export { default as Search } from "./Search.svelte";
 export { default as SuccessCircleOutline } from "./SuccessCircleOutline.svelte";
 export { default as SuccessCircleSolid } from "./SuccessCircleSolid.svelte";
+export { default as Sun } from "./Sun.svelte";
 export { default as TrashOutline } from "./TrashOutline.svelte";
 export { default as TrashSolid } from "./TrashSolid.svelte";
 export { default as Upload } from "./Upload.svelte";
@@ -104,11 +106,13 @@ export const icons = [
     "LockOpenOutline",
     "LockOpenSolid",
     "Minus",
+    "Moon",
     "Plus",
     "Refresh",
     "Search",
     "SuccessCircleOutline",
     "SuccessCircleSolid",
+    "Sun",
     "TrashOutline",
     "TrashSolid",
     "Upload",
