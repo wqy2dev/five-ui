@@ -1,7 +1,7 @@
 <script module lang="ts">
 
-type Trigger = "hover" | "focus" | "click";
-type Placement = "top" | "topStart" | "topEnd" | "bottom" | "bottomStart" | "bottomEnd" | "left" | "leftStart" | "leftEnd" | "right" | "rightStart" | "rightEnd";
+export type Trigger = "hover" | "focus" | "click";
+export type Placement = "top" | "topStart" | "topEnd" | "bottom" | "bottomStart" | "bottomEnd" | "left" | "leftStart" | "leftEnd" | "right" | "rightStart" | "rightEnd";
 
 export type PopperProps = {
     ariaLabel?:string;

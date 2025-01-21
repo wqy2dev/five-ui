@@ -1,7 +1,8 @@
 <script lang="ts" module>
-import { ChevronDown } from "../icons/index.js";
+import { ChevronDown } from "$lib/icons/index.js";
 import { getContext, onMount, type Snippet } from "svelte";
 import { tv, type VariantProps } from "tailwind-variants";
+import { type SelectOption } from "./Option.svelte";
 
 const inputVariants = tv({
     slots: {
@@ -17,8 +18,8 @@ const inputVariants = tv({
             true:"cursor-not-allowed opacity-45",
         },
         input: {
-            true: "text-slate-900",
-            false: "text-muted-foreground",
+            true: "text-slate-700",
+            false: "text-slate-400",
         },
         size: {
             sm:{
@@ -50,7 +51,6 @@ const inputVariants = tv({
         disabled: false,
         radius: "md",
         size: "md",
-        input: true,
     },
 });
 
@@ -87,7 +87,6 @@ let {
     ...restProps
 }:SelectInputProps = $props();
 
-// let context = getContext<SelectContext>("tc-select");
 
 let focus = $state(false);
 
@@ -127,14 +126,14 @@ const {
     onmousedown={onfocus}
 >
     {#if typeof label === "string"}
-        <span class={input()}>
+        <span class={input({input: true})}>
             {label}
         </span>
     {:else if label }
-        <span class={input()}>
+        <span class={input({input: true})}>
             {@render label()}
         </span>
-    {:else}
+    {:else if placeholder}
         <span class={input({input: false})}>
             {placeholder}
         </span>

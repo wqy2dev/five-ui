@@ -4,12 +4,12 @@ import { Search } from "../icons/index.js";
 import { Popper, Input } from "../index.js";
 import type { InputProps } from "../input/Input.svelte";
 import SelectInput from "./SelectInput.svelte";
+import { type SelectOption } from "./Option.svelte";
 
 type SelectProps = {
     id?:string;
     class?:string;
 	name?:string;
-    label?:string|Snippet;
 	value?:string|number;
     placeholder?:string;
     disabled?:boolean;
@@ -20,7 +20,7 @@ type SelectProps = {
     ref?:{(el:HTMLElement):void};
     empty?:Snippet;
     children?:Snippet;
-    onchange?:{(value?:string|number):void};
+    onchange?:{(option:SelectOption):void};
 }
 
 </script>
@@ -51,13 +51,6 @@ let {
 //     onchange = fieldContext.onchange;
 // }
 
-// let context:SelectContext = $state({
-//     label: "",
-//     value,
-// });
-
-// setContext("tc-select", context);
-
 let overflowRef:HTMLElement;
 
 // popper hide strategy
@@ -68,8 +61,12 @@ function when(targetEl:HTMLElement, floatEl:HTMLElement) {
     return overflowRef.contains(targetEl) && targetEl.tagName === "BUTTON";
 }
 
+let option:SelectOption = $state({label: "", value});
+
+setContext("select", option);
+
 $effect(() => {
-    // onchange?.(context.value);
+    onchange?.(option);
 });
 
 </script>
@@ -84,7 +81,16 @@ $effect(() => {
             ref={(el:HTMLElement) => {
                 ref(el), elRef && elRef(el);
             }}
-            {...{id, name, placeholder, disabled, width, class:className}}
+            {...{
+                id,
+                width,
+                class:className,
+                name, 
+                value: option.value, 
+                label: option.label, 
+                placeholder,
+                disabled,
+            }}
         />
     {/snippet}
 
@@ -121,4 +127,3 @@ $effect(() => {
         </div>
     </div>
 </Popper>
-    
