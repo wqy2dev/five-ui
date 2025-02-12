@@ -14,9 +14,6 @@ const layoutVariants = tv({
 			true: "grow shrink-0",
 		},
 	},
-	defaultVariants: {
-		layout: "row",
-	},
 });
 
 type Layout = VariantProps<typeof layoutVariants>["layout"];
@@ -30,6 +27,10 @@ type LayoutProps = {
     layout?:Layout;
 }
 
+export type LayoutContext = {
+	layout:Layout;
+}
+
 </script>
 
 <script lang="ts">
@@ -39,7 +40,7 @@ let {
 	ref,
 	class:className,
 	style,
-	layout,
+	layout = "row",
     children
 }:LayoutProps = $props();
 
@@ -51,13 +52,14 @@ onMount(() => {
 
 const isGrow = hasContext("layout");
 
-setContext("layout", {});
+setContext("layout", {
+	layout,
+});
 
 </script>
 
 <div
 	bind:this={el}
-    aria-label="Layout"
 	id={id}
 	class={layoutVariants({layout, grow: isGrow, className})}
 	style={style}
