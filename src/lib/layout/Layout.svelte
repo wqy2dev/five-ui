@@ -62,8 +62,6 @@ onMount(() => {
     ref?.(el);
 });
 
-const isGrow = hasContext("layout");
-
 setContext("layout", {
 	layout,
 });
@@ -73,7 +71,7 @@ setContext("layout", {
 <div
 	bind:this={el}
 	id={id}
-	class={layoutVariants({layout, grow: isGrow, className})}
+	class={layoutVariants({layout, grow: hasContext("layout"), className})}
 	style={style}
 >
 	{@render children?.()}
