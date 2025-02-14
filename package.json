@@ -1,7 +1,7 @@
 {
 	"name": "five-ui",
 	"description": "FiveUI is an open source UI toolkit built with Svelte + Tailwind that allows you to create reactive web interfaces using Svelte + Tailwind CSS.",
-	"version": "0.1.9-2",
+	"version": "0.1.9-3",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
@@ -47,6 +47,10 @@
 		".": {
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
+		},
+		"./icons": {
+			"types": "./dist/icons/index.d.ts",
+			"svelte": "./dist/icons/index.js"
 		}
 	},
 	"peerDependencies": {
