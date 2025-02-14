@@ -1,2 +1,2 @@
 
-export { default as Popper } from "./popper.svelte";
+export { default as Popper, type Placement, type Trigger } from "./popper.svelte";

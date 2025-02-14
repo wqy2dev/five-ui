@@ -33,7 +33,6 @@ onMount(() => {
     
 <div
     bind:this={el}
-    aria-label="LayoutHeader"
     id={id}
     style={style}
     class={twMerge("h-16 shrink-0 p-1 shadow-sm", className)}

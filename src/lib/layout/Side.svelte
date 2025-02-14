@@ -32,7 +32,6 @@ onMount(() => {
     
 <div
     bind:this={el}
-    aria-label="LayoutSide"
     id={id}
     style={style}
     class={twMerge("w-64 shrink-0 transition-all", className)}

@@ -1,8 +1,10 @@
 <script lang="ts">
-import { hasContext, onMount, type Snippet } from "svelte";
+import { getContext, onMount, type Snippet } from "svelte";
 import { twMerge } from "tailwind-merge";
+import { type LayoutContext } from "./Layout.svelte";
 
-if(!hasContext("layout")) {
+const ctx = getContext("layout") as LayoutContext;
+if(!ctx) {
     throw new Error("Content not in the layout context!");
 }
 
@@ -29,13 +31,12 @@ onMount(() => {
 });
 
 </script>
-    
+
 <div
     bind:this={el}
-    aria-label="LayoutContent"
     id={id}
     style={style}
-    class={twMerge("grow shrink-0", className)}
+    class={twMerge(`${ctx.layout === "row" ? "w-0 h-full":"w-full h-0"} grow shrink-0`, className)}
 >
     {@render children?.()}
 </div>

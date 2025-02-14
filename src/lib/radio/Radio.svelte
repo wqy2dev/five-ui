@@ -6,7 +6,7 @@ import { twMerge } from "tailwind-merge";
 import { type RadioContext } from "./RadioGroup.svelte";
 
 const radioVariants = tv({
-    base: "relative flex items-center justify-center w-4 h-4 leading-none rounded-full cursor-pointer box-content bg-white border-2 border-solid transition-all",
+    base: "relative flex items-center justify-center w-4 h-4 rounded-full cursor-pointer box-content bg-white border-2 border-solid transition-all overflow-hidden",
     variants: {
         disabled:{
             true: "cursor-not-allowed",
@@ -48,8 +48,6 @@ const radioVariants = tv({
             class: "bg-slate-50 border-slate-200",
         },
     ],
-    defaultVariants: {
-    },
 });
 
 type RadioProps = {
@@ -81,6 +79,10 @@ let {
 let focus = $state(false);
 let checked = $state(context.value === value);
 
+function onFocus(e:Event) {
+    focus = true;
+}
+
 function onBlur(e:Event) {
     if(!el.contains(e.target as HTMLButtonElement)) {
         focus = false;
@@ -88,7 +90,7 @@ function onBlur(e:Event) {
 }
 
 function onChange(_:Event) {
-    focus = checked = true, context.value = value;
+    checked = true, context.value = value;
 }
 
 $effect(() => {
@@ -119,10 +121,11 @@ onMount(() => {
             value={value}
             disabled={disabled}
             onchange={onChange}
+            onclick={onFocus}
         />
 
         {#if checked}
-            <Check size={15} class="pointer-events-none"/>
+            <Check size={16} class="pointer-events-none"/>
         {/if}
     </span>
 

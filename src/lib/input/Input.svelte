@@ -74,14 +74,17 @@ const inputVariants = tv({
 });
 
 type Size = VariantProps<typeof inputVariants>["size"];
+type Radius = VariantProps<typeof inputVariants>["radius"];
 
-type InputProps = {
+export type InputProps = {
 	id?:string;
+	width?:string|number;
 	class?:string;
-	size?:Size;
 	name?:string;
 	value?:string|number;
     type?:"text"|"password"|"number";
+	size?:Size;
+	radius?:Radius;
 	minlength?:number;
 	maxlength?:number;
 	placeholder?:string;
@@ -99,7 +102,7 @@ type InputProps = {
 	max?:number;
 	step?:number;
 }
-	
+
 </script>
 
 <script lang="ts">
@@ -112,6 +115,7 @@ let {
     class:className,
     value,
     size,
+	width,
     disabled,
     oninput,
     onchange,
@@ -184,6 +188,7 @@ const {
 	class={base({size, focus:focus && !disabled, disabled, className})}
     onmouseenter={onHover}
     onmouseleave={onHover}
+	style:width={width}
     {...{size}}
 >
 	{#if head}

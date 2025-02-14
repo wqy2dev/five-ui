@@ -34,7 +34,7 @@ FiveUI already includes the following components, but is not limited to:
 | Card | ✔ |
 | Carousel | ✔ |
 | Cascader ||
-| Checkbox ||
+| Checkbox | ✔ |
 | DatePicker ||
 | Drawer | ✔ |
 | Dropdown | ✔ |
@@ -52,7 +52,7 @@ FiveUI already includes the following components, but is not limited to:
 | Select ||
 | Slider ||
 | Steps | |
-| Switch ||
+| Switch | ✔ |
 | Table | ✔ |
 | Tabs | ✔ |
 | Tag | ✔ |

@@ -1,6 +1,7 @@
 <script module lang="ts">
 
 export type Trigger = "hover" | "focus" | "click";
+export type Placement = "top" | "topStart" | "topEnd" | "bottom" | "bottomStart" | "bottomEnd" | "left" | "leftStart" | "leftEnd" | "right" | "rightStart" | "rightEnd";
 
 export type PopperProps = {
     ariaLabel?:string;
@@ -20,8 +21,6 @@ export type PopperProps = {
     // popper hide strategy
     when?:{(targetEl:HTMLElement, floatEl:HTMLElement):boolean};
 }
-
-export type Placement = "top" | "topStart" | "topEnd" | "bottom" | "bottomStart" | "bottomEnd" | "left" | "leftStart" | "leftEnd" | "right" | "rightStart" | "rightEnd";
 
 // Calculate the position of the popper
 function position(refEl:HTMLElement, floatEl:HTMLElement, placement:Placement, offset:number) {
