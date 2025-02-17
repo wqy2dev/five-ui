@@ -14,18 +14,6 @@ const layoutVariants = tv({
 			true: "grow shrink-0",
 		},
 	},
-	compoundVariants: [
-		{
-			layout: "row",
-			grow: true,
-			class: "w-0"
-		},
-		{
-			layout: "col",
-			grow: true,
-			class: "h-0"
-		},
-	],
 });
 
 type Layout = VariantProps<typeof layoutVariants>["layout"];
