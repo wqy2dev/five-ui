@@ -52,6 +52,7 @@ const sizes = ["sm", "md", "lg"];
 <div class="mt-6">
     <Form layout="row">
         <FormField
+            class="w-96"
             label="Username"
             name="username"
             rules={[
@@ -68,6 +69,7 @@ const sizes = ["sm", "md", "lg"];
         </FormField>
 
         <FormField
+            class="w-96"
             label="Password"
             name="Password"
             rules={[
@@ -84,6 +86,7 @@ const sizes = ["sm", "md", "lg"];
         </FormField>
 
         <FormField
+            class="w-96"
             label="Email"
             labelClass="w-[66px]"
             name="Email"

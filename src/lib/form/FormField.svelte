@@ -3,20 +3,20 @@ import { tv, type VariantProps } from "tailwind-variants";
 
 const formFieldVariants = tv({
     slots: {
-        base: "w-full flex",
+        base: "w-full shrink-0",
         label: "flex flex-row items-center text-sm text-slate-900",
         input: "",
     },
     variants: {
         layout: {
             row: {
-                base: "flex-row items-center",
-                label: "w-20 shrink-0",
+                base: "inline-flex flex-row items-center",
+                label: "w-20 justify-end shrink-0 pr-3",
                 input: "grow",
             },
             col: {
-                base: "flex-col",
-                label: "w-auto h-7 leading-7",
+                base: "flex flex-col",
+                label: "w-full h-7 leading-7 justify-start",
                 input: "w-full",
             },
         },
@@ -122,7 +122,7 @@ const {
             <Tooltip>
                 {#snippet target(ref)}
                     <span class="inline-block" use:ref>
-                        <HelpCircleOutline/>
+                        <HelpCircleOutline size={17}/>
                     </span>
                 {/snippet}
                 {tooltip}
