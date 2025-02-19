@@ -1,43 +1,52 @@
 <script lang="ts" module>
-import { type Snippet } from "svelte";
-import { tv } from "tailwind-variants";
+import { setContext, type Snippet } from "svelte";
+import { tv, type VariantProps } from "tailwind-variants";
 
 const formVariants = tv({
-    base: "block w-full flex",
+    base: "w-full flex",
     variants: {
         layout: {
-            inline: "flex-col",
-            vertical: "flex-row",
-            horizontal: "flex-row",
+            col: "flex-col space-y-4",
+            row: "flex-row space-x-4",
         },
     },
     defaultVariants: {
-        layout: "vertical",
+        layout: "col",
     },
 });
-</script>
 
-<script lang="ts">
+type FormLayout = VariantProps<typeof formVariants>["layout"];
+
+export type FormContext = {
+    layout:FormLayout;
+}
 
 type FormProps = {
     class?:string;
-    layout?:"vertical"|"horizontal"|"inline";
+    layout?:FormLayout;
     onsubmit?:{():void};
     children:Snippet;
 }
 
+</script>
+
+<script lang="ts">
+
 let {
-    layout = "vertical",
+    layout = "col",
     class:className,
     onsubmit,
     children,
 }:FormProps = $props();
 
+setContext("form", {
+    layout,
+});
+
 </script>
 
 <form
     class={formVariants({layout, className})}
-    {...{layout}}
 >
     {@render children()}
 </form>

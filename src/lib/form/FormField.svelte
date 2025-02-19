@@ -1,4 +1,32 @@
 <script lang="ts" module>
+import { tv, type VariantProps } from "tailwind-variants";
+
+const formFieldVariants = tv({
+    slots: {
+        base: "w-full flex",
+        label: "flex flex-row items-center text-sm text-slate-900",
+        input: "",
+    },
+    variants: {
+        layout: {
+            row: {
+                base: "flex-row items-center",
+                label: "w-20 shrink-0",
+                input: "grow",
+            },
+            col: {
+                base: "flex-col",
+                label: "w-auto h-7 leading-7",
+                input: "w-full",
+            },
+        },
+    },
+    defaultVariants: {
+        layout: "row",
+    },
+});
+
+type FormFieldLayout = VariantProps<typeof formFieldVariants>["layout"];
 
 export type FormFieldContext = {
     name:string;
@@ -14,10 +42,12 @@ type FormFieldRule = {
 type FormFieldProps = {
     name:string;
     value?:any;
-    label:string;
-    labelWidth?:string;
+    label:string|Snippet;
+    labelClass?:string;
     required?:boolean;
     tooltip?:string;
+    class?:string;
+    layout?:FormFieldLayout;
     children:Snippet;
     rules?:FormFieldRule[];
 }
@@ -25,18 +55,26 @@ type FormFieldProps = {
 </script>
 
 <script lang="ts">
-import { Tooltip} from "../index.js";
-import { HelpCircleSolid } from "../icons/index.js";
-import { setContext, type Snippet } from "svelte";
+import { getContext, setContext, type Snippet } from "svelte";
+import { Tooltip } from "$lib/index.js";
+import { HelpCircleOutline } from "$lib/icons/index.js";
+import type { FormContext } from "./Form.svelte";
+
+const ctx = getContext("form") as FormContext;
+if(!ctx) {
+    throw new Error("FormField not in the Form context!");
+}
 
 let {
-    label,
-    labelWidth,
+    layout = "row",
+    label:title,
+    labelClass,
     name,
     value,
     rules,
     tooltip,
     required,
+    class:className,
     children,
 }:FormFieldProps = $props();
 
@@ -63,38 +101,36 @@ setContext<FormFieldContext>("formField", {
     onchange,
 });
 
+const { 
+    base,
+    label,
+    input,
+} = formFieldVariants({
+    layout,
+});
+
 </script>
 
-<div class="tc-form-field">
-    <div 
-        class="tc-form-field-label"
-        style:width={labelWidth}
-        {...{required}}
-    >
-        {label} 
-
+<div class={base({className})}>
+    <div class={label({class:labelClass})}>
+        {#if typeof title === "string"}
+            {title} 
+        {:else}
+            {@render title()}
+        {/if}
         {#if tooltip}
-            <Tooltip
-                placement="top"
-                trigger="hover"
-            >
+            <Tooltip>
                 {#snippet target(ref)}
-                    <span use:ref>
-                        <HelpCircleSolid size={13}/>
+                    <span class="inline-block" use:ref>
+                        <HelpCircleOutline/>
                     </span>
                 {/snippet}
-
                 {tooltip}
             </Tooltip>
         {/if}
     </div>
 
-    <div class="tc-form-field-input">
+    <div class={input()}>
         {@render children()}
-        {#if error !== ""}
-            <div class="tc-form-field-error">
-                {error}
-            </div>
-        {/if}
     </div>
 </div>
