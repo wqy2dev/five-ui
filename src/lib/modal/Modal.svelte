@@ -159,7 +159,7 @@ const {
 		class={base({className})}
 	>
 		{#if title}
-			<div class="flex flex-row px-5 py-3 text-lg font-semibold">
+			<div class="flex flex-row px-5 py-3 text-lg text-slate-700 font-semibold">
 				<div class="grow">
 					{#if typeof title === "string"}
 						{title}
