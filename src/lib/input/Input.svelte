@@ -95,7 +95,6 @@ export type InputProps = {
 	head?:Snippet;
 	tail?:Snippet;
 	ref?:{(el:HTMLElement):void};
-	oninput?:{(value?:string):void};
 	onchange?:{(value?:string):void};
 	onkeypress?:{(code:string):void};
 	// input number
@@ -118,7 +117,6 @@ let {
     size,
 	width,
     disabled,
-    oninput,
     onchange,
 	onkeypress,
     ref,
@@ -166,13 +164,8 @@ function onHover(e:Event) {
     hover = e.type === "mouseenter";
 }
 
-function onInput(e:Event & {currentTarget: EventTarget & HTMLInputElement}) {
-    if(e.type === "input") {
-        oninput?.(e.currentTarget.value);
-    }
-    else if(e.type === "change") {
-        onchange?.(e.currentTarget.value);
-    }
+function onChange(e:Event & {currentTarget: EventTarget & HTMLInputElement}) {
+	onchange?.(e.currentTarget.value);
 }
 
 const {
@@ -207,8 +200,7 @@ const {
 		disabled={disabled}
 		onfocus={onFocus}
 		onblur={onFocus}
-		oninput={onInput}
-		onchange={onInput}
+		oninput={onChange}
 		{...restProps}
 	/>
 
