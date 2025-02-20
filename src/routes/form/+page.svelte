@@ -110,7 +110,12 @@ const sizes = ["sm", "md", "lg"];
 
 
 <div class="mt-6">
-    <Form layout="col">
+    <Form 
+        layout="col" 
+        onsubmit={(data, errors) => {
+            console.log(data, errors);
+        }
+    }>
         <FormField
             label="登录账号"
             name="username"
