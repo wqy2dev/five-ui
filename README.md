@@ -38,10 +38,11 @@ FiveUI already includes the following components, but is not limited to:
 | DatePicker ||
 | Drawer | ✔ |
 | Dropdown | ✔ |
-| Form |  |
+| Form | ✔ |
 | Icons | ✔ |
 | Input | ✔ |
 | Layout | ✔ |
+| Menu | ✔ |
 | Message | ✔ |
 | Modal | ✔ |
 | Notification | ✔ |
