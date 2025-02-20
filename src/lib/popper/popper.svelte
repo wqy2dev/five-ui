@@ -166,7 +166,7 @@ let {
     style,
     class: className,
     offset = 12,
-    zIndex = 1,
+    zIndex = 60,
     duration = 180,
     arrowClass,
     arrowShow,
