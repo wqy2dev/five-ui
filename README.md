@@ -57,6 +57,7 @@ FiveUI already includes the following components, but is not limited to:
 | Table | ✔ |
 | Tabs | ✔ |
 | Tag | ✔ |
+| Textarea | ✔ |
 | Timeline | |
 | TimePicker ||
 | Tooltip | ✔ |

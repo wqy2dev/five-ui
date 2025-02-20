@@ -38,6 +38,7 @@ const routes = [
     {path: "/table", title: "Table", achieve: true},
     {path: "/tabs", title: "Tabs", achieve: true},
     {path: "/tag", title: "Tag", achieve: true},
+    {path: "/textarea", title: "Textarea", achieve: true},
     {path: "/timeline", title: "Timeline"},
     {path: "/timepicker", title: "TimePicker"},
     {path: "/tooltip", title: "Tooltip", achieve: true},

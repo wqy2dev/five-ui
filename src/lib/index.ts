@@ -31,6 +31,7 @@ export { Switch } from "./switch/index.js";
 export { Table } from "./table/index.js";
 export { Tab, TabBar, TabContent, Tabs } from "./tabs/index.js";
 export { Tag } from "./tag/index.js";
+export { Textarea } from "./textarea/index.js";
 export { Timeline } from "./timeline/index.js";
 export { TimePicker } from "./timepicker/index.js";
 export { Tooltip } from "./tooltip/index.js";

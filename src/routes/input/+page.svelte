@@ -23,9 +23,6 @@ const sizes = ["sm", "md", "lg"];
         onchange={v => {
             console.log("change:", v);
         }}
-        oninput={v => {
-            console.log("input:", v);
-        }}
     />
 </div>
 
