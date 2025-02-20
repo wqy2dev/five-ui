@@ -11,7 +11,7 @@ const formFieldVariants = tv({
         layout: {
             row: {
                 base: "inline-flex flex-row items-center",
-                label: "w-20 justify-end shrink-0 pr-3",
+                label: "w-20 justify-end shrink-0 pr-2",
                 input: "grow",
             },
             col: {
@@ -113,11 +113,16 @@ const {
 
 <div class={base({className})}>
     <div class={label({class:labelClass})}>
+        {#if required}
+            <span class="text-red-500">*</span>
+        {/if}
+
         {#if typeof title === "string"}
             {title} 
         {:else}
             {@render title()}
         {/if}
+
         {#if tooltip}
             <Tooltip>
                 {#snippet target(ref)}

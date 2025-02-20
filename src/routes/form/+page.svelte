@@ -18,6 +18,7 @@ const sizes = ["sm", "md", "lg"];
         <FormField
             label="Username"
             name="username"
+            required
             rules={[
                 {
                     rule: (value) => value.length > 0,
@@ -34,6 +35,7 @@ const sizes = ["sm", "md", "lg"];
         <FormField
             label="Password"
             name="Password"
+            required
             rules={[
                 {
                     rule: (value) => value.length > 0,
@@ -53,7 +55,7 @@ const sizes = ["sm", "md", "lg"];
     <Form layout="row">
         <FormField
             class="w-96"
-            label="Username"
+            label="用户名称"
             name="username"
             rules={[
                 {
@@ -70,17 +72,17 @@ const sizes = ["sm", "md", "lg"];
 
         <FormField
             class="w-96"
-            label="Password"
-            name="Password"
+            label="手机号码"
+            name="mobile"
             rules={[
                 {
                     rule: (value) => value.length > 0,
-                    msg: "Password is required",
+                    msg: "Mobile is required",
                 },
             ]}
         >
             <Input
-                type="password"
+                type="text"
                 class="w-full"
             />
         </FormField>
@@ -113,6 +115,7 @@ const sizes = ["sm", "md", "lg"];
             name="username"
             layout="col"
             tooltip="Username is required"
+            required
             rules={[
                 {
                     rule: (value) => value.length > 0,
@@ -130,6 +133,7 @@ const sizes = ["sm", "md", "lg"];
             label="登录密码"
             name="Password"
             layout="col"
+            required
             rules={[
                 {
                     rule: (value) => value.length > 0,
