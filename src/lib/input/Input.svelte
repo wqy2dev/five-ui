@@ -1,8 +1,9 @@
 <script lang="ts" module>
-import { onMount, type Snippet } from "svelte";
+import { getContext, onMount, type Snippet } from "svelte";
 import { type VariantProps, tv } from "tailwind-variants";
 import { Close } from "$lib/icons/index.js";
 import type { FullAutoFill } from "svelte/elements";
+import type { FormFieldContext } from "$lib/form/FormField.svelte";
 
 const inputVariants = tv({
 	slots: {
@@ -124,19 +125,20 @@ let {
     ...restProps
 }:InputProps = $props();
 
+// first reading context
+const fieldContext = getContext<FormFieldContext>("formField");
+if(fieldContext) {
+    name = fieldContext.name;
+    value = fieldContext.value;
+    onchange = fieldContext.onchange;
+}
+
 let el:HTMLElement;
 let inner:HTMLInputElement;
 
 onMount(() => {
     ref?.(el);
 });
-
-// const fieldContext = getContext<FormFieldContext>("tc-form-field");
-// if(fieldContext) {
-//     name = fieldContext.name;
-//     value = fieldContext.value;
-//     onchange = fieldContext.onchange;
-// }
 
 let focus = $state(false);
 let hover = $state(false);

@@ -1,6 +1,7 @@
 <script lang="ts">
 import { Form, FormField, Input } from "$lib/index.js";
 import { Calendar, Search } from "$lib/icons/index.js";
+    import Button from "$lib/button/Button.svelte";
 
 const sizes = ["sm", "md", "lg"];
 </script>
@@ -118,7 +119,7 @@ const sizes = ["sm", "md", "lg"];
             required
             rules={[
                 {
-                    rule: (value) => value.length > 0,
+                    rule: (value) => value === "OK",
                     msg: "Username is required",
                 },
             ]}
@@ -136,7 +137,7 @@ const sizes = ["sm", "md", "lg"];
             required
             rules={[
                 {
-                    rule: (value) => value.length > 0,
+                    rule: (value) => value === "OK",
                     msg: "Password is required",
                 },
             ]}
@@ -146,5 +147,7 @@ const sizes = ["sm", "md", "lg"];
                 class="w-full"
             />
         </FormField>
+
+        <Button type="submit" class="w-20">Submit</Button>
     </Form>
 </div>

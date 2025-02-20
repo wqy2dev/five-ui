@@ -5,7 +5,7 @@ const formFieldVariants = tv({
     slots: {
         base: "w-full shrink-0",
         label: "flex flex-row items-center text-sm text-slate-900",
-        input: "",
+        input: "relative",
     },
     variants: {
         layout: {
@@ -30,7 +30,7 @@ type FormFieldLayout = VariantProps<typeof formFieldVariants>["layout"];
 
 export type FormFieldContext = {
     name:string;
-    value:any;
+    value:string|number;
     onchange?:{(value?:any):void};
 }
 
@@ -41,7 +41,7 @@ type FormFieldRule = {
 
 type FormFieldProps = {
     name:string;
-    value?:any;
+    value?:string|number;
     label:string|Snippet;
     labelClass?:string;
     required?:boolean;
@@ -55,7 +55,7 @@ type FormFieldProps = {
 </script>
 
 <script lang="ts">
-import { getContext, setContext, type Snippet } from "svelte";
+import { getContext, onMount, setContext, type Snippet } from "svelte";
 import { Tooltip } from "$lib/index.js";
 import { HelpCircleOutline } from "$lib/icons/index.js";
 import type { FormContext } from "./Form.svelte";
@@ -70,35 +70,52 @@ let {
     label:title,
     labelClass,
     name,
-    value,
-    rules,
+    value:defaultValue = "",
+    rules = [],
     tooltip,
     required,
     class:className,
     children,
 }:FormFieldProps = $props();
 
+let value = $state(defaultValue);
 let error = $state("");
 
-function onchange(value:any) {
-    if(rules) {
-        let msg = "";
+function onchange(newValue:string|number) {
+    value = newValue, validator();
 
-        for(let i=0;i<rules.length;i++) {
-            if(!rules[i].rule(value)) {
-                msg = rules[i].msg;
-                break;
-            }
-        }
-
-        error = msg !== "" ? msg : "";
+    if(error === "") {
+        // update value
+        ctx.data[name] = newValue;
     }
+}
+
+function validator() {
+    let msg = "";
+
+    for(let i=0;i<rules.length;i++) {
+        if(!rules[i].rule(value)) {
+            msg = rules[i].msg;
+            break;
+        }
+    }
+
+    return error = msg;
 }
 
 setContext<FormFieldContext>("formField", {
     name,
-    value,
+    value:defaultValue,
     onchange,
+});
+
+onMount(() => {
+    // set initial value
+    ctx.data[name] = defaultValue;
+    ctx.validators.push({
+        name,
+        validator,
+    });
 });
 
 const { 
@@ -137,5 +154,11 @@ const {
 
     <div class={input()}>
         {@render children()}
+
+        {#if error !== ""}
+            <span class="text-red-500 text-sm absolute -bottom-6 left-0">
+                {error}
+            </span>
+        {/if}
     </div>
 </div>
