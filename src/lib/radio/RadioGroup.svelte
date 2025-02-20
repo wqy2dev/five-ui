@@ -1,4 +1,5 @@
 <script lang="ts" module>
+import type { FormFieldContext } from "$lib/form/FormField.svelte";
 import { getContext, setContext, type Snippet } from "svelte";
 
 export type RadioContext = {
@@ -16,8 +17,6 @@ type RadioGroupProps = {
 </script>
 
 <script lang="ts">
-// import { type FormFieldContext } from "../form";
-
 let {
     name,
     value,
@@ -25,12 +24,12 @@ let {
     onchange,
 }:RadioGroupProps = $props();
 
-// const fieldContext = getContext<FormFieldContext>("tc-form-field");
-// if(fieldContext) {
-//     name = fieldContext.name;
-//     value = fieldContext.value;
-//     onchange = fieldContext.onchange;
-// }
+const fieldContext = getContext<FormFieldContext>("formField");
+if(fieldContext) {
+    name = fieldContext.name;
+    value = fieldContext.value;
+    onchange = fieldContext.onchange;
+}
 
 let context = $state({
     name,

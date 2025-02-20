@@ -60,9 +60,7 @@ type RadioProps = {
     
 </script>
     
-
 <script lang="ts">
-
 const context = getContext<RadioContext>("radio");
 if(!context) {
     throw new Error("Radio not in the RadioGroup!");

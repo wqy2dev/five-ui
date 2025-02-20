@@ -30,7 +30,7 @@ type FormFieldLayout = VariantProps<typeof formFieldVariants>["layout"];
 
 export type FormFieldContext = {
     name:string;
-    value:string|number;
+    value:any;
     onchange?:{(value?:any):void};
 }
 
@@ -41,7 +41,7 @@ type FormFieldRule = {
 
 type FormFieldProps = {
     name:string;
-    value?:string|number;
+    value?:any;
     label:string|Snippet;
     labelClass?:string;
     required?:boolean;
@@ -81,7 +81,7 @@ let {
 let value = $state(defaultValue);
 let error = $state("");
 
-function onchange(newValue:string|number) {
+function onchange(newValue:any) {
     value = newValue, validator();
 
     if(error === "") {

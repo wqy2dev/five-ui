@@ -119,6 +119,7 @@ type SwitchProps = {
 
 <script lang="ts">
 import { getContext, onMount, type Snippet } from "svelte";
+import type { FormFieldContext } from "$lib/form/FormField.svelte";
 
 let {
     id,
@@ -137,15 +138,15 @@ let {
     onchange,
 }:SwitchProps = $props();
 
-// const fieldContext = getContext<FormFieldContext>("tc-form-field");
-// if(fieldContext) {
-//     name = fieldContext.name;
-//     value = fieldContext.value;
-//     onchange = fieldContext.onchange;
-// }
-
 if(value !== onValue && value !== offValue) {
     throw new Error("switch value must be either onValue or offValue!");
+}
+
+const fieldContext = getContext<FormFieldContext>("formField");
+if(fieldContext) {
+    name = fieldContext.name;
+    value = fieldContext.value;
+    onchange = fieldContext.onchange;
 }
 
 let on = $state(value === onValue);
