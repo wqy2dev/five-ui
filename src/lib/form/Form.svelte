@@ -31,6 +31,10 @@ type FormProps = {
     children:Snippet;
 }
 
+export type FormInstance = {
+    submit: {():void};
+};
+
 </script>
 
 <script lang="ts">
@@ -38,16 +42,14 @@ type FormProps = {
 let {
     layout = "col",
     class:className,
-    onsubmit,
+    onsubmit:onSubmit,
     children,
 }:FormProps = $props();
 
 let data:Record<string, any> = {};
 let validators:FormValidator[] = [];
 
-function handleSubmit(e:Event) {
-    e.preventDefault();
-
+export function submit() {
     let errors:Record<string, string>[] = [];
 
     validators.forEach(item => {
@@ -59,7 +61,11 @@ function handleSubmit(e:Event) {
         }
     });
 
-    onsubmit?.(data, errors);
+    onSubmit?.(data, errors);
+}
+
+function onsubmit(e:Event) {
+    e.preventDefault(), submit();
 }
 
 setContext("form", {
@@ -72,7 +78,7 @@ setContext("form", {
 
 <form
     class={formVariants({layout, className})}
-    onsubmit={handleSubmit}
+    onsubmit={onsubmit}
 >
     {@render children()}
 </form>
