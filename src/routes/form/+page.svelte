@@ -111,7 +111,7 @@ const sizes = ["sm", "md", "lg"];
     <Form 
         layout="col" 
         onsubmit={(data, errors) => {
-            $inspect(data, errors);
+            console.log(data, errors);
         }
     }>
 
@@ -121,7 +121,7 @@ const sizes = ["sm", "md", "lg"];
             layout="col"
             required
             onchange={value => {
-                $inspect("hobby:", value);
+                console.log("hobby:", value);
             }}
             rules={[
                 {
@@ -157,7 +157,7 @@ const sizes = ["sm", "md", "lg"];
                 },
             ]}
             onchange={value => {
-                $inspect("sex:", value);
+                console.log("sex:", value);
             }}
         >
             <RadioGroup>
