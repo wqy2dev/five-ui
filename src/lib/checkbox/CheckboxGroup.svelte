@@ -5,6 +5,7 @@ import { getContext, setContext, type Snippet } from "svelte";
 export type CheckboxContext = {
     name:string;
     value:Array<string|number>;
+    onchange?:{(value?:Array<string|number>):void};
 }
 
 type CheckboxGroupProps = {
@@ -19,7 +20,7 @@ type CheckboxGroupProps = {
 <script lang="ts">
 let {
     name,
-    value = [],
+    value:defaultValue = [],
     children,
     onchange,
 }:CheckboxGroupProps = $props();
@@ -27,19 +28,14 @@ let {
 const fieldContext = getContext<FormFieldContext>("formField");
 if(fieldContext) {
     name = fieldContext.name;
-    value = fieldContext.value;
+    defaultValue = fieldContext.value;
     onchange = fieldContext.onchange;
 }
 
-let context = $state({
+setContext("checkbox", {
     name,
-    value,
-});
-
-setContext("checkbox", context);
-
-$effect(() => {
-    onchange?.(context.value);
+    value:defaultValue,
+    onchange,
 });
 
 </script>

@@ -95,25 +95,19 @@ function onChange(e:Event & {currentTarget:HTMLInputElement}) {
 
     // first context
     if(context) {
-        let value:Array<string|number> = [];
-
-        if(context.value){
-            value = ([] as any).concat(context.value);
-        }
-
         if(defaultValue !== undefined) {
             if(checked) {
-                value.push(defaultValue);
+                context.value.push(defaultValue);
             } else {
-                const index = value.indexOf(defaultValue);
+                const index = context.value.indexOf(defaultValue);
                 
                 if(index > -1) {
-                    value.splice(index, 1);
+                    context.value.splice(index, 1);
                 }
             }
         }
 
-        context.value = value;
+        context.onchange?.(context.value);
     }
 
     onchange?.(checked);
