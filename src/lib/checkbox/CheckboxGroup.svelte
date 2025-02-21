@@ -39,8 +39,7 @@ let ctx = $state({
 setContext("checkbox", ctx);
 
 $effect(() => {
-    let v = $state.snapshot(ctx).value;
-    onchange?.(v);
+    onchange?.($state.snapshot(ctx).value);
 });
 
 </script>
