@@ -98,7 +98,7 @@ function onChange(e:Event & {currentTarget:HTMLInputElement}) {
         let value:Array<string|number> = [];
 
         if(context.value){
-            value = context.value;
+            value = ([] as any).concat(context.value);
         }
 
         if(defaultValue !== undefined) {

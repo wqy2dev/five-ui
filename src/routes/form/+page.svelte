@@ -111,7 +111,7 @@ const sizes = ["sm", "md", "lg"];
     <Form 
         layout="col" 
         onsubmit={(data, errors) => {
-            console.log(data, errors);
+            $inspect(data, errors);
         }
     }>
 
@@ -121,7 +121,7 @@ const sizes = ["sm", "md", "lg"];
             layout="col"
             required
             onchange={value => {
-                console.log("hobby:", value);
+                $inspect("hobby:", value);
             }}
             rules={[
                 {
@@ -147,7 +147,7 @@ const sizes = ["sm", "md", "lg"];
 
         <FormField
             label="性别"
-            name="status"
+            name="sex"
             layout="col"
             required
             rules={[
@@ -156,7 +156,10 @@ const sizes = ["sm", "md", "lg"];
                     msg: "请选择类型",
                 },
             ]}
-            >
+            onchange={value => {
+                $inspect("sex:", value);
+            }}
+        >
             <RadioGroup>
                 {#each [
                     {label:"男生", value:"A"},

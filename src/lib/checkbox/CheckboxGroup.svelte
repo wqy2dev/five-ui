@@ -39,7 +39,6 @@ let context = $state({
 setContext("checkbox", context);
 
 $effect(() => {
-    console.log(1111111);
     onchange?.(context.value);
 });
 
