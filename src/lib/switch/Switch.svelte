@@ -112,7 +112,7 @@ type SwitchProps = {
     disabled?:boolean;
     thumb?:Snippet<[{on:boolean}]>;
     ref?:{(el:HTMLElement):void};
-    onchange?:{(on:boolean, value?:string|number):void};
+    onchange?:{(value?:string|number):void};
 }
 
 </script>
@@ -155,8 +155,7 @@ let focus = $state(false);
 function onChange() {
     if(!disabled) {
         on = !on, focus = true;
-
-        onchange?.(on, on?onValue:offValue);
+        onchange?.(on?onValue:offValue);
     }
 }
 

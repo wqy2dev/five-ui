@@ -226,13 +226,13 @@ const sizes = ["sm", "md", "lg"];
         
         <FormField
             label="启用"
-            name="status"
+            name="switch"
             layout="col"
             required
             rules={[
                 {
-                    rule: (value) => value === "OK",
-                    msg: "请填写说明",
+                    rule: (value) => value === "on",
+                    msg: "请启用",
                 },
             ]}
         >
