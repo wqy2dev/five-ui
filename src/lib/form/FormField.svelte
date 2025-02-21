@@ -3,7 +3,7 @@ import { tv, type VariantProps } from "tailwind-variants";
 
 const formFieldVariants = tv({
     slots: {
-        base: "w-full shrink-0",
+        base: "w-full shrink-0 leading-none",
         label: "flex flex-row items-center text-sm text-slate-900",
         input: "relative",
     },
@@ -48,8 +48,9 @@ type FormFieldProps = {
     tooltip?:string;
     class?:string;
     layout?:FormFieldLayout;
-    children:Snippet;
     rules?:FormFieldRule[];
+    onchange?:{(value?:any):void};
+    children:Snippet;
 }
 
 </script>
@@ -71,23 +72,26 @@ let {
     labelClass,
     name,
     value:defaultValue = "",
+    class:className,
     rules = [],
     tooltip,
     required,
-    class:className,
+    onchange,
     children,
 }:FormFieldProps = $props();
 
 let value = $state(defaultValue);
 let error = $state("");
 
-function onchange(newValue:any) {
+function onChange(newValue:any) {
     value = newValue, validator();
 
     if(error === "") {
         // update value
         ctx.data[name] = newValue;
     }
+
+    onchange?.(newValue);
 }
 
 function validator() {
@@ -106,7 +110,7 @@ function validator() {
 setContext<FormFieldContext>("formField", {
     name,
     value:defaultValue,
-    onchange,
+    onchange:onChange,
 });
 
 onMount(() => {
@@ -156,7 +160,7 @@ const {
         {@render children()}
 
         {#if error !== ""}
-            <span class="text-red-500 text-sm absolute -bottom-6 left-0">
+            <span class="text-red-500 text-sm absolute -bottom-5 left-0">
                 {error}
             </span>
         {/if}

@@ -20,6 +20,8 @@ const radius = ["sm", "md", "lg", "xl", "none"];
 <div class="w-full">
     <Textarea
         placeholder="search keywords"
+        minlength={2}
+        maxlength={5}
         onchange={v => {
             console.log("change:", v);
         }}
@@ -31,15 +33,15 @@ const radius = ["sm", "md", "lg", "xl", "none"];
 </h4>
 
 <div class="w-full">
-    <Textarea value="2024" disabled/>
+    <Textarea value="FiveUI" disabled/>
 </div>
 
 <h4 class="my-5 text-base indent-2 bg-slate-100">
     Radius
 </h4>
 
-<div class="w-full">
+<div class="w-full space-y-5">
     {#each radius as rds}
-        <Textarea value="2024" radius={rds as any}/>
+        <Textarea value="FiveUI" radius={rds as any}/>
     {/each}
 </div>

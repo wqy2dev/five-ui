@@ -8,7 +8,7 @@ export type RadioContext = {
 }
 
 type RadioGroupProps = {
-    name:string;
+    name?:string;
     value?:string|number;
     children:Snippet;
     onchange?:{(value?:string|number):void};

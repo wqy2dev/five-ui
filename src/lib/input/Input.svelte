@@ -200,7 +200,7 @@ const {
 		disabled={disabled}
 		onfocus={onFocus}
 		onblur={onFocus}
-		oninput={onChange}
+		onchange={onChange}
 		{...restProps}
 	/>
 

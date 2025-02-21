@@ -6,10 +6,11 @@ import { getContext, onMount } from "svelte";
 import { tv, type VariantProps } from "tailwind-variants";
 
 const textareaVariants = tv({
-	base: "w-full align-top inline-flex flex-row items-center p-1 rounded-md bg-white border border-solid border-slate-200 overflow-hidden transition outline-none",
+	base: "w-full align-top inline-flex flex-row items-center p-1 rounded-md text-sm bg-white border border-solid border-slate-200 overflow-hidden transition outline-none",
     variants: {
         disabled: {
-            true: "cursor-not-allowed bg-slate-50",
+            true: "cursor-not-allowed bg-slate-50 text-slate-400",
+            false: "text-slate-700",
         },
         focus: {
             true: "ring ring-primary-200 border-primary-600",
@@ -58,6 +59,7 @@ let {
     class:className,
     disabled,
     radius,
+    rows = 3,
     onchange,
     ref,
     ...restProps
@@ -91,11 +93,12 @@ onMount(() => {
 </script>
 
 <textarea
-    class={textareaVariants({disabled, radius, className})}
-    style:width={width}
     bind:this={el}
     bind:value={value}
+    class={textareaVariants({focus, disabled, radius, className})}
+    style:width={width}
     name={name}
+    rows={rows}
     disabled={disabled}
     oninput={onChange}
     onfocus={onFocus}

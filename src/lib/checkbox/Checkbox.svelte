@@ -138,7 +138,7 @@ onMount(() => {
 </script>
 
 <label
-    class={twMerge("align-top inline-flex flex-row items-center w-fit h-fit leading-none gap-2 mr-3", className)}
+    class={twMerge("inline-flex flex-row items-center align-top w-fit h-fit leading-none gap-2 mr-3", className)}
 >
     <span
         bind:this={el}
@@ -160,7 +160,9 @@ onMount(() => {
         {/if}
     </span>
 
-    {@render children?.()}
+    <span class="text-sm">
+        {@render children?.()}
+    </span>
 </label>
 
 <svelte:window

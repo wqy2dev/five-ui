@@ -8,7 +8,7 @@ export type CheckboxContext = {
 }
 
 type CheckboxGroupProps = {
-    name:string;
+    name?:string;
     value?:Array<string|number>;
     children:Snippet;
     onchange?:{(value?:Array<string|number>):void};
@@ -39,7 +39,8 @@ let context = $state({
 setContext("checkbox", context);
 
 $effect(() => {
-    onchange?.(([] as Array<string|number>).concat(context.value));
+    console.log(1111111);
+    onchange?.(context.value);
 });
 
 </script>

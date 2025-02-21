@@ -127,7 +127,9 @@ onMount(() => {
         {/if}
     </span>
 
-    {@render children?.()}
+    <span class="text-sm">
+        {@render children?.()}
+    </span>
 </label>
 
 <svelte:window 

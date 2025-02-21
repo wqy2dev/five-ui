@@ -1,7 +1,5 @@
 <script lang="ts">
-import { Form, FormField, Input } from "$lib/index.js";
-import { Calendar, Search } from "$lib/icons/index.js";
-    import Button from "$lib/button/Button.svelte";
+import { Form, FormField, Input, Textarea, Button, Switch, RadioGroup, Radio, Checkbox, CheckboxGroup } from "$lib/index.js";
 
 const sizes = ["sm", "md", "lg"];
 </script>
@@ -116,6 +114,62 @@ const sizes = ["sm", "md", "lg"];
             console.log(data, errors);
         }
     }>
+
+        <FormField
+            label="爱好"
+            name="hobby"
+            layout="col"
+            required
+            onchange={value => {
+                console.log("hobby:", value);
+            }}
+            rules={[
+                {
+                    rule: (value) => value === "OK",
+                    msg: "请选择类型",
+                },
+            ]}
+            >
+            <CheckboxGroup>
+                {#each [
+                    {label:"打篮球", value:"A"},
+                    {label:"看电影", value:"B"},
+                    {label:"骑行", value:"C"},
+                    {label:"游泳", value:"D"},
+                    {label:"唱歌", value:"E"}
+                ] as item}
+                    <Checkbox value={item.value}>
+                        {item.label}
+                    </Checkbox>
+                {/each}
+            </CheckboxGroup>
+        </FormField>
+
+        <FormField
+            label="性别"
+            name="status"
+            layout="col"
+            required
+            rules={[
+                {
+                    rule: (value) => value === "OK",
+                    msg: "请选择类型",
+                },
+            ]}
+            >
+            <RadioGroup>
+                {#each [
+                    {label:"男生", value:"A"},
+                    {label:"女生", value:"B"},
+                    {label:"保密", value:"C"},
+                ] as item}
+                    <Radio value={item.value}>
+                        {item.label}
+                    </Radio>
+                {/each}
+            </RadioGroup>
+        </FormField>
+
         <FormField
             label="登录账号"
             name="username"
@@ -153,6 +207,39 @@ const sizes = ["sm", "md", "lg"];
             />
         </FormField>
 
+        <FormField
+            label="说明"
+            name="remark"
+            layout="col"
+            required
+            rules={[
+                {
+                    rule: (value) => value === "OK",
+                    msg: "请填写说明",
+                },
+            ]}
+        >
+            <Textarea/>
+        </FormField>
+        
+        <FormField
+            label="启用"
+            name="status"
+            layout="col"
+            required
+            rules={[
+                {
+                    rule: (value) => value === "OK",
+                    msg: "请填写说明",
+                },
+            ]}
+        >
+            <Switch 
+                value="on"
+                onValue="on"
+                offValue="off"
+            />
+        </FormField>
         <Button type="submit" class="w-20">Submit</Button>
     </Form>
 </div>
