@@ -76,29 +76,32 @@ let {
     labelClass,
     tooltip,
     required,
-    onchange,
+    onchange:watch,
     children,
 }:FormFieldProps = $props();
 
-let value = $state(defaultValue);
-let error = $state("");
+let value = defaultValue;
+let error = $state<string|undefined>(undefined);
+let mounted = false;
 
-function onChange(newValue:any) {
-    value = newValue, validator();
+function onchange(nv:any) {
+    if(mounted) {
+        validate(nv);
+    }
 
     if(error === "") {
         // update value
-        ctx.data[name] = newValue;
+        ctx.data[name] = nv;
     }
 
-    onchange?.(newValue);
+    watch?.(nv), value = nv;
 }
 
-function validator() {
-    let msg = "";
+function validate(v:any) {
+    let msg = undefined;
 
     for(let i=0;i<rules.length;i++) {
-        if(!rules[i].rule(value)) {
+        if(!rules[i].rule(v)) {
             msg = rules[i].msg;
             break;
         }
@@ -110,16 +113,15 @@ function validator() {
 setContext<FormFieldContext>("formField", {
     name,
     value:defaultValue,
-    onchange:onChange,
+    onchange,
 });
 
 onMount(() => {
+    mounted = true;
+
     // set initial value
     ctx.data[name] = defaultValue;
-    ctx.validators.push({
-        name,
-        validator,
-    });
+    ctx.validators.push({name, validator:() => validate(value)});
 });
 
 const { 

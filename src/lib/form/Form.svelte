@@ -16,7 +16,7 @@ const formVariants = tv({
 });
 
 type FormLayout = VariantProps<typeof formVariants>["layout"];
-type FormValidator = {name:string, validator:{():string}};
+type FormValidator = {name:string, validator:{():string|undefined}};
 
 export type FormContext = {
     layout:FormLayout;
@@ -54,7 +54,7 @@ export function submit() {
 
     validators.forEach(item => {
         const msg = item.validator();
-        if(msg !== "") {
+        if(msg !== undefined) {
             errors.push({
                 [item.name]: msg,
             });

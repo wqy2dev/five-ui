@@ -5,7 +5,6 @@ import { getContext, setContext, type Snippet } from "svelte";
 export type CheckboxContext = {
     name:string;
     value:Array<string|number>;
-    onchange?:{(value?:Array<string|number>):void};
 }
 
 type CheckboxGroupProps = {
@@ -32,10 +31,16 @@ if(fieldContext) {
     onchange = fieldContext.onchange;
 }
 
-setContext("checkbox", {
+let ctx = $state({
     name,
     value,
-    onchange,
+});
+
+setContext("checkbox", ctx);
+
+$effect(() => {
+    let v = $state.snapshot(ctx).value;
+    onchange?.(v);
 });
 
 </script>

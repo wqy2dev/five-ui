@@ -124,7 +124,7 @@ const sizes = ["sm", "md", "lg"];
             }}
             rules={[
                 {
-                    rule: (value) => value.length > 0,
+                    rule: (value) => value && value.length > 0,
                     msg: "请选择类型",
                 },
             ]}
@@ -151,7 +151,7 @@ const sizes = ["sm", "md", "lg"];
             required
             rules={[
                 {
-                    rule: (value) => value === "OK",
+                    rule: (value) => !!value,
                     msg: "请选择类型",
                 },
             ]}

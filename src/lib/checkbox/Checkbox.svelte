@@ -105,8 +105,6 @@ function onChange(e:Event & {currentTarget:HTMLInputElement}) {
                 }
             }
         }
-
-        context.onchange?.(context.value);
     }
 
     onchange?.(checked);
