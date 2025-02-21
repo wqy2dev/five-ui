@@ -5,13 +5,14 @@ import { getContext, setContext, type Snippet } from "svelte";
 export type RadioContext = {
     name:string;
 	value:string|number;
+    onchange:{(value?:string|number):void};
 }
 
 type RadioGroupProps = {
     name?:string;
     value?:string|number;
-    children:Snippet;
     onchange?:{(value?:string|number):void};
+    children:Snippet;
 };
 
 </script>
@@ -31,15 +32,10 @@ if(fieldContext) {
     onchange = fieldContext.onchange;
 }
 
-let context = $state({
+setContext("radio", {
     name,
     value,
-});
-
-setContext("radio", context);
-
-$effect(() => {
-    onchange?.(context.value);
+    onchange,
 });
 
 </script>

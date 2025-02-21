@@ -77,7 +77,7 @@ type CheckboxProps = {
 let {
     ref,
     class:className,
-    value:defaultValue,
+    value,
     checked:defaultChecked,
     radius,
     disabled,
@@ -88,19 +88,18 @@ let {
 const context = getContext<CheckboxContext>("checkbox");
 
 let focus = $state(false);
-let checked = $state(context ? context.value && context.value.indexOf(defaultValue) > -1 : !!defaultChecked);
+let checked = $state(context ? context.value && context.value.indexOf(value) > -1 : !!defaultChecked);
 
 function onChange(e:Event & {currentTarget:HTMLInputElement}) {
     checked = e.currentTarget.checked;
 
     // first context
     if(context) {
-        if(defaultValue !== undefined) {
+        if(value !== undefined) {
             if(checked) {
-                context.value.push(defaultValue);
+                context.value.push(value);
             } else {
-                const index = context.value.indexOf(defaultValue);
-                
+                const index = context.value.indexOf(value);
                 if(index > -1) {
                     context.value.splice(index, 1);
                 }
@@ -142,8 +141,8 @@ onMount(() => {
             bind:checked={checked}
             class="absolute top-0 left-0 w-4 h-4 -z-10"
             type="checkbox"
-            name={context ? context.name:undefined}
-            value={defaultValue}
+            name={context ? context.name : undefined}
+            value={value}
             disabled={disabled}
             onchange={onChange}
             onclick={onFocus}

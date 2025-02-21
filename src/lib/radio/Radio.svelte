@@ -89,6 +89,7 @@ function onBlur(e:Event) {
 
 function onChange(_:Event) {
     checked = true, context.value = value;
+    context.onchange(value);
 }
 
 $effect(() => {

@@ -106,7 +106,6 @@ const sizes = ["sm", "md", "lg"];
     </Form>
 </div>
 
-
 <div class="mt-6">
     <Form 
         layout="col" 
@@ -125,7 +124,7 @@ const sizes = ["sm", "md", "lg"];
             }}
             rules={[
                 {
-                    rule: (value) => value === "OK",
+                    rule: (value) => value.length > 0,
                     msg: "请选择类型",
                 },
             ]}

@@ -20,7 +20,7 @@ type CheckboxGroupProps = {
 <script lang="ts">
 let {
     name,
-    value:defaultValue = [],
+    value = [],
     children,
     onchange,
 }:CheckboxGroupProps = $props();
@@ -28,13 +28,13 @@ let {
 const fieldContext = getContext<FormFieldContext>("formField");
 if(fieldContext) {
     name = fieldContext.name;
-    defaultValue = fieldContext.value;
+    value = fieldContext.value ?? [];
     onchange = fieldContext.onchange;
 }
 
 setContext("checkbox", {
     name,
-    value:defaultValue,
+    value,
     onchange,
 });
 

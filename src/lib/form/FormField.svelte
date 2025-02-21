@@ -67,13 +67,13 @@ if(!ctx) {
 }
 
 let {
+    name,
+    value:defaultValue,
+    class:className,
+    rules = [],
     layout = "row",
     label:title,
     labelClass,
-    name,
-    value:defaultValue = "",
-    class:className,
-    rules = [],
     tooltip,
     required,
     onchange,
