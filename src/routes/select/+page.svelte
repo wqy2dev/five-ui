@@ -44,3 +44,37 @@ const sizes = ["sm", "md", "lg"];
         </Option>
     </Select>
 </div>
+
+
+<h4 class="my-5 text-base indent-2 bg-slate-100">
+    Search
+</h4>
+
+<div class="flex flex-row gap-5">
+    <Select
+        name="a" 
+        onchange={v => console.log("radio a:", v)}
+        placeholder="please select"
+        enableSearch
+    >
+        <Option
+            value="polo"
+            label={"菠萝"}
+        >
+            菠萝
+        </Option>
+        <Option
+            value="juezi"
+            label={"橘子A"}
+            disabled
+        >
+            橘子
+        </Option>
+        <Option
+            value="apple"
+            label={"苹果B"}
+        >
+            苹果
+        </Option>
+    </Select>
+</div>

@@ -15,6 +15,7 @@ type SelectProps = {
     disabled?:boolean;
     width?:number|string;
     maxHeight?:string;
+    optionsClass?:string;
     search?:InputProps;
     enableSearch?:boolean;
     ref?:{(el:HTMLElement):void};
@@ -26,6 +27,9 @@ type SelectProps = {
 </script>
 
 <script lang="ts">
+import { Menu } from "$lib/menu/index.js";
+    import MenuItem from "$lib/menu/MenuItem.svelte";
+
 
 let {
     class:className,
@@ -34,7 +38,7 @@ let {
     value,
     search,
     width = "350px",
-    maxHeight = "200px",
+    optionsClass = "max-h-20",
     disabled,
     placeholder,
     enableSearch,
@@ -72,7 +76,7 @@ $effect(() => {
 </script>
 
 <Popper 
-    trigger="focus"
+    trigger="click"
     placement="bottom"
     when={when}
 >
@@ -95,22 +99,40 @@ $effect(() => {
     {/snippet}
 
     <div 
-        class="h-max border border-solid border-input rounded-md shadow bg-white"
+        class="h-max p-1 border border-solid border-input rounded-md shadow bg-white"
         style:width={width}
     >
         {#if enableSearch}
-            <div class="px-2 pt-2">
+            <div class="pb-2">
                 <Input
                     {...search}
                 >
                     {#snippet tail()}
-                        <Search size={13}/>
+                        <Search size={15}/>
                     {/snippet}
                 </Input>
             </div>
         {/if}
 
-        <div 
+        <Menu 
+            class="w-full max-h-56 overflow-y-auto overflow-x-hidden"
+            ref={ el => overflowRef = el }
+        >
+            <MenuItem key="1">菜单一</MenuItem>
+            <MenuItem key="2">菜单二</MenuItem>
+            <MenuItem key="3">菜单三</MenuItem>
+            <MenuItem key="3">菜单三</MenuItem>
+            <MenuItem key="3">菜单三</MenuItem>
+            <MenuItem key="3">菜单三</MenuItem>
+            <MenuItem key="3">菜单三</MenuItem>
+            <MenuItem key="3">菜单三</MenuItem>
+            <MenuItem key="3">菜单三</MenuItem>
+            <MenuItem key="3">菜单三</MenuItem>
+            <MenuItem key="3">菜单三</MenuItem>
+
+        </Menu>
+
+        <!-- <div 
             class="px-2 pt-2 pb-2 overflow-y-auto overflow-x-hidden"
             style:max-height={maxHeight}
             bind:this={overflowRef}
@@ -124,6 +146,6 @@ $effect(() => {
                     empty data
                 </div>
             {/if}
-        </div>
+        </div> -->
     </div>
 </Popper>
