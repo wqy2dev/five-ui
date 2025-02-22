@@ -1,24 +1,33 @@
 <script lang="ts" module>
 import { ChevronDown } from "$lib/icons/index.js";
-import { onMount, type Snippet } from "svelte";
+import { onMount } from "svelte";
 import { tv, type VariantProps } from "tailwind-variants";
 
 const inputVariants = tv({
     slots: {
         base:"h-9 inline-flex flex-row items-center rounded-md bg-white p-2 border border-solid border-slate-200 outline-none overflow-hidden transition",
-        input:"flex flex-row items-center grow shrink-0 text-sm",
-        chevron:"w-4 shrink-0 text-slate-600",
+        input:"flex flex-row items-center grow shrink-0 text-slate-700 text-sm",
+        chevron:"w-4 shrink-0 text-slate-400 transition",
     },
     variants: {
         focus: {
-            true:"ring ring-primary-200",
+            true: {
+                base: "ring ring-primary-200 border-primary-600",
+                chevron: "rotate-180",
+            },
         },
         disabled: {
-            true:"cursor-not-allowed opacity-45",
+            true: {
+                base: "cursor-not-allowed bg-slate-50",
+            }
         },
         input: {
-            true: "text-slate-700",
-            false: "text-slate-400",
+            true: {
+                input: "text-slate-700",
+            },
+            false: {
+                input: "text-slate-400",
+            }
         },
         size: {
             sm:{
@@ -61,7 +70,7 @@ type SelectInputProps = {
     width?:number|string;
     class?:string;
 	name?:string;
-    label?:string|Snippet;
+    label?:string;
 	value?:string|number;
     placeholder?:string;
     disabled?:boolean;
@@ -90,7 +99,7 @@ let focus = $state(false);
 
 function onfocus(e:FocusEvent) {
     if(!disabled) {
-        focus = true;
+        focus = !focus;
     }
 }
 
@@ -117,19 +126,14 @@ const {
 <button 
     bind:this={el}
     type="button" 
-    class={base({className})}
+    class={base({disabled, focus, className})}
     style:width={width}
     {...restProps}
-    {...{ disabled, focus }}
     onmousedown={onfocus}
 >
-    {#if typeof label === "string"}
+    {#if label }
         <span class={input({input: true})}>
             {label}
-        </span>
-    {:else if label }
-        <span class={input({input: true})}>
-            {@render label()}
         </span>
     {:else if placeholder}
         <span class={input({input: false})}>
@@ -137,7 +141,7 @@ const {
         </span>
     {/if}
 
-    <span class={chevron()}>
+    <span class={chevron({focus})}>
         <ChevronDown size={15}/>
     </span>
 </button>

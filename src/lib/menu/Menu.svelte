@@ -1,7 +1,9 @@
 <script lang="ts" module>
 
 export type MenuContext = {
-    oncommand?:{(value:string, label?:string):void};
+    label?:string;
+    value?:string|number;
+    stateful?:boolean;
 }
 
 type MenuProps = {
@@ -9,7 +11,9 @@ type MenuProps = {
     class?:string;
     ref?:{(el:HTMLElement):void};
     children:Snippet;
-    oncommand?:{(value:string, label?:string):void};
+    value?:string|number;
+    stateful?:boolean;
+    oncommand?:{(value?:string|number, label?:string):void};
 }
 
 </script>
@@ -24,7 +28,21 @@ let {
     class:className,
     children,
     oncommand,
+    value,
+    stateful = true,
 }:MenuProps = $props();
+
+const ctx = $state({
+    label: "",
+    value,
+    stateful,
+});
+
+setContext("menu", ctx);
+
+$effect(() => {
+    oncommand?.(ctx.value, ctx.label);
+});
 
 let el:HTMLElement;
 
@@ -32,17 +50,12 @@ onMount(() => {
     ref?.(el);
 });
 
-setContext("menu", {
-    oncommand,
-});
-
 </script>
 
 <div
-    aria-label="Menu"
     bind:this={el}
     id={id}
-    class={twMerge("w-full h-fit bg-white", className)}
+    class={twMerge("w-full h-fit space-y-1 bg-white", className)}
 >
     {@render children()}
 </div>

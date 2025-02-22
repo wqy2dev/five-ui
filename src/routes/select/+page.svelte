@@ -26,6 +26,7 @@ function onsearch(value?:string) {
 <div class="flex flex-row gap-5">
     <Select
         name="a" 
+        value="apple"
         onchange={v => console.log("select:", v)}
         placeholder="please select"
     >
@@ -33,20 +34,20 @@ function onsearch(value?:string) {
             value="polo"
             label={"菠萝"}
         >
-            菠萝
+            🍍菠萝
         </Option>
         <Option
             value="juezi"
             label={"橘子A"}
             disabled
         >
-            橘子
+            🍊橘子
         </Option>
         <Option
             value="apple"
             label={"苹果B"}
         >
-            苹果
+            🍎苹果
         </Option>
     </Select>
 </div>
@@ -74,11 +75,46 @@ function onsearch(value?:string) {
             {value:"mg", label:"芒果"},
         ].filter(v => v.label.indexOf(keywords) > -1)  as item}
             <Option
-                value="polo"
+                value={item.value}
                 label={item.label}
             >
                 {item.label}
             </Option>
         {/each}
+    </Select>
+</div>
+
+<h4 class="my-5 text-base indent-2 bg-slate-100">
+    Disable
+</h4>
+
+<div class="flex flex-row gap-5">
+    <Select
+        name="b" 
+        onchange={v => console.log("select:", v)}
+        placeholder="please select"
+        enableSearch
+        searchProps={{
+            onchange:onsearch,
+        }}
+        disabled
+    >
+    </Select>
+</div>
+
+<h4 class="my-5 text-base indent-2 bg-slate-100">
+    Empty Data
+</h4>
+
+<div class="flex flex-row gap-5">
+    <Select
+        name="b" 
+        onchange={v => console.log("select:", v)}
+        placeholder="please select"
+        enableSearch
+        searchProps={{
+            onchange:onsearch,
+        }}
+    >
     </Select>
 </div>

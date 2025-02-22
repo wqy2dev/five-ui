@@ -35,7 +35,7 @@ let {
 
 <Popper
     class={tooltipVariants({theme, className})}
-    arrowShow={true}
+    useArrow={true}
     arrowClass={theme === "light" ? "shadow-outline-sm":undefined}
     {...restProps}
 />

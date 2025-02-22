@@ -17,7 +17,7 @@ let {
 
 <Popper
     class={twMerge("min-w-32 rounded-md text-sm p-1 bg-white shadow-outline-sm", className)}
-    arrowShow={true}
+    useArrow={true}
     arrowClass="shadow-outline-sm"
     placement={placement}
     {...restProps}

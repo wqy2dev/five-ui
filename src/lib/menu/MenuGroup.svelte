@@ -31,7 +31,6 @@ onMount(() => {
 </script>
 
 <div
-    aria-label="MenuGroup"
     bind:this={el}
     id={id}
     class={twMerge("w-full h-fit pb-1 mb-1 border-solid border-b border-slate-200", className)}

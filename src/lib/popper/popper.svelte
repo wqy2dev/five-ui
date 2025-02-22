@@ -1,6 +1,6 @@
 <script module lang="ts">
 
-export type Trigger = "hover" | "focus" | "click";
+export type Trigger = "hover" | "focus" | "click" | "toggle";
 export type Placement = "top" | "topStart" | "topEnd" | "bottom" | "bottomStart" | "bottomEnd" | "left" | "leftStart" | "leftEnd" | "right" | "rightStart" | "rightEnd";
 
 export type PopperProps = {
@@ -11,14 +11,14 @@ export type PopperProps = {
     offset?:number;
     zIndex?:number;
     duration?:number;
+    useArrow?:boolean;
     arrowClass?:string;
-    arrowShow?:boolean;
     arrowSize?:number;
     arrowStyle?:Partial<CSSStyleDeclaration>;
     target:Snippet<[{(ref:HTMLElement):void}]>;
     children:Snippet;
-    // popper hide strategy
-    when?:{(targetEl:HTMLElement, floatEl:HTMLElement):boolean};
+    // popper hide strategy when floatElement blur
+    strategy?:{(targetEl:HTMLElement, floatEl:HTMLElement):boolean};
 }
 
 // Calculate the position of the popper
@@ -167,12 +167,12 @@ let {
     zIndex = 60,
     duration = 180,
     arrowClass,
-    arrowShow,
-    arrowSize = 7,
+    useArrow,
+    arrowSize = 9,
     arrowStyle = {},
     trigger = "hover",
     placement = "top",
-    when,
+    strategy,
     children,
 }:PopperProps = $props();
 
@@ -290,7 +290,7 @@ function update() {
                 floatEl.style.left = `${p.left}px`;
                 floatEl.style.top = `${p.top}px`;
 
-                if(arrowShow && arrowEl) {
+                if(useArrow && arrowEl) {
                     const p = arrowPosition(
                         anchorEl,
                         floatEl,
@@ -336,16 +336,13 @@ function onleave(e:Event) {
 }
 
 function onblur(e:Event) {
-    if(trigger === "focus" &&
-        show &&
-        !anchorEl.contains(e.target as any) && 
-        !floatEl!.contains(e.target as any)
-    ) {
-        if(when) {
-            if(when(e.target as HTMLElement, floatEl as HTMLElement)) {
+    if(show && (trigger === "focus" || trigger === "toggle") && !anchorEl.contains(e.target as any)) {
+        if(strategy) {
+            if(strategy(e.target as HTMLElement, floatEl as HTMLElement)) {
                 show = false;
             }
-        } else {
+        } else if(!floatEl?.contains(e.target as any)) {
+            // default hide
             show = false;
         }
     }
@@ -359,6 +356,9 @@ onMount(() => {
         case "focus":
             anchorEl.addEventListener("mousedown", onshow, false);
             break;
+        case "toggle":
+            anchorEl.addEventListener("mousedown", onclick, false);
+            break;
         case "hover":
             anchorEl.addEventListener("mouseenter", onshow, false);
             anchorEl.addEventListener("mouseleave", onleave, false);
@@ -369,11 +369,6 @@ onMount(() => {
 });
 
 </script>
-
-<svelte:window 
-    onresize={resize} 
-    onmousedown={onblur}
-/>
 
 {@render target(ref)}
 
@@ -394,7 +389,7 @@ onMount(() => {
         >
             {@render children()}
 
-            {#if arrowShow}
+            {#if useArrow}
                 <div 
                     class={twMerge("absolute rotate-45 bg-inherit", arrowClass)}
                     style:z-index={0}
@@ -404,3 +399,8 @@ onMount(() => {
         </div>
     </div>
 {/if}
+
+<svelte:window 
+    onresize={resize} 
+    onmousedown={onblur}
+/>

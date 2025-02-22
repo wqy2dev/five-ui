@@ -8,7 +8,7 @@ const placements = [
     ["rightStart", "right", "rightEnd"],
 ];
 
-const triggers = ["hover", "focus", "click"];
+const triggers = ["hover", "focus", "click", "toggle"];
 </script>
 
 <svelte:head>
@@ -97,7 +97,7 @@ const triggers = ["hover", "focus", "click"];
             {#snippet target(ref)}
                 <Button ref={ref}> 
                     <span>
-                        Click
+                        light:click
                     </span>    
                 </Button>
             {/snippet}

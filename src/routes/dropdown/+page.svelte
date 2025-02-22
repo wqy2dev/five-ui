@@ -1,7 +1,8 @@
 <script lang="ts">
 import { Dropdown, Button, Menu, MenuGroup, MenuItem } from "$lib/index.js";
 
-const triggers = ["click", "focus", "hover"];
+const triggers = ["click", "focus", "hover", "toggle"];
+
 const placements = [
     ["topStart", "top", "topEnd"],
     ["bottomStart", "bottom", "bottomEnd"],

@@ -54,10 +54,11 @@ if(fieldContext) {
 let overflowRef:HTMLElement;
 
 // popper hide strategy
-function when(targetEl:HTMLElement, floatEl:HTMLElement) {
+function strategy(targetEl:HTMLElement, floatEl:HTMLElement) {
     if(!floatEl.contains(targetEl)) {
         return true;
     }
+
     return overflowRef.contains(targetEl) && targetEl.tagName === "BUTTON";
 }
 
@@ -66,8 +67,8 @@ let option = $state({
     value,
 });
 
-function onselect(value:string, label?:string) {
-    if(label) {
+function onselect(value?:string|number, label?:string) {
+    if(label && value) {
         option = {label, value};
     }
 }
@@ -78,58 +79,76 @@ $effect(() => {
 
 </script>
 
-<Popper 
-    trigger="click"
-    placement="bottom"
-    when={when}
->
-    {#snippet target(ref)}
-        <SelectInput 
-            ref={(el:HTMLElement) => {
-                ref(el), elRef && elRef(el);
-            }}
-            {...option}
-            {...{
-                id,
-                width,
-                class:className,
-                name, 
-                disabled,
-                placeholder,
-            }}
-        />
-    {/snippet}
-
-    <div 
-        class="h-fit p-1 rounded-md shadow-outline-sm bg-white"
-        style:width={width}
+{#if disabled}
+    <SelectInput 
+        {...option}
+        {...{
+            id,
+            width,
+            class:className,
+            name, 
+            disabled,
+            placeholder,
+        }}
+    />
+{:else}
+    <Popper 
+        useArrow={true}
+        arrowClass="shadow-outline-sm"
+        trigger="toggle"
+        placement="bottom"
+        strategy={strategy}
     >
-        {#if enableSearch}
-            <div class="pb-1">
-                <Input
-                    {...searchProps}
-                >
-                    {#snippet tail()}
-                        <Search size={15}/>
-                    {/snippet}
-                </Input>
-            </div>
-        {/if}
+        {#snippet target(ref)}
+            <SelectInput 
+                ref={(el:HTMLElement) => {
+                    ref(el), elRef && elRef(el);
+                }}
+                {...option}
+                {...{
+                    id,
+                    width,
+                    class:className,
+                    name, 
+                    disabled,
+                    placeholder,
+                }}
+            />
+        {/snippet}
 
-        {#if children}
-            <Menu 
-                class={`${optionsClass} overflow-y-auto overflow-x-hidden`}
-                oncommand={onselect}
-                ref={ el => overflowRef = el }
-            >
-                {@render children?.()}
-            </Menu>
-        {:else if empty}
-            {@render empty()}
-        {:else}
-            <div class="flex items-center justify-center h-15 text-sm text-slate-400">
-                empty data
-            </div>
-        {/if}
-    </div>
-</Popper>
+        <div 
+            class="h-fit p-1 rounded-md shadow-outline-sm bg-white"
+            style:width={width}
+        >
+            {#if enableSearch}
+                <div class="pb-1">
+                    <Input
+                        {...searchProps}
+                    >
+                        {#snippet tail()}
+                            <Search size={15}/>
+                        {/snippet}
+                    </Input>
+                </div>
+            {/if}
+
+            {#if children}
+                <Menu 
+                    class={`${optionsClass} overflow-y-auto overflow-x-hidden`}
+                    oncommand={onselect}
+                    value={option.value}
+                    stateful={true}
+                    ref={ el => overflowRef = el }
+                >
+                    {@render children?.()}
+                </Menu>
+            {:else if empty}
+                {@render empty()}
+            {:else}
+                <div class="flex items-center justify-center h-28 text-sm text-slate-400">
+                    Oh, empty data
+                </div>
+            {/if}
+        </div>
+    </Popper>
+{/if}
