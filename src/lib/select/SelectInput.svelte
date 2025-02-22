@@ -1,12 +1,11 @@
 <script lang="ts" module>
 import { ChevronDown } from "$lib/icons/index.js";
-import { getContext, onMount, type Snippet } from "svelte";
+import { onMount, type Snippet } from "svelte";
 import { tv, type VariantProps } from "tailwind-variants";
-import { type SelectOption } from "./Option.svelte";
 
 const inputVariants = tv({
     slots: {
-        base:"h-9 inline-flex flex-row items-center rounded-md bg-white p-2 border border-solid border-input outline-none overflow-hidden transition",
+        base:"h-9 inline-flex flex-row items-center rounded-md bg-white p-2 border border-solid border-slate-200 outline-none overflow-hidden transition",
         input:"flex flex-row items-center grow shrink-0 text-sm",
         chevron:"w-4 shrink-0 text-slate-600",
     },
@@ -86,7 +85,6 @@ let {
     ref,
     ...restProps
 }:SelectInputProps = $props();
-
 
 let focus = $state(false);
 

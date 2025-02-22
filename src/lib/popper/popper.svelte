@@ -4,7 +4,6 @@ export type Trigger = "hover" | "focus" | "click";
 export type Placement = "top" | "topStart" | "topEnd" | "bottom" | "bottomStart" | "bottomEnd" | "left" | "leftStart" | "leftEnd" | "right" | "rightStart" | "rightEnd";
 
 export type PopperProps = {
-    ariaLabel?:string;
     style?:string;
     class?:string;
     trigger?:Trigger;
@@ -161,7 +160,6 @@ import { fade } from "svelte/transition";
 import { twMerge } from "tailwind-merge";
 
 let {
-    ariaLabel = "popper",
     target,
     style,
     class: className,
@@ -170,7 +168,7 @@ let {
     duration = 180,
     arrowClass,
     arrowShow,
-    arrowSize = 11,
+    arrowSize = 7,
     arrowStyle = {},
     trigger = "hover",
     placement = "top",
@@ -381,9 +379,7 @@ onMount(() => {
 
 {#if show}
     <div 
-        aria-label={ariaLabel}
         class="absolute"
-        role="contentinfo"
         style:z-index={zIndex}
         { ...(trigger === "hover" ? {
             onmouseenter:onshow,

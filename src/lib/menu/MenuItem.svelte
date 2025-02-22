@@ -13,7 +13,8 @@ type MenuItemProps = {
     class?:string;
     ref?:{(el:HTMLElement):void};
     disabled?:boolean;
-    key:string;
+    label?:string;
+    value:string;
     children:Snippet;
 }
 
@@ -22,13 +23,14 @@ let {
     class:className,
     ref,
     children,
-    key,
+    label,
+    value,
     disabled,
 }:MenuItemProps = $props();
 
 function oncommand() {
     if(!disabled) {
-        context.oncommand?.(key);
+        context.oncommand?.(value, label);
     }
 }
 

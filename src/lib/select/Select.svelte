@@ -1,44 +1,40 @@
 <script lang="ts" module>
-import { getContext, setContext, type Snippet } from "svelte";
+import { getContext, type Snippet } from "svelte";
+import { type InputProps } from "$lib/input/Input.svelte";
+import { type FormFieldContext } from "$lib/form/FormField.svelte";
 import { Search } from "../icons/index.js";
 import { Popper, Input } from "../index.js";
-import type { InputProps } from "../input/Input.svelte";
+import { Menu } from "$lib/menu/index.js";
 import SelectInput from "./SelectInput.svelte";
-import { type SelectOption } from "./Option.svelte";
 
 type SelectProps = {
     id?:string;
+    ref?:{(el:HTMLElement):void};
     class?:string;
 	name?:string;
 	value?:string|number;
     placeholder?:string;
     disabled?:boolean;
     width?:number|string;
-    maxHeight?:string;
     optionsClass?:string;
-    search?:InputProps;
+    searchProps?:InputProps;
     enableSearch?:boolean;
-    ref?:{(el:HTMLElement):void};
     empty?:Snippet;
     children?:Snippet;
-    onchange?:{(option:SelectOption):void};
+    onchange?:{(value?:string|number):void};
 }
 
 </script>
 
 <script lang="ts">
-import { Menu } from "$lib/menu/index.js";
-    import MenuItem from "$lib/menu/MenuItem.svelte";
-
-
 let {
     class:className,
     id,
     name,
     value,
-    search,
+    searchProps,
     width = "350px",
-    optionsClass = "max-h-20",
+    optionsClass = "max-h-56",
     disabled,
     placeholder,
     enableSearch,
@@ -48,12 +44,12 @@ let {
     ref:elRef,
 }:SelectProps = $props();
 
-// const fieldContext = getContext<FormFieldContext>("tc-form-field");
-// if(fieldContext) {
-//     name = fieldContext.name;
-//     value = fieldContext.value;
-//     onchange = fieldContext.onchange;
-// }
+const fieldContext = getContext<FormFieldContext>("formField");
+if(fieldContext) {
+    name = fieldContext.name;
+    value = fieldContext.value;
+    onchange = fieldContext.onchange;
+}
 
 let overflowRef:HTMLElement;
 
@@ -65,12 +61,19 @@ function when(targetEl:HTMLElement, floatEl:HTMLElement) {
     return overflowRef.contains(targetEl) && targetEl.tagName === "BUTTON";
 }
 
-let option:SelectOption = $state({label: "", value});
+let option = $state({
+    label: "", 
+    value,
+});
 
-setContext("select", option);
+function onselect(value:string, label?:string) {
+    if(label) {
+        option = {label, value};
+    }
+}
 
 $effect(() => {
-    onchange?.(option);
+    onchange?.(option.value);
 });
 
 </script>
@@ -85,27 +88,26 @@ $effect(() => {
             ref={(el:HTMLElement) => {
                 ref(el), elRef && elRef(el);
             }}
+            {...option}
             {...{
                 id,
                 width,
                 class:className,
                 name, 
-                value: option.value, 
-                label: option.label, 
-                placeholder,
                 disabled,
+                placeholder,
             }}
         />
     {/snippet}
 
     <div 
-        class="h-max p-1 border border-solid border-input rounded-md shadow bg-white"
+        class="h-fit p-1 rounded-md shadow-outline-sm bg-white"
         style:width={width}
     >
         {#if enableSearch}
-            <div class="pb-2">
+            <div class="pb-1">
                 <Input
-                    {...search}
+                    {...searchProps}
                 >
                     {#snippet tail()}
                         <Search size={15}/>
@@ -114,38 +116,20 @@ $effect(() => {
             </div>
         {/if}
 
-        <Menu 
-            class="w-full max-h-56 overflow-y-auto overflow-x-hidden"
-            ref={ el => overflowRef = el }
-        >
-            <MenuItem key="1">菜单一</MenuItem>
-            <MenuItem key="2">菜单二</MenuItem>
-            <MenuItem key="3">菜单三</MenuItem>
-            <MenuItem key="3">菜单三</MenuItem>
-            <MenuItem key="3">菜单三</MenuItem>
-            <MenuItem key="3">菜单三</MenuItem>
-            <MenuItem key="3">菜单三</MenuItem>
-            <MenuItem key="3">菜单三</MenuItem>
-            <MenuItem key="3">菜单三</MenuItem>
-            <MenuItem key="3">菜单三</MenuItem>
-            <MenuItem key="3">菜单三</MenuItem>
-
-        </Menu>
-
-        <!-- <div 
-            class="px-2 pt-2 pb-2 overflow-y-auto overflow-x-hidden"
-            style:max-height={maxHeight}
-            bind:this={overflowRef}
-        >
-            {#if children}
-                {@render children()}
-            {:else if empty}
-                {@render empty()}
-            {:else}
-                <div class="flex items-center justify-center h-15 text-sm text-slate-400">
-                    empty data
-                </div>
-            {/if}
-        </div> -->
+        {#if children}
+            <Menu 
+                class={`${optionsClass} overflow-y-auto overflow-x-hidden`}
+                oncommand={onselect}
+                ref={ el => overflowRef = el }
+            >
+                {@render children?.()}
+            </Menu>
+        {:else if empty}
+            {@render empty()}
+        {:else}
+            <div class="flex items-center justify-center h-15 text-sm text-slate-400">
+                empty data
+            </div>
+        {/if}
     </div>
 </Popper>

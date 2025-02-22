@@ -28,16 +28,13 @@ const config: Config = {
         plugin(({ addBase }) => {
             addBase({
                 ".shadow-outline-sm": {
-                    "--tw-shadow": "0 0 2px 0 #DDD",
-                    "box-shadow": "var(--tw-shadow)",
+                    "box-shadow": "0 0 2px #E2E8F0",
                 },
                 ".shadow-outline-md": {
-                    "--tw-shadow": "0 0 4px 0 #DDD",
-                    "box-shadow": "var(--tw-shadow)",
+                    "box-shadow": "0 0 4px #E2E8F0",
                 },
                 ".shadow-outline-lg": {
-                    "--tw-shadow": "0 0 6px 0 #DDD",
-                    "box-shadow": "var(--tw-shadow)",
+                    "box-shadow": "0 0 6px #E2E8F0",
                 },
                 ".cursor-inherit": {
                     "cursor": "inherit",

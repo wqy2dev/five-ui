@@ -1,7 +1,7 @@
 <script lang="ts" module>
 
 export type MenuContext = {
-    oncommand?:{(key:string):void};
+    oncommand?:{(value:string, label?:string):void};
 }
 
 type MenuProps = {
@@ -9,7 +9,7 @@ type MenuProps = {
     class?:string;
     ref?:{(el:HTMLElement):void};
     children:Snippet;
-    oncommand?:{(key:string):void};
+    oncommand?:{(value:string, label?:string):void};
 }
 
 </script>
@@ -42,7 +42,7 @@ setContext("menu", {
     aria-label="Menu"
     bind:this={el}
     id={id}
-    class={twMerge("min-w-32 w-20 h-fit rounded-md bg-white", className)}
+    class={twMerge("w-full h-fit bg-white", className)}
 >
     {@render children()}
 </div>
