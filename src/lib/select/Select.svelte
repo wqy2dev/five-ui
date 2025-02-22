@@ -79,76 +79,62 @@ $effect(() => {
 
 </script>
 
-{#if disabled}
-    <SelectInput 
-        {...option}
-        {...{
-            id,
-            width,
-            class:className,
-            name, 
-            disabled,
-            placeholder,
-        }}
-    />
-{:else}
-    <Popper 
-        useArrow={true}
-        arrowClass="shadow-outline-sm"
-        trigger="toggle"
-        placement="bottom"
-        strategy={strategy}
+<Popper 
+    useArrow={true}
+    arrowClass="shadow-outline-sm"
+    trigger="toggle"
+    placement="bottom"
+    strategy={strategy}
+>
+    {#snippet target(ref)}
+        <SelectInput 
+            ref={(el:HTMLElement) => {
+                ref(el), elRef && elRef(el);
+            }}
+            {...option}
+            {...{
+                id,
+                width,
+                class:className,
+                name, 
+                disabled,
+                placeholder,
+            }}
+        />
+    {/snippet}
+
+    <div 
+        class="h-fit p-1 rounded-md shadow-outline-sm bg-white"
+        style:width={width}
     >
-        {#snippet target(ref)}
-            <SelectInput 
-                ref={(el:HTMLElement) => {
-                    ref(el), elRef && elRef(el);
-                }}
-                {...option}
-                {...{
-                    id,
-                    width,
-                    class:className,
-                    name, 
-                    disabled,
-                    placeholder,
-                }}
-            />
-        {/snippet}
-
-        <div 
-            class="h-fit p-1 rounded-md shadow-outline-sm bg-white"
-            style:width={width}
-        >
-            {#if enableSearch}
-                <div class="pb-1">
-                    <Input
-                        {...searchProps}
-                    >
-                        {#snippet tail()}
-                            <Search size={15}/>
-                        {/snippet}
-                    </Input>
-                </div>
-            {/if}
-
-            {#if children}
-                <Menu 
-                    class={`${optionsClass} overflow-y-auto overflow-x-hidden`}
-                    oncommand={onselect}
-                    value={option.value}
-                    stateful={true}
-                    ref={ el => overflowRef = el }
+        {#if enableSearch}
+            <div class="pb-1">
+                <Input
+                    {...searchProps}
                 >
-                    {@render children?.()}
-                </Menu>
-            {:else if empty}
-                {@render empty()}
-            {:else}
-                <div class="flex items-center justify-center h-28 text-sm text-slate-400">
-                    Oh, empty data
-                </div>
-            {/if}
-        </div>
-    </Popper>
-{/if}
+                    {#snippet tail()}
+                        <Search size={15}/>
+                    {/snippet}
+                </Input>
+            </div>
+        {/if}
+
+        {#if children}
+            <Menu 
+                class={`${optionsClass} overflow-y-auto overflow-x-hidden`}
+                oncommand={onselect}
+                value={option.value}
+                stateful={true}
+                ref={ el => overflowRef = el }
+            >
+                {@render children?.()}
+            </Menu>
+        {:else if empty}
+            {@render empty()}
+        {:else}
+            <div class="flex items-center justify-center h-28 text-sm text-slate-400">
+                Oh, empty data
+            </div>
+        {/if}
+    </div>
+</Popper>

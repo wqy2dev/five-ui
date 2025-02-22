@@ -29,7 +29,7 @@ let {
     children,
     oncommand,
     value,
-    stateful = true,
+    stateful = false,
 }:MenuProps = $props();
 
 const ctx = $state({
