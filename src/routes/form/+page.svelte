@@ -1,7 +1,10 @@
 <script lang="ts">
-import { Form, FormField, Input, Textarea, Button, Switch, RadioGroup, Radio, Checkbox, CheckboxGroup } from "$lib/index.js";
+import { Form, FormField, Input, Textarea, Button, Switch, RadioGroup, Radio, Checkbox, CheckboxGroup, Message, type MessageInstance } from "$lib/index.js";
 
 const sizes = ["sm", "md", "lg"];
+
+let message:MessageInstance;
+
 </script>
 
 <svelte:head>
@@ -111,6 +114,17 @@ const sizes = ["sm", "md", "lg"];
         layout="col" 
         onsubmit={(data, errors) => {
             console.log(data, errors, "<<<<");
+            if(errors.length > 0) {
+                const err = errors[0];
+
+                message.push({
+                    message: err.msg,
+                    variant: "error", 
+                    onclose: () => {
+                        console.log("close ---")
+                    }
+                });
+            }
         }
     }>
 
@@ -245,3 +259,10 @@ const sizes = ["sm", "md", "lg"];
         <Button type="submit" class="w-20">Submit</Button>
     </Form>
 </div>
+
+
+<!-- create message global instance -->
+<Message 
+    bind:this={message}
+    max={3}
+/>

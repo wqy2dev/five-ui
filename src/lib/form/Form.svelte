@@ -16,18 +16,31 @@ const formVariants = tv({
 });
 
 type FormLayout = VariantProps<typeof formVariants>["layout"];
-type FormValidator = {name:string, validator:{():string|undefined}};
+
+type FormValidator = {
+    name:string,
+    validator:{():FormValidateResult}
+};
+
+export type FormValidateError = {
+    name:string;
+    msg:string;
+};
+
+export type FormValidateResult = {
+    value:string;
+    error?:FormValidateError;
+};
 
 export type FormContext = {
     layout:FormLayout;
-    data:Record<string, any>;
     validators:FormValidator[];
 }
 
 type FormProps = {
     class?:string;
     layout?:FormLayout;
-    onsubmit?:{(data:Record<string, any>, errors:Record<string, string>[]):void};
+    onsubmit?:{(data:Record<string, any>, errors:FormValidateError[]):void};
     children:Snippet;
 }
 
@@ -46,18 +59,20 @@ let {
     children,
 }:FormProps = $props();
 
-let data:Record<string, any> = {};
 let validators:FormValidator[] = [];
 
 export function submit() {
-    let errors:Record<string, string>[] = [];
+    let errors:FormValidateError[] = [];
+    let data:Record<string, any> = {};
 
     validators.forEach(item => {
-        const msg = item.validator();
-        if(msg !== undefined) {
-            errors.push({
-                [item.name]: msg,
-            });
+        const r = item.validator();
+
+        if(r.error !== undefined) {
+            errors.push(r.error);
+        } else {
+            // update value
+            data[item.name] = r.value;
         }
     });
 
@@ -69,7 +84,6 @@ function onForm(e:Event) {
 }
 
 setContext("form", {
-    data,
     layout,
     validators,
 });

@@ -59,7 +59,7 @@ type FormFieldProps = {
 import { getContext, onMount, setContext, type Snippet } from "svelte";
 import { Tooltip } from "$lib/index.js";
 import { HelpCircleOutline } from "$lib/icons/index.js";
-import type { FormContext } from "./Form.svelte";
+import type { FormContext, FormValidateResult } from "./Form.svelte";
 
 const ctx = getContext("form") as FormContext;
 if(!ctx) {
@@ -81,17 +81,12 @@ let {
 }:FormFieldProps = $props();
 
 let value = defaultValue;
-let error = $state<string|undefined>(undefined);
 let mounted = false;
+let fieldError = $state<string|undefined>(undefined);
 
 function onchange(v:any) {
     if(mounted) {
         validate(v);
-    }
-
-    if(error === "") {
-        // update value
-        ctx.data[name] = v;
     }
 
     watch?.(v), value = v;
@@ -107,11 +102,12 @@ function validate(v:any) {
         }
     }
 
-    return error = msg;
+    return fieldError = msg;
 }
 
-function validator() {
-    return validate(value);
+function validator():FormValidateResult {
+    const msg = validate(value);
+    return {value, error: msg ? {name, msg} : undefined};
 }
 
 setContext<FormFieldContext>("formField", {
@@ -124,7 +120,6 @@ onMount(() => {
     mounted = true;
 
     // set initial value
-    ctx.data[name] = defaultValue;
     ctx.validators.push({name, validator});
 });
 
@@ -165,9 +160,9 @@ const {
     <div class={input()}>
         {@render children()}
 
-        {#if error !== ""}
+        {#if fieldError}
             <span class="text-red-500 text-sm absolute -bottom-5 left-0">
-                {error}
+                {fieldError}
             </span>
         {/if}
     </div>
