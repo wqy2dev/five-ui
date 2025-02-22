@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { UserOutline } from "$lib/icons/index.js";
 import { Select, Option } from "$lib/index.js";
 
 const sizes = ["sm", "md", "lg"];
@@ -30,6 +31,9 @@ function onsearch(value?:string) {
         onchange={v => console.log("select:", v)}
         placeholder="please select"
     >
+        {#snippet head()}
+            <UserOutline/>
+        {/snippet}    
         <Option
             value="polo"
             label={"菠萝"}

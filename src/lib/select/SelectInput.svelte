@@ -1,6 +1,6 @@
 <script lang="ts" module>
 import { ChevronDown } from "$lib/icons/index.js";
-import { onMount } from "svelte";
+import { onMount, type Snippet } from "svelte";
 import { tv, type VariantProps } from "tailwind-variants";
 
 const inputVariants = tv({
@@ -8,6 +8,7 @@ const inputVariants = tv({
         base:"h-9 inline-flex flex-row items-center rounded-md bg-white p-2 border border-solid border-slate-200 outline-none overflow-hidden transition",
         input:"flex flex-row items-center grow shrink-0 text-slate-700 text-sm",
         chevron:"w-4 shrink-0 text-slate-400 transition",
+        slot: "w-5 shrink-0 flex items-center justify-start text-slate-400 z-1 cursor-inherit",
     },
     variants: {
         focus: {
@@ -77,6 +78,7 @@ type SelectInputProps = {
     size?:Size;
     radius?:Radius;
     ref?:{(el:HTMLElement):void};
+    head?:Snippet;
 }
 
 </script>
@@ -88,6 +90,7 @@ let {
     value,
     label,
     width,
+    head,
     disabled,
     class: className,
     placeholder,
@@ -117,6 +120,7 @@ onMount(() => {
 
 const {
     base,
+    slot,
     input,
     chevron,
 } = inputVariants();
@@ -131,6 +135,12 @@ const {
     {...restProps}
     onmousedown={onfocus}
 >
+    {#if head}
+        <div class={slot()}>
+            {@render head()}
+        </div>
+    {/if}
+
     {#if label }
         <span class={input({input: true})}>
             {label}

@@ -21,6 +21,7 @@ type SelectProps = {
     enableSearch?:boolean;
     empty?:Snippet;
     children?:Snippet;
+    head?:Snippet;
     onchange?:{(value?:string|number):void};
 }
 
@@ -41,6 +42,7 @@ let {
     onchange,
     empty,
     children,
+    head,
     ref:elRef,
 }:SelectProps = $props();
 
@@ -97,6 +99,7 @@ $effect(() => {
                 width,
                 class:className,
                 name, 
+                head,
                 disabled,
                 placeholder,
             }}

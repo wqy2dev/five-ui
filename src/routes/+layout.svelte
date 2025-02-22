@@ -22,7 +22,7 @@ const routes = [
     {path: "/drawer", title: "Drawer", achieve: true},
     {path: "/dropdown", title: "Dropdown", achieve: true},
     {path: "/form", title: "Form", achieve: true},
-    {path: "/icon", title: "Icon", achieve: true},
+    {path: "/icons", title: "Icon", achieve: true},
     {path: "/input", title: "Input", achieve: true},
     {path: "/layout", title: "Layout", achieve: true},
     {path: "/message", title: "Message", achieve: true},
