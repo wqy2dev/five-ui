@@ -84,17 +84,17 @@ let value = defaultValue;
 let error = $state<string|undefined>(undefined);
 let mounted = false;
 
-function onchange(nv:any) {
+function onchange(v:any) {
     if(mounted) {
-        validate(nv);
+        validate(v);
     }
 
     if(error === "") {
         // update value
-        ctx.data[name] = nv;
+        ctx.data[name] = v;
     }
 
-    watch?.(nv), value = nv;
+    watch?.(v), value = v;
 }
 
 function validate(v:any) {
@@ -110,6 +110,10 @@ function validate(v:any) {
     return error = msg;
 }
 
+function validator() {
+    return validate(value);
+}
+
 setContext<FormFieldContext>("formField", {
     name,
     value:defaultValue,
@@ -121,7 +125,7 @@ onMount(() => {
 
     // set initial value
     ctx.data[name] = defaultValue;
-    ctx.validators.push({name, validator:() => validate(value)});
+    ctx.validators.push({name, validator});
 });
 
 const { 

@@ -42,7 +42,7 @@ export type FormInstance = {
 let {
     layout = "col",
     class:className,
-    onsubmit:onSubmit,
+    onsubmit,
     children,
 }:FormProps = $props();
 
@@ -61,10 +61,10 @@ export function submit() {
         }
     });
 
-    onSubmit?.(data, errors);
+    onsubmit?.(data, errors);
 }
 
-function onsubmit(e:Event) {
+function onForm(e:Event) {
     e.preventDefault(), submit();
 }
 
@@ -78,7 +78,7 @@ setContext("form", {
 
 <form
     class={formVariants({layout, className})}
-    onsubmit={onsubmit}
+    onsubmit={onForm}
 >
     {@render children()}
 </form>

@@ -135,7 +135,7 @@ let {
     offValue,
     thumb,
     ref,
-    onchange,
+    onchange:change,
 }:SwitchProps = $props();
 
 if(value !== onValue && value !== offValue) {
@@ -146,22 +146,22 @@ const fieldContext = getContext<FormFieldContext>("formField");
 if(fieldContext) {
     name = fieldContext.name;
     value = fieldContext.value;
-    onchange = fieldContext.onchange;
+    change = fieldContext.onchange;
 }
 
 let on = $state(value === onValue);
 let focus = $state(false);
 
-function onChange() {
+function onchange() {
     if(!disabled) {
         on = !on, focus = true;
-        onchange?.(on?onValue:offValue);
+        change?.(on?onValue:offValue);
     }
 }
 
 let el:HTMLElement;
 
-function onBlur(e:Event) {
+function onblur(e:Event) {
     if(!el.contains(e.target as HTMLButtonElement)) {
         focus = false;
     }
@@ -179,12 +179,11 @@ const {
 
 <button
     bind:this={el}
-    aria-checked={on}
-    role="switch"
     id={id}
     class={base({on, focus, className})}
+    type="button"
     disabled={disabled}
-    onmouseup={onChange}
+    onmouseup={onchange}
 >
     {on?onText:offText}
     <span class={button({on})}>
@@ -201,5 +200,5 @@ const {
 />
 
 <svelte:window 
-    onmousedown={onBlur}
+    onmousedown={onblur}
 />

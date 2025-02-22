@@ -110,7 +110,7 @@ const sizes = ["sm", "md", "lg"];
     <Form 
         layout="col" 
         onsubmit={(data, errors) => {
-            console.log(data, errors);
+            console.log(data, errors, "<<<<");
         }
     }>
 

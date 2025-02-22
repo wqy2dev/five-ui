@@ -3,10 +3,10 @@ import { Select, Option } from "$lib/index.js";
 
 const sizes = ["sm", "md", "lg"];
 
-let keywords = $state<string|undefined>("");
+let keywords = $state("");
 
 function onsearch(value?:string) {
-    keywords = value;
+    keywords = value ?? "";
 }
 
 </script>
