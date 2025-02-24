@@ -1,8 +1,6 @@
 <script lang="ts">
 import { Dropdown, Button, Menu, MenuGroup, MenuItem } from "$lib/index.js";
 
-const triggers = ["click", "focus", "hover", "toggle"];
-
 const placements = [
     ["topStart", "top", "topEnd"],
     ["bottomStart", "bottom", "bottomEnd"],
@@ -49,39 +47,6 @@ const placements = [
             <MenuItem value="About">Delete</MenuItem>
         </Menu>
     </Dropdown>
-
-    <h4 class="text-base indent-2 bg-slate-100 my-3">
-        Trigger
-    </h4>
-
-    {#each triggers as trigger}
-        <Dropdown
-            trigger={trigger as any}
-        >
-            {#snippet target(ref)}
-                <Button ref={ref}> 
-                    <span>
-                        dropdown {trigger}
-                    </span>    
-                </Button>
-            {/snippet}
-
-            <Menu
-                oncommand={k => {
-                    console.log("menu value: ", k);
-                }}
-            >
-                <MenuGroup title="Action">
-                    <MenuItem value="copy">Copy</MenuItem>
-                    <MenuItem value="delete">Delete</MenuItem>
-                    <MenuItem value="export">Export</MenuItem>
-                    <MenuItem value="import">Import</MenuItem>
-                </MenuGroup>
-                <MenuItem value="Share" disabled>Copy</MenuItem>
-                <MenuItem value="About">Delete</MenuItem>
-            </Menu>
-        </Dropdown>
-    {/each}
 
     <h4 class="text-base indent-2 bg-slate-100 my-3">
         Placement

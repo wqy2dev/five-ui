@@ -83,7 +83,11 @@ $effect(() => {
 
 <Popper 
     useArrow={true}
-    arrowClass="shadow-outline-sm"
+    class={{
+        outline: "bg-white rounded-lg shadow-outline-lg",
+        content: "bg-inherit rounded-lg",
+        arrow: "bg-inherit shadow-outline-lg",
+    }}
     trigger="toggle"
     placement="bottom"
     strategy={strategy}
@@ -107,7 +111,7 @@ $effect(() => {
     {/snippet}
 
     <div 
-        class="h-fit p-1 rounded-md shadow-outline-lg bg-white"
+        class="p-1"
         style:width={width}
     >
         {#if enableSearch}

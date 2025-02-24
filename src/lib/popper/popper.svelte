@@ -7,17 +7,23 @@ export type Trigger = "hover" | "focus" | "click" | "toggle";
 export type Placement = "top" | "topStart" | "topEnd" | "bottom" | "bottomStart" | "bottomEnd" | "left" | "leftStart" | "leftEnd" | "right" | "rightStart" | "rightEnd";
 
 export type PopperProps = {
-    style?:string;
-    class?:string;
     trigger?:Trigger;
     placement?:Placement;
     offset?:number;
     zIndex?:number;
     useArrow?:boolean;
-    arrowClass?:string;
     arrowSize?:number;
-    arrowStyle?:Partial<CSSStyleDeclaration>;
+    duration?:number;
+    class?:{
+        // popper outline class
+        outline?:string;
+        // popper content class
+        content?:string;
+        arrow?:string;
+    };
     target:Snippet<[{(ref:HTMLElement):void}]>;
+    // mount node
+    root?:{():HTMLElement};
     children:Snippet;
     // popper hide strategy when floatElement blur
     strategy?:{(targetEl:HTMLElement, floatEl:HTMLElement):boolean};
@@ -184,11 +190,15 @@ function scaleXY(node:HTMLElement, params:TransitionScaleXY):TransitionConfig {
     return {
         delay,
         easing,
-        duration: duration ?? 200,
+        duration,
         css: (t: number, u: number) => {
             return `transform-origin:${origin};transform:${scale}(${t});opacity:${t};`;
         }
     }
+}
+
+function defaultRoot() {
+    return document.body;
 }
 
 const arrowBeforeOffset = "2px";
@@ -199,16 +209,15 @@ const arrowBeforeOffset = "2px";
 
 let {
     target,
-    style,
-    class: className,
+    class:decoration = {},
     offset = 12,
     zIndex = 60,
-    arrowClass,
     useArrow,
     arrowSize = 9,
-    arrowStyle = {},
+    duration = 200,
     trigger = "hover",
     placement = "top",
+    root,
     strategy,
     children,
 }:PopperProps = $props();
@@ -218,6 +227,9 @@ let floatEl:HTMLElement | null = null;
 let arrowEl:HTMLElement | null = null;
 let overflowElements:Array<HTMLElement> = [];
 
+let timer = 0;
+let show = $state(false);
+
 // ref anchor element
 function ref(el:HTMLElement) {
     anchorEl = el;
@@ -225,7 +237,8 @@ function ref(el:HTMLElement) {
 
 // render popper element
 function portal(el:HTMLElement) {
-    document.body.appendChild(floatEl = el), tick().then(update);
+    const rootEl = (root ?? defaultRoot)();
+    rootEl.appendChild(floatEl = el), tick().then(update);
 }
 
 // render arrow element
@@ -238,10 +251,7 @@ function arrow(el:HTMLElement) {
     Object.assign(
         el.style, 
         style,
-        arrowStyle,
     );
-
-    arrowEl = el;
 
     const pseudoStyle:Partial<CSSStyleDeclaration>  = {
         display: "block",
@@ -287,8 +297,8 @@ function arrow(el:HTMLElement) {
         pseudo.style, 
         pseudoStyle
     );
-    
-    el.appendChild(pseudo);
+
+    (arrowEl = el).appendChild(pseudo);
 }
 
 // watch window resize
@@ -342,14 +352,11 @@ function resize() {
     update(), watch();
 }
 
-let show = $state(false);
-let timer:number = 0;
-
 function onclick(e:Event) {
     show = !show;
 }
 
-function onshow(e:Event) {
+function onenter(e:Event) {
     if(timer > 0) {
         window.clearTimeout(timer), timer = 0;
     }
@@ -376,24 +383,38 @@ function onblur(e:Event) {
     }
 }
 
+function unmount() {
+    const rootEl = (root ?? defaultRoot)();
+
+    try{
+        if(floatEl) {
+            rootEl.removeChild(floatEl);
+        }
+    }catch {
+        
+    }
+}
+
 onMount(() => {
     switch(trigger) {
         case "click":
             anchorEl.addEventListener("mousedown", onclick, false);
             break;
         case "focus":
-            anchorEl.addEventListener("mousedown", onshow, false);
+            anchorEl.addEventListener("mousedown", onenter, false);
             break;
         case "toggle":
             anchorEl.addEventListener("mousedown", onclick, false);
             break;
         case "hover":
-            anchorEl.addEventListener("mouseenter", onshow, false);
+            anchorEl.addEventListener("mouseenter", onenter, false);
             anchorEl.addEventListener("mouseleave", onleave, false);
             break;
     }
 
     watch();
+
+    return unmount;
 });
 
 </script>
@@ -402,29 +423,28 @@ onMount(() => {
 
 {#if show}
     <div 
-        class="absolute"
-        style:z-index={zIndex}
         { ...(trigger === "hover" ? {
-            onmouseenter:onshow,
+            onmouseenter:onenter,
             onmouseleave:onleave,
         } : {})}
-        transition:scaleXY={{placement}}
+        class={twMerge("absolute", decoration.outline)}
+        style:z-index={zIndex}
+        transition:scaleXY={{placement, duration}}
         use:portal
     >
         <div
-            class={twMerge(`relative max-w-max`, className)}
-            style={style}
+            class={twMerge("relative max-w-max bg-white", decoration.content)}
         >
             {@render children()}
-
-            {#if useArrow}
-                <div 
-                    class={twMerge("absolute rotate-45 bg-inherit", arrowClass)}
-                    style:z-index={0}
-                    use:arrow
-                ></div>
-            {/if}
         </div>
+
+        {#if useArrow}
+            <div 
+                class={twMerge("absolute rotate-45 bg-white", decoration.arrow)}
+                style:z-index={-1}
+                use:arrow
+            ></div>
+        {/if}
     </div>
 {/if}
 

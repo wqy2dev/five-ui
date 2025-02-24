@@ -2,11 +2,20 @@
 import { type VariantProps, tv } from "tailwind-variants";
 
 const tooltipVariants = tv({
-    base: "rounded-lg text-sm p-2",
+    slots: {
+        content: "text-sm p-2 rounded-lg",
+        arrow: "",
+    },
     variants: {
         theme: {
-            light: "bg-white text-gray-900 shadow-outline-lg",
-            dark: "bg-gray-900 text-white",
+            light: {
+                content: "text-gray-900 bg-white",
+                arrow: "shadow-outline-lg bg-white",
+            },
+            dark: {
+                content: "text-white bg-gray-900",
+                arrow: "bg-gray-900",
+            }
         },
     },
     defaultVariants: {
@@ -21,21 +30,28 @@ type Theme = VariantProps<typeof tooltipVariants>["theme"];
 <script lang="ts">
 import { type PopperProps, default as Popper } from "$lib/popper/popper.svelte";
 
-interface TooltipProps extends PopperProps {
+interface TooltipProps extends Omit<PopperProps, "when"|"class"|"useArrow"|"strategy"> {
     theme?: Theme;
 }
 
 let {
-    class: className,
     theme = "dark",
     ...restProps
 }:TooltipProps = $props();
 
+const {
+    content,
+    arrow,
+} = tooltipVariants({theme});
+
 </script>
 
 <Popper
-    class={tooltipVariants({theme, className})}
     useArrow={true}
-    arrowClass={theme === "light" ? "shadow-outline-lg":undefined}
+    class={{
+        outline: "rounded-lg shadow-outline-lg",
+        content: content(),
+        arrow: arrow(),
+    }}
     {...restProps}
 />

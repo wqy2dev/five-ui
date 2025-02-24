@@ -1,26 +1,45 @@
 <script lang="ts">
 import { type PopperProps, Popper } from "$lib/popper/index.js";
-import { twMerge } from "tailwind-merge";
 
-interface DropdownProps extends Omit<PopperProps, "style"|"when"> {
+interface DropdownProps extends Omit<PopperProps, "trigger"|"when"|"class"|"useArrow"|"strategy"> {
     
 }
 
 let {
-    class: className,
     children,
     placement = "bottomStart",
     ...restProps
 }:DropdownProps = $props();
 
+
+let overflowRef:HTMLElement;
+
+// popper hide strategy
+function strategy(targetEl:HTMLElement, floatEl:HTMLElement) {
+    if(!floatEl.contains(targetEl)) {
+        return true;
+    }
+    return overflowRef.contains(targetEl) && targetEl.tagName === "BUTTON";
+}
+
 </script>
 
 <Popper
-    class={twMerge("min-w-32 rounded-md text-sm p-1 bg-white shadow-outline-lg", className)}
+    class={{
+        outline: "bg-white rounded-lg shadow-outline-lg",
+        content: "bg-inherit min-w-32 text-sm p-1 rounded-lg",
+        arrow: "bg-inherit shadow-outline-lg",
+    }}
     useArrow={true}
-    arrowClass="shadow-outline-lg"
     placement={placement}
+    trigger="toggle"
+    strategy={strategy}
+    root={() => document.body}
     {...restProps}
 >
-    {@render children()}
+    <div
+        bind:this={overflowRef}
+    >
+        {@render children()}
+    </div>
 </Popper>
