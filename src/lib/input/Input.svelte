@@ -8,7 +8,7 @@ import type { FormFieldContext } from "$lib/form/FormField.svelte";
 const inputVariants = tv({
 	slots: {
 		base: "w-full align-top inline-flex flex-row items-center px-2 bg-white border border-solid border-slate-200 overflow-hidden transition-all",
-		input: "grow shrink min-w-5 h-full text-sm text-slate-700 disabled:text-slate-400 placeholder:text-slate-400 bg-transparent cursor-inherit outline-none",
+		input: "grow shrink min-w-5 h-full text-sm text-slate-900 disabled:text-slate-400 placeholder:text-slate-400 bg-transparent cursor-inherit outline-none",
 		slot: "w-5 shrink-0 flex items-center justify-center text-slate-400 z-1 cursor-inherit",
 	},
 	variants: {

@@ -4,7 +4,7 @@ import { hasContext, onMount, setContext, type Snippet } from "svelte";
 import type { Color } from "./Tab.svelte";
 
 const tabsVariants = tv({
-    base: "flex w-fit h-fit p-1.5 gap-2",
+    base: "flex w-fit h-fit p-1 gap-2",
 	variants: {
         variant: {
             solid: "bg-slate-100",

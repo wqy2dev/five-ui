@@ -41,12 +41,12 @@ const tabVariants = tv({
         {
             color: "primary",
             variant: "solid",
-            class: "open:bg-primary-600 open:text-white open:hover:text-white text-slate-500 hover:text-slate-700",
+            class: "open:bg-primary-600 open:text-white open:hover:text-white text-slate-500 hover:text-slate-900",
         },
         {
             color: "primary",
             variant: "light",
-            class: "open:bg-primary-600 open:text-white text-slate-500 open:hover:text-white open:hover:bg-primary-600 hover:text-slate-700",
+            class: "open:bg-primary-600 open:text-white text-slate-500 open:hover:text-white open:hover:bg-primary-600 hover:text-slate-900",
         },
         {
             color: "primary",
@@ -81,12 +81,12 @@ const tabVariants = tv({
         {
             color: "default",
             variant: "solid",
-            class: "open:bg-white open:text-slate-700 open:shadow-outline-md text-slate-500 hover:text-slate-700",
+            class: "open:bg-white open:text-slate-900 open:shadow-outline-md text-slate-500 hover:text-slate-900",
         },
         {
             color: "default",
             variant: "light",
-            class: "open:bg-white open:text-slate-700 open:hover:bg-white open:shadow-outline-md text-slate-500 hover:text-slate-700",
+            class: "open:bg-white open:text-slate-900 open:hover:bg-white open:shadow-outline-md text-slate-500 hover:text-slate-900",
         },
         {
             color: "default",
@@ -97,25 +97,25 @@ const tabVariants = tv({
             color: "default",
             variant: "underlined",
             placement: "top",
-            class: "border-b-2 open:text-slate-700 hover:text-slate-700 text-slate-500",
+            class: "border-b-2 open:text-slate-900 hover:text-slate-900 text-slate-500",
         },
         {
             color: "default",
             variant: "underlined",
             placement: "bottom",
-            class: "border-t-2 open:text-slate-700 hover:text-slate-700 text-slate-500",
+            class: "border-t-2 open:text-slate-900 hover:text-slate-900 text-slate-500",
         },
         {
             color: "default",
             variant: "underlined",
             placement: "left",
-            class: "border-r-2 open:text-slate-700 hover:text-slate-700 text-slate-500",
+            class: "border-r-2 open:text-slate-900 hover:text-slate-900 text-slate-500",
         },
         {
             color: "default",
             variant: "underlined",
             placement: "right",
-            class: "border-l-2 open:text-slate-700 hover:text-slate-700 text-slate-500",
+            class: "border-l-2 open:text-slate-900 hover:text-slate-900 text-slate-500",
         },
     ],  
 	defaultVariants: {

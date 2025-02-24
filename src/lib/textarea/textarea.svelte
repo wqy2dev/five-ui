@@ -10,7 +10,7 @@ const textareaVariants = tv({
     variants: {
         disabled: {
             true: "cursor-not-allowed bg-slate-50 text-slate-400",
-            false: "text-slate-700",
+            false: "text-slate-900",
         },
         focus: {
             true: "ring ring-primary-200 border-primary-600",
