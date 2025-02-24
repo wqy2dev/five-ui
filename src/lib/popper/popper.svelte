@@ -1,4 +1,7 @@
 <script module lang="ts">
+import { onMount, tick, type Snippet } from "svelte";
+import { type EasingFunction, type TransitionConfig } from "svelte/transition";
+import { twMerge } from "tailwind-merge";
 
 export type Trigger = "hover" | "focus" | "click" | "toggle";
 export type Placement = "top" | "topStart" | "topEnd" | "bottom" | "bottomStart" | "bottomEnd" | "left" | "leftStart" | "leftEnd" | "right" | "rightStart" | "rightEnd";
@@ -10,7 +13,6 @@ export type PopperProps = {
     placement?:Placement;
     offset?:number;
     zIndex?:number;
-    duration?:number;
     useArrow?:boolean;
     arrowClass?:string;
     arrowSize?:number;
@@ -45,7 +47,7 @@ function position(refEl:HTMLElement, floatEl:HTMLElement, placement:Placement, o
             left = left + (refEl.offsetWidth - floatEl.offsetWidth) / 2;
             break;
         case "bottomStart":
-            top  = top + refEl.offsetHeight + offset;
+            top = top + refEl.offsetHeight + offset;
             break;
         case "bottomEnd":
             top  = top + refEl.offsetHeight + offset;
@@ -85,7 +87,7 @@ function position(refEl:HTMLElement, floatEl:HTMLElement, placement:Placement, o
 
     return { 
         top,
-        left
+        left,
     };
 }
 
@@ -150,14 +152,50 @@ function arrowPosition(refEl:HTMLElement, floatEl:HTMLElement, arrowEl:HTMLEleme
     };
 }
 
+type TransitionScaleXY = {
+    delay?:number;
+    duration?:number;
+    easing?:EasingFunction;
+    placement:Placement;
+}
+
+// scaleY transition
+function scaleXY(node:HTMLElement, params:TransitionScaleXY):TransitionConfig {
+    const { 
+        delay,
+        duration,
+        easing,
+        placement,
+    } = params;
+
+    let origin = "";
+    let scale = "";
+
+    if(placement.substring(0, 3) === "top") {
+        origin = "50% 100%", scale = "scaleY";
+    } else if(placement.substring(0, 6) === "bottom") {
+        origin = "50% 0", scale = "scaleY";
+    } else if(placement.substring(0, 4) === "left") {
+        origin = "100% 50%", scale = "scaleX";
+    } else if(placement.substring(0, 5) === "right") {
+        origin = "0 50%", scale = "scaleX";
+    }
+
+    return {
+        delay,
+        easing,
+        duration: duration ?? 200,
+        css: (t: number, u: number) => {
+            return `transform-origin:${origin};transform:${scale}(${t});opacity:${t};`;
+        }
+    }
+}
+
 const arrowBeforeOffset = "2px";
 
 </script>
 
 <script lang="ts">
-import { onMount, tick, type Snippet } from "svelte";
-import { fade } from "svelte/transition";
-import { twMerge } from "tailwind-merge";
 
 let {
     target,
@@ -165,7 +203,6 @@ let {
     class: className,
     offset = 12,
     zIndex = 60,
-    duration = 180,
     arrowClass,
     useArrow,
     arrowSize = 9,
@@ -176,7 +213,6 @@ let {
     children,
 }:PopperProps = $props();
 
-let ticking = false;
 let anchorEl:HTMLElement;
 let floatEl:HTMLElement | null = null;
 let arrowEl:HTMLElement | null = null;
@@ -277,36 +313,28 @@ function watch() {
 
 // update popper position
 function update() {
-    if (!ticking) {
-        window.requestAnimationFrame(() => {
-            if(floatEl) {
-                const p = position(
-                    anchorEl,
-                    floatEl,
-                    placement,
-                    offset
-                );
+    if(floatEl) {
+        const p = position(
+            anchorEl,
+            floatEl,
+            placement,
+            offset
+        );
 
-                floatEl.style.left = `${p.left}px`;
-                floatEl.style.top = `${p.top}px`;
+        floatEl.style.left = `${p.left}px`;
+        floatEl.style.top = `${p.top}px`;
 
-                if(useArrow && arrowEl) {
-                    const p = arrowPosition(
-                        anchorEl,
-                        floatEl,
-                        arrowEl,
-                        placement,
-                    );
+        if(useArrow && arrowEl) {
+            const p = arrowPosition(
+                anchorEl,
+                floatEl,
+                arrowEl,
+                placement,
+            );
 
-                    arrowEl.style.left = `${p.left}px`;
-                    arrowEl.style.top = `${p.top}px`;
-                }
-            }
-
-            ticking = false;
-        });
-
-        ticking = true;
+            arrowEl.style.left = `${p.left}px`;
+            arrowEl.style.top = `${p.top}px`;
+        }
     }
 }
 
@@ -380,7 +408,7 @@ onMount(() => {
             onmouseenter:onshow,
             onmouseleave:onleave,
         } : {})}
-        transition:fade={{duration}}
+        transition:scaleXY={{placement}}
         use:portal
     >
         <div

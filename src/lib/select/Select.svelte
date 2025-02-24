@@ -107,7 +107,7 @@ $effect(() => {
     {/snippet}
 
     <div 
-        class="h-fit p-1 rounded-md shadow-outline-md bg-white"
+        class="h-fit p-1 rounded-md shadow-outline-lg bg-white"
         style:width={width}
     >
         {#if enableSearch}

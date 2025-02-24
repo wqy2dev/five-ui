@@ -5,7 +5,7 @@ const tooltipVariants = tv({
     base: "rounded-lg text-sm p-2",
     variants: {
         theme: {
-            light: "bg-white text-gray-900 shadow-outline-sm",
+            light: "bg-white text-gray-900 shadow-outline-lg",
             dark: "bg-gray-900 text-white",
         },
     },
@@ -36,6 +36,6 @@ let {
 <Popper
     class={tooltipVariants({theme, className})}
     useArrow={true}
-    arrowClass={theme === "light" ? "shadow-outline-sm":undefined}
+    arrowClass={theme === "light" ? "shadow-outline-lg":undefined}
     {...restProps}
 />

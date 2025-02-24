@@ -1,6 +1,8 @@
 <script lang="ts">
 import { SuccessCircleSolid } from "$lib/icons/index.js";
 import { Layout, Side, Header, Content } from "$lib/index.js";
+// import { tweened } from 'svelte/motion';
+// import { cubicOut } from 'svelte/easing';
 
 import "./style.css";
 
@@ -45,6 +47,14 @@ const routes = [
     {path: "/watermark", title: "WaterMark", achieve: true},
 ];
 
+// // 初始化tweened变量，并设置持续时间和缓动函数
+// let count = tweened(0, { duration: 2000, easing: cubicOut });
+
+// // 定义增加count的函数，使用.set()直接设置目标值
+// function increase() {
+//     count.set($count + 10);
+// }
+
 </script>
 
 <Layout
@@ -79,7 +89,8 @@ const routes = [
         class="grow w-0"
     >
         <Header>
-
+            <!-- <button onclick={increase}>Increase Count</button>
+            <p>Animated Count: {$count}</p> -->
         </Header>
         <Content
             class="h-0 px-5 overflow-y-auto pb-20"
