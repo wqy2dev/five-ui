@@ -38,7 +38,7 @@ const triggers = ["hover", "focus", "click", "toggle"];
         Theme
     </h4>
     
-    <div class="flex flex-row gap-2">
+    <div class="flex flex-row gap-10">
         <Tooltip theme="dark">
             {#snippet target(ref)}
                 <Button ref={ref}> Dark </Button>
@@ -104,5 +104,25 @@ const triggers = ["hover", "focus", "click", "toggle"];
 
             This is a tooltip!
         </Tooltip>
+    </div>
+
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
+        Default Show Tooltip
+    </h4>
+
+    <div class="flex flex-row gap-10">
+        {#each triggers as trigger}
+            <Tooltip trigger={trigger as any} display={true}>
+                {#snippet target(ref)}
+                    <Button ref={ref}> 
+                        <span>
+                            {trigger}
+                        </span>    
+                    </Button>
+                {/snippet}
+
+                This is a tooltip!
+            </Tooltip>
+        {/each}
     </div>
 </div>

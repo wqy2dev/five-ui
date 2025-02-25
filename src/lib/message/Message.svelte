@@ -43,11 +43,10 @@ onMount(() => {
 </script>
 
 <div
-    aria-label="Message"
     class="w-full py-1 mp-1 z-50 flex justify-center bg-transparent"
     transition:slide
 >
-    <div class="flex flex-row items-center shadow-outline-md text-sm rounded-lg px-3 py-2 bg-white pointer-events-auto">
+    <div class="flex flex-row items-center shadow-outline-md rounded-lg p-2 bg-white pointer-events-auto">
         <span class="mr-2">
             {#if variant === "info"}
                 <InfoCircleSolid size={20} class="text-primary-600"/>
@@ -60,7 +59,7 @@ onMount(() => {
             {/if}
         </span>
     
-        <span>
+        <span class="text-900 text-sm">
             {#if typeof message === "string"}
                 {message}
             {:else}

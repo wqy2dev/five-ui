@@ -24,9 +24,11 @@ export type PopperProps = {
     target:Snippet<[{(ref:HTMLElement):void}]>;
     // mount node
     root?:{():HTMLElement};
-    children:Snippet;
     // popper hide strategy when floatElement blur
     strategy?:{(targetEl:HTMLElement, floatEl:HTMLElement):boolean};
+    // default display popper
+    display?:boolean;
+    children:Snippet;
 }
 
 // Calculate the position of the popper
@@ -218,6 +220,7 @@ let {
     trigger = "hover",
     placement = "top",
     root,
+    display = false,
     strategy,
     children,
 }:PopperProps = $props();
@@ -228,7 +231,7 @@ let arrowEl:HTMLElement | null = null;
 let overflowElements:Array<HTMLElement> = [];
 
 let timer = 0;
-let show = $state(false);
+let show = $state(display);
 
 // ref anchor element
 function ref(el:HTMLElement) {

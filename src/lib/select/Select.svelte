@@ -1,10 +1,10 @@
 <script lang="ts" module>
-import { getContext, type Snippet } from "svelte";
+import { getContext, onMount, type Snippet } from "svelte";
+import { twMerge } from "tailwind-merge";
 import { type InputProps } from "$lib/input/Input.svelte";
 import { type FormFieldContext } from "$lib/form/FormField.svelte";
-import { Search } from "../icons/index.js";
-import { Popper, Input } from "../index.js";
-import { Menu } from "$lib/menu/index.js";
+import { Search } from "$lib/icons/index.js";
+import { Popper, Input, Menu } from "$lib/index.js";
 import SelectInput from "./SelectInput.svelte";
 
 type SelectProps = {
@@ -34,8 +34,8 @@ let {
     name,
     value,
     searchProps,
-    width = "350px",
-    optionsClass = "max-h-56",
+    width = "320px",
+    optionsClass,
     disabled,
     placeholder,
     enableSearch,
@@ -64,10 +64,7 @@ function strategy(targetEl:HTMLElement, floatEl:HTMLElement) {
     return overflowRef.contains(targetEl) && targetEl.tagName === "BUTTON";
 }
 
-let option = $state({
-    label: "", 
-    value,
-});
+let option = $state({label:"", value});
 
 function onselect(value?:string|number, label?:string) {
     if(label && value) {
@@ -82,7 +79,6 @@ $effect(() => {
 </script>
 
 <Popper 
-    useArrow={true}
     class={{
         outline: "bg-white rounded-lg shadow-outline-lg",
         content: "bg-inherit rounded-lg",
@@ -91,6 +87,7 @@ $effect(() => {
     trigger="toggle"
     placement="bottom"
     strategy={strategy}
+    useArrow={true}
 >
     {#snippet target(ref)}
         <SelectInput 
@@ -110,7 +107,7 @@ $effect(() => {
         />
     {/snippet}
 
-    <div 
+    <div
         class="p-1"
         style:width={width}
     >
@@ -128,7 +125,7 @@ $effect(() => {
 
         {#if children}
             <Menu 
-                class={`${optionsClass} overflow-y-auto overflow-x-hidden`}
+                class={twMerge("max-h-56 overflow-y-auto overflow-x-hidden", optionsClass)}
                 oncommand={onselect}
                 value={option.value}
                 stateful={true}
@@ -136,11 +133,13 @@ $effect(() => {
             >
                 {@render children?.()}
             </Menu>
-        {:else if empty}
-            {@render empty()}
         {:else}
-            <div class="flex items-center justify-center h-20 text-sm text-slate-400">
-                Oh, empty data
+            <div class="flex items-center justify-center py-5 text-sm text-slate-400">
+                {#if empty}
+                    {@render empty()}
+                {:else}
+                    Oh, empty data
+                {/if}
             </div>
         {/if}
     </div>
