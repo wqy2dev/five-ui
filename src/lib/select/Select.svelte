@@ -4,8 +4,15 @@ import { twMerge } from "tailwind-merge";
 import { type InputProps } from "$lib/input/Input.svelte";
 import { type FormFieldContext } from "$lib/form/FormField.svelte";
 import { Search } from "$lib/icons/index.js";
-import { Popper, Input, Menu } from "$lib/index.js";
+import { Popper, Input, Menu, MenuItem } from "$lib/index.js";
 import SelectInput from "./SelectInput.svelte";
+
+export type SelectOption = {
+    value:string|number;
+    label:string;
+    disabled?:boolean;
+    extra?:any;
+}
 
 type SelectProps = {
     id?:string;
@@ -13,15 +20,18 @@ type SelectProps = {
     class?:string;
 	name?:string;
 	value?:string|number;
+    width?:number|string;
     placeholder?:string;
     disabled?:boolean;
-    width?:number|string;
+    options?:SelectOption[];
     optionsClass?:string;
     searchProps?:InputProps;
-    enableSearch?:boolean;
+    searchable?:boolean;
     empty?:Snippet;
-    children?:Snippet;
     head?:Snippet;
+    // custom option render
+    option?:Snippet<[SelectOption]>;
+    children?:Snippet;
     onchange?:{(value?:string|number):void};
 }
 
@@ -29,21 +39,22 @@ type SelectProps = {
 
 <script lang="ts">
 let {
-    class:className,
     id,
+    class:className,
     name,
     value,
-    searchProps,
     width = "320px",
     optionsClass,
     disabled,
     placeholder,
-    enableSearch,
-    onchange,
+    searchable,
+    searchProps,
+    options = [],
+    option:optionRender,
     empty,
-    children,
     head,
     ref:elRef,
+    onchange,
 }:SelectProps = $props();
 
 const fieldContext = getContext<FormFieldContext>("formField");
@@ -60,20 +71,32 @@ function strategy(targetEl:HTMLElement, floatEl:HTMLElement) {
     if(!floatEl.contains(targetEl)) {
         return true;
     }
-
     return overflowRef.contains(targetEl) && targetEl.tagName === "BUTTON";
 }
 
-let option = $state({label:"", value});
+let selected = $state({label:"", value});
 
 function onselect(value?:string|number, label?:string) {
     if(label && value) {
-        option = {label, value};
+        selected = {label, value};
     }
 }
 
 $effect(() => {
-    onchange?.(option.value);
+    onchange?.(selected.value);
+});
+
+onMount(() => {
+    const t = typeof value;
+
+    if(t === "string" || t === "number") {
+        for(let i=0;i<options.length;i++) {
+            if(options[i].value === value) {
+                selected = {value:options[i].value, label:options[i].label};
+                break;
+            }
+        }
+    }
 });
 
 </script>
@@ -94,15 +117,15 @@ $effect(() => {
             ref={(el:HTMLElement) => {
                 ref(el), elRef && elRef(el);
             }}
-            {...option}
+            {...selected}
             {...{
                 id,
-                width,
-                class:className,
                 name, 
                 head,
+                width,
                 disabled,
                 placeholder,
+                class:className,
             }}
         />
     {/snippet}
@@ -111,7 +134,7 @@ $effect(() => {
         class="p-1"
         style:width={width}
     >
-        {#if enableSearch}
+        {#if searchable}
             <div class="pb-1">
                 <Input
                     {...searchProps}
@@ -123,15 +146,27 @@ $effect(() => {
             </div>
         {/if}
 
-        {#if children}
+        {#if options && options.length > 0}
             <Menu 
                 class={twMerge("max-h-56 overflow-y-auto overflow-x-hidden", optionsClass)}
                 oncommand={onselect}
-                value={option.value}
+                value={selected.value}
                 stateful={true}
                 ref={ el => overflowRef = el }
             >
-                {@render children?.()}
+                {#each options as option}
+                    <MenuItem
+                        value={option.value}
+                        label={option.label}
+                        disabled={option.disabled}
+                    >
+                        {#if optionRender}
+                            {@render optionRender(option)}
+                        {:else}
+                            {option.label}
+                        {/if}
+                    </MenuItem>
+                {/each}
             </Menu>
         {:else}
             <div class="flex items-center justify-center py-5 text-sm text-slate-400">

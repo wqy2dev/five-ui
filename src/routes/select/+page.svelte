@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { UserOutline } from "$lib/icons/index.js";
-import { Select, Option } from "$lib/index.js";
+import { UserOutline } from "$lib/icons/index.js";
+import { Select } from "$lib/index.js";
 
 const sizes = ["sm", "md", "lg"];
 
@@ -30,29 +30,17 @@ function onsearch(value?:string) {
         value="apple"
         onchange={v => console.log("select:", v)}
         placeholder="please select"
+        options={[
+            {value:"polo", label:"菠萝"},
+            {value:"juezi", label:"苹果"},
+            {value:"apple", label:"橘子"},
+            {value:"putao", label:"葡萄", disabled:true},
+            {value:"mg", label:"芒果"},
+        ]}
     >
         {#snippet head()}
             <UserOutline/>
         {/snippet}    
-        <Option
-            value="polo"
-            label={"菠萝"}
-        >
-            🍍菠萝
-        </Option>
-        <Option
-            value="juezi"
-            label={"橘子A"}
-            disabled
-        >
-            🍊橘子
-        </Option>
-        <Option
-            value="apple"
-            label={"苹果B"}
-        >
-            🍎苹果
-        </Option>
     </Select>
 </div>
 
@@ -66,25 +54,21 @@ function onsearch(value?:string) {
         name="b" 
         onchange={v => console.log("select:", v)}
         placeholder="please select"
-        enableSearch
+        searchable
         searchProps={{
             onchange:onsearch,
         }}
-    >
-        {#each [
+        options={[
             {value:"polo", label:"菠萝"},
-            {value:"juezi", label:"苹果B"},
+            {value:"juezi", label:"苹果"},
             {value:"apple", label:"橘子"},
-            {value:"putao", label:"葡萄"},
+            {value:"putao", label:"葡萄", disabled:true},
             {value:"mg", label:"芒果"},
-        ].filter(v => v.label.indexOf(keywords) > -1)  as item}
-            <Option
-                value={item.value}
-                label={item.label}
-            >
-                {item.label}
-            </Option>
-        {/each}
+        ].filter(v => v.label.indexOf(keywords) > -1)}
+    >
+        {#snippet option(opt)}
+            🍉 {opt.label}
+        {/snippet}
     </Select>
 </div>
 
@@ -97,7 +81,7 @@ function onsearch(value?:string) {
         name="b" 
         onchange={v => console.log("select:", v)}
         placeholder="please select"
-        enableSearch
+        searchable
         searchProps={{
             onchange:onsearch,
         }}
@@ -115,7 +99,7 @@ function onsearch(value?:string) {
         name="b" 
         onchange={v => console.log("select:", v)}
         placeholder="please select"
-        enableSearch
+        searchable
         searchProps={{
             onchange:onsearch,
         }}

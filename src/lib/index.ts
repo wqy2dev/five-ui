@@ -24,7 +24,7 @@ export { Overlay } from "./overlay/index.js";
 export { Pagination } from "./pagination/index.js";
 export { Popper, type Placement, type Trigger } from "./popper/index.js";
 export { Radio, RadioGroup } from "./radio/index.js";
-export { Select, Option } from "./select/index.js";
+export { Select, type SelectOption } from "./select/index.js";
 export { Slider } from "./slider/index.js";
 export { Steps } from "./steps/index.js";
 export { Switch } from "./switch/index.js";
