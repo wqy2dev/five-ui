@@ -28,6 +28,8 @@ export type PopperProps = {
     strategy?:{(targetEl:HTMLElement, floatEl:HTMLElement):boolean};
     // default display popper
     display?:boolean;
+    // true: unmount popper when hide, false: hide popper when hide
+    unmountOrHide?:boolean;
     children:Snippet;
 }
 
@@ -221,6 +223,7 @@ let {
     placement = "top",
     root,
     display = false,
+    unmountOrHide = false,
     strategy,
     children,
 }:PopperProps = $props();
