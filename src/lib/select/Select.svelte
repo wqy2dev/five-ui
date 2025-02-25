@@ -139,7 +139,7 @@ $effect(() => {
         {:else if empty}
             {@render empty()}
         {:else}
-            <div class="flex items-center justify-center h-28 text-sm text-slate-400">
+            <div class="flex items-center justify-center h-20 text-sm text-slate-400">
                 Oh, empty data
             </div>
         {/if}

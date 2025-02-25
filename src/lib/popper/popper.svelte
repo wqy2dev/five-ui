@@ -210,10 +210,10 @@ const arrowBeforeOffset = "2px";
 let {
     target,
     class:decoration = {},
-    offset = 12,
+    offset = 15,
     zIndex = 60,
     useArrow,
-    arrowSize = 9,
+    arrowSize = 11,
     duration = 200,
     trigger = "hover",
     placement = "top",
