@@ -6,7 +6,7 @@ import { tv, type VariantProps } from "tailwind-variants";
 const inputVariants = tv({
     slots: {
         base:"h-9 inline-flex flex-row items-center rounded-md bg-white p-2 border border-solid border-slate-200 outline-none overflow-hidden transition",
-        input:"flex flex-row items-center grow shrink-0 text-slate-900 text-sm",
+        input:"flex flex-row items-center grow shrink-0 text-sm leading-none",
         chevron:"w-4 shrink-0 text-slate-400 transition",
         slot: "w-5 shrink-0 flex items-center justify-start text-slate-400 z-1 cursor-inherit",
     },
@@ -142,7 +142,7 @@ const {
     {/if}
 
     {#if label }
-        <span class={input({input: true})}>
+        <span class={input({input: !disabled})}>
             {label}
         </span>
     {:else if placeholder}

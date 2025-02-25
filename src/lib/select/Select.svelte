@@ -101,81 +101,99 @@ onMount(() => {
 
 </script>
 
-<Popper 
-    class={{
-        outline: "bg-white rounded-lg shadow-outline-lg",
-        content: "bg-inherit rounded-lg",
-        arrow: "bg-inherit shadow-outline-lg",
-    }}
-    trigger="toggle"
-    placement="bottom"
-    strategy={strategy}
-    useArrow={true}
->
-    {#snippet target(ref)}
-        <SelectInput 
-            ref={(el:HTMLElement) => {
-                ref(el), elRef && elRef(el);
-            }}
-            {...selected}
-            {...{
-                id,
-                name, 
-                head,
-                width,
-                disabled,
-                placeholder,
-                class:className,
-            }}
-        />
-    {/snippet}
-
-    <div
-        class="p-1"
-        style:width={width}
+{#if disabled}
+    <SelectInput 
+        ref={(el:HTMLElement) => {
+            elRef && elRef(el);
+        }}
+        {...selected}
+        {...{
+            id,
+            name, 
+            head,
+            width,
+            disabled,
+            placeholder,
+            class:className,
+        }}
+    />
+{:else}
+    <Popper 
+        class={{
+            outline: "bg-white rounded-lg shadow-outline-lg",
+            content: "bg-inherit rounded-lg",
+            arrow: "bg-inherit shadow-outline-lg",
+        }}
+        trigger="toggle"
+        placement="bottom"
+        strategy={strategy}
+        useArrow={true}
     >
-        {#if searchable}
-            <div class="pb-1">
-                <Input
-                    {...searchProps}
-                >
-                    {#snippet tail()}
-                        <Search size={15}/>
-                    {/snippet}
-                </Input>
-            </div>
-        {/if}
+        {#snippet target(ref)}
+            <SelectInput 
+                ref={(el:HTMLElement) => {
+                    ref(el), elRef && elRef(el);
+                }}
+                {...selected}
+                {...{
+                    id,
+                    name, 
+                    head,
+                    width,
+                    disabled,
+                    placeholder,
+                    class:className,
+                }}
+            />
+        {/snippet}
 
-        {#if options && options.length > 0}
-            <Menu 
-                class={twMerge("max-h-56 overflow-y-auto overflow-x-hidden", optionsClass)}
-                oncommand={onselect}
-                value={selected.value}
-                stateful={true}
-                ref={ el => overflowRef = el }
-            >
-                {#each options as option}
-                    <MenuItem
-                        value={option.value}
-                        label={option.label}
-                        disabled={option.disabled}
+        <div
+            class="p-1"
+            style:width={width}
+        >
+            {#if searchable}
+                <div class="pb-1">
+                    <Input
+                        {...searchProps}
                     >
-                        {#if optionRender}
-                            {@render optionRender(option)}
-                        {:else}
-                            {option.label}
-                        {/if}
-                    </MenuItem>
-                {/each}
-            </Menu>
-        {:else}
-            <div class="flex items-center justify-center py-5 text-sm text-slate-400">
-                {#if empty}
-                    {@render empty()}
-                {:else}
-                    Oh, empty data
-                {/if}
-            </div>
-        {/if}
-    </div>
-</Popper>
+                        {#snippet tail()}
+                            <Search size={15}/>
+                        {/snippet}
+                    </Input>
+                </div>
+            {/if}
+
+            {#if options && options.length > 0}
+                <Menu 
+                    class={twMerge("max-h-56 overflow-y-auto overflow-x-hidden", optionsClass)}
+                    oncommand={onselect}
+                    value={selected.value}
+                    stateful={true}
+                    ref={ el => overflowRef = el }
+                >
+                    {#each options as option}
+                        <MenuItem
+                            value={option.value}
+                            label={option.label}
+                            disabled={option.disabled}
+                        >
+                            {#if optionRender}
+                                {@render optionRender(option)}
+                            {:else}
+                                {option.label}
+                            {/if}
+                        </MenuItem>
+                    {/each}
+                </Menu>
+            {:else}
+                <div class="flex items-center justify-center py-5 text-sm text-slate-400">
+                    {#if empty}
+                        {@render empty()}
+                    {:else}
+                        Oh, empty data
+                    {/if}
+                </div>
+            {/if}
+        </div>
+    </Popper>
+{/if}

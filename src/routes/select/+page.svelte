@@ -27,12 +27,12 @@ function onsearch(value?:string) {
 <div class="flex flex-row gap-5">
     <Select
         name="a" 
-        value="apple"
+        value={0}
         onchange={v => console.log("select:", v)}
         placeholder="please select"
         options={[
             {value:"polo", label:"菠萝"},
-            {value:"juezi", label:"苹果"},
+            {value:0, label:"苹果"},
             {value:"apple", label:"橘子"},
             {value:"putao", label:"葡萄", disabled:true},
             {value:"mg", label:"芒果"},
@@ -79,12 +79,20 @@ function onsearch(value?:string) {
 <div class="flex flex-row gap-5">
     <Select
         name="b" 
+        value="juezi"
         onchange={v => console.log("select:", v)}
         placeholder="please select"
         searchable
         searchProps={{
             onchange:onsearch,
         }}
+        options={[
+            {value:"polo", label:"菠萝"},
+            {value:"juezi", label:"苹果"},
+            {value:"apple", label:"橘子"},
+            {value:"putao", label:"葡萄", disabled:true},
+            {value:"mg", label:"芒果"},
+        ]}
         disabled
     >
     </Select>
