@@ -3,7 +3,7 @@ import { tv, type VariantProps } from "tailwind-variants";
 import Notification, { type NotificationProps } from "./Notification.svelte";
 
 const variants = tv({
-    base: "flex w-full",
+    base: "flex w-full z-40",
     variants: {
         placement: {
             top: "justify-center mb-3",

@@ -43,7 +43,7 @@ onMount(() => {
 </script>
 
 <div
-    class="w-full py-1 mp-1 z-50 flex justify-center bg-transparent"
+    class="w-full py-1 mp-1 flex justify-center bg-transparent"
     transition:slide
 >
     <div class="flex flex-row items-center shadow-outline-md rounded-lg p-2 bg-white pointer-events-auto">

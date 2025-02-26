@@ -214,7 +214,7 @@ let {
     target,
     class:decoration = {},
     offset = 15,
-    zIndex = 60,
+    zIndex = 40,
     useArrow,
     arrowSize = 11,
     duration = 200,

@@ -4,7 +4,7 @@ import { type VariantProps, tv } from "tailwind-variants";
 import { fade } from "svelte/transition";
 
 const overlayVariants = tv({
-    base: "w-screen h-screen inset-0 z-50",
+    base: "w-screen h-screen inset-0 z-30",
     variants: {
         position: {
             fixed: "fixed",
@@ -73,7 +73,6 @@ onMount(() => {
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- svelte-ignore attribute_global_event_reference -->
 <div
-    aria-label="Overlay"
     bind:this={el}
     id={id}
     class={overlayVariants({position, backdrop, className})}
