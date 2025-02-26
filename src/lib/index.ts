@@ -13,7 +13,7 @@ export { Checkbox, CheckboxGroup } from "./checkbox/index.js";
 export { DatePicker } from "./datepicker/index.js";
 export { Drawer } from "./drawer/index.js";
 export { Dropdown } from "./dropdown/index.js";
-export { Form, FormField, type FormInstance } from "./form/index.js";
+export { Form, FormField, type FormInstance, type FormValidateError } from "./form/index.js";
 export { Input } from "./input/index.js";
 export { Layout, Side, Header, Content } from "./layout/index.js";
 export { Menu, MenuGroup, MenuItem } from "./menu/index.js";
