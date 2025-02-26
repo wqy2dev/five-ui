@@ -25,20 +25,32 @@ import { twMerge } from "tailwind-merge";
 let {
     id,
     ref,
-    class:className,
     children,
     oncommand,
     value,
     stateful = false,
+    class:className,
 }:MenuProps = $props();
 
+let version = value;
+
 const ctx = $state({
-    label: "",
+    label: undefined,
     value,
     stateful,
 });
 
 setContext("menu", ctx);
+
+$effect(() => {
+    if(version !== value) {
+        ctx.value = version = value;
+
+        if(value === undefined || value === "") {
+            ctx.label = undefined;
+        }
+    }
+});
 
 $effect(() => {
     oncommand?.(ctx.value, ctx.label);

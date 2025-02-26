@@ -57,7 +57,7 @@ let {
     head,
     tail:tailSnippet,
     empty,
-    onsearch,
+    onsearch:onSearch,
     onchange,
     onkeypress,
 }:SelectProps = $props();
@@ -79,18 +79,28 @@ function when(targetEl:HTMLElement, floatEl:HTMLElement) {
     return overflowRef.contains(targetEl) && targetEl.tagName === "BUTTON";
 }
 
-let selected = $state({label:"", value});
+let selected = $state<{
+    label?:string,
+    value?:string|number,
+}>({label:"", value});
 
 function onselect(value?:string|number, label?:string) {
-    if(label && value) {
-        selected = {label, value};
-    }
+    selected = {label, value};
 }
 
 let focused = $state(false);
 
 function onfocus(e:FocusEvent) {
     focused = e.type === "focus";
+}
+
+function onsearch(value?:string) {
+    if(value === "" || value === undefined) {
+        selected = {label:undefined, value:undefined};
+
+    }
+
+    onSearch?.(value);
 }
 
 $effect(() => {
@@ -126,6 +136,7 @@ let fitWidth = $state("");
             elRef && elRef(el);
         }}
         class={twMerge("w-80", className)}
+        type="text"
         value={selected.label}
         head={head}
         tail={tailSnippet ?? tail}
@@ -156,6 +167,7 @@ let fitWidth = $state("");
                     ref(el), elRef?.(el), fitWidth = el.offsetWidth + "px";
                 }}
                 class={twMerge("w-80", className)}
+                type="text"
                 value={ok ? "" : selected.label}
                 head={head}
                 tail={tailSnippet ?? tail}
@@ -171,8 +183,8 @@ let fitWidth = $state("");
         {/snippet}
 
         <div
-            class="p-1"
-            style:width={fitWidth}
+            class="p-1 inline-block"
+            style:min-width={fitWidth}
         >
             {#if options && options.length > 0}
                 <Menu 

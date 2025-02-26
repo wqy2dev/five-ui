@@ -145,7 +145,7 @@ let hover = $state(false);
 
 // erase input
 function onErase(_:MouseEvent) {
-    value = "", focus = true;
+    value = undefined, focus = true;
 
 	if(inner) {
 		inner.focus();
