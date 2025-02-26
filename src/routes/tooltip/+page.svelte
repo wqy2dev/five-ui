@@ -112,7 +112,10 @@ const triggers = ["hover", "focus", "click", "toggle"];
 
     <div class="flex flex-row gap-10">
         {#each triggers as trigger}
-            <Tooltip trigger={trigger as any} display={true}>
+            <Tooltip 
+                trigger={trigger as any} 
+                hide={false}
+            >
                 {#snippet target(ref)}
                     <Button ref={ref}> 
                         <span>

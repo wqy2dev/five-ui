@@ -26,10 +26,8 @@ export type PopperProps = {
     root?:{():HTMLElement};
     // popper hide strategy when floatElement blur
     strategy?:{(targetEl:HTMLElement, floatEl:HTMLElement):boolean};
-    // default display popper
-    display?:boolean;
-    // true: unmount popper when hide, false: hide popper when hide
-    unmountOrHide?:boolean;
+    // default hide popper
+    hide?:boolean;
     children:Snippet;
 }
 
@@ -222,8 +220,7 @@ let {
     trigger = "hover",
     placement = "top",
     root,
-    display = false,
-    unmountOrHide = false,
+    hide = true,
     strategy,
     children,
 }:PopperProps = $props();
@@ -234,7 +231,7 @@ let arrowEl:HTMLElement | null = null;
 let overflowElements:Array<HTMLElement> = [];
 
 let timer = 0;
-let show = $state(display);
+let show = $state(!hide);
 
 // ref anchor element
 function ref(el:HTMLElement) {
