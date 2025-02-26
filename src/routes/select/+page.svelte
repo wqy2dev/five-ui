@@ -3,6 +3,7 @@ import { Search, UserOutline } from "$lib/icons/index.js";
 import { Select } from "$lib/index.js";
 
 const sizes = ["sm", "md", "lg"];
+const radius = ["full", "sm", "md", "lg", "xl", "none"];
 
 let keywords = $state("");
 
@@ -144,4 +145,37 @@ function onsearch(value?:string) {
         </Select>
     {/each}
     
+</div>
+
+<h4 class="my-5 text-base indent-2 bg-slate-100">
+    Radius
+</h4>
+
+<div class="flex flex-col gap-5">
+    {#each radius as rds}
+        <Select
+            name="b" 
+            value="apple"
+            radius={rds as any}
+            onchange={v => console.log("select:", v)}
+            placeholder="please select"
+            searchable
+            onsearch={onsearch}
+            options={[
+                {value:"polo", label:"菠萝"},
+                {value:"apple", label:"苹果"},
+                {value:"juezi", label:"橘子"},
+                {value:"putao", label:"葡萄", disabled:true},
+                {value:"mg", label:"芒果"},
+            ].filter(v => v.label.indexOf(keywords) > -1)}
+        >
+            {#snippet option(opt)}
+                🍉 {opt.label}
+            {/snippet}
+
+            {#snippet tail()}
+                <Search/>
+            {/snippet}
+        </Select>
+    {/each}
 </div>

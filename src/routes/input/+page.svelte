@@ -3,6 +3,8 @@ import { Calendar, Search } from "$lib/icons/index.js";
 import { Input, } from "$lib/index.js";
 
 const sizes = ["sm", "md", "lg"];
+const radius = ["full", "sm", "md", "lg", "xl", "none"];
+
 </script>
 
 <svelte:head>
@@ -61,19 +63,6 @@ const sizes = ["sm", "md", "lg"];
     </Input>
 </div>
 
-<h4 class="my-5 text-base indent-2 bg-slate-100">
-    Size
-</h4>
-
-<div class="w-full flex flex-col gap-5">
-    {#each sizes as size}
-        <Input size={size as any}>
-            {#snippet head()}
-                <Calendar/>
-            {/snippet}
-        </Input>
-    {/each}
-</div>
 
 <h4 class="my-5 text-base indent-2 bg-slate-100">
     Password
@@ -89,4 +78,32 @@ const sizes = ["sm", "md", "lg"];
 
 <div class="w-full">
     <Input type="number" step={10} value="2024" disabled/>
+</div>
+
+<h4 class="my-5 text-base indent-2 bg-slate-100">
+    Size
+</h4>
+
+<div class="w-full flex flex-col gap-5">
+    {#each sizes as size}
+        <Input size={size as any}>
+            {#snippet head()}
+                <Calendar/>
+            {/snippet}
+        </Input>
+    {/each}
+</div>
+
+<h4 class="my-5 text-base indent-2 bg-slate-100">
+    Radius
+</h4>
+
+<div class="w-full flex flex-col gap-5">
+    {#each radius as rds}
+        <Input radius={rds as any}>
+            {#snippet head()}
+                <Calendar/>
+            {/snippet}
+        </Input>
+    {/each}
 </div>

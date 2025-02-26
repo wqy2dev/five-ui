@@ -116,6 +116,7 @@ let {
     class:className,
     value,
     size,
+	radius,
     disabled,
 	onfocus,
 	onblur,
@@ -174,7 +175,7 @@ const {
 	base,
 	slot,
 	input,
-} = inputVariants();
+} = inputVariants({size, radius});
 
 </script>
 
@@ -182,7 +183,7 @@ const {
 	bind:this={el}
 	id={id}
 	role="form"
-	class={base({size, focus:focus && !disabled, disabled, className})}
+	class={base({disabled, focus:focus && !disabled, className})}
     onmouseenter={onHover}
     onmouseleave={onHover}
     {...{size}}
