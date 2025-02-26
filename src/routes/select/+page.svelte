@@ -111,3 +111,37 @@ function onsearch(value?:string) {
     >
     </Select>
 </div>
+
+<h4 class="my-5 text-base indent-2 bg-slate-100">
+    Size
+</h4>
+
+<div class="flex flex-row gap-5">
+    {#each sizes as size}
+        <Select
+            name="b" 
+            value="apple"
+            size={size as any}
+            onchange={v => console.log("select:", v)}
+            placeholder="please select"
+            searchable
+            onsearch={onsearch}
+            options={[
+                {value:"polo", label:"菠萝"},
+                {value:"apple", label:"苹果"},
+                {value:"juezi", label:"橘子"},
+                {value:"putao", label:"葡萄", disabled:true},
+                {value:"mg", label:"芒果"},
+            ].filter(v => v.label.indexOf(keywords) > -1)}
+        >
+            {#snippet option(opt)}
+                🍉 {opt.label}
+            {/snippet}
+
+            {#snippet tail()}
+                <Search/>
+            {/snippet}
+        </Select>
+    {/each}
+    
+</div>
