@@ -30,7 +30,7 @@ type Theme = VariantProps<typeof tooltipVariants>["theme"];
 <script lang="ts">
 import { type PopperProps, default as Popper } from "$lib/popper/popper.svelte";
 
-interface TooltipProps extends Omit<PopperProps, "when"|"class"|"useArrow"|"strategy"> {
+interface TooltipProps extends Omit<PopperProps, "when"|"class"|"useArrow"> {
     theme?: Theme;
 }
 

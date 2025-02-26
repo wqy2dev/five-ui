@@ -74,12 +74,11 @@ const inputVariants = tv({
 	},
 });
 
-type Size = VariantProps<typeof inputVariants>["size"];
-type Radius = VariantProps<typeof inputVariants>["radius"];
+export type Size = VariantProps<typeof inputVariants>["size"];
+export type Radius = VariantProps<typeof inputVariants>["radius"];
 
 export type InputProps = {
 	id?:string;
-	width?:string|number;
 	class?:string;
 	name?:string;
 	value?:string|number;
@@ -97,6 +96,8 @@ export type InputProps = {
 	ref?:{(el:HTMLElement):void};
 	onchange?:{(value?:string):void};
 	onkeypress?:{(code:string):void};
+	onfocus?:{(e:FocusEvent):void};
+	onblur?:{(e:FocusEvent):void};
 	// input number
 	min?:number;
 	max?:number;
@@ -115,8 +116,9 @@ let {
     class:className,
     value,
     size,
-	width,
     disabled,
+	onfocus,
+	onblur,
     onchange,
 	onkeypress,
     ref,
@@ -156,7 +158,7 @@ function onErase(_:MouseEvent) {
 
 function onFocus(e:FocusEvent) {
     if(!disabled) {
-        focus = e.type === "focus";
+        focus = e.type === "focus", focus ? onfocus?.(e) : onblur?.(e);
     }
 }
 
@@ -183,7 +185,6 @@ const {
 	class={base({size, focus:focus && !disabled, disabled, className})}
     onmouseenter={onHover}
     onmouseleave={onHover}
-	style:width={width}
     {...{size}}
 >
 	{#if head}

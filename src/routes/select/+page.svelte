@@ -1,5 +1,5 @@
 <script lang="ts">
-import { UserOutline } from "$lib/icons/index.js";
+import { Search, UserOutline } from "$lib/icons/index.js";
 import { Select } from "$lib/index.js";
 
 const sizes = ["sm", "md", "lg"];
@@ -32,8 +32,8 @@ function onsearch(value?:string) {
         placeholder="please select"
         options={[
             {value:"polo", label:"菠萝"},
-            {value:0, label:"苹果"},
-            {value:"apple", label:"橘子"},
+            {value:"apple", label:"苹果"},
+            {value:0, label:"橘子"},
             {value:"putao", label:"葡萄", disabled:true},
             {value:"mg", label:"芒果"},
         ]}
@@ -52,22 +52,25 @@ function onsearch(value?:string) {
 <div class="flex flex-row gap-5">
     <Select
         name="b" 
+        value="apple"
         onchange={v => console.log("select:", v)}
         placeholder="please select"
         searchable
-        searchProps={{
-            onchange:onsearch,
-        }}
+        onsearch={onsearch}
         options={[
             {value:"polo", label:"菠萝"},
-            {value:"juezi", label:"苹果"},
-            {value:"apple", label:"橘子"},
+            {value:"apple", label:"苹果"},
+            {value:"juezi", label:"橘子"},
             {value:"putao", label:"葡萄", disabled:true},
             {value:"mg", label:"芒果"},
         ].filter(v => v.label.indexOf(keywords) > -1)}
     >
         {#snippet option(opt)}
             🍉 {opt.label}
+        {/snippet}
+
+        {#snippet tail()}
+            <Search/>
         {/snippet}
     </Select>
 </div>
@@ -82,14 +85,10 @@ function onsearch(value?:string) {
         value="juezi"
         onchange={v => console.log("select:", v)}
         placeholder="please select"
-        searchable
-        searchProps={{
-            onchange:onsearch,
-        }}
         options={[
             {value:"polo", label:"菠萝"},
-            {value:"juezi", label:"苹果"},
-            {value:"apple", label:"橘子"},
+            {value:"apple", label:"苹果"},
+            {value:"juezi", label:"橘子"},
             {value:"putao", label:"葡萄", disabled:true},
             {value:"mg", label:"芒果"},
         ]}
@@ -108,9 +107,7 @@ function onsearch(value?:string) {
         onchange={v => console.log("select:", v)}
         placeholder="please select"
         searchable
-        searchProps={{
-            onchange:onsearch,
-        }}
+        onsearch={onsearch}
     >
     </Select>
 </div>

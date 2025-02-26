@@ -1,5 +1,6 @@
 <script lang="ts">
 import { Form, FormField, Input, Textarea, Button, Switch, RadioGroup, Radio, Checkbox, CheckboxGroup, Message, type MessageInstance } from "$lib/index.js";
+    import Select from "$lib/select/Select.svelte";
 
 const sizes = ["sm", "md", "lg"];
 
@@ -184,6 +185,32 @@ let message:MessageInstance;
                     </Radio>
                 {/each}
             </RadioGroup>
+        </FormField>
+
+        <FormField
+            label="职业"
+            name="career"
+            layout="col"
+            required
+            rules={[
+                {
+                    rule: (value) => {
+                        return value !== "" && value !== undefined;
+                    },
+                    msg: "请选择职业",
+                },
+            ]}
+        >
+            <Select
+                placeholder="请选择职业"
+                options={[
+                    {value:"A", label:"程序员"},
+                    {value:"B", label:"设计师"},
+                    {value:"C", label:"产品经理"},
+                    {value:"D", label:"测试工程师"},
+                    {value:"E", label:"运维工程师"},
+                ]}
+            />
         </FormField>
 
         <FormField

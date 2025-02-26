@@ -33,7 +33,7 @@ const routes = [
     {path: "/notification", title: "Notification", achieve: true},
     {path: "/pagination", title: "Pagination", achieve: true},
     {path: "/radio", title: "Radio", achieve: true},
-    {path: "/select", title: "Select"},
+    {path: "/select", title: "Select", achieve: true},
     {path: "/slider", title: "Slider"},
     {path: "/steps", title: "Steps"},
     {path: "/switch", title: "Switch", achieve: true},
@@ -46,14 +46,6 @@ const routes = [
     {path: "/tooltip", title: "Tooltip", achieve: true},
     {path: "/watermark", title: "WaterMark", achieve: true},
 ];
-
-// // 初始化tweened变量，并设置持续时间和缓动函数
-// let count = tweened(0, { duration: 2000, easing: cubicOut });
-
-// // 定义增加count的函数，使用.set()直接设置目标值
-// function increase() {
-//     count.set($count + 10);
-// }
 
 </script>
 

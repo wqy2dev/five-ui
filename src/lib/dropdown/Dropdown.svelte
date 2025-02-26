@@ -1,7 +1,7 @@
 <script lang="ts">
 import { type PopperProps, Popper } from "$lib/popper/index.js";
 
-interface DropdownProps extends Omit<PopperProps, "trigger"|"when"|"class"|"useArrow"|"strategy"> {
+interface DropdownProps extends Omit<PopperProps, "trigger"|"when"|"class"|"useArrow"> {
     
 }
 
@@ -14,8 +14,8 @@ let {
 
 let overflowRef:HTMLElement;
 
-// popper hide strategy
-function strategy(targetEl:HTMLElement, floatEl:HTMLElement) {
+// popper hide condition
+function when(targetEl:HTMLElement, floatEl:HTMLElement) {
     if(!floatEl.contains(targetEl)) {
         return true;
     }
@@ -33,7 +33,7 @@ function strategy(targetEl:HTMLElement, floatEl:HTMLElement) {
     useArrow={true}
     placement={placement}
     trigger="toggle"
-    strategy={strategy}
+    when={when}
     root={() => document.body}
     {...restProps}
 >

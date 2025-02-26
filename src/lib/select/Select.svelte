@@ -1,11 +1,10 @@
 <script lang="ts" module>
 import { getContext, onMount, type Snippet } from "svelte";
 import { twMerge } from "tailwind-merge";
-import { type InputProps } from "$lib/input/Input.svelte";
+import { type Size, type Radius } from "$lib/input/Input.svelte";
 import { type FormFieldContext } from "$lib/form/FormField.svelte";
-import { Search } from "$lib/icons/index.js";
+import { ChevronDown } from "$lib/icons/index.js";
 import { Popper, Input, Menu, MenuItem } from "$lib/index.js";
-import SelectInput from "./SelectInput.svelte";
 
 export type SelectOption = {
     value:string|number;
@@ -20,19 +19,22 @@ type SelectProps = {
     class?:string;
 	name?:string;
 	value?:string|number;
-    width?:number|string;
-    placeholder?:string;
     disabled?:boolean;
+    placeholder?:string;
+    size?:Size;
+    radius?:Radius
     options?:SelectOption[];
     optionsClass?:string;
-    searchProps?:InputProps;
     searchable?:boolean;
     empty?:Snippet;
     head?:Snippet;
-    // custom option render
+    tail?:Snippet;
+    onsearch?:{(value?:string):void};
+    onchange?:{(value?:string|number):void};
+    onkeypress?:{(code:string):void};
+    // option render snippet
     option?:Snippet<[SelectOption]>;
     children?:Snippet;
-    onchange?:{(value?:string|number):void};
 }
 
 </script>
@@ -40,21 +42,24 @@ type SelectProps = {
 <script lang="ts">
 let {
     id,
+    ref:elRef,
     class:className,
     name,
     value,
-    width = "320px",
-    optionsClass,
     disabled,
     placeholder,
-    searchable,
-    searchProps,
+    searchable = false,
     options = [],
     option:optionRender,
-    empty,
+    optionsClass,
+    size,
+    radius,
     head,
-    ref:elRef,
+    tail:tailSnippet,
+    empty,
+    onsearch,
     onchange,
+    onkeypress,
 }:SelectProps = $props();
 
 const fieldContext = getContext<FormFieldContext>("formField");
@@ -67,7 +72,7 @@ if(fieldContext) {
 let overflowRef:HTMLElement;
 
 // popper hide strategy
-function strategy(targetEl:HTMLElement, floatEl:HTMLElement) {
+function when(targetEl:HTMLElement, floatEl:HTMLElement) {
     if(!floatEl.contains(targetEl)) {
         return true;
     }
@@ -80,6 +85,12 @@ function onselect(value?:string|number, label?:string) {
     if(label && value) {
         selected = {label, value};
     }
+}
+
+let focused = $state(false);
+
+function onfocus(e:FocusEvent) {
+    focused = e.type === "focus";
 }
 
 $effect(() => {
@@ -99,70 +110,70 @@ onMount(() => {
     }
 });
 
+// fit width for options
+let fitWidth = $state("");
+
 </script>
 
+{#snippet tail()}
+    <ChevronDown size={15} class={`transition ${focused ? "rotate-180":""}`}/>
+{/snippet}
+
 {#if disabled}
-    <SelectInput 
+    <Input
+        id={id}
         ref={(el:HTMLElement) => {
             elRef && elRef(el);
         }}
-        {...selected}
-        {...{
-            id,
-            name, 
-            head,
-            width,
-            disabled,
-            placeholder,
-            class:className,
-        }}
+        class={twMerge("w-80", className)}
+        value={selected.label}
+        head={head}
+        tail={tailSnippet ?? tail}
+        size={size}
+        radius={radius}
+        readonly={true}
+        disabled={true}
+        placeholder={placeholder}
     />
 {:else}
+    {@const ok = searchable && focused}
+
     <Popper 
         class={{
             outline: "bg-white rounded-lg shadow-outline-lg",
             content: "bg-inherit rounded-lg",
             arrow: "bg-inherit shadow-outline-lg",
         }}
+        when={when}
         trigger="toggle"
         placement="bottom"
-        strategy={strategy}
         useArrow={true}
     >
         {#snippet target(ref)}
-            <SelectInput 
+            <Input
+                id={id}
                 ref={(el:HTMLElement) => {
-                    ref(el), elRef && elRef(el);
+                    ref(el), elRef?.(el), fitWidth = el.offsetWidth + "px";
                 }}
-                {...selected}
-                {...{
-                    id,
-                    name, 
-                    head,
-                    width,
-                    disabled,
-                    placeholder,
-                    class:className,
-                }}
+                class={twMerge("w-80", className)}
+                value={ok ? "" : selected.label}
+                head={head}
+                tail={tailSnippet ?? tail}
+                size={size}
+                radius={radius}
+                readonly={!searchable}
+                placeholder={ok && selected.label !== "" ? selected.label : placeholder}
+                onchange={onsearch}
+                onkeypress={onkeypress}
+                onfocus={onfocus}
+                onblur={onfocus}
             />
         {/snippet}
 
         <div
             class="p-1"
-            style:width={width}
+            style:width={fitWidth}
         >
-            {#if searchable}
-                <div class="pb-1">
-                    <Input
-                        {...searchProps}
-                    >
-                        {#snippet tail()}
-                            <Search size={15}/>
-                        {/snippet}
-                    </Input>
-                </div>
-            {/if}
-
             {#if options && options.length > 0}
                 <Menu 
                     class={twMerge("max-h-56 overflow-y-auto overflow-x-hidden", optionsClass)}
@@ -197,3 +208,9 @@ onMount(() => {
         </div>
     </Popper>
 {/if}
+
+<input 
+    type="hidden" 
+    name={name}
+    bind:value={selected.value}
+/>

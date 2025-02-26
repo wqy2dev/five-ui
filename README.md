@@ -50,7 +50,7 @@ FiveUI already includes the following components, but is not limited to:
 | Pagination | ✔ |
 | Popper | ✔ |
 | Radio | ✔ |
-| Select ||
+| Select | ✔ |
 | Slider ||
 | Steps | |
 | Switch | ✔ |

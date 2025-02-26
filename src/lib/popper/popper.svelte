@@ -7,13 +7,6 @@ export type Trigger = "hover" | "focus" | "click" | "toggle";
 export type Placement = "top" | "topStart" | "topEnd" | "bottom" | "bottomStart" | "bottomEnd" | "left" | "leftStart" | "leftEnd" | "right" | "rightStart" | "rightEnd";
 
 export type PopperProps = {
-    trigger?:Trigger;
-    placement?:Placement;
-    offset?:number;
-    zIndex?:number;
-    useArrow?:boolean;
-    arrowSize?:number;
-    duration?:number;
     class?:{
         // popper outline class
         outline?:string;
@@ -21,11 +14,19 @@ export type PopperProps = {
         content?:string;
         arrow?:string;
     };
+    trigger?:Trigger;
+    placement?:Placement;
+    offset?:number;
+    zIndex?:number;
+    useArrow?:boolean;
+    arrowSize?:number;
+    duration?:number;
+    // trigger element
     target:Snippet<[{(ref:HTMLElement):void}]>;
     // mount node
     root?:{():HTMLElement};
-    // popper hide strategy when floatElement blur
-    strategy?:{(targetEl:HTMLElement, floatEl:HTMLElement):boolean};
+    // popper hide condition when floatElement blur
+    when?:{(targetEl:HTMLElement, floatEl:HTMLElement):boolean};
     // default hide popper
     hide?:boolean;
     children:Snippet;
@@ -221,7 +222,7 @@ let {
     placement = "top",
     root,
     hide = true,
-    strategy,
+    when,
     children,
 }:PopperProps = $props();
 
@@ -375,8 +376,8 @@ function onleave(e:Event) {
 
 function onblur(e:Event) {
     if(show && (trigger === "focus" || trigger === "toggle") && !anchorEl.contains(e.target as any)) {
-        if(strategy) {
-            if(strategy(e.target as HTMLElement, floatEl as HTMLElement)) {
+        if(when) {
+            if(when(e.target as HTMLElement, floatEl as HTMLElement)) {
                 show = false;
             }
         } else if(!floatEl?.contains(e.target as any)) {
