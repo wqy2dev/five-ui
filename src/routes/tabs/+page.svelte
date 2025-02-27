@@ -3,9 +3,9 @@ import { Tab, TabContent, Tabs, TabBar } from "$lib/index.js";
 
 const radius = ["sm", "md", "lg", "xl", "full"];
 
-const variants = ["solid", "light", "underlined"];
+const variants = ["capsule","button",  "line"];
 const colors = ["primary", "default"];
-const placements = ["top", "bottom", "left","right"];
+// const placements = ["top", "bottom", "left","right"];
 </script>
 
 <svelte:head>
@@ -105,7 +105,7 @@ const placements = ["top", "bottom", "left","right"];
 
     {#each radius as rds, i}
         <Tabs defaultKey="3">
-            <TabBar radius={rds as any} variant="light">
+            <TabBar radius={rds as any} variant="button">
                 <Tab key="1" title="Tab 1">
                     <p>Tab 1</p>
                 </Tab>
@@ -146,7 +146,7 @@ const placements = ["top", "bottom", "left","right"];
 <div class="w-full h-[200px] flex flex-col gap-1">
     <Tabs defaultKey="2">
         <TabBar 
-            variant="solid" 
+            variant="capsule" 
             placement="top"
         >
             <Tab key="1" title="Tab 1">
@@ -202,7 +202,7 @@ const placements = ["top", "bottom", "left","right"];
         </div>
         
         <TabBar 
-            variant="solid" 
+            variant="capsule" 
             placement="bottom"
         >
             <Tab key="1" title="Tab 1">
@@ -229,7 +229,7 @@ const placements = ["top", "bottom", "left","right"];
     <div class="grow h-full flex flex-row  gap-2">
         <Tabs defaultKey="2">
             <TabBar 
-                variant="solid" 
+                variant="capsule" 
                 placement="left"
                 class="h-full"
             >
@@ -285,7 +285,7 @@ const placements = ["top", "bottom", "left","right"];
             </div>
             
             <TabBar 
-                variant="solid" 
+                variant="capsule" 
                 placement="right"
                 class="h-full"
             >
@@ -313,7 +313,7 @@ const placements = ["top", "bottom", "left","right"];
     <div class="grow h-full flex flex-row">
         <Tabs defaultKey="2">
             <TabBar 
-                variant="underlined" 
+                variant="line" 
                 placement="left"
                 class="h-full"
             >
@@ -369,7 +369,7 @@ const placements = ["top", "bottom", "left","right"];
             </div>
             
             <TabBar 
-                variant="underlined" 
+                variant="line" 
                 placement="right"
                 class="h-full"
             >
@@ -396,7 +396,7 @@ const placements = ["top", "bottom", "left","right"];
 <div class="w-full h-[200px] flex flex-col mt-10">
     <Tabs defaultKey="2">
         <TabBar 
-            variant="underlined" 
+            variant="line" 
             placement="top"
             class="w-full flex justify-center"
         >
@@ -452,7 +452,7 @@ const placements = ["top", "bottom", "left","right"];
         </div>
         
         <TabBar 
-            variant="underlined" 
+            variant="line" 
             placement="bottom"
             class="w-full flex justify-center"
         >

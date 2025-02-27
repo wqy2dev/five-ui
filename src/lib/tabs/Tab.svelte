@@ -2,17 +2,8 @@
 import { tv, type VariantProps } from "tailwind-variants";
 
 const tabVariants = tv({
-	base: "px-3 py-2 text-sm transition-all",
+	base: "px-2 py-1 text-sm outline-none transition-all",
 	variants: {
-        color: {
-            default: "",
-            primary: "",
-        },
-        variant: {
-            solid: "",
-            light: "hover:bg-primary-50",
-            underlined: "border-solid border-transparent",
-        },
         placement: {
             top: "",
             bottom: "",
@@ -28,100 +19,76 @@ const tabVariants = tv({
             none: "rounded-none",
         },
         disabled: {
-            true: " cursor-not-allowed",
+            true: "cursor-not-allowed",
             false: "",
-        }
+        },
+        color: {
+            default: "",
+            primary: "",
+        },
+        variant: {
+            line: "border-solid border-transparent rounded-none",
+            button: "hover:bg-slate-100",
+            capsule: "",
+        },
 	},
     compoundVariants: [
         {
-            variant: "underlined",
-            class: "rounded-none",
+            variant: "capsule",
+            color: "default",
+            class: "open:bg-white open:text-slate-900 text-slate-400 hover:text-slate-900",
+        },
+        {
+            variant: "capsule",
+            color: "primary",
+            class: "open:bg-primary-600 open:text-white open:hover:text-white text-slate-400 hover:text-slate-900",
         },
 
         {
-            color: "primary",
-            variant: "solid",
-            class: "open:bg-primary-600 open:text-white open:hover:text-white text-slate-500 hover:text-slate-900",
+            variant: "button",
+            color: "default",
+            class: "open:bg-slate-600 open:hover:bg-slate-600 open:text-white open:hover:text-white text-slate-400 hover:text-slate-900",
         },
         {
+            variant: "button",
             color: "primary",
-            variant: "light",
-            class: "open:bg-primary-600 open:text-white text-slate-500 open:hover:text-white open:hover:bg-primary-600 hover:text-slate-900",
-        },
-        {
-            color: "primary",
-            variant: "underlined",
-            class: "open:bg-primary-50 open:border-primary-600 hover:border-primary-100",
-        },
-        {
-            color: "primary",
-            variant: "underlined",
-            placement: "top",
-            class: "border-b-2 open:text-primary-600 hover:text-primary-600 text-slate-500",
-        },
-        {
-            color: "primary",
-            variant: "underlined",
-            placement: "bottom",
-            class: "border-t-2 open:text-primary-600 hover:text-primary-600 text-slate-500",
-        },
-        {
-            color: "primary",
-            variant: "underlined",
-            placement: "left",
-            class: "border-r-2 open:text-primary-600 hover:text-primary-600 text-slate-500",
-        },
-        {
-            color: "primary",
-            variant: "underlined",
-            placement: "right",
-            class: "border-l-2 open:text-primary-600 hover:text-primary-600 text-slate-500",
+            class: "open:bg-primary-600 open:hover:bg-primary-600 open:text-white open:hover:text-white text-slate-400 hover:text-slate-900",
         },
 
         {
+            variant: "line",
             color: "default",
-            variant: "solid",
-            class: "open:bg-white open:text-slate-900 open:shadow-outline-md text-slate-500 hover:text-slate-900",
+            class: "open:border-slate-600 open:text-slate-900 hover:text-slate-900 text-slate-400",
         },
         {
-            color: "default",
-            variant: "light",
-            class: "open:bg-white open:text-slate-900 open:hover:bg-white open:shadow-outline-md text-slate-500 hover:text-slate-900",
+            variant: "line",
+            color: "primary",
+            class: "open:border-primary-600 open:text-primary-600 hover:text-primary-600 text-slate-400",
         },
         {
-            color: "default",
-            variant: "underlined",
-            class: "open:bg-slate-50 open:border-slate-700 hover:bg-slate-50",
-        },
-        {
-            color: "default",
-            variant: "underlined",
+            variant: "line",
             placement: "top",
-            class: "border-b-2 open:text-slate-900 hover:text-slate-900 text-slate-500",
+            class: "border-b-2",
         },
         {
-            color: "default",
-            variant: "underlined",
+            variant: "line",
             placement: "bottom",
-            class: "border-t-2 open:text-slate-900 hover:text-slate-900 text-slate-500",
+            class: "border-t-2",
         },
         {
-            color: "default",
-            variant: "underlined",
+            variant: "line",
             placement: "left",
-            class: "border-r-2 open:text-slate-900 hover:text-slate-900 text-slate-500",
+            class: "border-r-2",
         },
         {
-            color: "default",
-            variant: "underlined",
+            variant: "line",
             placement: "right",
-            class: "border-l-2 open:text-slate-900 hover:text-slate-900 text-slate-500",
+            class: "border-l-2",
         },
     ],  
 	defaultVariants: {
-        radius: "lg",
+        radius: "md",
         color: "default",
-        variant: "solid",
         disabled: false,
 	},
 });
@@ -157,12 +124,12 @@ type TabProps = {
 const {
     id,
     ref,
-    class:className,
     key,
     href = "",
     link = false,
     disabled = false,
     children,
+    class:className,
 }:TabProps = $props();
 
 const { placement, variant, radius, color } = context;
@@ -188,11 +155,9 @@ onMount(() => {
 </script>
 
 <svelte:element
-    aria-label="Tab"
     bind:this={el}
-    this={link ? "a" : "button"}
     id={id}
-    role="tab"
+    this={link ? "a" : "button"}
     class={tabVariants({variant, placement, radius, color, disabled, class:className})}
     {...(link ? {target: "_blank", href} : {})}
     {...(open ? {open:""}:{})}

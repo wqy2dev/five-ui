@@ -7,9 +7,9 @@ const tabsVariants = tv({
     base: "flex w-fit h-fit p-1 gap-2",
 	variants: {
         variant: {
-            solid: "bg-slate-100",
-            light: "bg-white",
-            underlined: "border-solid border-slate-200",
+            line: "border-slate-200 border-capsule",
+            button: "bg-white",
+            capsule: "bg-slate-100",
         },
         placement: {
             top: "flex-row",
@@ -28,61 +28,59 @@ const tabsVariants = tv({
 	},
     compoundVariants: [
         {
-            variant: "underlined",
+            variant: "line",
             class: "p-0",
         },
-
         {
-            variant: "underlined",
+            variant: "line",
             placement: "top",
             class: "border-b",
         },
         {
-            variant: "underlined",
+            variant: "line",
             placement: "bottom",
             class: "border-t",
         },
         {
-            variant: "underlined",
+            variant: "line",
             placement: "left",
             class: "border-r",
         },
         {
-            variant: "underlined",
+            variant: "line",
             placement: "right",
             class: "border-l",
         },
-
         {
-            variant: "solid",
+            variant: "capsule",
             radius: "sm",
             class: "rounded-sm",
         },
         {
-            variant: "solid",
+            variant: "capsule",
             radius: "md",
             class: "rounded-md",
         },
         {
-            variant: "solid",
+            variant: "capsule",
             radius: "lg",
             class: "rounded-lg",
         },
         {
-            variant: "solid",
+            variant: "capsule",
             radius: "xl",
             class: "rounded-xl",
         },
         {
-            variant: "solid",
+            variant: "capsule",
             radius: "full",
             class: "rounded-full",
         },
     ],
 	defaultVariants: {
-        variant: "solid",
+        radius: "md",
+        variant: "line",
         placement: "top",
-        radius: "lg",
 	},
 });
 
@@ -121,10 +119,10 @@ let {
     id,
     class:className,
     ref,
-    radius = "lg",
-    placement = "top",
-    variant = "solid",
     color = "default",
+    radius = "md",
+    variant = "line",
+    placement = "top",
     children,
 }:TabBarProps = $props();
 
@@ -144,8 +142,6 @@ onMount(() => {
 </script>
 
 <div 
-    aria-label="TabBar"
-    role="tablist"
     bind:this={el}
     id={id}
     class={tabsVariants({variant, placement, radius, className})}
