@@ -161,7 +161,7 @@ const {
         {@render children()}
 
         {#if fieldError}
-            <span class="text-red-500 text-sm absolute -bottom-5 left-0">
+            <span class="text-red-500 text-[13px] absolute -bottom-5 left-0">
                 {fieldError}
             </span>
         {/if}
