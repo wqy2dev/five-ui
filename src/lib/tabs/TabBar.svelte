@@ -7,7 +7,7 @@ const tabsVariants = tv({
     base: "flex w-fit h-fit p-1 gap-2",
 	variants: {
         variant: {
-            line: "border-slate-200 border-capsule",
+            line: "border-slate-200 border-solid",
             button: "bg-white",
             capsule: "bg-slate-100",
         },
