@@ -216,7 +216,7 @@ let {
     offset = 15,
     zIndex = 40,
     useArrow,
-    arrowSize = 11,
+    arrowSize = 9,
     duration = 200,
     trigger = "hover",
     placement = "top",
@@ -387,18 +387,6 @@ function onblur(e:Event) {
     }
 }
 
-function unmount() {
-    const rootEl = (root ?? defaultRoot)();
-
-    try{
-        if(floatEl) {
-            rootEl.removeChild(floatEl);
-        }
-    }catch {
-        
-    }
-}
-
 onMount(() => {
     switch(trigger) {
         case "click":
@@ -418,7 +406,16 @@ onMount(() => {
 
     watch();
 
-    return unmount;
+    return () => {
+        try{
+            if(floatEl) {
+                const rootEl = (root ?? defaultRoot)();
+                rootEl.removeChild(floatEl);
+            }
+        } catch {
+            
+        }
+    }
 });
 
 </script>

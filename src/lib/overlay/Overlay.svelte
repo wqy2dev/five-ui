@@ -53,7 +53,7 @@ let {
     onclose,
 }:OverlayProps = $props();
 
-let el: HTMLElement;
+let el:HTMLElement;
 
 onMount(() => {
     ref?.(el);
@@ -63,7 +63,11 @@ onMount(() => {
     }
 
     return () => {
-        document.body.removeChild(el);
+        try {
+            document.body.removeChild(el);
+        } catch {
+
+        }
     }
 });
 
@@ -77,8 +81,8 @@ onMount(() => {
     id={id}
     class={overlayVariants({position, backdrop, className})}
     style={style}
-    transition:fade={{duration}}
     onclick={onclose}
+    transition:fade={{duration}}
 >
     {@render children()}
 </div>
