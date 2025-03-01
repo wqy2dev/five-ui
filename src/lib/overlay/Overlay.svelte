@@ -53,21 +53,13 @@ let {
     onclose,
 }:OverlayProps = $props();
 
-let el:HTMLElement;
+let el:any;
 
 onMount(() => {
     ref?.(el);
 
     if(el) {
         document.body.appendChild(el);
-    }
-
-    return () => {
-        try {
-            document.body.removeChild(el);
-        } catch {
-
-        }
     }
 });
 
