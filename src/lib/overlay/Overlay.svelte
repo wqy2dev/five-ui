@@ -61,6 +61,14 @@ onMount(() => {
     if(el) {
         document.body.appendChild(el);
     }
+
+    return () => {
+        try {
+            document.body.removeChild(el);
+        } catch {
+
+        }
+    }
 });
 
 </script>

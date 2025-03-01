@@ -23,8 +23,6 @@ export type PopperProps = {
     duration?:number;
     // trigger element
     target:Snippet<[{(ref:HTMLElement):void}]>;
-    // mount node
-    root?:{():HTMLElement};
     // popper hide condition when floatElement blur
     when?:{(targetEl:HTMLElement, floatEl:HTMLElement):boolean};
     // default hide popper
@@ -220,7 +218,6 @@ let {
     duration = 200,
     trigger = "hover",
     placement = "top",
-    root,
     hide = true,
     when,
     children,
@@ -241,8 +238,7 @@ function ref(el:HTMLElement) {
 
 // render popper element
 function portal(el:HTMLElement) {
-    const rootEl = (root ?? defaultRoot)();
-    rootEl.appendChild(floatEl = el), tick().then(update);
+    document.body.appendChild(floatEl = el), tick().then(update);
 }
 
 // render arrow element
@@ -409,8 +405,7 @@ onMount(() => {
     return () => {
         try{
             if(floatEl) {
-                const rootEl = (root ?? defaultRoot)();
-                rootEl.removeChild(floatEl);
+                document.body.removeChild(floatEl);
             }
         } catch {
             
