@@ -6,7 +6,7 @@ const buttonVariants = tv({
     base: "inline-flex items-center h-fit gap-1 border text-center transition-all outline-none disabled:cursor-not-allowed",
     variants: {
         variant: {
-            primary: "text-white border-primary-500 bg-primary-500 hover:border-primary-600 hover:bg-primary-600 focus:ring focus:ring-primary-200 disabled:border-primary-300 disabled:bg-primary-300",
+            primary: "text-white border-primary-600 bg-primary-600 hover:border-primary-700 hover:bg-primary-700 focus:ring focus:ring-primary-200 disabled:border-primary-300 disabled:bg-primary-300",
             secondary: "text-white border-secondary-600 bg-secondary-600 hover:border-secondary-700 hover:bg-secondary-700 focus:ring focus:ring-secondary-200 disabled:border-secondary-300 disabled:bg-secondary-300",
             reverse: "border-primary-100 bg-primary-100 text-primary-500 hover:border-primary-200 hover:bg-primary-200 focus:ring focus:ring-primary-50 disabled:border-primary-50 disabled:bg-primary-50 disabled:text-primary-400",
             danger: "text-white border-red-500 bg-red-500 hover:border-red-600 hover:bg-red-600 focus:ring focus:ring-red-200 disabled:border-red-300 disabled:bg-red-300",
