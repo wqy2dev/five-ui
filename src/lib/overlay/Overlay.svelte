@@ -65,7 +65,9 @@ function mount(node:HTMLElement) {
 
         },
         destory: () => {
-            document.body.removeChild(node);
+            if(document.body.contains(node)) {
+                document.body.removeChild(node);
+            }
         },
     }
 }

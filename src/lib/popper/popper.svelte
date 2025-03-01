@@ -399,12 +399,8 @@ onMount(() => {
     watch();
 
     return () => {
-        try{
-            if(floatEl) {
-                document.body.removeChild(floatEl);
-            }
-        } catch {
-            
+        if(floatEl && document.body.contains(floatEl)) {
+            document.body.removeChild(floatEl);
         }
     }
 });

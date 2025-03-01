@@ -14,6 +14,7 @@ export type MessageOption = {
 <script lang="ts">
 import { fly } from "svelte/transition";
 import { InfoCircleSolid, SuccessCircleSolid, ErrorCircleSolid, WarnCircleSolid, Close } from "$lib/icons/index.js";
+    import { linear } from "svelte/easing";
 
 let {
     variant = "info",
@@ -44,7 +45,7 @@ onMount(() => {
 
 <div
     class="w-full mb-6 flex justify-center bg-transparent"
-    transition:fly|global={{y: -24}}
+    transition:fly={{y: -24, easing: linear}}
 >
     <div class="flex flex-row items-center shadow-outline-lg rounded-md p-2 bg-white pointer-events-auto">
         <span class="mr-2">

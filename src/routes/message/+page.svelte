@@ -99,3 +99,28 @@ let max = $state(0);
     max = 6;
     message.push({message: "Hello, world!", variant: "error"});
 }}> error </Button>
+
+
+<h4 class="my-5 text-base indent-2 bg-slate-100">
+    Duration: 15s
+</h4>
+
+<Button onclick={() => {
+    max = 6;
+    message.push({message: "Hello, world!", duration: 15000});
+}}> Info </Button>
+
+<Button onclick={() => {
+    max = 6;
+    message.push({message: "Hello, world!", duration: 15000, variant: "success", onclose: () => {console.log("message close")}});
+}}> success </Button>
+
+<Button onclick={() => {
+    max = 6;
+    message.push({message: "Hello, world!", duration: 15000, variant: "warn"});
+}}> warn </Button>
+
+<Button onclick={() => {
+    max = 6;
+    message.push({message: "Hello, world!", duration: 15000, variant: "error"});
+}}> error </Button>

@@ -13,6 +13,8 @@ export type MessageInstance = {
 import { onMount } from "svelte";
 import { twMerge } from "tailwind-merge";
 import { Store, type MessagePayload } from "./store.js";
+    import { fly } from "svelte/transition";
+    import { linear } from "svelte/easing";
 
 type MessageProps = {
     id?:string;
@@ -56,10 +58,8 @@ onMount(() => {
     return () => {
         store.clear();
 
-        try {
+        if(document.body.contains(el)) {
             document.body.removeChild(el);
-        } catch {
-
         }
     }
 });
@@ -74,6 +74,7 @@ $effect(() => {
 <div
     id={id}
     class={twMerge("fixed left-0 top-6 z-40 w-full pointer-events-none", className)}
+    transition:fly={{y: -24, easing: linear}}
     use:mount
 >
     {#each queue as item (item.id)}
