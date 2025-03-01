@@ -28,12 +28,13 @@ type NotificationOption = NotificationProps & {
 export type NotificationInstance = {
     push: {(option:NotificationOption):number};
     destory: {(id:number):void};
+    clear: {():void};
 }
 
-const ctr:Record<string, HTMLElement> = {};
+const ctr:Record<string, HTMLElement|null> = {};
 
 function portal(name:Exclude<Placement, undefined>):HTMLElement {
-    if(name in ctr) {
+    if(name in ctr && ctr[name]) {
         return ctr[name];
     }
 
@@ -54,7 +55,7 @@ function portal(name:Exclude<Placement, undefined>):HTMLElement {
 <script lang="ts">
 import { onMount } from "svelte";
 import { Store, type MessagePayload } from "../message/store.js";
-import { slide } from "svelte/transition";
+import { fade } from "svelte/transition";
 
 const {
     max = 0,
@@ -74,6 +75,10 @@ export function destory(id:number) {
     store.destory(id);
 }
 
+export function clear() {
+    store.clear();
+}
+
 function mount(node:HTMLElement, placement:Placement) {
     portal(placement!).appendChild(node);
 }
@@ -82,6 +87,16 @@ onMount(() => {
     store.subscribe(q => {
         queue = q;
     });
+
+    return () => {
+        try {
+            for(let name in ctr) {
+                document.body.removeChild(ctr[name]!), ctr[name] = null;
+            }
+        } catch {
+
+        }
+    }
 });
 
 $effect(() => {
@@ -91,11 +106,11 @@ $effect(() => {
 </script>
 
 {#each queue as item (item.id)}
-    {@const { onclose, placement, ...restProps } = item.option}
+    {@const { onclose, placement = "bottomEnd", ...restProps } = item.option}
     <div
         class={variants({placement})}
+        transition:fade
         use:mount={placement}
-        transition:slide
     >
         <Notification 
             {...restProps}

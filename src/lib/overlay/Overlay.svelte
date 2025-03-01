@@ -53,23 +53,22 @@ let {
     onclose,
 }:OverlayProps = $props();
 
-let el:any;
+function mount(node:HTMLElement) {
+    ref?.(node);
 
-onMount(() => {
-    ref?.(el);
-
-    if(el) {
-        document.body.appendChild(el);
+    if(node) {
+        document.body.appendChild(node);
     }
 
-    return () => {
-        try {
-            document.body.removeChild(el);
-        } catch {
+    return {
+        update: () => {
 
-        }
+        },
+        destory: () => {
+            document.body.removeChild(node);
+        },
     }
-});
+}
 
 </script>
 
@@ -77,12 +76,12 @@ onMount(() => {
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- svelte-ignore attribute_global_event_reference -->
 <div
-    bind:this={el}
     id={id}
     class={overlayVariants({position, backdrop, className})}
     style={style}
     onclick={onclose}
     transition:fade={{duration}}
+    use:mount
 >
     {@render children()}
 </div>

@@ -45,6 +45,11 @@ export class Store<Option> {
         });
     }
 
+    // destory all
+    clear() {
+        this.queue.set([]);
+    }
+
     // subscribe message
     subscribe(sub:Subscriber<MessagePayload<Option>[]>) {
         this.queue.subscribe(sub);

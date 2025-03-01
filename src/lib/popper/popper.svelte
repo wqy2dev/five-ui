@@ -198,10 +198,6 @@ function scaleXY(node:HTMLElement, params:TransitionScaleXY):TransitionConfig {
     }
 }
 
-function defaultRoot() {
-    return document.body;
-}
-
 const arrowBeforeOffset = "2px";
 
 </script>

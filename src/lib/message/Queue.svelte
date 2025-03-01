@@ -4,6 +4,7 @@ import Message, { type MessageOption } from "./Message.svelte";
 export type MessageInstance = {
     push: {(option:MessageOption):number};
     destory: {(id:number):void};
+    clear: {():void};
 }
 
 </script>
@@ -37,10 +38,30 @@ export function destory(id:number) {
     store.destory(id);
 }
 
+export function clear() {
+    store.clear();
+}
+
+let el:HTMLElement;
+
+function mount(node:HTMLElement) {
+    el = node, document.body.appendChild(node);
+}
+
 onMount(() => {
     store.subscribe(q => {
         queue = q;
     });
+
+    return () => {
+        store.clear();
+
+        try {
+            document.body.removeChild(el);
+        } catch {
+
+        }
+    }
 });
 
 $effect(() => {
@@ -49,19 +70,20 @@ $effect(() => {
 
 </script>
 
-{#if queue}
-    <div
-        id={id}
-        class={twMerge("fixed left-0 top-5 z-40 w-full pointer-events-none", className)}
-    >
-        {#each queue as item (item.id)}
-            {@const { onclose, ...restProps} = item.option}
-            <Message 
-                {...restProps}
-                onclose={() => {
-                    destory(item.id), onclose?.();
-                }}
-            />
-        {/each}
-    </div>
+{#if queue.length > 0}
+<div
+    id={id}
+    class={twMerge("fixed left-0 top-6 z-40 w-full pointer-events-none", className)}
+    use:mount
+>
+    {#each queue as item (item.id)}
+        {@const { onclose, ...restProps} = item.option}
+        <Message 
+            {...restProps}
+            onclose={() => {
+                destory(item.id), onclose?.();
+            }}
+        />
+    {/each}
+</div>
 {/if}
