@@ -84,6 +84,13 @@ onMount(() => {
     });
 });
 
+function slideFade(node:HTMLElement, params:any) {
+    return {
+      ...fade(node, params),
+      ...slide(node, params),
+    };
+}
+
 </script>
 
 <div
@@ -118,10 +125,15 @@ onMount(() => {
     </button>
     {#if expand}
         <div 
-            class="relative pb-3"
-            transition:slide={{duration:300}}
+            class="relative pb-3 overflow-hidden"
+            transition:slide
         >
-            {@render children?.()}
+            <div
+                class="w-full h-fit"
+                transition:fade
+            >
+                {@render children?.()}
+            </div>
         </div>
     {/if}
 </div>
