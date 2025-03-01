@@ -4,7 +4,7 @@ import { tv, type VariantProps } from "tailwind-variants";
 const formFieldVariants = tv({
     slots: {
         base: "w-full shrink-0 leading-none mb-5",
-        label: "flex flex-row items-center text-sm text-slate-900",
+        label: "flex flex-row items-center text-sm text-slate-700",
         input: "relative",
     },
     variants: {
