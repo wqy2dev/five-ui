@@ -44,7 +44,6 @@ const rest = source.length - limit;
 </script>
 
 <div 
-    aria-label="AvatarGroup"
     bind:this={el}
     id={id}
     class={"flex flex-row"+(className === "" ? "":" "+className)}

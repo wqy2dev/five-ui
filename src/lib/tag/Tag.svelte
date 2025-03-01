@@ -89,7 +89,6 @@ onMount(() => {
 </script>
 
 <span
-    aria-label="Tag"
     id={id}
     bind:this={el}
     class={tagVariants({variant, radius, size, className})}

@@ -117,7 +117,6 @@ function ontransitionend() {
 
 {#if index > -1}
 <div
-    aria-label="CarouselItem"
     class={carouselItemVariants({direction: context.index === index ? true : context.direction, className})}
     style={`transition-duration:${context.duration}ms;`}
     ontransitionend={ontransitionend}

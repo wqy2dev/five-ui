@@ -80,7 +80,6 @@ onMount(() => {
 </script>
 
 <div
-    aria-label="Watermark"
     bind:this={el}
     id={id}
     class={twMerge("absolute w-full h-full top-0 left-0 pointer-events-none bg-repeat bg-left-top", className)}

@@ -153,7 +153,6 @@ const {
 	class={overlay()}
 >
 	<div 
-		aria-label="Modal"
 		bind:this={el}
 		id={id}
 		class={base({className})}

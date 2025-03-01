@@ -93,7 +93,6 @@ $effect(() => {
 {#each queue as item (item.id)}
     {@const { onclose, placement, ...restProps } = item.option}
     <div
-        aria-label="NotificationQueue"
         class={variants({placement})}
         use:mount={placement}
         transition:slide
