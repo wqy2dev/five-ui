@@ -3,7 +3,7 @@ import { tv } from "tailwind-variants";
 import { type Snippet, getContext, onMount } from "svelte";
 import { type AccordionContext } from "./Accordion.svelte";
 import { ChevronRight } from "$lib/icons/index.js";
-import { slide } from "svelte/transition";
+import { fade, slide } from "svelte/transition";
 
 const accordionItemVariants = tv({
     slots: {
@@ -87,7 +87,6 @@ onMount(() => {
 </script>
 
 <div
-    aria-label="AccordionItem"
     bind:this={el}
     id={id}
     class={base({className})}
