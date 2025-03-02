@@ -19,7 +19,7 @@ const inputVariants = tv({
 		},
 		focus: {
 			true: {
-				base: "ring ring-primary-200 border-primary-600",
+				base: "ring ring-primary-100 border-primary-600",
 			},
 		},
 		size: {

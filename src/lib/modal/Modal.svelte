@@ -10,6 +10,7 @@ const modalVariants = tv({
 		base: "flex flex-col w-full text-slate-900 border-solid border-slate-200 border bg-white shadow-sm overflow-hidden",
 		overlay: "flex justify-center py-14",
 		content: "px-5 grow text-sm",
+		footer: "px-5 flex justify-end py-3 gap-4",
 	},
 	variants: {
 		overflowScroll: {
@@ -82,21 +83,25 @@ type OverflowScroll = VariantProps<typeof modalVariants>["overflowScroll"];
 
 type ModalProps = {
 	id?:string;
-    class?: string;
-    ref?: {(el:HTMLElement):void};
-	title?: string | Snippet;
-    size?: Size;
-	backdrop?: Backdrop;
-	placement?: Placement;
-	overflowScroll?: OverflowScroll;
-	overlayStyle?: string;
-	overlayClosable?: boolean;
-	okText?: string;
-	cancelText?: string;
-	onok?: {():void};
-	oncancel?: {():void};
-	footer?: Snippet;
-    children: Snippet;
+    class?:{
+		outline?:string;
+		body?:string;
+		footer?:string;
+	};
+    ref?:{(el:HTMLElement):void};
+	title?:string | Snippet;
+    size?:Size;
+	backdrop?:Backdrop;
+	placement?:Placement;
+	overflowScroll?:OverflowScroll;
+	overlayStyle?:string;
+	overlayClosable?:boolean;
+	okText?:string;
+	cancelText?:string;
+	onok?:{():void};
+	oncancel?:{():void};
+	footer?:Snippet;
+    children:Snippet;
 }
 
 </script>
@@ -105,7 +110,7 @@ type ModalProps = {
 
 let {
 	id,
-    class:className,
+    class:className = {},
 	title,
 	size,
 	overlayStyle,
@@ -117,7 +122,7 @@ let {
 	onok,
 	okText = "OK",
 	cancelText = "Cancel",
-	footer,
+	footer:footerSnippet,
     ref,
     children,
 }:ModalProps = $props();
@@ -138,6 +143,7 @@ const {
 	base, 
 	overlay,
 	content,
+	footer,
 } = modalVariants({
 	placement,
 	overflowScroll,
@@ -155,10 +161,10 @@ const {
 	<div 
 		bind:this={el}
 		id={id}
-		class={base({className})}
+		class={base({className: className.outline})}
 	>
 		{#if title}
-			<div class="flex flex-row px-5 py-3 text-lg text-slate-900">
+			<div class="flex flex-row px-5 py-3 text-base text-slate-900">
 				<div class="grow">
 					{#if typeof title === "string"}
 						{title}
@@ -179,13 +185,13 @@ const {
 			</div>
 		{/if}
 	
-		<div class={content()}>
+		<div class={content({className: className.body})}>
 			{@render children()}
 		</div>
 
-		<div class="px-5 flex justify-end py-3 gap-4">
-			{#if footer}
-				{@render footer()}
+		<div class={footer({className: className.footer})}>
+			{#if footerSnippet}
+				{@render footerSnippet()}
 			{:else}
 				<Button 
 					variant="outline"
