@@ -1,5 +1,5 @@
 <script lang="ts" module>
-import { onMount, type Snippet } from "svelte";
+import { mount, onMount, unmount, type Snippet } from "svelte";
 import { type VariantProps, tv } from "tailwind-variants";
 import { fade } from "svelte/transition";
 
@@ -53,24 +53,21 @@ let {
     onclose,
 }:OverlayProps = $props();
 
-function mount(node:HTMLElement) {
-    ref?.(node);
+let el:HTMLElement;
 
-    if(node) {
-        document.body.appendChild(node);
+$effect(() => {
+    ref?.(el);
+
+    if(el) {
+        document.body.appendChild(el);
     }
 
-    return {
-        update: () => {
-
-        },
-        destory: () => {
-            if(document.body.contains(node)) {
-                document.body.removeChild(node);
-            }
-        },
+    return () => {
+        if(el && el.parentNode) {
+            el.parentNode.removeChild(el);
+        }
     }
-}
+});
 
 </script>
 
@@ -78,12 +75,12 @@ function mount(node:HTMLElement) {
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- svelte-ignore attribute_global_event_reference -->
 <div
+    bind:this={el}
     id={id}
     class={overlayVariants({position, backdrop, className})}
     style={style}
     onclick={onclose}
     transition:fade={{duration}}
-    use:mount
 >
     {@render children()}
 </div>

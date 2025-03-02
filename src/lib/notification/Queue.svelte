@@ -65,46 +65,12 @@ export function clear() {
     store.clear();
 }
 
-let topEl:HTMLElement;
-let topStartEl:HTMLElement;
-let topEndEl:HTMLElement;
-let bottomEl:HTMLElement;
-let bottomStartEl:HTMLElement;
-let bottomEndEl:HTMLElement;
-
-function mount(node:HTMLElement, { placement }: { placement:Placement } ) {
-    document.body.appendChild(node);
-
-    switch(placement) {
-        case "top":
-            topEl = node;
-            break;
-        case "topStart":
-            topStartEl = node;
-            break;
-        case "topEnd":
-            topEndEl = node;
-            break;
-        case "bottom":
-            bottomEl = node;
-            break;
-        case "bottomStart":
-            bottomStartEl = node;
-            break;
-        case "bottomEnd":
-            bottomEndEl = node;
-            break;
-    }
-
-    return {
-        update: () => {
-
-        },
-        destory: () => {
-            document.body.removeChild(node);
-        }
-    }
-}
+let topEl:HTMLElement|null = $state(null);
+let topStartEl:HTMLElement|null  = $state(null);
+let topEndEl:HTMLElement|null  = $state(null);
+let bottomEl:HTMLElement|null  = $state(null);
+let bottomStartEl:HTMLElement|null = $state(null);
+let bottomEndEl:HTMLElement|null = $state(null);
 
 onMount(() => {
     store.subscribe(items => {
@@ -145,48 +111,91 @@ onMount(() => {
         bottomStartList = bS;
         bottomEndList = bE;
     });
-
-    return () => {
-        try {
-            if(document.body.contains(topEl)) {
-                document.body.removeChild(topEl);
-            }
-
-            if(document.body.contains(topStartEl)) {
-                document.body.removeChild(topStartEl);
-            }
-
-            if(document.body.contains(topEndEl)) {
-                document.body.removeChild(topEndEl);
-            }
-    
-            if(document.body.contains(bottomEl)) {
-                document.body.removeChild(bottomEl);
-            }
-
-            if(document.body.contains(bottomStartEl)) {
-                document.body.removeChild(bottomStartEl);
-            }
-
-            if(document.body.contains(bottomEndEl)) {
-                document.body.removeChild(bottomEndEl);
-            }
-        } catch {
-
-        }
-    }
 });
 
 $effect(() => {
     store.limit(max);
 });
 
+$effect(() => {
+    if(topEl) {
+        document.body.appendChild(topEl);
+    }
+
+    return () => {
+        if(topEl && topEl.parentNode) {
+            topEl.parentNode.removeChild(topEl);
+        }
+    }
+});
+
+$effect(() => {
+    if(topStartEl) {
+        document.body.appendChild(topStartEl);
+    }
+
+    return () => {
+        if(topStartEl && topStartEl.parentNode) {
+            topStartEl.parentNode.removeChild(topStartEl);
+        }
+    }
+});
+
+$effect(() => {
+    if(topEndEl) {
+        document.body.appendChild(topEndEl);
+    }
+
+    return () => {
+        if(topEndEl && topEndEl.parentNode) {
+            topEndEl.parentNode.removeChild(topEndEl);
+        }
+    }
+});
+
+
+$effect(() => {
+    if(bottomEl) {
+        document.body.appendChild(bottomEl);
+    }
+
+    return () => {
+        if(bottomEl && bottomEl.parentNode) {
+            bottomEl.parentNode.removeChild(bottomEl);
+        }
+    }
+});
+
+$effect(() => {
+    if(bottomStartEl) {
+        document.body.appendChild(bottomStartEl);
+    }
+
+    return () => {
+        if(bottomStartEl && bottomStartEl.parentNode) {
+            bottomStartEl.parentNode.removeChild(bottomStartEl);
+        }
+    }
+});
+
+$effect(() => {
+    if(bottomEndEl) {
+        document.body.appendChild(bottomEndEl);
+    }
+
+    return () => {
+        if(bottomEndEl && bottomEndEl.parentNode) {
+            bottomEndEl.parentNode.removeChild(bottomEndEl);
+        }
+    }
+});
+
 </script>
 
 {#if topList.length > 0}
-    <div 
+    <div
+        bind:this={topEl}
         class="fixed left-2 right-2 top-2 pointer-events-none box-border"
-        use:mount={{ placement: "top" }}
     >
         {#each topList as item (item.id)}
             {@const { onclose, ...restProps } = item.option}
@@ -207,9 +216,9 @@ $effect(() => {
 {/if}
 
 {#if topStartList.length > 0}
-    <div 
+    <div
+        bind:this={topStartEl}
         class="fixed left-2 right-2 top-2 pointer-events-none box-border"
-        use:mount={{ placement: "topStart" }}
     >
         {#each topStartList as item (item.id)}
             {@const { onclose, ...restProps } = item.option}
@@ -230,9 +239,9 @@ $effect(() => {
 {/if}
 
 {#if topEndList.length > 0}
-    <div 
+    <div
+        bind:this={topEndEl}
         class="fixed left-2 right-2 top-2 pointer-events-none box-border"
-        use:mount={{ placement: "topEnd" }}
     >
         {#each topEndList as item (item.id)}
             {@const { onclose, ...restProps } = item.option}
@@ -253,9 +262,9 @@ $effect(() => {
 {/if}
 
 {#if bottomList.length > 0}
-    <div 
+    <div
+        bind:this={bottomEl}
         class="fixed left-2 right-2 bottom-2 pointer-events-none box-border"
-        use:mount={{ placement: "bottom" }}
     >
         {#each bottomList as item (item.id)}
             {@const { onclose, ...restProps } = item.option}
@@ -275,9 +284,9 @@ $effect(() => {
 {/if}
 
 {#if bottomStartList.length > 0}
-    <div 
+    <div
+        bind:this={bottomStartEl}
         class="fixed left-2 right-2 bottom-2 pointer-events-none box-border"
-        use:mount={{ placement: "bottomStart" }}
     >
         {#each bottomStartList as item (item.id)}
             {@const { onclose, ...restProps } = item.option}
@@ -297,9 +306,9 @@ $effect(() => {
 {/if}
 
 {#if bottomEndList.length > 0}
-    <div 
+    <div
+        bind:this={bottomEndEl}
         class="fixed left-2 right-2 bottom-2 pointer-events-none box-border"
-        use:mount={{ placement: "bottomEnd" }}
     >
         {#each bottomEndList as item (item.id)}
             {@const { onclose, ...restProps } = item.option}

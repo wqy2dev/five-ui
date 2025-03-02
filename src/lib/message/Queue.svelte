@@ -44,11 +44,7 @@ export function clear() {
     store.clear();
 }
 
-let el:HTMLElement;
-
-function mount(node:HTMLElement) {
-    el = node, document.body.appendChild(node);
-}
+let el:HTMLElement|null = $state(null);
 
 onMount(() => {
     store.subscribe(q => {
@@ -57,10 +53,6 @@ onMount(() => {
 
     return () => {
         store.clear();
-
-        if(document.body.contains(el)) {
-            document.body.removeChild(el);
-        }
     }
 });
 
@@ -68,14 +60,25 @@ $effect(() => {
     store.limit(max);
 });
 
+$effect(() => {
+    if(el) {
+        document.body.appendChild(el);
+    }
+
+    return () => {
+        if(el && el.parentNode) {
+            el.parentNode.removeChild(el);
+        }
+    }
+});
 </script>
 
 {#if queue.length > 0}
 <div
+    bind:this={el}
     id={id}
     class={twMerge("fixed left-0 top-6 z-40 w-full pointer-events-none", className)}
     transition:fly={{y: -24, easing: linear}}
-    use:mount
 >
     {#each queue as item (item.id)}
         {@const { onclose, ...restProps} = item.option}
