@@ -46,8 +46,8 @@ type ButtonProps = {
     size?:Size;
     variant?:Variant;
     radius?:Radius;
-    type?:"submit"|"reset"|"button";
-    onclick?:{():void};
+    type?:"submit"|"reset"|"button"|"link";
+    onclick?:{(e:Event):void};
 	ref?:{(el:HTMLElement):void};
     id?:string;
     class?:string;
@@ -60,11 +60,13 @@ type ButtonProps = {
 <script lang="ts">
 
 let {
+    class:className,
+    type = "button",
     size,
     variant,
     radius,
-    class:className,
-    type = "button",
+    target,
+    href,
     ref,
     children,
     ...restProps
@@ -76,13 +78,16 @@ onMount(() => {
     ref?.(el);
 });
 
+const is = type === "link";
+
 </script>
 
-<svelte:element 
-    class={buttonVariants({variant, size, radius, className})}
-    this={restProps["href"] ? "a":"button"}
+<svelte:element
     bind:this={el}
+    class={buttonVariants({variant, size, radius, className})}
+    this={is ? "a":"button"}
     {...restProps}
+    {...(is ? {href, target}:{type})}
 >
     {@render children()}
 </svelte:element>
