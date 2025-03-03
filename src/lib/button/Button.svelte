@@ -46,7 +46,7 @@ type ButtonProps = {
     size?:Size;
     variant?:Variant;
     radius?:Radius;
-    type?:"submit" | "reset" | "button";
+    type?:"submit" | "reset" | "button" = "button";
     onclick?:{():void};
 	ref?:{(el:HTMLElement):void};
     id?:string;
