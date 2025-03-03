@@ -2,7 +2,7 @@
 import { tv, type VariantProps } from "tailwind-variants";
 
 const tabVariants = tv({
-	base: "px-2 py-1.5 text-sm outline-none transition-all",
+	base: "px-3 py-1.5 text-sm outline-none transition-all",
 	variants: {
         placement: {
             top: "",
