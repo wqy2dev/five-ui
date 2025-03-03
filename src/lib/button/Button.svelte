@@ -42,11 +42,11 @@ type Radius = VariantProps<typeof buttonVariants>["radius"];
 
 type ButtonProps = {
     href?:string;
-    target?:"_self" | "_blank" | "_parent" | "_top";
+    target?:"_self"|"_blank"|"_parent"|"_top";
     size?:Size;
     variant?:Variant;
     radius?:Radius;
-    type?:"submit" | "reset" | "button" = "button";
+    type?:"submit"|"reset"|"button";
     onclick?:{():void};
 	ref?:{(el:HTMLElement):void};
     id?:string;
