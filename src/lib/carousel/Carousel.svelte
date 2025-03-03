@@ -199,7 +199,6 @@ const {
 </script>
 
 <div
-    aria-label="Carousel"
     bind:this={el}
     id={id}
     class={carousel({className})}

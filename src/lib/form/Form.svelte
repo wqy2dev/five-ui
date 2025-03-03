@@ -6,7 +6,7 @@ const formVariants = tv({
     base: "w-full flex",
     variants: {
         layout: {
-            col: "flex-col space-y-6",
+            col: "flex-col",
             row: "flex-row",
         },
     },

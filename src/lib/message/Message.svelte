@@ -12,8 +12,9 @@ export type MessageOption = {
 </script>
 
 <script lang="ts">
-import { slide } from "svelte/transition";
+import { fly } from "svelte/transition";
 import { InfoCircleSolid, SuccessCircleSolid, ErrorCircleSolid, WarnCircleSolid, Close } from "$lib/icons/index.js";
+    import { linear } from "svelte/easing";
 
 let {
     variant = "info",
@@ -43,10 +44,10 @@ onMount(() => {
 </script>
 
 <div
-    class="w-full py-1 mp-1 flex justify-center bg-transparent"
-    transition:slide
+    class="w-full mb-6 flex justify-center bg-transparent"
+    transition:fly={{y: -24, easing: linear}}
 >
-    <div class="flex flex-row items-center shadow-outline-md rounded-lg p-2 bg-white pointer-events-auto">
+    <div class="flex flex-row items-center shadow-outline-lg rounded-md p-2 bg-white pointer-events-auto">
         <span class="mr-2">
             {#if variant === "info"}
                 <InfoCircleSolid size={20} class="text-primary-600"/>
@@ -59,7 +60,7 @@ onMount(() => {
             {/if}
         </span>
     
-        <span class="text-900 text-sm">
+        <span class="text-200 text-sm">
             {#if typeof message === "string"}
                 {message}
             {:else}

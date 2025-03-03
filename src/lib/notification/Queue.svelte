@@ -28,25 +28,7 @@ type NotificationOption = NotificationProps & {
 export type NotificationInstance = {
     push: {(option:NotificationOption):number};
     destory: {(id:number):void};
-}
-
-const ctr:Record<string, HTMLElement> = {};
-
-function portal(name:Exclude<Placement, undefined>):HTMLElement {
-    if(name in ctr) {
-        return ctr[name];
-    }
-
-    const el = document.createElement("div");
-    el.className = "fixed left-2 right-2 pointer-events-none box-border ";
-
-    if(name.slice(0, 3) === "top") {
-        el.className += "top-2";
-    } else {
-        el.className += "bottom-2";
-    }
-
-    return document.body.appendChild(el), ctr[name] = el;
+    clear: {():void};
 }
 
 </script>
@@ -54,7 +36,7 @@ function portal(name:Exclude<Placement, undefined>):HTMLElement {
 <script lang="ts">
 import { onMount } from "svelte";
 import { Store, type MessagePayload } from "../message/store.js";
-import { slide } from "svelte/transition";
+import { fade } from "svelte/transition";
 
 const {
     max = 0,
@@ -62,7 +44,12 @@ const {
     max?:number;
 } = $props();
 
-let queue = $state<MessagePayload<NotificationOption>[]>([]);
+let topList = $state<MessagePayload<NotificationOption>[]>([]);
+let topStartList = $state<MessagePayload<NotificationOption>[]>([]);
+let topEndList = $state<MessagePayload<NotificationOption>[]>([]);
+let bottomList = $state<MessagePayload<NotificationOption>[]>([]);
+let bottomStartList = $state<MessagePayload<NotificationOption>[]>([]);
+let bottomEndList = $state<MessagePayload<NotificationOption>[]>([]);
 
 const store = new Store<NotificationOption>(max);
 
@@ -74,13 +61,55 @@ export function destory(id:number) {
     store.destory(id);
 }
 
-function mount(node:HTMLElement, placement:Placement) {
-    portal(placement!).appendChild(node);
+export function clear() {
+    store.clear();
 }
 
+let topEl:HTMLElement|null = $state(null);
+let topStartEl:HTMLElement|null  = $state(null);
+let topEndEl:HTMLElement|null  = $state(null);
+let bottomEl:HTMLElement|null  = $state(null);
+let bottomStartEl:HTMLElement|null = $state(null);
+let bottomEndEl:HTMLElement|null = $state(null);
+
 onMount(() => {
-    store.subscribe(q => {
-        queue = q;
+    store.subscribe(items => {
+        const t:MessagePayload<NotificationOption>[] = [];
+        const tS:MessagePayload<NotificationOption>[] = [];
+        const tE:MessagePayload<NotificationOption>[] = [];
+        const b:MessagePayload<NotificationOption>[] = [];
+        const bS:MessagePayload<NotificationOption>[] = [];
+        const bE:MessagePayload<NotificationOption>[] = [];
+
+        items.forEach(item => {
+            switch(item.option.placement ?? "bottomEnd") {
+                case "top":
+                    t.push(item);
+                    break;
+                case "topStart":
+                    tS.push(item);
+                    break;
+                case "topEnd":
+                    tE.push(item);
+                    break;
+                case "bottom":
+                    b.push(item);
+                    break;
+                case "bottomStart":
+                    bS.push(item);
+                    break;
+                case "bottomEnd":
+                    bE.push(item);
+                    break;
+            }
+        });
+
+        topList = t;
+        topStartList = tS;
+        topEndList = tE;
+        bottomList = b;
+        bottomStartList = bS;
+        bottomEndList = bE;
     });
 });
 
@@ -88,21 +117,212 @@ $effect(() => {
     store.limit(max);
 });
 
+$effect(() => {
+    if(topEl) {
+        document.body.appendChild(topEl);
+    }
+
+    return () => {
+        if(topEl && topEl.parentNode) {
+            topEl.parentNode.removeChild(topEl);
+        }
+    }
+});
+
+$effect(() => {
+    if(topStartEl) {
+        document.body.appendChild(topStartEl);
+    }
+
+    return () => {
+        if(topStartEl && topStartEl.parentNode) {
+            topStartEl.parentNode.removeChild(topStartEl);
+        }
+    }
+});
+
+$effect(() => {
+    if(topEndEl) {
+        document.body.appendChild(topEndEl);
+    }
+
+    return () => {
+        if(topEndEl && topEndEl.parentNode) {
+            topEndEl.parentNode.removeChild(topEndEl);
+        }
+    }
+});
+
+
+$effect(() => {
+    if(bottomEl) {
+        document.body.appendChild(bottomEl);
+    }
+
+    return () => {
+        if(bottomEl && bottomEl.parentNode) {
+            bottomEl.parentNode.removeChild(bottomEl);
+        }
+    }
+});
+
+$effect(() => {
+    if(bottomStartEl) {
+        document.body.appendChild(bottomStartEl);
+    }
+
+    return () => {
+        if(bottomStartEl && bottomStartEl.parentNode) {
+            bottomStartEl.parentNode.removeChild(bottomStartEl);
+        }
+    }
+});
+
+$effect(() => {
+    if(bottomEndEl) {
+        document.body.appendChild(bottomEndEl);
+    }
+
+    return () => {
+        if(bottomEndEl && bottomEndEl.parentNode) {
+            bottomEndEl.parentNode.removeChild(bottomEndEl);
+        }
+    }
+});
+
 </script>
 
-{#each queue as item (item.id)}
-    {@const { onclose, placement, ...restProps } = item.option}
+{#if topList.length > 0}
     <div
-        aria-label="NotificationQueue"
-        class={variants({placement})}
-        use:mount={placement}
-        transition:slide
+        bind:this={topEl}
+        class="fixed left-2 right-2 top-2 pointer-events-none box-border"
     >
-        <Notification 
-            {...restProps}
-            onclose={() => {
-                destory(item.id), onclose?.();
-            }}
-        />
+        {#each topList as item (item.id)}
+            {@const { onclose, ...restProps } = item.option}
+
+            <div
+                class={variants({placement: "top"})}
+                transition:fade
+            >
+                <Notification 
+                    {...restProps}
+                    onclose={() => {
+                        destory(item.id), onclose?.();
+                    }}
+                />
+            </div>
+        {/each}
     </div>
-{/each}
+{/if}
+
+{#if topStartList.length > 0}
+    <div
+        bind:this={topStartEl}
+        class="fixed left-2 right-2 top-2 pointer-events-none box-border"
+    >
+        {#each topStartList as item (item.id)}
+            {@const { onclose, ...restProps } = item.option}
+
+            <div
+                class={variants({placement: "topStart"})}
+                transition:fade
+            >
+                <Notification 
+                    {...restProps}
+                    onclose={() => {
+                        destory(item.id), onclose?.();
+                    }}
+                />
+            </div>
+        {/each}
+    </div>
+{/if}
+
+{#if topEndList.length > 0}
+    <div
+        bind:this={topEndEl}
+        class="fixed left-2 right-2 top-2 pointer-events-none box-border"
+    >
+        {#each topEndList as item (item.id)}
+            {@const { onclose, ...restProps } = item.option}
+
+            <div
+                class={variants({placement: "topEnd"})}
+                transition:fade
+            >
+                <Notification 
+                    {...restProps}
+                    onclose={() => {
+                        destory(item.id), onclose?.();
+                    }}
+                />
+            </div>
+        {/each}
+    </div>
+{/if}
+
+{#if bottomList.length > 0}
+    <div
+        bind:this={bottomEl}
+        class="fixed left-2 right-2 bottom-2 pointer-events-none box-border"
+    >
+        {#each bottomList as item (item.id)}
+            {@const { onclose, ...restProps } = item.option}
+            <div
+                class={variants({placement: "bottom"})}
+                transition:fade
+            >
+                <Notification 
+                    {...restProps}
+                    onclose={() => {
+                        destory(item.id), onclose?.();
+                    }}
+                />
+            </div>
+        {/each}
+    </div>
+{/if}
+
+{#if bottomStartList.length > 0}
+    <div
+        bind:this={bottomStartEl}
+        class="fixed left-2 right-2 bottom-2 pointer-events-none box-border"
+    >
+        {#each bottomStartList as item (item.id)}
+            {@const { onclose, ...restProps } = item.option}
+            <div
+                class={variants({placement: "bottomStart"})}
+                transition:fade
+            >
+                <Notification 
+                    {...restProps}
+                    onclose={() => {
+                        destory(item.id), onclose?.();
+                    }}
+                />
+            </div>
+        {/each}
+    </div>
+{/if}
+
+{#if bottomEndList.length > 0}
+    <div
+        bind:this={bottomEndEl}
+        class="fixed left-2 right-2 bottom-2 pointer-events-none box-border"
+    >
+        {#each bottomEndList as item (item.id)}
+            {@const { onclose, ...restProps } = item.option}
+            <div
+                class={variants({placement: "bottomEnd"})}
+                transition:fade
+            >
+                <Notification 
+                    {...restProps}
+                    onclose={() => {
+                        destory(item.id), onclose?.();
+                    }}
+                />
+            </div>
+        {/each}
+    </div>
+{/if}

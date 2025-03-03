@@ -74,7 +74,6 @@ setContext("accordion", {
 </script>
 
 <div
-    aria-label="Accordion"
     bind:this={el}
     id={id}
     class={twMerge("relative w-full divide-y", className)}

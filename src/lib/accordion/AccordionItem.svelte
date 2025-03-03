@@ -3,7 +3,7 @@ import { tv } from "tailwind-variants";
 import { type Snippet, getContext, onMount } from "svelte";
 import { type AccordionContext } from "./Accordion.svelte";
 import { ChevronRight } from "$lib/icons/index.js";
-import { slide } from "svelte/transition";
+import { fade, slide } from "svelte/transition";
 
 const accordionItemVariants = tv({
     slots: {
@@ -84,10 +84,16 @@ onMount(() => {
     });
 });
 
+function slideFade(node:HTMLElement, params:any) {
+    return {
+      ...fade(node, params),
+      ...slide(node, params),
+    };
+}
+
 </script>
 
 <div
-    aria-label="AccordionItem"
     bind:this={el}
     id={id}
     class={base({className})}
@@ -119,10 +125,15 @@ onMount(() => {
     </button>
     {#if expand}
         <div 
-            class="relative pb-3"
-            transition:slide={{duration:300}}
+            class="relative pb-3 overflow-hidden"
+            transition:slide
         >
-            {@render children?.()}
+            <div
+                class="w-full h-fit"
+                transition:fade
+            >
+                {@render children?.()}
+            </div>
         </div>
     {/if}
 </div>

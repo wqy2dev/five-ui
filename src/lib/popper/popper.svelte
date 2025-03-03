@@ -23,8 +23,6 @@ export type PopperProps = {
     duration?:number;
     // trigger element
     target:Snippet<[{(ref:HTMLElement):void}]>;
-    // mount node
-    root?:{():HTMLElement};
     // popper hide condition when floatElement blur
     when?:{(targetEl:HTMLElement, floatEl:HTMLElement):boolean};
     // default hide popper
@@ -200,10 +198,6 @@ function scaleXY(node:HTMLElement, params:TransitionScaleXY):TransitionConfig {
     }
 }
 
-function defaultRoot() {
-    return document.body;
-}
-
 const arrowBeforeOffset = "2px";
 
 </script>
@@ -216,11 +210,10 @@ let {
     offset = 15,
     zIndex = 40,
     useArrow,
-    arrowSize = 11,
+    arrowSize = 9,
     duration = 200,
     trigger = "hover",
     placement = "top",
-    root,
     hide = true,
     when,
     children,
@@ -241,8 +234,7 @@ function ref(el:HTMLElement) {
 
 // render popper element
 function portal(el:HTMLElement) {
-    const rootEl = (root ?? defaultRoot)();
-    rootEl.appendChild(floatEl = el), tick().then(update);
+    document.body.appendChild(floatEl = el), tick().then(update);
 }
 
 // render arrow element
@@ -387,18 +379,6 @@ function onblur(e:Event) {
     }
 }
 
-function unmount() {
-    const rootEl = (root ?? defaultRoot)();
-
-    try{
-        if(floatEl) {
-            rootEl.removeChild(floatEl);
-        }
-    }catch {
-        
-    }
-}
-
 onMount(() => {
     switch(trigger) {
         case "click":
@@ -418,7 +398,11 @@ onMount(() => {
 
     watch();
 
-    return unmount;
+    return () => {
+        if(floatEl && document.body.contains(floatEl)) {
+            document.body.removeChild(floatEl);
+        }
+    }
 });
 
 </script>

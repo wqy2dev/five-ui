@@ -30,7 +30,6 @@ onMount(() => {
 </script>
 
 <div
-    aria-label="CardContent"
     bind:this={el}
     id={id}
     class={twMerge("flex flex-row", className)}

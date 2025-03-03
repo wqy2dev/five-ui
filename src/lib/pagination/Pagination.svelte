@@ -201,7 +201,6 @@ const {
 </script>
 
 <div
-    aria-label="Pagination"
 	bind:this={el}
     id={id}
     class={base({className})}
