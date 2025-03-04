@@ -48,7 +48,7 @@ onMount(() => {
     transition:fly={{y: -24, easing: linear}}
 >
     <div class="flex flex-row items-center shadow-outline-lg rounded-md p-2 bg-white pointer-events-auto">
-        <span class="mr-2">
+        <span class="mr-1">
             {#if variant === "info"}
                 <InfoCircleSolid size={20} class="text-primary-600"/>
             {:else if variant === "success"}
@@ -60,7 +60,7 @@ onMount(() => {
             {/if}
         </span>
     
-        <span class="text-200 text-sm">
+        <span class="text-slate-700 text-sm">
             {#if typeof message === "string"}
                 {message}
             {:else}
