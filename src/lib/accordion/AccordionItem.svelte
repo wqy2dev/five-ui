@@ -84,13 +84,6 @@ onMount(() => {
     });
 });
 
-function slideFade(node:HTMLElement, params:any) {
-    return {
-      ...fade(node, params),
-      ...slide(node, params),
-    };
-}
-
 </script>
 
 <div
