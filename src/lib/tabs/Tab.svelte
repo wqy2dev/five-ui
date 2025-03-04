@@ -158,7 +158,7 @@ onMount(() => {
     bind:this={el}
     id={id}
     this={link ? "a" : "button"}
-    class={tabVariants({variant, placement, radius, color, disabled, class:className})}
+    class={tabVariants({variant, placement, radius, color, disabled, className})}
     {...(link ? {target: "_blank", href} : {})}
     {...(open ? {open:""}:{})}
     {...{onclick}}
