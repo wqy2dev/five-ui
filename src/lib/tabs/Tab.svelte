@@ -36,29 +36,29 @@ const tabVariants = tv({
         {
             variant: "capsule",
             color: "default",
-            class: "open:bg-white open:text-slate-900 text-slate-600 hover:text-slate-900",
+            class: "open:bg-white open:text-slate-700 text-slate-600 hover:text-slate-700",
         },
         {
             variant: "capsule",
             color: "primary",
-            class: "open:bg-primary-600 open:text-white open:hover:text-white text-slate-600 hover:text-slate-900",
+            class: "open:bg-primary-600 open:text-white open:hover:text-white text-slate-600 hover:text-slate-700",
         },
 
         {
             variant: "button",
             color: "default",
-            class: "open:bg-slate-600 open:hover:bg-slate-600 open:text-white open:hover:text-white text-slate-600 hover:text-slate-900",
+            class: "open:bg-slate-600 open:hover:bg-slate-600 open:text-white open:hover:text-white text-slate-600 hover:text-slate-700",
         },
         {
             variant: "button",
             color: "primary",
-            class: "open:bg-primary-600 open:hover:bg-primary-600 open:text-white open:hover:text-white text-slate-600 hover:text-slate-900",
+            class: "open:bg-primary-600 open:hover:bg-primary-600 open:text-white open:hover:text-white text-slate-600 hover:text-slate-700",
         },
 
         {
             variant: "line",
             color: "default",
-            class: "open:border-slate-600 open:text-slate-900 hover:text-slate-900 text-slate-600",
+            class: "open:border-slate-600 open:text-slate-700 hover:text-slate-700 text-slate-600",
         },
         {
             variant: "line",

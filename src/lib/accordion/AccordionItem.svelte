@@ -22,7 +22,7 @@ const accordionItemVariants = tv({
                 button: "text-slate-400 cursor-not-allowed",
             },
             false: {
-                button: "text-slate-900",
+                button: "text-slate-700",
             }
         },
     },

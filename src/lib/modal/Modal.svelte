@@ -7,10 +7,10 @@ import { type Backdrop } from "$lib/overlay/Overlay.svelte";
 
 const modalVariants = tv({
 	slots: {
-		base: "flex flex-col w-full text-slate-900 border-solid border-slate-200 border bg-white shadow-sm overflow-hidden",
+		base: "flex flex-col w-full text-slate-700 bg-white shadow-sm overflow-hidden",
 		overlay: "flex justify-center py-14",
 		content: "px-5 grow text-sm",
-		footer: "px-5 flex justify-end py-3 gap-4",
+		footer: "px-5 flex justify-end py-2 gap-4",
 	},
 	variants: {
 		overflowScroll: {
@@ -164,8 +164,8 @@ const {
 		class={base({className: className.outline})}
 	>
 		{#if title}
-			<div class="flex flex-row px-5 py-3 text-base text-slate-900">
-				<div class="grow">
+			<div class="flex flex-row items-center px-5 py-2 text-base text-slate-700">
+				<div class="grow leading-none">
 					{#if typeof title === "string"}
 						{title}
 					{:else}

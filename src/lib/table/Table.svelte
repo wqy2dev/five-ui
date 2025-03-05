@@ -7,7 +7,7 @@ const tableVariants = tv({
         wrapper: "relative rounded-lg min-w-full overflow-x-auto overflow-y-hidden",
         table: "w-full border-collapse border-spacing-0 table table-fixed",
         row: "h-12",
-        column: "text-sm text-slate-900 truncate px-2",
+        column: "text-sm text-slate-700 truncate px-2",
     },
 	variants: {
         effect: {

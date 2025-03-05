@@ -9,12 +9,12 @@ const tooltipVariants = tv({
     variants: {
         theme: {
             light: {
-                content: "text-gray-900 bg-white",
+                content: "text-gray-700 bg-white",
                 arrow: "shadow-outline-lg bg-white",
             },
             dark: {
-                content: "text-white bg-gray-900",
-                arrow: "bg-gray-900",
+                content: "text-white bg-gray-700",
+                arrow: "bg-gray-700",
             }
         },
     },

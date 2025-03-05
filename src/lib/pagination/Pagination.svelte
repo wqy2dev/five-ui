@@ -10,13 +10,13 @@ const paginationVariants = tv({
     variants: {
         variant: {
             flat: {
-                button: "bg-slate-100 border-slate-100 hover:bg-slate-200 hover:border-slate-200 text-slate-900",
+                button: "bg-slate-100 border-slate-100 hover:bg-slate-200 hover:border-slate-200 text-slate-700",
             },
             outline: {
-                button: "bg-white hover:bg-slate-100 hover:border-slate-200 text-slate-900",
+                button: "bg-white hover:bg-slate-100 hover:border-slate-200 text-slate-700",
             },
             ghost: {
-                button: "bg-white border-white hover:bg-slate-100 hover:border-slate-100 text-slate-900",
+                button: "bg-white border-white hover:bg-slate-100 hover:border-slate-100 text-slate-700",
             },
         },
         radius: {

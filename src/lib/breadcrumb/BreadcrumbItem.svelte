@@ -6,8 +6,8 @@ const breadcrumbItemVariants = tv({
 	base: "",
 	variants: {
 		last: {
-			true: "text-slate-900",
-            false: "text-slate-500",
+			true: "text-slate-700",
+            false: "text-slate-400",
 		},
 		link: {
 			true: "hover:underline",

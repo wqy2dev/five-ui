@@ -57,7 +57,7 @@ onMount(() => {
     </div>
     <div class="grow">
         <div class="flex flex-row">
-            <div class="grow text-base text-slate-900">
+            <div class="grow text-base text-slate-700">
                 {title}
             </div>
 
