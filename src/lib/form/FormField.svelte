@@ -146,13 +146,18 @@ const {
         {/if}
 
         {#if tooltip}
-            <Tooltip>
+            <Tooltip
+                placement="bottom"
+            >
                 {#snippet target(ref)}
                     <span class="inline-block" use:ref>
                         <HelpCircleOutline size={17}/>
                     </span>
                 {/snippet}
-                {tooltip}
+
+                <div class="max-w-64 break-words">
+                    {tooltip}
+                </div>
             </Tooltip>
         {/if}
     </div>

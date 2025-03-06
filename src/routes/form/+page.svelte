@@ -237,6 +237,7 @@ let message:MessageInstance;
             name="Password"
             layout="col"
             required
+            tooltip="登录密码"
             rules={[
                 {
                     rule: (value) => value === "OK",
