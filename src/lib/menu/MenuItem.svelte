@@ -4,7 +4,7 @@ import type { MenuContext } from "./Menu.svelte";
 import { tv } from "tailwind-variants";
 
 const meunItemVariants = tv({
-    base: "flex flex-row w-full h-fit hover:bg-slate-100 disabled:hover:bg-transparent truncate text-sm text-left text-slate-700 disabled:text-slate-400 disabled:cursor-not-allowed p-2 rounded-md",
+    base: "flex flex-row w-full h-fit hover:bg-slate-100 disabled:hover:bg-transparent truncate text-sm text-left text-slate-700 disabled:text-slate-400 disabled:cursor-not-allowed px-4 py-2 rounded-md",
     variants: {
         checked: {
             true: "bg-slate-100",
