@@ -28,7 +28,7 @@ const tabVariants = tv({
         },
         variant: {
             line: "border-solid border-transparent rounded-none",
-            button: "hover:bg-slate-100",
+            button: "hover:bg-slate-100 border border-solid border-transparent hover:border-slate-100",
             capsule: "",
         },
 	},
@@ -41,18 +41,18 @@ const tabVariants = tv({
         {
             variant: "capsule",
             color: "primary",
-            class: "open:bg-primary-600 open:text-white open:hover:text-white text-slate-600 hover:text-slate-700",
+            class: "open:bg-primary-600 open:text-white open:hover:text-white open:border-slate-100 text-slate-600 hover:text-slate-700",
         },
 
         {
             variant: "button",
             color: "default",
-            class: "open:bg-slate-600 open:hover:bg-slate-600 open:text-white open:hover:text-white text-slate-600 hover:text-slate-700",
+            class: "open:bg-slate-600 open:hover:bg-slate-600 open:hover:border-slate-600 open:text-white open:hover:text-white text-slate-600 hover:text-slate-700",
         },
         {
             variant: "button",
             color: "primary",
-            class: "open:bg-primary-600 open:hover:bg-primary-600 open:text-white open:hover:text-white text-slate-600 hover:text-slate-700",
+            class: "open:bg-primary-600 open:hover:bg-primary-600 open:hover:border-primary-600 open:text-white open:hover:text-white text-slate-600 hover:text-slate-700",
         },
 
         {
