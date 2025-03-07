@@ -1,51 +1,54 @@
 <script lang="ts" module>
 import { onMount, getContext, type Snippet } from "svelte";
 import { tv } from "tailwind-variants";
-import { Check } from "$lib/icons/index.js";
-import { twMerge } from "tailwind-merge";
 import { type RadioContext } from "./RadioGroup.svelte";
 
 const radioVariants = tv({
-    base: "relative flex items-center justify-center w-4 h-4 rounded-full cursor-pointer box-content bg-white border-2 border-solid transition-all overflow-hidden",
+    slots: {
+        base: "align-top inline-flex flex-row items-center w-fit h-fit leading-none gap-2 mr-3",
+        inner: "relative block leading-0 w-5 h-5 bg-white border-solid cursor-pointer rounded-full overflow-hidden transition-all",
+    },
     variants: {
         disabled:{
-            true: "cursor-not-allowed",
-            false: "",
+            true: {
+                inner: "cursor-not-allowed",
+            }
         },
         focus: {
-            true: "",
-            false: "",
+            true: {
+                inner: "ring ring-primary-200",
+            }
         },
         checked: {
-            true: "",
-            false: "",
+            true: {
+                inner: "border-[6px] border-primary-600",
+            },
+            false: {
+                inner: "border-2 border-slate-300",
+            }
         },
     },
     compoundVariants: [
         {
-            focus: true,
-            disabled: false,
-            class: "ring ring-primary-200",
-        },
-        {
-            disabled: false,
-            checked: true,
-            class: "bg-primary-600 border-primary-600 text-white",
-        },
-        {
             disabled: false,
             checked: false,
-            class: "border-slate-300 hover:border-slate-600",
+            class: {
+                inner: "hover:border-slate-600",
+            }
         },
         {
             disabled: true,
             checked: true,
-            class: "bg-primary-300 border-primary-300 text-white",
+            class: {
+                inner: "border-primary-400",
+            }
         },
         {
             disabled: true,
             checked: false,
-            class: "bg-slate-50 border-slate-200",
+            class: {
+                inner: "border-slate-200 bg-slate-50",
+            }
         },
     ],
     defaultVariants: {
@@ -59,6 +62,7 @@ type RadioProps = {
 	value:string|number;
     class?:string;
     disabled?:boolean;
+    render?:Snippet<[{focus?:boolean;checked?:boolean;disabled?:boolean;}]>;
     children?:Snippet;
     ref?:{(el:HTMLElement):void};
 }
@@ -76,23 +80,20 @@ let {
     class:className,
     value,
     disabled = false,
+    render,
     children,
 }:RadioProps = $props();
 
 let focus = $state(false);
 let checked = $state(context.value === value);
 
-function onFocus(e:Event) {
-    focus = true;
-}
-
-function onBlur(e:Event) {
+function onblur(e:Event) {
     if(!el.contains(e.target as HTMLButtonElement)) {
         focus = false;
     }
 }
 
-function onChange(_:Event) {
+function onchange(_:Event) {
     checked = true, context.value = value;
 }
 
@@ -107,36 +108,40 @@ onMount(() => {
     ref?.(el);
 });
 
+const {
+    base,
+    inner,
+} = radioVariants();
+
 </script>
 
 <label
-    class={twMerge("align-top inline-flex flex-row items-center w-fit h-fit leading-none gap-2 mr-3", className)}
+    class={render ? className:base({className})}
 >
     <span
         bind:this={el}
-        class={radioVariants({focus, checked, disabled})}
+        class={render ? "":inner({focus, checked, disabled})}
     >
-        <input
-            bind:group={context.value}
-            class="absolute top-0 left-0 w-4 h-4 -z-10"
-            type="radio"
-            name={context.name}
-            value={value}
-            disabled={disabled}
-            onchange={onChange}
-            onclick={onFocus}
-        />
-
-        {#if checked}
-            <Check size={16} class="pointer-events-none"/>
+        {#if render}
+            {@render render({focus, disabled, checked})}
         {/if}
     </span>
 
-    <span class="text-sm">
-        {@render children?.()}
-    </span>
+    {#if !render}
+        <span class="text-sm">
+            {@render children?.()}
+        </span>
+    {/if}
+
+    <input
+        class="hidden"
+        type="radio"
+        name={context.name}
+        disabled={disabled}
+        onchange={onchange}
+    />
 </label>
 
 <svelte:window 
-    onmousedown={onBlur}
+    onmousedown={onblur}
 />
