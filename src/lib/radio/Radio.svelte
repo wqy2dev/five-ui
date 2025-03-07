@@ -48,6 +48,11 @@ const radioVariants = tv({
             class: "bg-slate-50 border-slate-200",
         },
     ],
+    defaultVariants: {
+        focus: false,
+        checked: false,
+        disabled: false,
+    },
 });
 
 type RadioProps = {
@@ -70,7 +75,7 @@ let {
     ref,
     class:className,
     value,
-    disabled,
+    disabled = false,
     children,
 }:RadioProps = $props();
 
