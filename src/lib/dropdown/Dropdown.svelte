@@ -34,7 +34,6 @@ function when(targetEl:HTMLElement, floatEl:HTMLElement) {
     placement={placement}
     trigger="toggle"
     when={when}
-    root={() => document.body}
     {...restProps}
 >
     <div

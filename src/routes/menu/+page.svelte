@@ -17,13 +17,13 @@ import { Menu, MenuItem, MenuGroup } from "$lib/index.js";
 <div class="w-full">
     <Menu class="shadow-outline-md">
         <MenuGroup title="Action">
-            <MenuItem key="copy">Copy</MenuItem>
-            <MenuItem key="delete">Delete</MenuItem>
-            <MenuItem key="export">Export</MenuItem>
-            <MenuItem key="import">Import</MenuItem>
+            <MenuItem value="copy">Copy</MenuItem>
+            <MenuItem value="delete">Delete</MenuItem>
+            <MenuItem value="export">Export</MenuItem>
+            <MenuItem value="import">Import</MenuItem>
         </MenuGroup>
-        <MenuItem key="Share" disabled>Copy</MenuItem>
-        <MenuItem key="About">Delete</MenuItem>
+        <MenuItem value="Share" disabled>Copy</MenuItem>
+        <MenuItem value="About">Delete</MenuItem>
     </Menu>
 </div>
 
@@ -34,12 +34,12 @@ import { Menu, MenuItem, MenuGroup } from "$lib/index.js";
 <div class="w-full">
     <Menu class="shadow-outline-md">
         <MenuGroup title="Action">
-            <MenuItem key="copy">Copy</MenuItem>
-            <MenuItem key="delete">Delete</MenuItem>
-            <MenuItem key="export">Export</MenuItem>
-            <MenuItem key="import">Import</MenuItem>
+            <MenuItem value="copy">Copy</MenuItem>
+            <MenuItem value="delete">Delete</MenuItem>
+            <MenuItem value="export">Export</MenuItem>
+            <MenuItem value="import">Import</MenuItem>
         </MenuGroup>
-        <MenuItem key="Share" disabled>Copy</MenuItem>
-        <MenuItem key="About">Delete</MenuItem>
+        <MenuItem value="Share" disabled>Copy</MenuItem>
+        <MenuItem value="About">Delete</MenuItem>
     </Menu>
 </div>
