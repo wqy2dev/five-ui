@@ -1,6 +1,6 @@
 <script lang="ts" module>
 import type { FormFieldContext } from "$lib/form/FormField.svelte";
-import { type FullAutoFill } from "svelte/elements";
+import type { FullAutoFill } from "svelte/elements";
 import { getContext, onMount } from "svelte";
 
 import { tv, type VariantProps } from "tailwind-variants";
