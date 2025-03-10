@@ -166,7 +166,7 @@ let fitWidth = $state("");
                 ref={(el:HTMLElement) => {
                     ref(el), elRef?.(el), fitWidth = el.offsetWidth + "px";
                 }}
-                class={twMerge("w-80", className)}
+                class={twMerge("w-80", searchable ? "cursor-text":"cursor-pointer", className)}
                 type="text"
                 value={ok ? "" : selected.label}
                 head={head}

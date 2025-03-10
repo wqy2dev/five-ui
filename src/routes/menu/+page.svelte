@@ -33,7 +33,7 @@ import { Menu, MenuItem, MenuGroup } from "$lib/index.js";
 
 <div class="w-full">
     <Menu class="shadow-outline-md">
-        <MenuGroup title="Action">
+        <MenuGroup title="功能">
             <MenuItem value="copy">Copy</MenuItem>
             <MenuItem value="delete">Delete</MenuItem>
             <MenuItem value="export">Export</MenuItem>
