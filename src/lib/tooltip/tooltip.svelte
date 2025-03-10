@@ -13,8 +13,8 @@ const tooltipVariants = tv({
                 arrow: "shadow-outline-lg bg-white",
             },
             dark: {
-                content: "text-white bg-gray-700",
-                arrow: "bg-gray-700",
+                content: "text-white bg-gray-900",
+                arrow: "bg-gray-900",
             }
         },
     },

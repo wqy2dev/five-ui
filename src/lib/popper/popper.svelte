@@ -207,7 +207,7 @@ const arrowBeforeOffset = "2px";
 let {
     target,
     class:decoration = {},
-    offset = 15,
+    offset = 12,
     zIndex = 40,
     useArrow,
     arrowSize = 9,
