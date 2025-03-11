@@ -116,6 +116,7 @@ export const icons = [
     "CogSolid",
     "CommandLine",
     "Copy",
+    "Cube",
     "Download",
     "EllipsisHorizontal",
     "EllipsisVertical",
