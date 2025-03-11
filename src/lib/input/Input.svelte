@@ -95,7 +95,7 @@ export type InputProps = {
 	tail?:Snippet;
 	ref?:{(el:HTMLElement):void};
 	onchange?:{(value?:string):void};
-	onkeypress?:{(code:string):void};
+	onkeypress?:{(code:string, key:string):void};
 	onfocus?:{(e:FocusEvent):void};
 	onblur?:{(e:FocusEvent):void};
 	// input number
@@ -171,6 +171,10 @@ function onChange(e:Event & {currentTarget: EventTarget & HTMLInputElement}) {
 	onchange?.(e.currentTarget.value);
 }
 
+function onKeyPress(e:KeyboardEvent) {
+    onkeypress?.(e.code, e.key);
+}
+
 const {
 	base,
 	slot,
@@ -203,6 +207,7 @@ const {
 		onfocus={onFocus}
 		onblur={onFocus}
 		oninput={onChange}
+		onkeypress={onKeyPress}
 		{...restProps}
 	/>
 

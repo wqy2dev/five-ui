@@ -2,6 +2,24 @@
 import { Tooltip } from "$lib/index.js";
 import { icons } from "$lib/icons/index.js";
 import LoadIcon from "./LoadIcon.svelte";
+import Input from "$lib/input/Input.svelte";
+import Search from "$lib/icons/Search.svelte";
+
+let data = $state(icons);
+let timer = 0;
+
+function onsearch(value?:string) {
+    if(timer){ 
+        window.clearTimeout(timer);
+    }
+
+    timer = setTimeout(() => {
+        data = value ? icons.filter(v => {
+            const reg = new RegExp(value, "i");
+            return reg.test(v!);
+        }) : icons;
+    }, 300);
+}
 
 </script>
 
@@ -17,21 +35,31 @@ import LoadIcon from "./LoadIcon.svelte";
     Base({icons.length})
 </h4>
 
-<div class="flex flex-row flex-wrap gap-5">
-    {#each icons as icon}
-    <Tooltip
-        placement="bottom"
+<div class="py-5 w-full">
+    <Input
+        placeholder="search icon"
+        onchange={onsearch}
     >
-        {#snippet target(ref)}
-        <div 
-            class="w-10 h-10 flex items-center justify-center bg-slate-100 text-slate-600"
-            use:ref
-        >
-            <LoadIcon icon={icon}/>
-        </div>
+        {#snippet tail()}
+            <Search/>
         {/snippet}
-        {icon}
-    </Tooltip>
-        
+    </Input>
+</div>
+
+<div class="flex flex-row flex-wrap gap-6 pl-5">
+    {#each data as icon}
+        <Tooltip
+            placement="bottom"
+        >
+            {#snippet target(ref)}
+            <div 
+                class="w-14 h-14 flex items-center justify-center bg-slate-100 text-slate-600"
+                use:ref
+            >
+                <LoadIcon icon={icon}/>
+            </div>
+            {/snippet}
+            {icon}
+        </Tooltip>
     {/each}
 </div>

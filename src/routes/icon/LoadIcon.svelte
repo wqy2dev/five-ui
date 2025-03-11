@@ -1,3 +1,11 @@
+<script lang="ts" module>
+
+async function load(icon:string) {
+    return (await import(`$lib/icons/${icon}.svelte`)).default;
+}
+
+</script>
+
 <script lang="ts">
 import { onMount, type Component } from "svelte";
 
@@ -11,16 +19,18 @@ let {
 
 let C = $state<null|Component>(null);
 
-async function load(icon:string) {
-    C = (await import(`$lib/icons/${icon}.svelte`)).default;
-}
+$effect(() => {
+    load(icon).then(c => {
+        C = c;
+    });
 
-onMount(() => {
-    load(icon);
+    return () => {
+        C = null;
+    }
 });
 
 </script>
 
 {#if C}
-    <C/>
+    <C size={22}/>
 {/if}
