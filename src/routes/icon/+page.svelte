@@ -28,12 +28,8 @@ function onsearch(value?:string) {
 </svelte:head>
 
 <h2 class="text-lg font-bold leading-10">
-    Icon
+    Icon({icons.length})
 </h2>
-
-<h4 class="my-5 text-base indent-2 bg-slate-100">
-    Base({icons.length})
-</h4>
 
 <div class="py-5 w-full">
     <Input
