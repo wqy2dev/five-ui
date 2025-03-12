@@ -20,8 +20,21 @@ const radius = ["sm", "md", "lg", "xl", "none"];
 <div class="w-full">
     <Textarea
         placeholder="search keywords"
-        minlength={2}
-        maxlength={5}
+        onchange={v => {
+            console.log("change:", v);
+        }}
+    />
+</div>
+
+<h4 class="my-5 text-base indent-2 bg-slate-100">
+    ShowCount
+</h4>
+
+<div class="w-full">
+    <Textarea
+        placeholder="search keywords"
+        maxlength={10}
+        showCount={true}
         onchange={v => {
             console.log("change:", v);
         }}
