@@ -48,6 +48,7 @@ const radius = ["full", "sm", "md", "lg", "xl", "none"];
 
 <div class="w-full">
     <Input
+        value="A"
         placeholder=""
         maxlength={2}
         showCount={true}

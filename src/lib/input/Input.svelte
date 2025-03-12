@@ -81,7 +81,7 @@ export type InputProps = {
 	id?:string;
 	class?:string;
 	name?:string;
-	value?:string|number;
+	value?:string;
     type?:"text"|"password";
 	size?:Size;
 	radius?:Radius;
@@ -141,7 +141,7 @@ onMount(() => {
 
 let focus = $state(false);
 let hover = $state(false);
-let count = $state(0);
+let count = $state(value?.length ?? 0);
 
 // erase input
 function onErase(_:MouseEvent) {
