@@ -46,6 +46,7 @@ FiveUI already includes the following components, but is not limited to:
 | Message | ✔ |
 | Modal | ✔ |
 | Notification | ✔ |
+| Number | ✔ |
 | Overlay | ✔ |
 | Pagination | ✔ |
 | Popper | ✔ |

@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Calendar, Search } from "$lib/icons/index.js";
-import { Input, } from "$lib/index.js";
+import { Number, } from "$lib/index.js";
 
 const sizes = ["sm", "md", "lg"];
 const radius = ["full", "sm", "md", "lg", "xl", "none"];
@@ -8,11 +8,11 @@ const radius = ["full", "sm", "md", "lg", "xl", "none"];
 </script>
 
 <svelte:head>
-    <title>Input</title>
+    <title>Number</title>
 </svelte:head>
 
 <h2 class="text-lg font-bold leading-10">
-    Input
+    Number
 </h2>
 
 <h4 class="my-5 text-base indent-2 bg-slate-100">
@@ -20,7 +20,7 @@ const radius = ["full", "sm", "md", "lg", "xl", "none"];
 </h4>
 
 <div class="w-full">
-    <Input
+    <Number
         placeholder="search keywords"
         onchange={v => {
             console.log("change:", v);
@@ -28,14 +28,15 @@ const radius = ["full", "sm", "md", "lg", "xl", "none"];
     />
 </div>
 
+
 <h4 class="my-5 text-base indent-2 bg-slate-100">
-    Maxlength
+    Min
 </h4>
 
 <div class="w-full">
-    <Input
-        placeholder=""
-        maxlength={2}
+    <Number
+        placeholder="min number:10"
+        min={10}
         onchange={v => {
             console.log("change:", v);
         }}
@@ -43,14 +44,27 @@ const radius = ["full", "sm", "md", "lg", "xl", "none"];
 </div>
 
 <h4 class="my-5 text-base indent-2 bg-slate-100">
-    ShowCount
+    Max
 </h4>
 
 <div class="w-full">
-    <Input
-        placeholder=""
-        maxlength={2}
-        showCount={true}
+    <Number
+        placeholder="max number:20"
+        max={20}
+        onchange={v => {
+            console.log("change:", v);
+        }}
+    />
+</div>
+
+<h4 class="my-5 text-base indent-2 bg-slate-100">
+    Step
+</h4>
+
+<div class="w-full">
+    <Number
+        placeholder="number step"
+        step={0.1}
         onchange={v => {
             console.log("change:", v);
         }}
@@ -62,7 +76,7 @@ const radius = ["full", "sm", "md", "lg", "xl", "none"];
 </h4>
 
 <div class="w-full">
-    <Input value="2024" disabled/>
+    <Number value="2024" disabled/>
 </div>
 
 <h4 class="my-5 text-base indent-2 bg-slate-100">
@@ -70,35 +84,26 @@ const radius = ["full", "sm", "md", "lg", "xl", "none"];
 </h4>
 
 <div class="w-full flex flex-col gap-5">
-    <Input>
+    <Number>
         {#snippet head()}
             <Calendar/>
         {/snippet}
-    </Input>
+    </Number>
 
-    <Input>
+    <Number>
         {#snippet tail()}
             <Search/>
         {/snippet}
-    </Input>
+    </Number>
 
-    <Input>
+    <Number>
         {#snippet head()}
             <Calendar/>
         {/snippet}
         {#snippet tail()}
             <Search/>
         {/snippet}
-    </Input>
-</div>
-
-
-<h4 class="my-5 text-base indent-2 bg-slate-100">
-    Password
-</h4>
-
-<div class="w-full">
-    <Input type="password" value="2024"/>
+    </Number>
 </div>
 
 <h4 class="my-5 text-base indent-2 bg-slate-100">
@@ -107,11 +112,11 @@ const radius = ["full", "sm", "md", "lg", "xl", "none"];
 
 <div class="w-full flex flex-col gap-5">
     {#each sizes as size}
-        <Input size={size as any}>
+        <Number size={size as any}>
             {#snippet head()}
                 <Calendar/>
             {/snippet}
-        </Input>
+        </Number>
     {/each}
 </div>
 
@@ -121,10 +126,10 @@ const radius = ["full", "sm", "md", "lg", "xl", "none"];
 
 <div class="w-full flex flex-col gap-5">
     {#each radius as rds}
-        <Input radius={rds as any}>
+        <Number radius={rds as any}>
             {#snippet head()}
                 <Calendar/>
             {/snippet}
-        </Input>
+        </Number>
     {/each}
 </div>

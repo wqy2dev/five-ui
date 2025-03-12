@@ -20,6 +20,7 @@ export { Menu, MenuGroup, MenuItem } from "./menu/index.js";
 export { Message, type MessageInstance } from "./message/index.js";
 export { Modal } from "./modal/index.js";
 export { Notification, type NotificationInstance } from "./notification/index.js";
+export { Number } from "./number/index.js";
 export { Overlay } from "./overlay/index.js";
 export { Pagination } from "./pagination/index.js";
 export { Popper, type Placement, type Trigger } from "./popper/index.js";
