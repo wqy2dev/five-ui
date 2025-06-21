@@ -27,6 +27,7 @@ const routes = [
     {path: "/icon", title: "Icon", achieve: true},
     {path: "/input", title: "Input", achieve: true},
     {path: "/layout", title: "Layout", achieve: true},
+    {path: "/list", title: "List", achieve: true},
     {path: "/message", title: "Message", achieve: true},
     {path: "/menu", title: "Menu", achieve: true},
     {path: "/modal", title: "Modal", achieve: true},
