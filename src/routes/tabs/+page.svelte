@@ -29,19 +29,16 @@ const colors = ["primary", "default"];
         </div>
         <Tabs defaultKey="3">
             <TabBar variant={variant as any} color={color as any}>
-                <Tab key="1" title="Tab 1">
+                <Tab key="1">
                     <p>Tab 1</p>
                 </Tab>
-                <Tab key="2" title="Tab 2">
+                <Tab key="2">
                     <p>Tab 2</p>
                 </Tab>
-                <Tab key="3" title="Tab 3">
+                <Tab key="3">
                     <p>Tab 3</p>
                 </Tab>
                 <Tab key="4">
-                    {#snippet title()}
-                        Tab AA
-                    {/snippet}
                     <p>Tab 4</p>
                 </Tab>
             </TabBar>
@@ -71,19 +68,16 @@ const colors = ["primary", "default"];
     {#each radius as rds, i}
         <Tabs defaultKey="3">
             <TabBar radius={rds as any}>
-                <Tab key="1" title="Tab 1">
+                <Tab key="1">
                     <p>Tab 1</p>
                 </Tab>
-                <Tab key="2" title="Tab 2">
+                <Tab key="2">
                     <p>Tab 2</p>
                 </Tab>
-                <Tab key="3" title="Tab 3">
+                <Tab key="3">
                     <p>Tab 3</p>
                 </Tab>
                 <Tab key="4">
-                    {#snippet title()}
-                        Tab AA
-                    {/snippet}
                     <p>Tab 4</p>
                 </Tab>
             </TabBar>
@@ -106,19 +100,16 @@ const colors = ["primary", "default"];
     {#each radius as rds, i}
         <Tabs defaultKey="3">
             <TabBar radius={rds as any} variant="button">
-                <Tab key="1" title="Tab 1">
+                <Tab key="1">
                     <p>Tab 1</p>
                 </Tab>
-                <Tab key="2" title="Tab 2">
+                <Tab key="2">
                     <p>Tab 2</p>
                 </Tab>
-                <Tab key="3" title="Tab 3">
+                <Tab key="3">
                     <p>Tab 3</p>
                 </Tab>
                 <Tab key="4">
-                    {#snippet title()}
-                        Tab AA
-                    {/snippet}
                     <p>Tab 4</p>
                 </Tab>
             </TabBar>
@@ -149,19 +140,16 @@ const colors = ["primary", "default"];
             variant="capsule" 
             placement="top"
         >
-            <Tab key="1" title="Tab 1">
+            <Tab key="1">
                 <p>Tab 1</p>
             </Tab>
-            <Tab key="2" title="Tab 2">
+            <Tab key="2">
                 <p>Tab 2</p>
             </Tab>
-            <Tab key="3" title="Tab 3">
+            <Tab key="3">
                 <p>Tab 3</p>
             </Tab>
             <Tab key="4">
-                {#snippet title()}
-                    Tab AA
-                {/snippet}
                 <p>Tab 4</p>
             </Tab>
         </TabBar>
@@ -205,19 +193,16 @@ const colors = ["primary", "default"];
             variant="capsule" 
             placement="bottom"
         >
-            <Tab key="1" title="Tab 1">
+            <Tab key="1">
                 <p>Tab 1</p>
             </Tab>
-            <Tab key="2" title="Tab 2">
+            <Tab key="2">
                 <p>Tab 2</p>
             </Tab>
-            <Tab key="3" title="Tab 3">
+            <Tab key="3">
                 <p>Tab 3</p>
             </Tab>
             <Tab key="4">
-                {#snippet title()}
-                    Tab AA
-                {/snippet}
                 <p>Tab 4</p>
             </Tab>
         </TabBar>
@@ -233,19 +218,16 @@ const colors = ["primary", "default"];
                 placement="left"
                 class="h-full"
             >
-                <Tab key="1" title="Tab 1">
+                <Tab key="1">
                     <p>Tab 1</p>
                 </Tab>
-                <Tab key="2" title="Tab 2">
+                <Tab key="2">
                     <p>Tab 2</p>
                 </Tab>
-                <Tab key="3" title="Tab 3">
+                <Tab key="3">
                     <p>Tab 3</p>
                 </Tab>
                 <Tab key="4">
-                    {#snippet title()}
-                        Tab AA
-                    {/snippet}
                     <p>Tab 4</p>
                 </Tab>
             </TabBar>
@@ -289,19 +271,16 @@ const colors = ["primary", "default"];
                 placement="right"
                 class="h-full"
             >
-                <Tab key="1" title="Tab 1">
+                <Tab key="1">
                     <p>Tab 1</p>
                 </Tab>
-                <Tab key="2" title="Tab 2">
+                <Tab key="2">
                     <p>Tab 2</p>
                 </Tab>
-                <Tab key="3" title="Tab 3">
+                <Tab key="3">
                     <p>Tab 3</p>
                 </Tab>
                 <Tab key="4">
-                    {#snippet title()}
-                        Tab AA
-                    {/snippet}
                     <p>Tab 4</p>
                 </Tab>
             </TabBar>
@@ -317,19 +296,16 @@ const colors = ["primary", "default"];
                 placement="left"
                 class="h-full"
             >
-                <Tab key="1" title="Tab 1">
+                <Tab key="1">
                     <p>Tab 1</p>
                 </Tab>
-                <Tab key="2" title="Tab 2">
+                <Tab key="2">
                     <p>Tab 2</p>
                 </Tab>
-                <Tab key="3" title="Tab 3">
+                <Tab key="3">
                     <p>Tab 3</p>
                 </Tab>
                 <Tab key="4">
-                    {#snippet title()}
-                        Tab AA
-                    {/snippet}
                     <p>Tab 4</p>
                 </Tab>
             </TabBar>
@@ -373,19 +349,16 @@ const colors = ["primary", "default"];
                 placement="right"
                 class="h-full"
             >
-                <Tab key="1" title="Tab 1">
+                <Tab key="1">
                     <p>Tab 1</p>
                 </Tab>
-                <Tab key="2" title="Tab 2">
+                <Tab key="2">
                     <p>Tab 2</p>
                 </Tab>
-                <Tab key="3" title="Tab 3">
+                <Tab key="3">
                     <p>Tab 3</p>
                 </Tab>
                 <Tab key="4">
-                    {#snippet title()}
-                        Tab AA
-                    {/snippet}
                     <p>Tab 4</p>
                 </Tab>
             </TabBar>
@@ -400,19 +373,16 @@ const colors = ["primary", "default"];
             placement="top"
             class="w-full flex justify-center"
         >
-            <Tab key="1" title="Tab 1">
+            <Tab key="1">
                 <p>Tab 1</p>
             </Tab>
-            <Tab key="2" title="Tab 2">
+            <Tab key="2">
                 <p>Tab 2</p>
             </Tab>
-            <Tab key="3" title="Tab 3">
+            <Tab key="3">
                 <p>Tab 3</p>
             </Tab>
             <Tab key="4">
-                {#snippet title()}
-                    Tab AA
-                {/snippet}
                 <p>Tab 4</p>
             </Tab>
         </TabBar>
@@ -456,19 +426,16 @@ const colors = ["primary", "default"];
             placement="bottom"
             class="w-full flex justify-center"
         >
-            <Tab key="1" title="Tab 1">
+            <Tab key="1">
                 <p>Tab 1</p>
             </Tab>
-            <Tab key="2" title="Tab 2">
+            <Tab key="2">
                 <p>Tab 2</p>
             </Tab>
-            <Tab key="3" title="Tab 3">
+            <Tab key="3">
                 <p>Tab 3</p>
             </Tab>
             <Tab key="4">
-                {#snippet title()}
-                    Tab AA
-                {/snippet}
                 <p>Tab 4</p>
             </Tab>
         </TabBar>

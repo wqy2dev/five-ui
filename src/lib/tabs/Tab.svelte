@@ -20,7 +20,7 @@ const tabVariants = tv({
         },
         disabled: {
             true: "cursor-not-allowed",
-            false: "",
+            false: "cursor-pointer",
         },
         color: {
             default: "",
@@ -47,7 +47,7 @@ const tabVariants = tv({
         {
             variant: "button",
             color: "default",
-            class: "open:bg-slate-600 open:hover:bg-slate-600 open:hover:border-slate-600 open:text-white open:hover:text-white text-slate-600 hover:text-slate-700",
+            class: "open:bg-slate-200 open:hover:bg-slate-200 open:hover:border-slate-200 open:text-slate-600 open:hover:text-slate-600 text-slate-600 hover:text-slate-700",
         },
         {
             variant: "button",
@@ -68,22 +68,22 @@ const tabVariants = tv({
         {
             variant: "line",
             placement: "top",
-            class: "border-b-2",
+            class: "border-b -mb-[1px]",
         },
         {
             variant: "line",
             placement: "bottom",
-            class: "border-t-2",
+            class: "border-t -mt-[1px]",
         },
         {
             variant: "line",
             placement: "left",
-            class: "border-r-2",
+            class: "border-r -mr-[1px]",
         },
         {
             variant: "line",
             placement: "right",
-            class: "border-l-2",
+            class: "border-l -ml-[1px]",
         },
     ],  
 	defaultVariants: {
@@ -114,7 +114,6 @@ type TabProps = {
     class?:string;
     ref?:{(el:HTMLElement):void};
     key:string;
-    title:string|Snippet;
     href?:string;
     link?:boolean;
     disabled?:boolean;
@@ -157,7 +156,7 @@ onMount(() => {
 <svelte:element
     bind:this={el}
     id={id}
-    this={link ? "a" : "button"}
+    this={link ? "a" : "span"}
     class={tabVariants({variant, placement, radius, color, disabled, className})}
     {...(link ? {target: "_blank", href} : {})}
     {...(open ? {open:""}:{})}
