@@ -3,7 +3,6 @@ import { tv } from "tailwind-variants";
 import { onMount, type Snippet } from "svelte";
 
 const listVariants = tv({
-	base: "w-full overflow-hidden",
     slots: {
         base: "",
         item: "flex flex-row text-slate-600",

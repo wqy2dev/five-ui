@@ -37,6 +37,7 @@ const routes = [
     {path: "/radio", title: "Radio", achieve: true},
     {path: "/select", title: "Select", achieve: true},
     {path: "/slider", title: "Slider"},
+    {path: "/space", title: "Space", achieve: true},
     {path: "/steps", title: "Steps"},
     {path: "/switch", title: "Switch", achieve: true},
     {path: "/table", title: "Table", achieve: true},

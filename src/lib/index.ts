@@ -28,6 +28,7 @@ export { Popper, type Placement, type Trigger } from "./popper/index.js";
 export { Radio, RadioGroup } from "./radio/index.js";
 export { Select, type SelectOption } from "./select/index.js";
 export { Slider } from "./slider/index.js";
+export { Space } from "./space/index.js";
 export { Steps } from "./steps/index.js";
 export { Switch } from "./switch/index.js";
 export { Table } from "./table/index.js";

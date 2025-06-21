@@ -54,6 +54,7 @@ FiveUI already includes the following components, but is not limited to:
 | Radio | ✔ |
 | Select | ✔ |
 | Slider ||
+| Space | ✔ |
 | Steps | |
 | Switch | ✔ |
 | Table | ✔ |
