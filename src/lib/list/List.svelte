@@ -1,6 +1,6 @@
 <script lang="ts" module>
-import { type VariantProps, tv } from "tailwind-variants";
-import { onMount, setContext, hasContext, type Snippet } from "svelte";
+import { tv } from "tailwind-variants";
+import { onMount, type Snippet } from "svelte";
 
 const listVariants = tv({
 	base: "w-full overflow-hidden",
