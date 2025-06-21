@@ -38,9 +38,9 @@ const listVariants = tv({
             },
 			true: {
                 base: "border border-solid border-slate-200",
-                item: "px-2",
-                header: "px-2",
-                footer: "px-2",
+                item: "px-3",
+                header: "px-3",
+                footer: "px-3",
             },
 		},
         radius: {
