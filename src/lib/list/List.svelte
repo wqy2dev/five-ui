@@ -4,7 +4,7 @@ import { onMount, type Snippet } from "svelte";
 
 const listVariants = tv({
     slots: {
-        base: "",
+        base: "relative w-full",
         item: "flex flex-row text-slate-600",
         header: "flex flex-row text-slate-600 border-b border-solid border-slate-200 bg-slate-50",
         footer: "flex flex-row text-slate-600 border-t border-solid border-slate-200",
