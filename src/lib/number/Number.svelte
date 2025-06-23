@@ -5,7 +5,7 @@ import { Close } from "$lib/icons/index.js";
 import type { FullAutoFill } from "svelte/elements";
 import type { FormFieldContext } from "$lib/form/FormField.svelte";
 
-const inputVariants = tv({
+const numberVariants = tv({
 	slots: {
 		base: "w-full align-top inline-flex flex-row items-center px-2 bg-white border border-solid border-slate-200 overflow-hidden transition-all",
 		input: "grow shrink min-w-5 h-full text-sm text-slate-700 disabled:text-slate-400 placeholder:text-slate-400 bg-transparent cursor-inherit outline-none",
@@ -74,30 +74,31 @@ const inputVariants = tv({
 	},
 });
 
-export type Size = VariantProps<typeof inputVariants>["size"];
-export type Radius = VariantProps<typeof inputVariants>["radius"];
+export type Size = VariantProps<typeof numberVariants>["size"];
+export type Radius = VariantProps<typeof numberVariants>["radius"];
 
 export type InputProps = {
 	id?:string;
 	class?:string;
 	name?:string;
-	value?:string;
-    type?:"text"|"password";
+	value?:number|string;
 	size?:Size;
 	radius?:Radius;
 	placeholder?:string;
 	autocomplete?:FullAutoFill;
 	readonly?:boolean;
     disabled?:boolean;
-	maxlength?:number;
-	showCount?:boolean;
 	head?:Snippet;
 	tail?:Snippet;
 	ref?:{(el:HTMLElement):void};
-	onchange?:{(value?:string):void};
+	onchange?:{(value?:number):void};
 	onkeypress?:{(code:string, key:string):void};
 	onfocus?:{(e:FocusEvent):void};
 	onblur?:{(e:FocusEvent):void};
+	// input number
+	min?:number;
+	max?:number;
+	step?:number;
 }
 
 </script>
@@ -106,21 +107,22 @@ export type InputProps = {
 
 let {
 	id,
-    ref,
     head,
     tail,
     name,
     class:className,
     value,
+	min,
+	max,
+	step,
     size,
 	radius,
     disabled,
-	maxlength,
-	showCount,
 	onfocus,
 	onblur,
     onchange,
 	onkeypress,
+    ref,
     ...restProps
 }:InputProps = $props();
 
@@ -141,18 +143,26 @@ onMount(() => {
 
 let focus = $state(false);
 let hover = $state(false);
-let count = $state(value?.length ?? 0);
 
 // erase input
 function onErase(_:MouseEvent) {
-    value = undefined, focus = true, count = 0;
+    focus = true;
 
 	if(inner) {
 		inner.focus();
 	}
 
+	let v = undefined;
+
+    // input truncation
+    if(typeof min === "number") {
+		v = min;
+	}
+
+	value = v;
+
     if(onchange) {
-        onchange("");
+        onchange(v);
     }
 }
 
@@ -167,14 +177,16 @@ function onHover(e:Event) {
 }
 
 function onChange(e:Event & {currentTarget: EventTarget & HTMLInputElement}) {
-	let v = e.currentTarget.value;
+	let v = parseFloat(e.currentTarget.value);
 
 	// input truncation
-	if(typeof maxlength === "number" && v.length > maxlength) {
-		v = v.slice(0, maxlength), value = v;
+	if(typeof min === "number" && v < min) {
+		v = min, value = v;
+	} else if(typeof max === "number" && v > max) {
+		v = max, value = v;
 	}
 
-	onchange?.(v), count = v.length;
+	onchange?.(v);
 }
 
 function onKeyPress(e:KeyboardEvent) {
@@ -185,7 +197,7 @@ const {
 	base,
 	slot,
 	input,
-} = inputVariants({size, radius});
+} = numberVariants({size, radius});
 
 </script>
 
@@ -207,9 +219,9 @@ const {
 	<input
 		bind:this={inner}
 		bind:value={value}
+		type="number"
 		class={input()}
 		name={name}
-		maxlength={maxlength}
 		disabled={disabled}
 		onfocus={onFocus}
 		onblur={onFocus}
@@ -223,12 +235,6 @@ const {
 			<button onmouseup={onErase}>
 				<Close size={15}/>
 			</button>
-		</div>
-	{/if}
-
-	{#if showCount}
-		<div class={slot({slot:"tail"})}>
-			{count}/{maxlength ?? 0}
 		</div>
 	{/if}
 

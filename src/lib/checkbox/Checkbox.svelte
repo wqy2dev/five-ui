@@ -56,6 +56,9 @@ const checkboxVariants = tv({
     ],
     defaultVariants: {
         radius: "md",
+        disabled: false,
+        checked: false,
+        focus: false,
     },
 });
 
@@ -80,7 +83,7 @@ let {
     value,
     checked:defaultChecked,
     radius,
-    disabled,
+    disabled = false,
     children,
     onchange,
 }:CheckboxProps = $props();

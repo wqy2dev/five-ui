@@ -20,6 +20,7 @@ export { default as BarsArrowUp } from "./BarsArrowUp.svelte";
 export { default as Bolt } from "./Bolt.svelte";
 export { default as BoltSlash } from "./BoltSlash.svelte";
 export { default as Bookmark } from "./Bookmark.svelte";
+export { default as Branch } from "./Branch.svelte";
 export { default as Calendar } from "./Calendar.svelte";
 export { default as CalendarDateRange } from "./CalendarDateRange.svelte";
 export { default as CalendarDay } from "./CalendarDay.svelte";
@@ -156,6 +157,7 @@ export const icons = [
   "Bolt",
   "BoltSlash",
   "Bookmark",
+  "Branch",
   "Calendar",
   "CalendarDateRange",
   "CalendarDay",

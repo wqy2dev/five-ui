@@ -194,14 +194,14 @@ const {
 				{@render footerSnippet()}
 			{:else}
 				<Button
-					size="sm"
+					size="md"
 					variant="outline"
 					onclick={oncancel}
 				>
 					{cancelText}
 				</Button>
 				<Button
-					size="sm"
+					size="md"
 					onclick={onok}
 				>
 					{okText}

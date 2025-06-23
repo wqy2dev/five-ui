@@ -39,19 +39,22 @@ FiveUI already includes the following components, but is not limited to:
 | Drawer | ✔ |
 | Dropdown | ✔ |
 | Form | ✔ |
-| Icons | ✔ |
+| Icon | ✔ |
 | Input | ✔ |
 | Layout | ✔ |
+| List | ✔ |
 | Menu | ✔ |
 | Message | ✔ |
 | Modal | ✔ |
 | Notification | ✔ |
+| Number | ✔ |
 | Overlay | ✔ |
 | Pagination | ✔ |
 | Popper | ✔ |
 | Radio | ✔ |
 | Select | ✔ |
 | Slider ||
+| Space | ✔ |
 | Steps | |
 | Switch | ✔ |
 | Table | ✔ |
