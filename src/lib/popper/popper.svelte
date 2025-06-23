@@ -382,13 +382,13 @@ function onblur(e:Event) {
 onMount(() => {
     switch(trigger) {
         case "click":
-            anchorEl.addEventListener("mousedown", onclick, false);
+            anchorEl.addEventListener("mouseup", onclick, false);
             break;
         case "focus":
-            anchorEl.addEventListener("mousedown", onenter, false);
+            anchorEl.addEventListener("mouseup", onenter, false);
             break;
         case "toggle":
-            anchorEl.addEventListener("mousedown", onclick, false);
+            anchorEl.addEventListener("mouseup", onclick, false);
             break;
         case "hover":
             anchorEl.addEventListener("mouseenter", onenter, false);
