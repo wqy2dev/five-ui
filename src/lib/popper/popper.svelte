@@ -438,5 +438,5 @@ onMount(() => {
 
 <svelte:window 
     onresize={resize} 
-    onmousedown={onblur}
+    onmouseup={onblur}
 />
