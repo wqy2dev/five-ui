@@ -117,7 +117,7 @@ let {
         k: "w-100",
         v: "grow",
     },
-    value = {},
+    value,
     size,
 	radius,
     disabled,
@@ -140,7 +140,7 @@ if(fieldContext) {
     onchange = fieldContext.onchange;
 }
 
-let {k, v} = value;
+let {k, v} = value ?? {k: "", v: ""};
 let kValue = $state(k);
 let vValue = $state(v);
 let fValue = $state(k+","+v);
