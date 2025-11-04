@@ -91,6 +91,7 @@ export type InputProps = {
     disabled?:boolean;
 	maxlength?:number;
 	showCount?:boolean;
+	clearable?:boolean;
 	head?:Snippet;
 	tail?:Snippet;
 	ref?:{(el:HTMLElement):void};
@@ -117,6 +118,7 @@ let {
     disabled,
 	maxlength,
 	showCount,
+	clearable = true,
 	onfocus,
 	onblur,
     onchange,
@@ -218,7 +220,7 @@ const {
 		{...restProps}
 	/>
 
-	{#if !disabled && hover && value }
+	{#if !disabled && clearable && hover && value }
 		<div class={slot({slot:"erase"})}>
 			<button onmouseup={onErase}>
 				<Close size={15}/>

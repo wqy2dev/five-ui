@@ -26,6 +26,7 @@ type SelectProps = {
     options?:SelectOption[];
     optionsClass?:string;
     searchable?:boolean;
+    clearable?:boolean;
     empty?:Snippet;
     head?:Snippet;
     tail?:Snippet;
@@ -49,6 +50,7 @@ let {
     disabled,
     placeholder,
     searchable = false,
+    clearable = true,
     options = [],
     option:optionRender,
     optionsClass,
@@ -144,6 +146,7 @@ let fitWidth = $state("");
         radius={radius}
         readonly={true}
         disabled={true}
+        clearable={false}
         placeholder={placeholder}
     />
 {:else}
@@ -174,6 +177,7 @@ let fitWidth = $state("");
                 size={size}
                 radius={radius}
                 readonly={!searchable}
+                clearable={clearable}
                 placeholder={ok && selected.label !== "" ? selected.label : placeholder}
                 onchange={onsearch}
                 onkeypress={onkeypress}
