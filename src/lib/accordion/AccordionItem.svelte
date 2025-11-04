@@ -118,7 +118,7 @@ onMount(() => {
     </button>
     {#if expand}
         <div 
-            class="relative pb-3 overflow-hidden"
+            class="relative pb-3 px-0.5 overflow-hidden"
             transition:slide
         >
             <div
