@@ -119,11 +119,14 @@ let {
 	maxlength,
 	showCount,
 	clearable = true,
+	readonly,
+	autocomplete,
+	type,
+	placeholder,
 	onfocus,
 	onblur,
     onchange,
 	onkeypress,
-    ...restProps
 }:InputProps = $props();
 
 // first reading context
@@ -198,7 +201,6 @@ const {
 	class={base({disabled, focus:focus && !disabled, className})}
     onmouseenter={onHover}
     onmouseleave={onHover}
-    {...{size}}
 >
 	{#if head}
 		<div class={slot({slot:"head"})}>
@@ -209,15 +211,18 @@ const {
 	<input
 		bind:this={inner}
 		bind:value={value}
+		type={type}
 		class={input()}
 		name={name}
+		placeholder={placeholder}
 		maxlength={maxlength}
 		disabled={disabled}
 		onfocus={onFocus}
 		onblur={onFocus}
 		oninput={onChange}
 		onkeypress={onKeyPress}
-		{...restProps}
+		readonly={readonly}
+		autocomplete={autocomplete}
 	/>
 
 	{#if !disabled && clearable && hover && value }

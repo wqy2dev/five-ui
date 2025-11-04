@@ -23,7 +23,7 @@ npm i five-ui@latest
 FiveUI already includes the following components, but is not limited to:
 
 | Name | Finish |
-| --- | --- |
+| :--- | :--- |
 | Accordion | ✔ |
 | Alert | ✔ |
 | Avatar | ✔ |
@@ -41,6 +41,7 @@ FiveUI already includes the following components, but is not limited to:
 | Form | ✔ |
 | Icon | ✔ |
 | Input | ✔ |
+| KV | ✔ |
 | Layout | ✔ |
 | List | ✔ |
 | Menu | ✔ |

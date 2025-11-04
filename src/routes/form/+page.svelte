@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Form, FormField, Input, Textarea, Button, Switch, RadioGroup, Radio, Checkbox, CheckboxGroup, Message, type MessageInstance } from "$lib/index.js";
+import { Form, FormField, Input, Textarea, Button, Switch, RadioGroup, Radio, Checkbox, CheckboxGroup, Message, type MessageInstance, KV } from "$lib/index.js";
     import Select from "$lib/select/Select.svelte";
 
 const sizes = ["sm", "md", "lg"];
@@ -265,7 +265,33 @@ let message:MessageInstance;
         >
             <Textarea/>
         </FormField>
-        
+
+        <FormField
+            label="环境变量"
+            name="switch"
+            layout="col"
+            value={{k:"GOPATH", v:"/go"}}
+            required
+            rules={[
+                {
+                    rule: (value) => value && value.k && value.v,
+                    msg: "请填写环境变量",
+                },
+            ]}
+        >
+            <KV
+                class={{
+                    base: "w-full",
+                    k: "w-60",
+                    v: "grow"
+                }}
+                placeholder={{
+                    k: "key",
+                    v: "value",
+                }}
+            />
+        </FormField>
+
         <FormField
             label="启用"
             name="switch"
@@ -284,6 +310,7 @@ let message:MessageInstance;
                 offValue="off"
             />
         </FormField>
+
         <Button type="submit" class="w-20">Submit</Button>
     </Form>
 </div>
