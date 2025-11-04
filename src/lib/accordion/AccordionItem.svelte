@@ -33,6 +33,7 @@ type AccordionItemProps = {
     id?:string;
     ref?:{(el:HTMLElement):void};
     class?:string;
+    headerClass?:string;
     key:string;
     title:string|Snippet;
     icon?:Snippet<[boolean]>;
@@ -54,6 +55,7 @@ let {
     key,
     title,
     class:className,
+    headerClass:headerClassName,
     icon,
     children
 }:AccordionItemProps = $props();
@@ -93,7 +95,7 @@ onMount(() => {
 >
     <button
         type="button"
-        class={button({disable})}
+        class={button({disable, className:headerClassName })}
         onclick={onclick}
     >
         <div class="grow text-start">
