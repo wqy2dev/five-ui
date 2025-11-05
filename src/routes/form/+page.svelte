@@ -17,7 +17,9 @@ let message:MessageInstance;
 </h2>
 
 <div>
-    <Form>
+    <Form
+        trim={true}
+    >
         <FormField
             label="Username"
             name="username"

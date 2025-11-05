@@ -40,6 +40,7 @@ export type FormContext = {
 type FormProps = {
     class?:string;
     layout?:FormLayout;
+    trim?:boolean;
     onsubmit?:{(data:Record<string, any>, errors:FormValidateError[]):void};
     children:Snippet;
 }
@@ -55,6 +56,7 @@ export type FormInstance = {
 let {
     layout = "col",
     class:className,
+    trim = false,
     onsubmit,
     children,
 }:FormProps = $props();
@@ -71,8 +73,13 @@ export function submit() {
         if(r.error !== undefined) {
             errors.push(r.error);
         } else {
+            let value = r.value;
+            if(trim) {
+                value = value.trim();
+            }
+
             // update value
-            data[item.name] = r.value;
+            data[item.name] = value;
         }
     });
 
