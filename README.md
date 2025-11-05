@@ -38,6 +38,7 @@ FiveUI already includes the following components, but is not limited to:
 | DatePicker ||
 | Drawer | ✔ |
 | Dropdown | ✔ |
+| Editor | ✔ |
 | Form | ✔ |
 | Icon | ✔ |
 | Input | ✔ |
