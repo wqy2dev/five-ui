@@ -268,9 +268,8 @@ let message:MessageInstance;
 
         <FormField
             label="环境变量"
-            name="switch"
+            name="env"
             layout="col"
-            value={{k:"GOPATH", v:"/go"}}
             required
             rules={[
                 {
