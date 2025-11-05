@@ -55,6 +55,14 @@ const inputVariants = tv({
 
 			},
         },
+        width: {
+            k: {
+                input: "w-50",
+            },
+            v: {
+                input: "grow",
+            },
+        }
 	},
 	defaultVariants: {
 		size: "md",
@@ -113,10 +121,7 @@ let {
 	id,
     ref,
     name,
-    class:className = {
-        k: "w-100",
-        v: "grow",
-    },
+    class:className,
     value,
     size,
 	radius,
@@ -143,7 +148,7 @@ if(fieldContext) {
 let {k, v} = value ?? {k: "", v: ""};
 let kValue = $state(k);
 let vValue = $state(v);
-let fValue = $state(k+","+v);
+let fValue = $state(k!+separator+v);
 
 let kFocus = $state(false);
 let vFocus = $state(false);
@@ -182,7 +187,7 @@ function onChange(e:Event & {currentTarget: EventTarget & HTMLInputElement}, typ
         }
     }
 
-	onchange?.({k:kValue, v:vValue}), fValue = kValue+","+vValue;
+	onchange?.({k:kValue, v:vValue}), fValue = kValue!+separator+vValue;
 }
 
 function onKeyPress(e:KeyboardEvent, type:KVType) {
@@ -211,7 +216,7 @@ onMount(() => {
 	<input
         bind:value={kValue}
         type="text"
-        class={input({focus:kFocus, className:className?.k})}
+        class={input({focus:kFocus, className:className?.k, width:"k"})}
 		maxlength={maxlength?.k}
         placeholder={placeholder?.k}
 		disabled={disabled}
@@ -232,7 +237,7 @@ onMount(() => {
     <input
         bind:value={vValue}
         type="text"
-        class={input({focus:vFocus, className:className?.v})}
+        class={input({focus:vFocus, className:className?.v, width:"v"})}
 		maxlength={maxlength?.v}
         placeholder={placeholder?.v}
 		disabled={disabled}
