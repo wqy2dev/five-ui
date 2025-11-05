@@ -122,7 +122,7 @@ let {
     ref,
     name,
     class:className,
-    value,
+    value = {k: "", v: ""},
     size,
 	radius,
     disabled,
@@ -141,11 +141,14 @@ let {
 const fieldContext = getContext<FormFieldContext>("formField");
 if(fieldContext) {
     name = fieldContext.name;
-    value = fieldContext.value;
     onchange = fieldContext.onchange;
+
+    if(typeof fieldContext.value === "object") {
+        value = Object.assign(value, fieldContext.value);
+    }
 }
 
-let {k, v} = value ?? {k: "", v: ""};
+let {k, v} = value;
 let kValue = $state(k);
 let vValue = $state(v);
 let fValue = $state(k!+separator+v);
