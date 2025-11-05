@@ -227,7 +227,10 @@ const {
 
 	{#if !disabled && clearable && hover && value }
 		<div class={slot({slot:"erase"})}>
-			<button onmouseup={onErase}>
+			<button 
+				type="button"
+			    onmouseup={onErase}
+			>
 				<Close size={15}/>
 			</button>
 		</div>

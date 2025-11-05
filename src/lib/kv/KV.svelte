@@ -3,6 +3,7 @@ import { getContext, onMount, type Snippet } from "svelte";
 import { type VariantProps, tv } from "tailwind-variants";
 import type { FullAutoFill } from "svelte/elements";
 import type { FormFieldContext } from "$lib/form/FormField.svelte";
+import { Minus } from "$lib/icons/index.js";
 
 const inputVariants = tv({
 	slots: {
@@ -111,6 +112,7 @@ export type KVProps = {
 	onkeypress?:{(code:string, type:KVType):void};
 	onfocus?:{(e:FocusEvent, type:KVType):void};
 	onblur?:{(e:FocusEvent, type:KVType):void};
+    ondelete?:{(name?:string, value?:any):void};
 }
 
 </script>
@@ -135,12 +137,14 @@ let {
 	onblur,
     onchange,
 	onkeypress,
+    ondelete,
 }:KVProps = $props();
 
 // first reading context
 const fieldContext = getContext<FormFieldContext>("formField");
 if(fieldContext) {
     name = fieldContext.name;
+    value = {k: "", v: ""};
     onchange = fieldContext.onchange;
 
     if(typeof fieldContext.value === "object") {
@@ -195,6 +199,10 @@ function onChange(e:Event & {currentTarget: EventTarget & HTMLInputElement}, typ
 
 function onKeyPress(e:KeyboardEvent, type:KVType) {
     onkeypress?.(e.code || e.key, type);
+}
+
+function onDelete(_:Event) {
+    ondelete?.(name, {k:kValue, v:vValue});
 }
 
 const {
@@ -258,4 +266,11 @@ onMount(() => {
         name={name}
         disabled={disabled}
     />
+
+    <button
+        type="button"
+        onmouseup={onDelete}
+    >
+        <Minus size={14}/>
+    </button>
 </div>

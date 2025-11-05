@@ -270,6 +270,7 @@ let message:MessageInstance;
             label="环境变量"
             name="env"
             layout="col"
+            value={{k:"GOPATH", v:"/go"}}
             required
             rules={[
                 {
