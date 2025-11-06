@@ -1,7 +1,9 @@
 <script lang="ts">
-    import Editor from "$lib/editor/Editor.svelte";
-import { LockCloseOutline, LockOpenOutline, Plus, Minus } from "$lib/icons/index.js";
-import { Accordion, AccordionItem } from "$lib/index.js";
+import Editor from "$lib/editor/Editor.svelte";
+
+let focus = $state(false);
+let blur = $state(false);
+let value = $state("");
 </script>
 
 <svelte:head>
@@ -18,6 +20,22 @@ import { Accordion, AccordionItem } from "$lib/index.js";
     </h4>
 
     <div>
-        <Editor/>
+        <Editor
+            placeholder="# input..."
+            onfocus={() => {
+                focus = true;
+                blur = false;
+            }}
+            onblur={() => {
+                focus = false;
+                blur = true;
+            }}
+            onchange={v => {
+                value = v;
+            }}
+        />
+        <div>
+            focus: {focus}, blur: {blur}, value: {value}
+        </div>
     </div>
 </div>

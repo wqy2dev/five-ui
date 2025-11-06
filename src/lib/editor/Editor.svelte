@@ -1,141 +1,104 @@
 <script lang="ts">
-import { onMount, onDestroy } from "svelte";
+import { getContext, onDestroy, type Snippet } from "svelte";
 import { twMerge } from "tailwind-merge";
-import { type Editor } from "brace";
-import "brace/ext/emmet";
+import type { FormFieldContext } from "$lib/form/FormField.svelte";
+import ace, { type Ace } from "ace-builds";
+import { Langs, Themes } from "./variables.js";
+// default
+import "ace-builds/src-noconflict/theme-monokai";
+import "ace-builds/src-noconflict/mode-sh";
 
 type EditorProps = {
+    id?:string;
     class?:string;
     value?:string;
-    lang?:string;
-    theme?:string;
-    options?:Record<string, any>;
+    // Customize, please manual import: `import 'ace-builds/src-noconflict/mode-<lang>'`
+    lang?:Langs;
+    // Customize, please manual import: `import 'ace-builds/src-noconflict/theme-<theme>'`
+    theme?:Themes;
     readonly?:boolean;
+    placeholder?:string;
+    import?:Snippet;
     ref?:{(el:HTMLElement):void};
-    oninit?:{(editor:Editor):void};
-    onchange?:{(value:string):void};
+    oninit?:{(editor:Ace.Editor):void};
+    onchange?:{(value:any):void};
     onfocus?:{():void};
     onblur?:{():void};
-    onpaste?:{(value:string):void};
-    onselectionchange?:{(e:any):void};
-    ondocumentchange?:{(object:any):void};
-    oncut?:{():void};
-    oncopy?:{():void};
-    oncursorchange?:{():void};
-    onchangemode?:{(e:any):void};
-    oncommandkey?:{(e:any, hashId:any, keyCode:any):void}
 }
 
 let {
-    value = "",
-    lang = "shell",
-    theme = "chrome",
+    id,
     class:className,
-    options = {},
+    value = "",
+    lang = Langs.Sh,
+    theme = Themes.Monokai,
     readonly = false,
+    placeholder,
     ref,
     oninit,
     onchange,
     onfocus,
     onblur,
-    onpaste,
-    onselectionchange,
-    ondocumentchange,
-    oncut,
-    oncopy,
-    oncursorchange,
-    onchangemode,
-    oncommandkey,
 }:EditorProps = $props();
 
-const EDITOR_ID = `editor-${Math.floor(
-    Math.random() * 10000000000
-)}`;
+if(!Object.values(Themes).includes(theme)) {
+    throw new Error(`no supported theme: ${theme}`);
+}
 
-let editor: Editor;
-let el:HTMLElement;
+if(!Object.values(Langs).includes(lang)) {
+    throw new Error(`no supported lang: ${lang}`);
+}
 
-onMount(async () => {
-    const brace = await import('brace');
-    const Ace = brace.default; // 注意 brace 的导出格式
+const fieldContext = getContext<FormFieldContext>("formField");
+if(fieldContext) {
+    value = fieldContext.value;
+    onchange = fieldContext.onchange;
+}
 
-    editor = Ace.edit(EDITOR_ID);
+let editor:Ace.Editor;
 
-    oninit?.(editor);
+function mount(el:HTMLElement) {
+    editor = ace.edit(el, {
+        value,
+        placeholder,
+        readOnly: readonly,
+        cursorStyle: "smooth",
+        highlightActiveLine: true,
+        enableAutoIndent: true,
+        relativeLineNumbers: false,
+        showPrintMargin: false,
+        theme: `ace/theme/${theme}`,
+        mode: `ace/mode/${lang}`,
+    });
 
-    editor.$blockScrolling = Infinity;
-    // editor.setOption("enableEmmet", true);
-    // editor.getSession().setMode("ace/mode/" + lang);
-    // editor.setTheme("ace/theme/" + theme);
-    editor.setValue(value, 1);
-    editor.setReadOnly(readonly)
-
-    if (options) {
-        editor.setOptions(options);
-    }
-
-    editor.onFocus = () => {
-        onfocus?.();
-    }
-
-    editor.onBlur = () => {
-        onblur?.();
-    }
-
-    editor.onChangeMode = (obj) => {
-        onchangemode?.(obj);
-    }
-
-    editor.onCommandKey = (e, hashId, keyCode) => {
-        oncommandkey?.(e, hashId, keyCode);
-    }
-
-    editor.onCopy = () => {
-        oncopy?.();
-    }
-
-    editor.onCursorChange = () => {
-        oncursorchange?.();
-    }
-
-    editor.onCut = () => {
-        editor.insert("");
-        oncut?.();
-    }
-
-    editor.onDocumentChange = (e:any) => {
-        ondocumentchange?.(e);
-    }
-
-    editor.onPaste = (text) => {
-      editor.insert(text);
-      onpaste?.(text);
-    };
-
-    editor.onSelectionChange = (e) => {
-        onselectionchange?.(e);
-    }
+    editor.setFontSize("14px");
 
     editor.on("change", function () {
         onchange?.(editor.getValue());
     });
 
-    ref?.(el);
-});
+    editor.on("focus", function () {
+        onfocus?.();
+    });
+
+    editor.on("blur", function () {
+        onblur?.();
+    });
+
+    ref?.(el), oninit?.(editor);
+}
 
 onDestroy(() => {
     if (editor) {
         editor.destroy();
-        editor.container.remove();
     }
 });
 
 </script>
 
-<div 
-    bind:this={el}
-    class={twMerge("relative w-full h-full", className)}
+<div
+    use:mount
+    id={id}
+    class={twMerge("relative w-full h-32 leading-6", className)}
 >
-  <div id={EDITOR_ID} style="width:100%;height:100%;" >
-  </div>
 </div>

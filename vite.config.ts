@@ -11,9 +11,19 @@ export default defineConfig({
 		  ],
 		},
 	},
+	resolve: {
+		alias: {
+		},
+	},
 	server: {
 		hmr: {
 			overlay: true,
 		},
 	},
+	define: {
+		
+	},
+	build: {
+		minify: "terser",
+    }
 });

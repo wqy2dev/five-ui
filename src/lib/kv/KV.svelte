@@ -106,6 +106,7 @@ export type KVProps = {
 	autocomplete?:FullAutoFill;
 	readonly?:boolean;
     disabled?:boolean;
+    deleteable?:boolean;
     separator?:Snippet|string;
 	ref?:{(el:HTMLElement):void};
 	onchange?:{(value:any):void};
@@ -131,6 +132,7 @@ let {
 	maxlength = {},
     placeholder = {},
     readonly,
+    deleteable,
     autocomplete,
     separator = "=",
 	onfocus,
@@ -267,10 +269,12 @@ onMount(() => {
         disabled={disabled}
     />
 
+    {#if deleteable}
     <button
         type="button"
         onmouseup={onDelete}
     >
         <Minus size={14}/>
     </button>
+    {/if}
 </div>
