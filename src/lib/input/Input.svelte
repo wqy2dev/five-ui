@@ -135,6 +135,7 @@ if(fieldContext) {
     name = fieldContext.name;
     onchange = fieldContext.onchange;
 
+	value = "";
 	if(typeof fieldContext.value === "string") {
         value = fieldContext.value;
     }

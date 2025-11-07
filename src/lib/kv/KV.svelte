@@ -1,13 +1,11 @@
 <script lang="ts" module>
-import { getContext, onMount, type Snippet } from "svelte";
+import { type Snippet } from "svelte";
 import { type VariantProps, tv } from "tailwind-variants";
-import type { FullAutoFill } from "svelte/elements";
-import type { FormFieldContext } from "$lib/form/FormField.svelte";
 import { Minus } from "$lib/icons/index.js";
 
 const inputVariants = tv({
 	slots: {
-        base: "w-fit inline-flex flex-row gap-2 items-center",
+        base: "w-fit flex flex-row gap-2 items-center",
 		input: "shrink-0 h-full text-sm text-slate-700 disabled:text-slate-400 placeholder:text-slate-400 cursor-inherit outline-none px-2 bg-white border border-solid border-slate-200 overflow-hidden transition-all",
         separator: "text-slate-400 text-sm",
 	},
@@ -82,19 +80,19 @@ export enum KVType {
 }
 
 export type KVProps = {
-	id?:string;
 	class?: {
         base?:string;
         k?:string;
         v?:string;
     };
-	name?:string;
 	value?:{
         k?:string;
         v?:string;
     };
+    key:any;
 	size?:Size;
 	radius?:Radius;
+    separator?:Snippet|string;
 	placeholder?:{
         k?:string;
         v?:string;
@@ -103,17 +101,9 @@ export type KVProps = {
         k?:number;
         v?:number;
     };
-	autocomplete?:FullAutoFill;
-	readonly?:boolean;
     disabled?:boolean;
-    deleteable?:boolean;
-    separator?:Snippet|string;
-	ref?:{(el:HTMLElement):void};
-	onchange?:{(value:any):void};
-	onkeypress?:{(code:string, type:KVType):void};
-	onfocus?:{(e:FocusEvent, type:KVType):void};
-	onblur?:{(e:FocusEvent, type:KVType):void};
-    ondelete?:{(name?:string, value?:any):void};
+	onchange?:{(index:number, value:{k:string, v:string}):void};
+    ondelete?:{(index:number):void};
 }
 
 </script>
@@ -121,43 +111,22 @@ export type KVProps = {
 <script lang="ts">
 
 let {
-	id,
-    ref,
-    name,
     class:className,
     value = {k: "", v: ""},
+    key,
     size,
 	radius,
     disabled,
 	maxlength = {},
     placeholder = {},
-    readonly,
-    deleteable,
-    autocomplete,
     separator = "=",
-	onfocus,
-	onblur,
     onchange,
-	onkeypress,
     ondelete,
 }:KVProps = $props();
 
-// first reading context
-const fieldContext = getContext<FormFieldContext>("formField");
-if(fieldContext) {
-    name = fieldContext.name;
-    value = {k: "", v: ""};
-    onchange = fieldContext.onchange;
-
-    if(typeof fieldContext.value === "object") {
-        value = Object.assign(value, fieldContext.value);
-    }
-}
-
 let {k, v} = value;
-let kValue = $state(k);
-let vValue = $state(v);
-let fValue = $state(k!+separator+v);
+let kValue = $state(k ?? "");
+let vValue = $state(v ?? "");
 
 let kFocus = $state(false);
 let vFocus = $state(false);
@@ -171,19 +140,12 @@ function onFocus(e:FocusEvent, type:KVType) {
         } else if(type === KVType.Value) {
             vFocus = focus;
         }
-
-        if(focus) {
-            onfocus?.(e, type);
-        } else {
-            onblur?.(e, type);
-        }
     }
 }
 
 function onChange(e:Event & {currentTarget: EventTarget & HTMLInputElement}, type:KVType) {
 	let v = e.currentTarget.value;
 
-	// input truncation
     if(maxlength) {
         if(type === KVType.Key) {
             if(typeof maxlength.k === "number" && v.length > maxlength.k) {
@@ -196,15 +158,11 @@ function onChange(e:Event & {currentTarget: EventTarget & HTMLInputElement}, typ
         }
     }
 
-	onchange?.({k:kValue, v:vValue}), fValue = kValue!+separator+vValue;
-}
-
-function onKeyPress(e:KeyboardEvent, type:KVType) {
-    onkeypress?.(e.code || e.key, type);
+	onchange?.(key, {k:kValue, v:vValue});
 }
 
 function onDelete(_:Event) {
-    ondelete?.(name, {k:kValue, v:vValue});
+    ondelete?.(key);
 }
 
 const {
@@ -212,17 +170,9 @@ const {
 	input,
 } = inputVariants({size, radius, disabled});
 
-let el:HTMLElement;
-
-onMount(() => {
-    ref?.(el);
-});
-
 </script>
 
 <div
-	bind:this={el}
-	id={id}
 	role="form"
 	class={base({className:className?.base})}
 >
@@ -233,12 +183,10 @@ onMount(() => {
 		maxlength={maxlength?.k}
         placeholder={placeholder?.k}
 		disabled={disabled}
-        readonly={readonly}
-        autocomplete={autocomplete}
+        autocomplete="off"
 		onfocus={e => onFocus(e, KVType.Key)}
 		onblur={e => onFocus(e, KVType.Key)}
 		oninput={e => onChange(e, KVType.Key)}
-		onkeypress={e => onKeyPress(e, KVType.Key)}
 	/>
 
     {#if typeof separator === "string"}
@@ -254,27 +202,16 @@ onMount(() => {
 		maxlength={maxlength?.v}
         placeholder={placeholder?.v}
 		disabled={disabled}
-        readonly={readonly}
-        autocomplete={autocomplete}
+        autocomplete="off"
         onfocus={e => onFocus(e, KVType.Value)}
 		onblur={e => onFocus(e, KVType.Value)}
 		oninput={e => onChange(e, KVType.Value)}
-		onkeypress={e => onKeyPress(e, KVType.Value)}
 	/>
 
-    <input
-        bind:value={fValue}
-        type="hidden"
-        name={name}
-        disabled={disabled}
-    />
-
-    {#if deleteable}
     <button
         type="button"
         onmouseup={onDelete}
     >
         <Minus size={14}/>
     </button>
-    {/if}
 </div>

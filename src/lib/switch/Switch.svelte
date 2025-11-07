@@ -145,6 +145,7 @@ if(value !== onValue && value !== offValue) {
 const fieldContext = getContext<FormFieldContext>("formField");
 if(fieldContext) {
     name = fieldContext.name;
+    value = "";
     change = fieldContext.onchange;
 
     let t = typeof fieldContext.value;

@@ -1,9 +1,10 @@
 <script lang="ts">
-import { Select, Form, FormField, Input, Textarea, Button, Switch, RadioGroup, Radio, Checkbox, CheckboxGroup, Message, type MessageInstance, KV, Editor } from "$lib/index.js";
+import { Select, Form, FormField, Input, Textarea, Button, Switch, RadioGroup, Radio, Checkbox, CheckboxGroup, Message, type MessageInstance, KVGroup, Editor, type KVGroupInstance } from "$lib/index.js";
 
 const sizes = ["sm", "md", "lg"];
 
 let message:MessageInstance;
+let kvRef:KVGroupInstance;
 
 </script>
 
@@ -280,16 +281,23 @@ let message:MessageInstance;
                 },
             ]}
         >
-            <KV
+            <Button size="sm" onclick={() => kvRef.add()}>Add</Button>
+
+            <KVGroup
+                bind:this={kvRef}
+                value={[
+                    {k:"GOPROXY", v:"https://goproxy.cn"}
+                ]}
+                placeholder={{
+                    k: "key",
+                    v: "value",
+                }}
                 class={{
                     base: "w-full",
                     k: "w-60",
                     v: "grow"
                 }}
-                placeholder={{
-                    k: "key",
-                    v: "value",
-                }}
+                empty="添加环境变量"
             />
         </FormField>
 

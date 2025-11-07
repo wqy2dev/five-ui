@@ -75,6 +75,7 @@ let {
 const fieldContext = getContext<FormFieldContext>("formField");
 if(fieldContext) {
     name = fieldContext.name;
+    value = "";
     onchange = fieldContext.onchange;
 
     let t = typeof fieldContext.value;

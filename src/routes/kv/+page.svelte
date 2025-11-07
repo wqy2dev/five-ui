@@ -1,11 +1,14 @@
 <script lang="ts">
-import { Calendar, Search } from "$lib/icons/index.js";
-import { KV } from "$lib/index.js";
+import { Button, KVGroup, type KVGroupInstance } from "$lib/index.js";
 
 const sizes = ["sm", "md", "lg"];
 const radius = ["full", "sm", "md", "lg", "xl", "none"];
 
-let output = $state<null|any>(null);
+let kvRef:KVGroupInstance;
+let kvRef1:KVGroupInstance;
+
+let output = $state({});
+
 </script>
 
 <svelte:head>
@@ -21,38 +24,23 @@ let output = $state<null|any>(null);
 </h4>
 
 <div class="w-full">
-    <KV
-        
+    <Button size="sm" onclick={() => kvRef.add()}>Add</Button>
+    <KVGroup
+        bind:this={kvRef}
+        value={[
+            {k:"GOPROXY", v:"https://goproxy.cn"}
+        ]}
         placeholder={{
             k: "key",
             v: "value",
         }}
         onchange={v => {
             output = v;
-            console.log("change:", v);
         }}
     />
-
     <div>
-        output: k={output?.k}, v={output?.v}
+        output: {JSON.stringify(output)}
     </div>
-</div>
-
-<h4 class="my-5 text-base indent-2 bg-slate-100">
-    Disable
-</h4>
-
-<div class="w-full">
-    <KV
-        disabled={true}
-        placeholder={{
-            k: "key",
-            v: "value",
-        }}
-        onchange={v => {
-            console.log("change:", v);
-        }}
-    />
 </div>
 
 <h4 class="my-5 text-base indent-2 bg-slate-100">
@@ -60,7 +48,12 @@ let output = $state<null|any>(null);
 </h4>
 
 <div class="w-full">
-    <KV
+    <div class="py-2">
+        <Button size="sm" onclick={() => kvRef1.add()}>Add</Button>
+    </div>
+
+    <KVGroup
+        bind:this={kvRef1}
         class={{
             base: "w-full",
             k: "w-60",

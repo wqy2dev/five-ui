@@ -67,6 +67,7 @@ let {
 const fieldContext = getContext<FormFieldContext>("formField");
 if(fieldContext) {
     name = fieldContext.name;
+    value = "";
     onchange = fieldContext.onchange;
 
     let t = typeof fieldContext.value;
@@ -222,7 +223,7 @@ let fitWidth = $state("");
                     {#if empty}
                         {@render empty()}
                     {:else}
-                        Oh, empty data
+                        Empty data
                     {/if}
                 </div>
             {/if}

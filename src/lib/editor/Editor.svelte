@@ -21,6 +21,7 @@ type EditorProps = {
     minLines?:number;
     maxLines?:number;
     fontSize?:number|string;
+    showGutter?:boolean;
     ref?:{(el:HTMLElement):void};
     oninit?:{(editor:Ace.Editor):void};
     onchange?:{(value:any):void};
@@ -39,6 +40,7 @@ let {
     minLines = 10,
     maxLines,
     fontSize = "14px",
+    showGutter = true,
     ref,
     oninit,
     onchange,
@@ -80,6 +82,8 @@ function mount(el:HTMLElement) {
         fontSize,
         minLines,
         maxLines,
+        showGutter,
+        showLineNumbers: true,
     });
 
     editor.on("change", function () {
