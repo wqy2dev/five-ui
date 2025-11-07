@@ -18,7 +18,9 @@ type EditorProps = {
     theme?:Themes;
     readonly?:boolean;
     placeholder?:string;
-    import?:Snippet;
+    minLines?:number;
+    maxLines?:number;
+    fontSize?:number|string;
     ref?:{(el:HTMLElement):void};
     oninit?:{(editor:Ace.Editor):void};
     onchange?:{(value:any):void};
@@ -34,6 +36,9 @@ let {
     theme = Themes.Monokai,
     readonly = false,
     placeholder,
+    minLines = 10,
+    maxLines,
+    fontSize = "14px",
     ref,
     oninit,
     onchange,
@@ -51,7 +56,10 @@ if(!Object.values(Langs).includes(lang)) {
 
 const fieldContext = getContext<FormFieldContext>("formField");
 if(fieldContext) {
-    value = fieldContext.value;
+    if(typeof fieldContext.value === "string") {
+        value = fieldContext.value;
+    }
+
     onchange = fieldContext.onchange;
 }
 
@@ -69,9 +77,10 @@ function mount(el:HTMLElement) {
         showPrintMargin: false,
         theme: `ace/theme/${theme}`,
         mode: `ace/mode/${lang}`,
+        fontSize,
+        minLines,
+        maxLines,
     });
-
-    editor.setFontSize("14px");
 
     editor.on("change", function () {
         onchange?.(editor.getValue());
@@ -99,6 +108,6 @@ onDestroy(() => {
 <div
     use:mount
     id={id}
-    class={twMerge("relative w-full h-32 leading-6", className)}
+    class={twMerge("relative w-full h-48 leading-6", className)}
 >
 </div>

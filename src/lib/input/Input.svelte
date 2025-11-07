@@ -133,8 +133,11 @@ let {
 const fieldContext = getContext<FormFieldContext>("formField");
 if(fieldContext) {
     name = fieldContext.name;
-    value = fieldContext.value;
     onchange = fieldContext.onchange;
+
+	if(typeof fieldContext.value === "string") {
+        value = fieldContext.value;
+    }
 }
 
 let el:HTMLElement;

@@ -67,8 +67,13 @@ let {
 const fieldContext = getContext<FormFieldContext>("formField");
 if(fieldContext) {
     name = fieldContext.name;
-    value = fieldContext.value;
     onchange = fieldContext.onchange;
+
+    let t = typeof fieldContext.value;
+
+	if(t === "string" || t === "number") {
+        value = fieldContext.value;
+    }
 }
 
 let overflowRef:HTMLElement;

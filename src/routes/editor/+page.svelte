@@ -1,5 +1,5 @@
 <script lang="ts">
-import Editor from "$lib/editor/Editor.svelte";
+import { Editor } from "$lib/index.js";
 
 let focus = $state(false);
 let blur = $state(false);

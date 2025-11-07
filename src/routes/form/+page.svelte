@@ -1,6 +1,5 @@
 <script lang="ts">
-import { Form, FormField, Input, Textarea, Button, Switch, RadioGroup, Radio, Checkbox, CheckboxGroup, Message, type MessageInstance, KV } from "$lib/index.js";
-    import Select from "$lib/select/Select.svelte";
+import { Select, Form, FormField, Input, Textarea, Button, Switch, RadioGroup, Radio, Checkbox, CheckboxGroup, Message, type MessageInstance, KV, Editor } from "$lib/index.js";
 
 const sizes = ["sm", "md", "lg"];
 
@@ -290,6 +289,31 @@ let message:MessageInstance;
                 placeholder={{
                     k: "key",
                     v: "value",
+                }}
+            />
+        </FormField>
+
+        <FormField
+            label="构建命令"
+            name="code"
+            layout="col"
+            value="#!/bin/bash"
+            required
+            rules={[
+                {
+                    rule: (value) => value != "",
+                    msg: "请填写构建命令",
+                },
+            ]}
+        >
+            <Editor
+                placeholder="#!/bin/bash"
+                onfocus={() => {
+
+                }}
+                onblur={() => {
+                }}
+                onchange={v => {
                 }}
             />
         </FormField>
