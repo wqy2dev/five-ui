@@ -19,7 +19,7 @@ export { Input } from "./input/index.js";
 export { KVGroup, type KVGroupInstance } from "./kv/index.js";
 export { Layout, Side, Header, Content } from "./layout/index.js";
 export { List } from "./list/index.js";
-export { Menu, MenuGroup, MenuItem } from "./menu/index.js";
+export { Menu, MenuGroup, MenuItem, MenuSub } from "./menu/index.js";
 export { Message, type MessageInstance } from "./message/index.js";
 export { Modal } from "./modal/index.js";
 export { Notification, type NotificationInstance } from "./notification/index.js";

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Menu, MenuItem, MenuGroup } from "$lib/index.js";
+import { Menu, MenuItem, MenuGroup, MenuSub  } from "$lib/index.js";
 </script>
 
 <svelte:head>
@@ -39,6 +39,28 @@ import { Menu, MenuItem, MenuGroup } from "$lib/index.js";
             <MenuItem value="export">Export</MenuItem>
             <MenuItem value="import">Import</MenuItem>
         </MenuGroup>
+        <MenuItem value="Share" disabled>Copy</MenuItem>
+        <MenuItem value="About">Delete</MenuItem>
+    </Menu>
+</div>
+
+<h4 class="my-5 text-base indent-2 bg-slate-100">
+    SubMenu
+</h4>
+
+<div class=" relative w-52">
+    <Menu class="shadow-outline-md" oncommand={(v, l) => {
+        console.log("value:", v, "l:", l);
+    }}>
+        <MenuSub title="Operation">
+            <MenuItem value="copy">Copy</MenuItem>
+            <MenuItem value="delete">Delete</MenuItem>
+        </MenuSub>
+
+        <MenuSub title="Export/Import">
+            <MenuItem value="export">Export</MenuItem>
+            <MenuItem value="import">Import</MenuItem>
+        </MenuSub>
         <MenuItem value="Share" disabled>Copy</MenuItem>
         <MenuItem value="About">Delete</MenuItem>
     </Menu>
