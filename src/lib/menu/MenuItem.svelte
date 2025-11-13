@@ -27,8 +27,9 @@ type MenuItemProps = {
     ref?:{(el:HTMLElement):void};
     disabled?:boolean;
     label?:string;
-    value:string|number;
+    value?:string|number;
     size?:"sm"|"md"|"lg";
+    tag?:"div"|"button";
     children:Snippet;
 }
 

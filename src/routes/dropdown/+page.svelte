@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Dropdown, Button, Menu, MenuGroup, MenuItem } from "$lib/index.js";
+import { Dropdown, Button, Menu, MenuGroup, MenuItem, MenuSub } from "$lib/index.js";
 
 const placements = [
     ["topStart", "top", "topEnd"],
@@ -33,10 +33,16 @@ const placements = [
         {/snippet}
 
         <Menu
+            class="w-48"
             oncommand={k => {
                 console.log("menu value: ", k);
             }}
         >
+            <MenuSub title="Operation One" placement="rightStart">
+                <MenuItem value="copy">Copy</MenuItem>
+                <MenuItem value="delete">Delete</MenuItem>
+            </MenuSub>
+        
             <MenuGroup title="Action">
                 <MenuItem value="copy">Copy</MenuItem>
                 <MenuItem value="delete">Delete</MenuItem>
@@ -45,6 +51,10 @@ const placements = [
             </MenuGroup>
             <MenuItem value="Share" disabled>Copy</MenuItem>
             <MenuItem value="About">Delete</MenuItem>
+            <MenuSub title="Operation Two" placement="rightEnd">
+                <MenuItem value="copy">Copy</MenuItem>
+                <MenuItem value="delete">Delete</MenuItem>
+            </MenuSub>
         </Menu>
     </Dropdown>
 

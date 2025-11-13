@@ -1,20 +1,21 @@
 <script lang="ts">
 import { type PopperProps, Popper } from "$lib/popper/index.js";
 
-interface DropdownProps extends Omit<PopperProps, "trigger"|"when"|"class"|"useArrow"> {
+interface DropdownProps extends Omit<PopperProps, "when"|"class"> {
     
 }
 
 let {
     children,
     placement = "bottomStart",
+    useArrow = true,
+    trigger = "toggle",
     ...restProps
 }:DropdownProps = $props();
 
-
 let overflowRef:HTMLElement;
 
-// popper hide condition
+// Popper hide condition
 function when(targetEl:HTMLElement, floatEl:HTMLElement) {
     if(!floatEl.contains(targetEl)) {
         return true;
@@ -30,9 +31,9 @@ function when(targetEl:HTMLElement, floatEl:HTMLElement) {
         content: "bg-inherit min-w-32 text-sm p-1 rounded-lg",
         arrow: "bg-inherit shadow-outline-lg",
     }}
-    useArrow={true}
+    useArrow={useArrow}
     placement={placement}
-    trigger="toggle"
+    trigger={trigger}
     when={when}
     {...restProps}
 >

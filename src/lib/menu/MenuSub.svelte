@@ -1,36 +1,34 @@
 <script lang="ts" module>
 import { getContext, type Snippet } from "svelte";
 import type { MenuContext } from "./Menu.svelte";
-import MenuItem from "./MenuItem.svelte";
 import { tv } from "tailwind-variants";
 import { Dropdown } from "$lib/index.js";
 import { ChevronRight } from "$lib/icons/index.js";
 
-const meunItemVariants = tv({
-    base: "flex flex-row w-full h-fit hover:bg-slate-100 disabled:hover:bg-transparent truncate text-sm text-left text-slate-700 disabled:text-slate-400 disabled:cursor-not-allowed rounded-md",
+const meunSubVariants = tv({
+    base: "relative flex flex-row w-full items-center h-fit hover:bg-slate-100 truncate text-sm text-left text-slate-700 rounded-md cursor-pointer",
     variants: {
-        checked: {
-            true: "bg-slate-100",
-        },
         size: {
             sm: "py-1 px-2",
             md: "py-2 px-4",
             lg: "py-3 px-5"
-        }
+        },
+        disabled: {
+            true: "hover:bg-transparent text-slate-400 cursor-not-allowed",
+        },
     },
     defaultVariants: {
         size: "md",
-        checked: false,
+        disabled: false,
     },
 });
 
 type MenuSubProps = {
     id?:string;
     class?:string;
-    ref?:{(el:HTMLElement):void};
     title:string;
     size?:"sm"|"md"|"lg";
-    placement?:"leftStart"|"rightStart";
+    placement?:"leftStart"|"leftEnd"|"rightStart"|"rightEnd";
     disabled?:boolean;
     children:Snippet;
 }
@@ -40,45 +38,37 @@ type MenuSubProps = {
 <script lang="ts">
 const ctx = getContext<MenuContext>("menu");
 if(!ctx) {
-    throw new Error("MenuItem not in the Menu!");
+    throw new Error("MenuSub not in the Menu!");
 }
 
 let {
     id,
     class:className,
-    ref,
     title,
     size = "md",
     placement = "rightStart",
-    disabled,
+    disabled = false,
     children,
 }:MenuSubProps = $props();
-
-function oncommand(_:Event) {
-    if(!disabled) {
-        
-    }
-}
 
 </script>
 
 <Dropdown
     placement={placement}
+    trigger="hover"
 >
     {#snippet target(ref)}
-        <MenuItem
+        <div
             id={id}
-            ref={ref}
-            value=""
-            size={size}
-            class={className}
+            class={meunSubVariants({size, disabled, className})}
+            use:ref
         >
             {title}
             <ChevronRight 
                 size={14}
                 class="absolute right-1 text-slate-400 text-sm"
             />
-        </MenuItem>
+        </div>
     {/snippet}
 
     {@render children?.()}
