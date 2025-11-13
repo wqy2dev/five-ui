@@ -9,7 +9,7 @@ const accordionItemVariants = tv({
     slots: {
         base: "relative w-full",
         arrow: "transition-transform",
-        button: "w-full flex flex-row items-center py-3 text-base",
+        button: "w-full flex flex-row items-center py-3 text-sm",
     },
     variants: {
         expand: {
@@ -107,7 +107,7 @@ onMount(() => {
                 {@render title()}
             {/if}
         </div>
-        <div class="flex items-center ml-auto shrink-0">
+        <div class="flex items-center ml-auto shrink-0 text-slate-400">
             {#if icon}
                 {@render icon(!!expand)}
             {:else}

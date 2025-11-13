@@ -4,7 +4,7 @@ import { type Snippet, onMount } from "svelte";
 import { InfoCircleSolid, SuccessCircleSolid, ErrorCircleSolid, WarnCircleSolid, Close } from "$lib/icons/index.js";
 
 const alertVariants = tv({
-	base: "flex rounded-md p-4 text-sm border border-solid border-transparent",
+	base: "flex rounded-md p-2 text-sm border border-solid border-transparent",
 	variants: {
 		variant: {
 			info: "bg-primary-50 text-primary-600",
