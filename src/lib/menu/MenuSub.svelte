@@ -76,7 +76,7 @@ function oncommand(_:Event) {
             {title}
             <ChevronRight 
                 size={14}
-                class="absolute right-1 top-2.5 text-slate-400 text-sm"
+                class="absolute right-1 text-slate-400 text-sm"
             />
         </MenuItem>
     {/snippet}

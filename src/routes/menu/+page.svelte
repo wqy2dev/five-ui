@@ -48,20 +48,43 @@ import { Menu, MenuItem, MenuGroup, MenuSub  } from "$lib/index.js";
     SubMenu
 </h4>
 
-<div class=" relative w-52">
-    <Menu class="shadow-outline-md" oncommand={(v, l) => {
-        console.log("value:", v, "l:", l);
-    }}>
-        <MenuSub title="Operation">
-            <MenuItem value="copy">Copy</MenuItem>
-            <MenuItem value="delete">Delete</MenuItem>
-        </MenuSub>
+<div class=" flex flex-row gap-6">
+    <div class=" relative w-52 ">
+        <Menu class="shadow-outline-md" oncommand={(v, l) => {
+            console.log("value:", v, "l:", l);
+        }}>
+            <MenuSub title="Operation">
+                <MenuItem value="copy">Copy</MenuItem>
+                <MenuItem value="delete">Delete</MenuItem>
+            </MenuSub>
 
-        <MenuSub title="Export/Import">
-            <MenuItem value="export">Export</MenuItem>
-            <MenuItem value="import">Import</MenuItem>
-        </MenuSub>
-        <MenuItem value="Share" disabled>Copy</MenuItem>
-        <MenuItem value="About">Delete</MenuItem>
-    </Menu>
+            <MenuSub title="Export/Import">
+                <MenuItem value="export">Export</MenuItem>
+                <MenuItem value="import">Import</MenuItem>
+            </MenuSub>
+            <MenuItem value="Share" disabled>Copy</MenuItem>
+            <MenuItem value="About">Delete</MenuItem>
+        </Menu>
+    </div>
+
+    <div class=" relative w-52 ">
+        <Menu
+            class="shadow-outline-md" 
+            oncommand={(v, l) => {
+                console.log("value:", v, "l:", l);
+            }}
+        >
+            <MenuSub title="Operation" size="sm">
+                <MenuItem value="copy">Copy</MenuItem>
+                <MenuItem value="delete">Delete</MenuItem>
+            </MenuSub>
+
+            <MenuSub title="Export/Import" size="sm">
+                <MenuItem value="export">Export</MenuItem>
+                <MenuItem value="import">Import</MenuItem>
+            </MenuSub>
+            <MenuItem value="Share" disabled>Copy</MenuItem>
+            <MenuItem value="About">Delete</MenuItem>
+        </Menu>
+    </div>
 </div>
