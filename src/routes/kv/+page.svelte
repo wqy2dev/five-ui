@@ -45,10 +45,6 @@ let output = $state({});
 </h4>
 
 <div class="w-full">
-    <div class="py-2">
-        <Button size="sm" onclick={() => kvRef.add()}>Add</Button>
-    </div>
-
     <KVGroup
         bind:this={kvRef}
         class={{
@@ -64,4 +60,8 @@ let output = $state({});
             console.log("change:", v);
         }}
     />
+
+    <div class="py-2">
+        <Button size="sm" onclick={() => kvRef.add()}>Add</Button>
+    </div>
 </div>
