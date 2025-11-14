@@ -34,12 +34,12 @@ export type FormFieldContext = {
     onchange?:{(value?:any):void};
 }
 
-type FormFieldRule = {
+export type FormFieldRule = {
     rule:{(value:any):boolean};
     msg:string;
 }
 
-type FormFieldProps = {
+export type FormFieldProps = {
     name:string;
     value?:any;
     label:string|Snippet;
