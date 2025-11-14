@@ -297,7 +297,6 @@ let kvRef:KVGroupInstance;
                     k: "w-60",
                     v: "grow"
                 }}
-                empty="添加环境变量"
             />
         </FormField>
 

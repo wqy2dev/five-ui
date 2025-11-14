@@ -23,10 +23,10 @@ const buttonVariants = tv({
             none: "",
         },
         size: {
-            xs: "px-1.5 h-5 text-xs",
-            sm: "px-2 h-8 text-sm",
+            xs: "px-1.5 h-5 text-[12px]",
+            sm: "px-2 h-8 text-[13px]",
             md: "px-2.5 h-9 text-sm",
-            lg: "px-3 h-10 text-base",
+            lg: "px-3 h-10 text-[15px]",
         },
     },
     defaultVariants: {

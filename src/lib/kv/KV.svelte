@@ -5,7 +5,7 @@ import { Minus } from "$lib/icons/index.js";
 
 const inputVariants = tv({
 	slots: {
-        base: "w-fit flex flex-row gap-2 items-center",
+        base: "w-full h-fit flex flex-row gap-2 items-center",
 		input: "shrink-0 h-full text-sm text-slate-700 disabled:text-slate-400 placeholder:text-slate-400 cursor-inherit outline-none px-2 bg-white border border-solid border-slate-200 overflow-hidden transition-all",
         separator: "text-slate-400 text-sm",
 	},
@@ -174,7 +174,7 @@ const {
 
 <div
 	role="form"
-	class={base({className:className?.base})}
+	class={base()}
 >
 	<input
         bind:value={kValue}

@@ -1,8 +1,8 @@
 <script lang="ts" module>
 import { getContext, onMount, type Snippet } from "svelte";
+import { twMerge } from "tailwind-merge";
 import type { FormFieldContext } from "$lib/form/FormField.svelte";
 import KV, { type Radius, type Size} from "$lib/kv/KV.svelte";
-    import Button from "$lib/button/Button.svelte";
 
 export type KVGroupProps = {
     class?: {
@@ -25,7 +25,9 @@ export type KVGroupProps = {
     size?:Size;
     radius?:Radius;
     separator?:Snippet|string;
-    empty?:Snippet|string;
+    button?:string;
+    gap?:string;
+    render?:Snippet;
 	onchange?:{(value:any):void};
 }
 
@@ -55,7 +57,6 @@ let {
     size = "md",
     radius,
     separator,
-    empty = "Click to add KV",
     onchange,
 }:KVGroupProps = $props();
 
@@ -108,7 +109,9 @@ onMount(() => {
 </script>
 
 {#if values.length > 0}
-<div class="flex flex-col gap-3">
+<div 
+    class={twMerge("w-full h-fit flex flex-col gap-3", className?.base)}
+>
     {#each values as value (value.key)}
         <KV
             class={className}
@@ -127,14 +130,4 @@ onMount(() => {
         />
     {/each}
 </div>
-{:else if empty}
-    {#if typeof empty === "string"}
-        <div class="w-full h-fit py-5 text-slate-600 text-center text-sm">
-            <Button variant="flat" onclick={add}>
-                {empty}
-            </Button>
-        </div>
-    {:else}
-        {@render empty()}
-    {/if}
 {/if}

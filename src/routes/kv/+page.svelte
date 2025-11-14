@@ -5,7 +5,6 @@ const sizes = ["sm", "md", "lg"];
 const radius = ["full", "sm", "md", "lg", "xl", "none"];
 
 let kvRef:KVGroupInstance;
-let kvRef1:KVGroupInstance;
 
 let output = $state({});
 
@@ -24,9 +23,7 @@ let output = $state({});
 </h4>
 
 <div class="w-full">
-    <Button size="sm" onclick={() => kvRef.add()}>Add</Button>
     <KVGroup
-        bind:this={kvRef}
         value={[
             {k:"GOPROXY", v:"https://goproxy.cn"}
         ]}
@@ -49,11 +46,11 @@ let output = $state({});
 
 <div class="w-full">
     <div class="py-2">
-        <Button size="sm" onclick={() => kvRef1.add()}>Add</Button>
+        <Button size="sm" onclick={() => kvRef.add()}>Add</Button>
     </div>
 
     <KVGroup
-        bind:this={kvRef1}
+        bind:this={kvRef}
         class={{
             base: "w-full",
             k: "w-60",
