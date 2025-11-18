@@ -1,8 +1,8 @@
 <script lang="ts" module>
-import { getContext, onMount, type Snippet } from "svelte";
+import { getContext, type Snippet } from "svelte";
 import type { MenuContext } from "./Menu.svelte";
 import { tv } from "tailwind-variants";
-    import type { HTMLAttributeAnchorTarget } from "svelte/elements";
+import type { HTMLAttributeAnchorTarget } from "svelte/elements";
 
 const meunItemVariants = tv({
     base: "relative flex flex-row items-center w-full h-fit hover:bg-slate-100 disabled:hover:bg-transparent truncate text-left text-slate-700 disabled:text-slate-400 disabled:cursor-not-allowed rounded-md",
