@@ -24,6 +24,7 @@ import { Menu, MenuItem, MenuGroup, MenuSub  } from "$lib/index.js";
         </MenuGroup>
         <MenuItem value="Share" disabled>Copy</MenuItem>
         <MenuItem value="About">Delete</MenuItem>
+        <MenuItem value="/" link={true}>Terminal</MenuItem>
     </Menu>
 </div>
 
