@@ -1,6 +1,6 @@
 <script lang="ts">
-import { Download, TrashOutline } from "$lib/icons/index.js";
-import { Button } from "$lib/index.js";
+import { Download, SquaresPlus, TrashOutline } from "$lib/icons/index.js";
+import { Button, Editor } from "$lib/index.js";
 
 const variants = ["primary", "danger", "secondary", "reverse", "outline", "ghost", "flat"];
 const sizes = ["xs", "sm", "md", "lg"];
@@ -27,6 +27,17 @@ const radius = ["full", "sm", "md", "lg", "xl", "none"];
         {/each}
     </div>
 
+    <Editor
+        value={`
+<div class="flex flex-wrap gap-2">
+    {#each ["primary", "danger", "secondary", "reverse", "outline", "ghost", "flat"] as variant}
+        <Button variant={variant as any}> {variant} </Button>
+    {/each}
+</div>
+        `}
+        readonly
+    />
+
     <h4 class="text-base indent-2 bg-slate-100 my-3">
         Size
     </h4>
@@ -36,6 +47,17 @@ const radius = ["full", "sm", "md", "lg", "xl", "none"];
             <Button size={size as any}> {size} </Button>
         {/each}
     </div>
+
+    <Editor
+        value={`
+<div class="flex flex-wrap gap-2">
+    {#each ["xs", "sm", "md", "lg"] as size}
+        <Button size={size as any}> {size} </Button>
+    {/each}
+</div>
+        `}
+        readonly
+    />
 
     <h4 class="text-base indent-2 bg-slate-100 my-3">
         Rounded
@@ -74,4 +96,52 @@ const radius = ["full", "sm", "md", "lg", "xl", "none"];
         <TrashOutline/>
         Delete
     </Button>
+
+            <Editor
+        value={`
+<script>
+import { Download, TrashOutline } from "$lib/icons/index.js";
+
+</script>
+
+<Button> 
+    <Download/>
+    Download 
+</Button>
+
+<Button variant="danger">
+    <TrashOutline/>
+    Delete
+</Button>
+        `}
+        readonly
+    />
+
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
+        Link
+    </h4>
+    
+    <Button type="link" href="/button" target="_blank"> 
+        <Download/> Link 1
+    </Button>
+
+    <Button type="link" disabled={true}> 
+        <SquaresPlus/> Link 2
+    </Button>
+
+        <Editor
+        value={`<script>
+import { Download, SquaresPlus } from "$lib/icons/index.js";
+</script>
+
+<Button type="link" href="/button" target="_blank"> 
+    <Download/> Link 1
+</Button>
+
+<Button type="link" disabled={true}> 
+    <SquaresPlus/> Link 2
+</Button>
+`}
+        readonly
+    />
 </div>

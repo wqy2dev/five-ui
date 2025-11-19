@@ -1,4 +1,5 @@
 <script lang="ts">
+    import Button from "$lib/button/Button.svelte";
 import { Checkbox, CheckboxGroup } from "$lib/index.js";
 
 const sizes = ["sm", "md", "lg"];
@@ -110,4 +111,37 @@ const sizes = ["sm", "md", "lg"];
             </CheckboxGroup>
         </div>
     {/each}
+</div>
+
+<h4 class="my-5 text-base indent-2 bg-slate-100">
+    Custom Render
+</h4>
+
+<div class="flex flex-row gap-5">
+    <CheckboxGroup
+        name="a"
+        value={["C", "D"]}
+        onchange={v => console.log("radio a:", v)}
+    >
+        {#each [
+            {label:"A", value:"A"},
+            {label:"B", value:"B"},
+            {label:"C", value:"C"},
+            {label:"D", value:"D"},
+            {label:"E", value:"E"}
+        ] as item}
+            <Checkbox value={item.value}>
+                {#snippet render({radius, checked, disabled, focus})}
+                    <Button
+                        variant={checked ? "primary":"flat"}
+                        radius={radius}
+                        disabled={disabled}
+                        type="link"
+                    >
+                        {item.label}
+                    </Button>
+                {/snippet}
+            </Checkbox>
+        {/each}
+    </CheckboxGroup>
 </div>

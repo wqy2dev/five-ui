@@ -6,7 +6,7 @@ import { twMerge } from "tailwind-merge";
 import { type CheckboxContext } from "./CheckboxGroup.svelte";
 
 const checkboxVariants = tv({
-    base: "relative flex items-center justify-center w-4 h-4 cursor-pointer box-content bg-white border-2 border-solid transition-all overflow-hidden",
+    base: "flex items-center justify-center w-4 h-4 cursor-pointer box-content bg-white border-2 border-solid transition-all",
     variants: {
         disabled:{
             true: "cursor-not-allowed",
@@ -70,7 +70,8 @@ type CheckboxProps = {
     class?:string;
     radius?:Radius;
     disabled?:boolean;
-    checked?:boolean,
+    checked?:boolean;
+    render?:Snippet<[{radius?:Radius;focus?:boolean;checked?:boolean;disabled?:boolean;}]>;
     children?:Snippet;
     onchange?:{(checked:boolean):void};
 }
@@ -84,6 +85,7 @@ let {
     checked:defaultChecked,
     radius,
     disabled = false,
+    render,
     children,
     onchange,
 }:CheckboxProps = $props();
@@ -132,31 +134,35 @@ onMount(() => {
 </script>
 
 <label
-    class={twMerge("inline-flex flex-row items-center align-top w-fit h-fit leading-none gap-2 mr-3", className)}
+    bind:this={el}
+    class={twMerge("relative inline-flex flex-row items-center align-top w-fit h-fit leading-none mr-3", className)}
 >
-    <span
-        bind:this={el}
-        class={checkboxVariants({radius, focus, checked, disabled})}
-    >
-        <input
-            bind:checked={checked}
-            class="absolute top-0 left-0 w-4 h-4 -z-10"
-            type="checkbox"
-            name={context ? context.name : undefined}
-            value={value}
-            disabled={disabled}
-            onchange={onChange}
-            onclick={onFocus}
-        />
+    {#if render}
+        {@render render?.({radius, focus, checked, disabled})}
+    {:else}
+        <span
+            class={checkboxVariants({radius, focus, checked, disabled})}
+        >
+            {#if checked}
+                <Check size={16} class="pointer-events-none"/>
+            {/if}
+        </span>
 
-        {#if checked}
-            <Check size={16} class="pointer-events-none"/>
-        {/if}
-    </span>
+        <span class="text-sm ml-2 leading-none">
+            {@render children?.()}
+        </span>
+    {/if}
 
-    <span class="text-sm">
-        {@render children?.()}
-    </span>
+    <input
+        bind:checked={checked}
+        class="absolute top-1 left-1 w-2 h-2 border-none -z-10 outline-none"
+        type="checkbox"
+        name={context ? context.name : undefined}
+        value={value}
+        disabled={disabled}
+        onchange={onChange}
+        onclick={onFocus}
+    />
 </label>
 
 <svelte:window
