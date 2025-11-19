@@ -4,21 +4,25 @@ import { tv, type VariantProps } from "tailwind-variants";
 const switchVariants = tv({
     slots: {
         base: "relative inline-flex items-center p-1 transition-all",
-        button: "absolute top-1 bg-white text-slate-600 flex items-center justify-center cursor-inherit pointer-events-none transition-all",
+        button: "flex items-center justify-center bg-white cursor-inherit pointer-events-none transition-all",
+        text: "flex items-center justify-center text-slate-600",
     },
     variants: {
         size: {
             sm:{
                 base:"w-10 h-5 text-[11px]",
                 button: "w-3 h-3",
+                text: "w-5",
             },
             md:{
                 base:"w-12 h-6 text-[12px]",
                 button: "w-4 h-4",
+                text: "w-6",
             },
             lg:{
-                base:"w-14 h-7 text-[13px]",
+                base:"w-14 h-7 text-[12px]",
                 button: "w-5 h-5",
+                text: "w-7",
             }
         },
         radius: {
@@ -57,36 +61,17 @@ const switchVariants = tv({
         },
         on:{
             true: {
-                base: "bg-primary-600 justify-start text-white",
+                base: "bg-primary-600 flex-row",
+                text: "text-white",
             },
             false: {
-                base: "bg-slate-200 justify-end text-slate-600",
-                button: "left-1",
+                base: "bg-slate-200 flex-row-reverse",
+                text: "text-slate-600",
             },
         },
     },
     compoundVariants: [
-        {
-            on: true,
-            size: "sm",
-            class: {
-                button: "left-6",
-            },
-        },
-        {
-            on: true,
-            size: "md",
-            class: {
-                button: "left-7",
-            }
-        },
-        {
-            on: true,
-            size: "lg",
-            class: {
-                button: "left-8",
-            }
-        }
+       
     ],
     defaultVariants: {
         disabled: false,
@@ -179,6 +164,7 @@ onMount(() => {
 
 const {
     base,
+    text,
     button,
 } = switchVariants({disabled, radius, size});
 </script>
@@ -191,7 +177,12 @@ const {
     disabled={disabled}
     onmouseup={onchange}
 >
-    {on?onText:offText}
+    {#if (on && onText) || (!on && offText)}
+        <span class={text({on})}>
+            {on?onText:offText}
+        </span>
+    {/if}
+
     <span class={button({on})}>
         {#if thumb}
             {@render thumb({on})}
