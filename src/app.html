@@ -5,6 +5,17 @@
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%sveltekit.head%
+		<style>
+			* {
+				scrollbar-width: thin; /* "auto" 或 "thin" */
+				scrollbar-color: #c1c1c1 #FFF; /* 滑块颜色 和 轨道颜色 */
+			}
+
+			::-webkit-scrollbar {
+				width: 4px;
+				height: 4px;
+			}
+		</style>
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div>%sveltekit.body%</div>

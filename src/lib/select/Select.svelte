@@ -7,7 +7,7 @@ import { ChevronDown } from "$lib/icons/index.js";
 import { Popper, Input, Menu, MenuItem } from "$lib/index.js";
 
 export type SelectOption = {
-    value:string|number;
+    value:string;
     label:string;
     disabled?:boolean;
     extra?:any;
@@ -18,7 +18,7 @@ type SelectProps = {
     ref?:{(el:HTMLElement):void};
     class?:string;
 	name?:string;
-	value?:string|number;
+	value?:string;
     disabled?:boolean;
     placeholder?:string;
     size?:Size;
@@ -31,7 +31,7 @@ type SelectProps = {
     head?:Snippet;
     tail?:Snippet;
     onsearch?:{(value?:string):void};
-    onchange?:{(value?:string|number):void};
+    onchange?:{(value?:string):void};
     onkeypress?:{(code:string):void};
     // option render snippet
     option?:Snippet<[SelectOption]>;
@@ -89,10 +89,10 @@ function when(targetEl:HTMLElement, floatEl:HTMLElement) {
 
 let selected = $state<{
     label?:string,
-    value?:string|number,
+    value?:string,
 }>({label:"", value});
 
-function onselect(value?:string|number, label?:string) {
+function onselect(value?:string, label?:string) {
     selected = {label, value};
 }
 

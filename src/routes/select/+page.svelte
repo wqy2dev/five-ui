@@ -28,13 +28,13 @@ function onsearch(value?:string) {
 <div class="flex flex-row gap-5">
     <Select
         name="a" 
-        value={0}
+        value={"0"}
         onchange={v => console.log("select:", v)}
         placeholder="please select"
         options={[
             {value:"polo", label:"菠萝"},
             {value:"apple", label:"苹果"},
-            {value:0, label:"橘子"},
+            {value:"orange", label:"橘子"},
             {value:"putao", label:"葡萄", disabled:true},
             {value:"mg", label:"芒果"},
         ]}

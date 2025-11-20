@@ -2,7 +2,7 @@
 
 export type MenuContext = {
     label?:string;
-    value?:string|number;
+    value?:string;
     stateful?:boolean;
 }
 
@@ -11,9 +11,9 @@ type MenuProps = {
     class?:string;
     ref?:{(el:HTMLElement):void};
     children:Snippet;
-    value?:string|number;
+    value?:string;
     stateful?:boolean;
-    oncommand?:{(value?:string|number, label?:string):void};
+    oncommand?:{(value?:string, label?:string):void};
 }
 
 </script>
