@@ -7,8 +7,8 @@ import type { FormFieldContext } from "$lib/form/FormField.svelte";
 
 const inputVariants = tv({
 	slots: {
-		base: "w-full align-top inline-flex flex-row items-center px-2 bg-white border border-solid border-slate-200 overflow-hidden transition-all",
-		input: "grow shrink min-w-5 h-full text-sm text-slate-700 disabled:text-slate-400 placeholder:text-slate-400 bg-transparent cursor-inherit outline-none",
+		base: "w-full align-top inline-flex flex-row items-center pr-2 bg-white border border-solid border-slate-200 overflow-hidden transition-all",
+		input: "grow shrink min-w-5 h-full pl-2 text-sm text-slate-700 disabled:text-slate-400 placeholder:text-slate-400 bg-transparent cursor-inherit outline-none",
 		slot: "min-w-6 shrink-0 flex items-center text-sm text-slate-400 z-1 cursor-inherit",
 	},
 	variants: {
@@ -58,7 +58,8 @@ const inputVariants = tv({
         },
 		slot: {
 			head: {
-				slot: "justify-start",
+				slot: "justify-start ml-2",
+				input: "pl-0",
 			},
 			tail: {
                 slot: "justify-end",
@@ -95,6 +96,8 @@ export type InputProps = {
 	head?:Snippet;
 	tail?:Snippet;
 	ref?:{(el:HTMLElement):void};
+	refInput?:{(el:HTMLElement):void};
+	oninput?:{(value?:string):void};
 	onchange?:{(value?:string):void};
 	onkeypress?:{(code:string, key:string):void};
 	onfocus?:{(e:FocusEvent):void};
@@ -108,6 +111,7 @@ export type InputProps = {
 let {
 	id,
     ref,
+	refInput,
     head,
     tail,
     name,
@@ -125,6 +129,7 @@ let {
 	placeholder,
 	onfocus,
 	onblur,
+	oninput,
     onchange,
 	onkeypress,
 }:InputProps = $props();
@@ -145,7 +150,7 @@ let el:HTMLElement;
 let inner:HTMLInputElement;
 
 onMount(() => {
-    ref?.(el);
+    ref?.(el), refInput?.(inner);
 });
 
 let focus = $state(false);
@@ -160,9 +165,7 @@ function onErase(_:MouseEvent) {
 		inner.focus();
 	}
 
-    if(onchange) {
-        onchange("");
-    }
+    onchange?.("");
 }
 
 function onFocus(e:FocusEvent) {
@@ -175,7 +178,7 @@ function onHover(e:Event) {
     hover = e.type === "mouseenter";
 }
 
-function onChange(e:Event & {currentTarget: EventTarget & HTMLInputElement}) {
+function onInput(e:Event & {currentTarget: EventTarget & HTMLInputElement}) {
 	let v = e.currentTarget.value;
 
 	// input truncation
@@ -183,7 +186,11 @@ function onChange(e:Event & {currentTarget: EventTarget & HTMLInputElement}) {
 		v = v.slice(0, maxlength), value = v;
 	}
 
-	onchange?.(v), count = v.length;
+	count = v.length, oninput?.(v);
+}
+
+function onChange(e:any) {
+    onchange?.(value);
 }
 
 function onKeyPress(e:KeyboardEvent) {
@@ -216,14 +223,15 @@ const {
 		bind:this={inner}
 		bind:value={value}
 		type={type}
-		class={input()}
+		class={input(head?{slot:"head"}:{})}
 		name={name}
 		placeholder={placeholder}
 		maxlength={maxlength}
 		disabled={disabled}
 		onfocus={onFocus}
 		onblur={onFocus}
-		oninput={onChange}
+		oninput={onInput}
+		onchange={onChange}
 		onkeypress={onKeyPress}
 		readonly={readonly}
 		autocomplete={autocomplete}
@@ -234,8 +242,9 @@ const {
 			<button 
 				type="button"
 			    onmouseup={onErase}
+				class="outline-none border-none bg-transparent"
 			>
-				<Close size={15}/>
+				<Close size={15} class="pointer-events-none"/>
 			</button>
 		</div>
 	{/if}

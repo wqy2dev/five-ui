@@ -2,7 +2,7 @@
 import { Download, SquaresPlus, TrashOutline } from "$lib/icons/index.js";
 import { Button, Editor } from "$lib/index.js";
 
-const variants = ["primary", "danger", "secondary", "reverse", "outline", "ghost", "flat"];
+const variants = ["primary", "danger", "secondary", "link", "outline", "ghost", "flat"];
 const sizes = ["xs", "sm", "md", "lg"];
 const radius = ["full", "sm", "md", "lg", "xl", "none"];
 
@@ -30,7 +30,7 @@ const radius = ["full", "sm", "md", "lg", "xl", "none"];
     <Editor
         value={`
 <div class="flex flex-wrap gap-2">
-    {#each ["primary", "danger", "secondary", "reverse", "outline", "ghost", "flat"] as variant}
+    {#each ["primary", "danger", "secondary", "link", "outline", "ghost", "flat"] as variant}
         <Button variant={variant as any}> {variant} </Button>
     {/each}
 </div>

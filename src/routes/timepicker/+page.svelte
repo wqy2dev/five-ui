@@ -19,3 +19,9 @@ const radius = ["sm", "md", "lg", "xl", "none"];
 </h4>
 
 <TimePicker/>
+
+<h4 class="my-5 text-base indent-2 bg-slate-100">
+    Disable
+</h4>
+
+<TimePicker disabled/>

@@ -27,6 +27,7 @@ export type PopperProps = {
     when?:{(targetEl:HTMLElement, floatEl:HTMLElement):boolean};
     // default hide popper
     hide?:boolean;
+    onView?:{(visible:boolean):void};
     children:Snippet;
 }
 
@@ -215,6 +216,7 @@ let {
     trigger = "hover",
     placement = "top",
     hide = true,
+    onView,
     when,
     children,
 }:PopperProps = $props();
@@ -363,7 +365,7 @@ function onenter(e:Event) {
 function onleave(e:Event) {
     timer = window.setTimeout(() => {
         show = false, timer = 0;
-    }, 50);
+    }, 500);
 }
 
 function onblur(e:Event) {
@@ -403,6 +405,10 @@ onMount(() => {
             document.body.removeChild(floatEl);
         }
     }
+});
+
+$effect(() => {
+    onView?.(show);
 });
 
 </script>

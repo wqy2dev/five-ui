@@ -8,10 +8,10 @@ const buttonVariants = tv({
         variant: {
             primary: "text-white border-primary-600 bg-primary-600",
             secondary: "text-white border-secondary-600 bg-secondary-600",
-            reverse: "border-primary-100 bg-primary-100 text-primary-500",
+            link: "border-transparent bg-white text-primary-600",
             danger: "text-white border-red-500 bg-red-500",
             outline: "border-slate-300 bg-white text-slate-600",
-            ghost: "border-transparent bg-transparent font-medium text-slate-600",
+            ghost: "border-transparent bg-white font-medium text-slate-600",
             flat: "border-slate-100 bg-slate-100  text-slate-600",
         },
         radius: {
@@ -55,14 +55,14 @@ const buttonVariants = tv({
             class: "hover:border-secondary-700 hover:bg-secondary-700 focus:ring focus:ring-secondary-200",
         },
         {
-            variant: "reverse",
+            variant: "link",
             disabled: true,
-            class: "border-primary-50 bg-primary-50 text-primary-400",
+            class: "text-primary-400",
         },
         {
-            variant: "reverse",
+            variant: "link",
             disabled: false,
-            class: "hover:border-primary-200 hover:bg-primary-200 focus:ring focus:ring-primary-50",
+            class: "hover:text-primary-500 focus:ring focus:ring-primary-50",
         },
         {
             variant: "danger",

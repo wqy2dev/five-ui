@@ -1,5 +1,5 @@
 <script lang="ts" module>
-    import { tick } from "svelte";
+import { tick } from "svelte";
 import { tv } from "tailwind-variants";
 
 const timeScaleVariants = tv({
@@ -32,12 +32,9 @@ function fill(v:number) {
     return v > 9 ? `${v}` : `0${v}`;
 }
 
-async function scrollView(el:HTMLElement) {
+function scrollView(el:HTMLElement) {
     tick().then(() => {
-        el.scrollIntoView({
-            block:"start",
-            behavior:"smooth"
-        });
+        el.scrollIntoView({block:"start", behavior:"smooth"});
     });
 }
 
@@ -45,7 +42,7 @@ export type TimeScaleProps = {
     value:string;
     index:number;
     range:number;
-    bordered:boolean,
+    bordered:boolean;
     onchange?:{(index:number, value:string):void};
 }
 
@@ -53,7 +50,7 @@ export type TimeScaleProps = {
 
 <script lang="ts">
 let {
-    value = "00",
+    value = "",
     index,
     range,
     bordered,
@@ -62,8 +59,8 @@ let {
 
 let current = $state(value);
 
-function onclick(e:{currentTarget:HTMLElement}, value:string) {
-    current = value, onchange?.(index, value), scrollView(e.currentTarget);
+function onChange(value:string) {
+    current = value, onchange?.(index, value);
 }
 
 function mount(el:HTMLElement, val:string) {
@@ -76,6 +73,7 @@ let {
     base,
     button,
 } = timeScaleVariants();
+
 </script>
 
 <div class={base({bordered})}>
@@ -86,7 +84,9 @@ let {
         <button
             use:mount={val}
             class={button({checked})}
-            onmouseup={(e) => onclick(e, val)}
+            onmouseup={(e) => {
+                onChange(val), scrollView(e.currentTarget);
+            }}
         >
             {val}
         </button>

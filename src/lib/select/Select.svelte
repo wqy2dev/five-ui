@@ -43,7 +43,7 @@ type SelectProps = {
 <script lang="ts">
 let {
     id,
-    ref:elRef,
+    ref,
     class:className,
     name,
     value,
@@ -137,24 +137,35 @@ let fitWidth = $state("");
     <ChevronDown size={15} class={`transition ${focused ? "rotate-180":""}`}/>
 {/snippet}
 
-{#if disabled}
+{#snippet input(disabled:boolean, popperRef?:{(el:HTMLElement):void})}
+    {@const ok = !disabled && searchable && focused}
+
     <Input
-        id={id}
+		id={id}
         ref={(el:HTMLElement) => {
-            elRef && elRef(el);
+            popperRef?.(el), ref?.(el), fitWidth = el.offsetWidth + "px";
         }}
-        class={twMerge("w-80", className)}
-        type="text"
-        value={selected.label}
-        head={head}
+        class={twMerge("w-80", !disabled && searchable ? "cursor-text":"cursor-pointer", className)}
+		type="text"
+		name={name}
+        value={ok ? "" : selected.label}
+		head={head}
         tail={tailSnippet ?? tail}
-        size={size}
-        radius={radius}
-        readonly={true}
-        disabled={true}
-        clearable={false}
-        placeholder={placeholder}
-    />
+		size={size}
+		radius={radius}
+        readonly={disabled || !searchable}
+		disabled={disabled}
+		clearable={clearable}
+        placeholder={ok && selected.label !== "" ? selected.label : placeholder}
+		onchange={onsearch}
+        onkeypress={onkeypress}
+        onfocus={onfocus}
+        onblur={onfocus}
+	/>
+{/snippet}
+
+{#if disabled}
+    {@render input(true, undefined)}
 {:else}
     {@const ok = searchable && focused}
 
@@ -170,26 +181,7 @@ let fitWidth = $state("");
         useArrow={true}
     >
         {#snippet target(ref)}
-            <Input
-                id={id}
-                ref={(el:HTMLElement) => {
-                    ref(el), elRef?.(el), fitWidth = el.offsetWidth + "px";
-                }}
-                class={twMerge("w-80", searchable ? "cursor-text":"cursor-pointer", className)}
-                type="text"
-                value={ok ? "" : selected.label}
-                head={head}
-                tail={tailSnippet ?? tail}
-                size={size}
-                radius={radius}
-                readonly={!searchable}
-                clearable={clearable}
-                placeholder={ok && selected.label !== "" ? selected.label : placeholder}
-                onchange={onsearch}
-                onkeypress={onkeypress}
-                onfocus={onfocus}
-                onblur={onfocus}
-            />
+            {@render input(false, ref)}
         {/snippet}
 
         <div
