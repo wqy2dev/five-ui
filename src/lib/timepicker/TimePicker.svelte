@@ -85,14 +85,15 @@ function mountPanel(el:HTMLElement) {
 function onHover(enter:boolean, targetEl?:HTMLElement) {
     if(enter) {
 		if(!placeholder) {
-            placeholder = value!;
+            placeholder = value ?? "";
 		}
 	} else {
+		console.log(">>>>>>>", targetEl ,panel?.contains(targetEl!));
 		if(targetEl && panel?.contains(targetEl)) {
 			uncertain = placeholder;
+		} else {
+            placeholder = uncertain = "";
 		}
-
-		placeholder = "";
 	}
 }
 
@@ -100,7 +101,7 @@ let showPanel = false;
 
 function onPanelChange(v:string) {
 	if(showPanel) {
-	    placeholder = v;	
+	    uncertain = "", value = "", placeholder = v;	
 	}
 }
 
@@ -110,6 +111,8 @@ function onPanelView(visible:boolean) {
 
 
 $effect(() => {
+	console.log("uncertain:", uncertain, "value:", value, "placeholder:", placeholder);
+
 	onchange?.(value);
 });
 
@@ -135,7 +138,7 @@ $effect(() => {
 		readonly={readonly}
 		disabled={disabled}
 		clearable={clearable}
-		placeholder={placeholder ? placeholder:ph}
+		placeholder={placeholder?placeholder:ph}
 		onchange={onChange}
 		onkeypress={onkeypress}
 		onfocus={onfocus}

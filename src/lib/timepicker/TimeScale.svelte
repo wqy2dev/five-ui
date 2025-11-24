@@ -10,7 +10,7 @@ const timeScaleVariants = tv({
     variants: {
         checked: {
             true: {
-                button: "bg-primary-50",
+                button: "bg-primary-50 text-primary-600",
             },
             false: {
                 button: "bg-white",

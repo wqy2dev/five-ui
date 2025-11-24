@@ -60,7 +60,7 @@ $effect(() => {
 
 const events = {
     onmouseenter: (e:any) => onhover?.(true, undefined),
-    onmouseleave: (e:any) => onhover?.(false, e.currentTarget),
+    onmouseleave: (e:any) => onhover?.(false, e.target),
 };
 
 </script>
