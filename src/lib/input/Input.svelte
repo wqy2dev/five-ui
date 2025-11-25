@@ -93,6 +93,7 @@ export type InputProps = {
 	maxlength?:number;
 	showCount?:boolean;
 	clearable?:boolean;
+	pattern?:RegExp;
 	head?:Snippet;
 	tail?:Snippet;
 	ref?:{(el:HTMLElement):void};
@@ -116,7 +117,7 @@ let {
     tail,
     name,
     class:className,
-    value,
+    value = "",
     size,
 	radius,
     disabled,
@@ -127,6 +128,7 @@ let {
 	autocomplete,
 	type,
 	placeholder,
+	pattern,
 	onfocus,
 	onblur,
 	oninput,
@@ -146,6 +148,19 @@ if(fieldContext) {
     }
 }
 
+let focus = $state(false);
+let hover = $state(false);
+let count = $derived.by(() => value.length);
+
+let cache = "";
+
+let refresh = $derived.by(() => {
+	if(!pattern || pattern.test(value)) {
+		return cache = value, {update:false, cache};
+	}
+	return {update:true, cache};
+});
+
 let el:HTMLElement;
 let inner:HTMLInputElement;
 
@@ -153,13 +168,9 @@ onMount(() => {
     ref?.(el), refInput?.(inner);
 });
 
-let focus = $state(false);
-let hover = $state(false);
-let count = $state(value?.length ?? 0);
-
-// erase input
+// Erase input
 function onErase(_:MouseEvent) {
-    value = undefined, focus = true, count = 0;
+    value = "", focus = true;
 
 	if(inner) {
 		inner.focus();
@@ -181,16 +192,20 @@ function onHover(e:Event) {
 function onInput(e:Event & {currentTarget: EventTarget & HTMLInputElement}) {
 	let v = e.currentTarget.value;
 
-	// input truncation
+	// truncation
 	if(typeof maxlength === "number" && v.length > maxlength) {
-		v = v.slice(0, maxlength), value = v;
+		v = v.slice(0, maxlength);
 	}
 
-	count = v.length, oninput?.(v);
+	value = v, oninput?.(value);
 }
 
-function onChange(e:any) {
-    onchange?.(value);
+function onChange() {
+	if(refresh.update) {
+		value = refresh.cache;
+	}
+
+    onchange?.(refresh.cache);
 }
 
 function onKeyPress(e:KeyboardEvent) {
@@ -204,7 +219,7 @@ const {
 } = inputVariants({size, radius});
 
 </script>
-
+{value}
 <div
 	bind:this={el}
 	id={id}
@@ -221,10 +236,10 @@ const {
 
 	<input
 		bind:this={inner}
-		bind:value={value}
+		name={name}
+		value={value}
 		type={type}
 		class={input(head?{slot:"head"}:{})}
-		name={name}
 		placeholder={placeholder}
 		maxlength={maxlength}
 		disabled={disabled}

@@ -26,7 +26,7 @@ export { Notification, type NotificationInstance } from "./notification/index.js
 export { Number } from "./number/index.js";
 export { Overlay } from "./overlay/index.js";
 export { Pagination } from "./pagination/index.js";
-export { Popper, type Placement, type Trigger } from "./popper/index.js";
+export { Popper, type Placement, type Trigger, type PopperInstance } from "./popper/index.js";
 export { Radio, RadioGroup } from "./radio/index.js";
 export { Select, type SelectOption } from "./select/index.js";
 export { Slider } from "./slider/index.js";

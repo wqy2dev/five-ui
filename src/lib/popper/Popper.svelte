@@ -6,31 +6,6 @@ import { twMerge } from "tailwind-merge";
 export type Trigger = "hover" | "focus" | "click" | "toggle";
 export type Placement = "top" | "topStart" | "topEnd" | "bottom" | "bottomStart" | "bottomEnd" | "left" | "leftStart" | "leftEnd" | "right" | "rightStart" | "rightEnd";
 
-export type PopperProps = {
-    class?:{
-        // popper outline class
-        outline?:string;
-        // popper content class
-        content?:string;
-        arrow?:string;
-    };
-    trigger?:Trigger;
-    placement?:Placement;
-    offset?:number;
-    zIndex?:number;
-    useArrow?:boolean;
-    arrowSize?:number;
-    duration?:number;
-    // trigger element
-    target:Snippet<[{(ref:HTMLElement):void}]>;
-    // popper hide condition when floatElement blur
-    when?:{(targetEl:HTMLElement, floatEl:HTMLElement):boolean};
-    // default hide popper
-    hide?:boolean;
-    onView?:{(visible:boolean):void};
-    children:Snippet;
-}
-
 // Calculate the position of the popper
 function position(refEl:HTMLElement, floatEl:HTMLElement, placement:Placement, offset:number) {
     let { 
@@ -200,6 +175,35 @@ function scaleXY(node:HTMLElement, params:TransitionScaleXY):TransitionConfig {
 }
 
 const arrowBeforeOffset = "2px";
+
+export type PopperInstance = {
+    display:{(visible:boolean):void};
+}
+
+export type PopperProps = {
+    class?:{
+        // popper outline class
+        outline?:string;
+        // popper content class
+        content?:string;
+        arrow?:string;
+    };
+    trigger?:Trigger;
+    placement?:Placement;
+    offset?:number;
+    zIndex?:number;
+    useArrow?:boolean;
+    arrowSize?:number;
+    duration?:number;
+    // trigger element
+    target:Snippet<[{(ref:HTMLElement):void}]>;
+    // popper hide condition when floatElement blur
+    when?:{(targetEl:HTMLElement, floatEl:HTMLElement):boolean};
+    // default hide popper
+    hide?:boolean;
+    onView?:{(visible:boolean):void};
+    children:Snippet;
+}
 
 </script>
 
@@ -410,6 +414,10 @@ onMount(() => {
 $effect(() => {
     onView?.(show);
 });
+
+export function display(visible:boolean) {
+    show = visible;
+}
 
 </script>
 

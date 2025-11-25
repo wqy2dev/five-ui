@@ -1,6 +1,6 @@
 <script lang="ts" module>
 /// h,m,s
-const ranges = [24, 24, 60];
+const ranges = [24, 60, 60];
 /// 12:00:00 or 12:00
 export const TimeFormat = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/;
 
@@ -14,13 +14,21 @@ function parse(value:string) {
 }
 
 export type PickerProps = {
-    ref:{(el:HTMLElement):void};
     value?:string; // 12:00:00 or 12:00
     okText?:string;
 	nowText?:string;
     onok?:{(value:string):void};
     onchange?:{(value:string):void};
-    onhover?:{(enter:boolean, el?:HTMLElement):void};
+    onhover?:{(enter:boolean):void};
+}
+
+function timeNow() {
+    const date = new Date();
+    const hours = String(date.getHours()).padStart(2, '0'); 
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0'); 
+
+    return [hours, minutes, seconds];
 }
 
 </script>
@@ -30,7 +38,6 @@ import { Button } from "$lib/index.js";
 import TimeScale from "./TimeScale.svelte";
 
 let {
-    ref,
     value = "",
     okText = "OK",
     nowText = "Now",
@@ -48,8 +55,8 @@ function onChange(index:number, value:string) {
     hms[index] = value;
 }
 
-function onSave(e:any) {
-    onok?.(hms.join(":"));
+function onSave(v:string[]) {
+    onok?.(v.join(":"));
 }
 
 $effect(() => {
@@ -59,15 +66,14 @@ $effect(() => {
 });
 
 const events = {
-    onmouseenter: (e:any) => onhover?.(true, undefined),
-    onmouseleave: (e:any) => onhover?.(false, e.target),
+    onmouseenter: () => onhover?.(true),
+    onmouseleave: () => onhover?.(false),
 };
 
 </script>
 
 <div 
     class="flex flex-col w-fit h-fit pt-1 rounded-lg overflow-hidden"
-    use:ref
 >
     <div 
         class="flex flex-row grow shrink-0"
@@ -84,7 +90,11 @@ const events = {
         {/each}
     </div>
     <div class="flex flex-row justify-between w-full h-fit p-2 border-t border-slate-200 border-solid">
-        <Button size="sm" variant="link">{nowText}</Button>
-        <Button size="sm" disabled={!ok} onclick={onSave}>{okText}</Button>
+        <Button size="sm" variant="link" onclick={() => onSave(timeNow())}>
+            {nowText}
+        </Button>
+        <Button size="sm" disabled={!ok} onclick={() => onSave(hms)}>
+            {okText}
+        </Button>
     </div>
 </div>

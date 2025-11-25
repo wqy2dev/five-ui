@@ -1,7 +1,7 @@
 <script lang="ts" module>
 import { type Snippet } from "svelte";
-import type { FullAutoFill } from "svelte/elements";
 import { twMerge } from "tailwind-merge";
+import type { FullAutoFill } from "svelte/elements";
 import type { Radius, Size } from "$lib/input/Input.svelte";
 
 export type TimePickerProps = {
@@ -28,10 +28,11 @@ export type TimePickerProps = {
 
 </script>
 
+<!-- svelte-ignore non_reactive_update -->
 <script lang="ts">
-import { Popper, Input } from "$lib/index.js";
+import { Popper, Input, type PopperInstance } from "$lib/index.js";
 import Clock from "$lib/icons/Clock.svelte";
-import TimePanel, { TimeFormat } from "./TimePanel.svelte";
+import TimePanel, { TimeFormat } from "$lib/timepicker/TimePanel.svelte";
 
 let {
 	id,
@@ -55,45 +56,19 @@ let {
 }:TimePickerProps = $props();
 
 let value = $state(defaultValue);
-let uncertain = $state("");
-let placeholder = $state("");
+let placeholder = $state({show:false, text:""});
 
-function onSave(v:string) {
-	placeholder = "", uncertain = "", value = v;
-}
-
-function onBlur(e:any) {
-    placeholder = "", uncertain = "", onblur?.(e);
-}
-
-// input
+// input change
 function onChange(v?:string) {
-	if(!v) {
-		value = "";
-	} else if(TimeFormat.test(v ?? "")) {
-		value = v;
-	}
+	value = v ?? "";
 }
 
-let panel:HTMLElement;
-
-function mountPanel(el:HTMLElement) {
-	panel = el;
-}
-
-// scale
-function onHover(enter:boolean, targetEl?:HTMLElement) {
+// Panel: onmouseenter and onmouseleave
+function onHover(enter:boolean) {
     if(enter) {
-		if(!placeholder) {
-            placeholder = value ?? "";
-		}
+		placeholder = {show:true, text:placeholder.text ? placeholder.text : value ?? ""};
 	} else {
-		console.log(">>>>>>>", targetEl ,panel?.contains(targetEl!));
-		if(targetEl && panel?.contains(targetEl)) {
-			uncertain = placeholder;
-		} else {
-            placeholder = uncertain = "";
-		}
+		placeholder = {show:false, text:placeholder.text};
 	}
 }
 
@@ -101,23 +76,33 @@ let showPanel = false;
 
 function onPanelChange(v:string) {
 	if(showPanel) {
-	    uncertain = "", value = "", placeholder = v;	
+	    placeholder = {show:true, text:v};	
 	}
 }
 
 function onPanelView(visible:boolean) {
 	showPanel = visible;
+
+	if(!visible) {
+		placeholder = {show:false, text:""};
+	}
 }
 
+function onBlur(e:any) {
+    onblur?.(e);
+}
+
+let popper:PopperInstance;
+
+function onSave(v:string) {
+	placeholder = {show:false, text:""}, value = v, popper.display(false);
+}
 
 $effect(() => {
-	console.log("uncertain:", uncertain, "value:", value, "placeholder:", placeholder);
-
 	onchange?.(value);
 });
 
 </script>
-:::{placeholder}
 
 {#snippet input(disabled:boolean, popperRef?:{(el:HTMLElement):void})}
     <Input
@@ -131,14 +116,15 @@ $effect(() => {
 		class={twMerge("w-48", className)}
 		type="text"
 		name={name}
-		value={uncertain ? uncertain:value}
+		value={placeholder.show ? "" : (placeholder.text ? placeholder.text : value)}
 		head={head}
 		size={size}
 		radius={radius}
 		readonly={readonly}
 		disabled={disabled}
 		clearable={clearable}
-		placeholder={placeholder?placeholder:ph}
+		placeholder={placeholder.text ? placeholder.text:ph}
+		pattern={TimeFormat}
 		onchange={onChange}
 		onkeypress={onkeypress}
 		onfocus={onfocus}
@@ -153,7 +139,8 @@ $effect(() => {
 {#if disabled}
     {@render input(true, undefined)}
 {:else}
-	<Popper 
+	<Popper
+		bind:this={popper}
 		class={{
 			outline: "bg-white rounded-lg shadow-outline-lg",
 			content: "bg-inherit rounded-lg",
@@ -169,7 +156,6 @@ $effect(() => {
 		{/snippet}
 
 		<TimePanel
-		    ref={mountPanel}
 			value={value}
 			okText={okText}
 			nowText={nowText}

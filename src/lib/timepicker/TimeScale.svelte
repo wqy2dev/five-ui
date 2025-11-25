@@ -28,10 +28,6 @@ const timeScaleVariants = tv({
     },
 });
 
-function fill(v:number) {
-    return v > 9 ? `${v}` : `0${v}`;
-}
-
 function scrollView(el:HTMLElement) {
     tick().then(() => {
         el.scrollIntoView({block:"start", behavior:"smooth"});
@@ -78,7 +74,7 @@ let {
 
 <div class={base({bordered})}>
     {#each { length:range }, v}
-        {@const val = fill(v)}
+        {@const val = String(v).padStart(2, '0')}
         {@const checked = current === val}
 
         <button
