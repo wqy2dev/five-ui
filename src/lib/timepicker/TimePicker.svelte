@@ -1,5 +1,5 @@
 <script lang="ts" module>
-import { type Snippet } from "svelte";
+import { getContext, type Snippet } from "svelte";
 import { twMerge } from "tailwind-merge";
 import type { FullAutoFill } from "svelte/elements";
 import type { Radius, Size } from "$lib/input/Input.svelte";
@@ -18,6 +18,8 @@ export type TimePickerProps = {
 	clearable?:boolean;
 	okText?:string;
 	nowText?:string;
+	format?:"hh:mm:ss"|"hh:mm";
+	placement?:"top"|"topStart"|"topEnd"|"bottom"|"bottomStart"|"bottomEnd";
 	head?:Snippet;
 	ref?:{(el:HTMLElement):void};
 	onchange?:{(value?:string):void};
@@ -32,7 +34,8 @@ export type TimePickerProps = {
 <script lang="ts">
 import { Popper, Input, type PopperInstance } from "$lib/index.js";
 import Clock from "$lib/icons/Clock.svelte";
-import TimePanel, { TimeFormat } from "$lib/timepicker/TimePanel.svelte";
+import TimePanel, { TimeFormat, type PanelValue } from "$lib/timepicker/TimePanel.svelte";
+import type { FormFieldContext } from "$lib/form/FormField.svelte";
 
 let {
 	id,
@@ -49,34 +52,65 @@ let {
 	placeholder:ph,
 	okText,
 	nowText,
+	placement = "bottomStart",
+	format = "hh:mm:ss",
 	onfocus,
 	onblur,
     onchange,
 	onkeypress,
 }:TimePickerProps = $props();
 
+const fieldContext = getContext<FormFieldContext>("formField");
+if(fieldContext) {
+    name = fieldContext.name;
+    defaultValue = "";
+    onchange = fieldContext.onchange;
+
+    let t = typeof fieldContext.value;
+	if(t === "string") {
+        defaultValue = fieldContext.value;
+    }
+} else {
+	$effect(() => {
+		value = defaultValue;
+	});
+}
+
 let value = $state(defaultValue);
 let placeholder = $state({show:false, text:""});
 
-// input change
-function onChange(v?:string) {
-	value = v ?? "";
+// input onChange
+function onChange(v:string) {
+	value = v, placeholder = {show:false, text:""};
+}
+
+// input onInput
+function onInput(v:string) {
+	if(TimeFormat.test(v)) {
+		value = v;
+	}
 }
 
 // Panel: onmouseenter and onmouseleave
 function onHover(enter:boolean) {
     if(enter) {
-		placeholder = {show:true, text:placeholder.text ? placeholder.text : value ?? ""};
+		placeholder = {show:true, text:placeholder.text ? placeholder.text : (value ?? "")};
 	} else {
 		placeholder = {show:false, text:placeholder.text};
 	}
 }
 
+let popper:PopperInstance;
+
+function onSave(v:PanelValue) {
+	placeholder = {show:false, text:""}, value = v.value.join(":"), popper.display(false);
+}
+
 let showPanel = false;
 
-function onPanelChange(v:string) {
+function onSelect(v:PanelValue) {
 	if(showPanel) {
-	    placeholder = {show:true, text:v};	
+	    placeholder = {show:v.event, text:v.value.join(":")};
 	}
 }
 
@@ -90,12 +124,6 @@ function onPanelView(visible:boolean) {
 
 function onBlur(e:any) {
     onblur?.(e);
-}
-
-let popper:PopperInstance;
-
-function onSave(v:string) {
-	placeholder = {show:false, text:""}, value = v, popper.display(false);
 }
 
 $effect(() => {
@@ -123,9 +151,11 @@ $effect(() => {
 		readonly={readonly}
 		disabled={disabled}
 		clearable={clearable}
+		context={false}
 		placeholder={placeholder.text ? placeholder.text:ph}
 		pattern={TimeFormat}
 		onchange={onChange}
+		oninput={onInput}
 		onkeypress={onkeypress}
 		onfocus={onfocus}
 		onblur={onBlur}
@@ -147,7 +177,7 @@ $effect(() => {
 			arrow: "bg-inherit shadow-outline-lg",
 		}}
 		trigger="focus"
-		placement="bottomStart"
+		placement={placement}
 		useArrow={true}
 		onView={onPanelView}
 	>
@@ -157,11 +187,12 @@ $effect(() => {
 
 		<TimePanel
 			value={value}
+			ranges={[24, 60, 60].slice(0, format === "hh:mm" ? 2 : 3)}
 			okText={okText}
 			nowText={nowText}
 			onok={onSave}
 			onhover={onHover}
-			onchange={onPanelChange}
+			onchange={onSelect}
 		/>
 	</Popper>
 {/if}

@@ -1,67 +1,79 @@
 <script lang="ts" module>
-/// h,m,s
-const ranges = [24, 60, 60];
 /// 12:00:00 or 12:00
 export const TimeFormat = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/;
 
 // Parse time value
-function parse(value:string) {
+function parse(value:string, count:number) {
     if(value === "" || !TimeFormat.test(value)) {
-        return ["", "", ""];
+        return Array(count).fill("");
     }
+    return value.split(":").slice(0, count);
+}
 
-    return value.split(":");
+function timeNow( withSeconds:boolean ) {
+    const date = new Date();
+    const hours = String(date.getHours()).padStart(2, '0'); 
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+
+    return withSeconds ? [hours, minutes, String(date.getSeconds()).padStart(2, '0')] : [hours, minutes];
+}
+
+export type PanelValue = {
+    event:boolean;
+    value:string[];
 }
 
 export type PickerProps = {
     value?:string; // 12:00:00 or 12:00
     okText?:string;
 	nowText?:string;
-    onok?:{(value:string):void};
-    onchange?:{(value:string):void};
+    ranges:number[];
+    onok?:{(value:PanelValue):void};
+    onchange?:{(value:PanelValue):void};
     onhover?:{(enter:boolean):void};
-}
-
-function timeNow() {
-    const date = new Date();
-    const hours = String(date.getHours()).padStart(2, '0'); 
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const seconds = String(date.getSeconds()).padStart(2, '0'); 
-
-    return [hours, minutes, seconds];
 }
 
 </script>
 
 <script lang="ts">
 import { Button } from "$lib/index.js";
-import TimeScale from "./TimeScale.svelte";
+import TimeScale from "$lib/timepicker/TimeScale.svelte";
 
 let {
     value = "",
     okText = "OK",
     nowText = "Now",
+    ranges,
     onok,
     onhover,
     onchange,
 }:PickerProps = $props();
 
-let hms = $state(parse(value));
+let hms = $state({event:false, value:parse(value, ranges.length)});
 let ok = $derived.by(() => {
-    return hms[0] !== "" && hms[1] !== "" && hms[2] !== "";
+    let b = hms.value[0] !== "" && hms.value[1] !== "";
+    if(ranges.length === 2) {
+        return b;
+    }
+
+    return b && hms.value[2] !== "";
+});
+
+$effect(() => {
+    hms = {event:false, value:parse(value, ranges.length)};
 });
 
 function onChange(index:number, value:string) {
-    hms[index] = value;
+    hms.value[index] = value, hms = {event:true, value:hms.value};
 }
 
-function onSave(v:string[]) {
-    onok?.(v.join(":"));
+function onSave(v:PanelValue) {
+    onok?.(v);
 }
 
 $effect(() => {
     if(ok) {
-        onchange?.(hms.join(":"));
+        onchange?.(hms);
     }
 });
 
@@ -82,15 +94,16 @@ const events = {
         {#each ranges as range, i}
             <TimeScale
                 index={i}
-                value={hms[i]}
+                value={hms.value[i]}
                 range={range}
                 bordered={i < ranges.length-1}
                 onchange={onChange}
             />
         {/each}
     </div>
+
     <div class="flex flex-row justify-between w-full h-fit p-2 border-t border-slate-200 border-solid">
-        <Button size="sm" variant="link" onclick={() => onSave(timeNow())}>
+        <Button size="sm" variant="link" onclick={() => onSave({event:true, value:timeNow(ranges.length === 3)})}>
             {nowText}
         </Button>
         <Button size="sm" disabled={!ok} onclick={() => onSave(hms)}>

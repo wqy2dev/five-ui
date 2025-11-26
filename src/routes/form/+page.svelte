@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Select, Form, FormField, Input, Textarea, Button, Switch, RadioGroup, Radio, Checkbox, CheckboxGroup, Message, type MessageInstance, KVGroup, Editor, type KVGroupInstance } from "$lib/index.js";
+import { Select, Form, FormField, Input, Textarea, Button, Switch, RadioGroup, Radio, Checkbox, CheckboxGroup, Message, type MessageInstance, KVGroup, Editor, type KVGroupInstance, TimePicker } from "$lib/index.js";
 
 const sizes = ["sm", "md", "lg"];
 
@@ -251,6 +251,22 @@ let kvRef:KVGroupInstance;
                 type="password"
                 class="w-full"
             />
+        </FormField>
+
+        <FormField
+            label="开始时间"
+            name="start_time"
+            layout="col"
+            required
+            tooltip="开始时间"
+            rules={[
+                {
+                    rule: (value) => value !== "",
+                    msg: "Start time is required",
+                },
+            ]}
+        >
+            <TimePicker />
         </FormField>
 
         <FormField

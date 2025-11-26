@@ -22,7 +22,7 @@ npm i five-ui@latest
 
 FiveUI already includes the following components, but is not limited to:
 
-| Name | Finish |
+| Component Name | Available |
 | :--- | :--- |
 | Accordion | ✔ |
 | Alert | ✔ |
@@ -64,7 +64,7 @@ FiveUI already includes the following components, but is not limited to:
 | Tag | ✔ |
 | Textarea | ✔ |
 | Timeline | |
-| TimePicker ||
+| TimePicker | ✔ |
 | Tooltip | ✔ |
 | Watermark | ✔ |
 

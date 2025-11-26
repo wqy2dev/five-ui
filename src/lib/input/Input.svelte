@@ -93,13 +93,14 @@ export type InputProps = {
 	maxlength?:number;
 	showCount?:boolean;
 	clearable?:boolean;
+	context?:boolean;
 	pattern?:RegExp;
 	head?:Snippet;
 	tail?:Snippet;
 	ref?:{(el:HTMLElement):void};
 	refInput?:{(el:HTMLElement):void};
-	oninput?:{(value?:string):void};
-	onchange?:{(value?:string):void};
+	oninput?:{(value:string):void};
+	onchange?:{(value:string):void};
 	onkeypress?:{(code:string, key:string):void};
 	onfocus?:{(e:FocusEvent):void};
 	onblur?:{(e:FocusEvent):void};
@@ -124,6 +125,7 @@ let {
 	maxlength,
 	showCount,
 	clearable = true,
+	context = true,
 	readonly,
 	autocomplete,
 	type,
@@ -136,30 +138,23 @@ let {
 	onkeypress,
 }:InputProps = $props();
 
-// first reading context
-const fieldContext = getContext<FormFieldContext>("formField");
-if(fieldContext) {
-    name = fieldContext.name;
-    onchange = fieldContext.onchange;
+if(context) {
+	// first reading context
+	const fieldContext = getContext<FormFieldContext>("formField");
+	if(fieldContext) {
+		name = fieldContext.name;
+		onchange = fieldContext.onchange;
 
-	value = "";
-	if(typeof fieldContext.value === "string") {
-        value = fieldContext.value;
-    }
+		value = "";
+		if(typeof fieldContext.value === "string") {
+			value = fieldContext.value;
+		}
+	}
 }
 
 let focus = $state(false);
 let hover = $state(false);
 let count = $derived.by(() => value.length);
-
-let cache = "";
-
-let refresh = $derived.by(() => {
-	if(!pattern || pattern.test(value)) {
-		return cache = value, {update:false, cache};
-	}
-	return {update:true, cache};
-});
 
 let el:HTMLElement;
 let inner:HTMLInputElement;
@@ -175,7 +170,7 @@ function onErase(_:MouseEvent) {
 	if(inner) {
 		inner.focus();
 	}
-
+console.log("Input onErase");
     onchange?.("");
 }
 
@@ -200,12 +195,22 @@ function onInput(e:Event & {currentTarget: EventTarget & HTMLInputElement}) {
 	value = v, oninput?.(value);
 }
 
+// pattern cache
+let cache = $state("");
+
+$effect(() => {
+	if(pattern && pattern.test(value)) {
+		cache = value;
+	}
+});
+
 function onChange() {
-	if(refresh.update) {
-		value = refresh.cache;
+	// pattern validation
+	if(pattern && !pattern.test(value)) {
+		value = cache;
 	}
 
-    onchange?.(refresh.cache);
+    onchange?.(value);
 }
 
 function onKeyPress(e:KeyboardEvent) {
@@ -219,7 +224,7 @@ const {
 } = inputVariants({size, radius});
 
 </script>
-{value}
+
 <div
 	bind:this={el}
 	id={id}

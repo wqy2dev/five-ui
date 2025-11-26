@@ -55,15 +55,23 @@ let {
 
 let current = $state(value);
 
-function onChange(value:string) {
+function onSelect(value:string) {
     current = value, onchange?.(index, value);
 }
 
+const elements:Record<string, HTMLElement> = {};
+
 function mount(el:HTMLElement, val:string) {
+    elements[val] = el;
+
     if(val === value) {
         onchange?.(index, val), scrollView(el);
     }
 }
+
+$effect(() => {
+    current = value, elements[value] && scrollView(elements[value]);
+});
 
 let {
     base,
@@ -80,9 +88,7 @@ let {
         <button
             use:mount={val}
             class={button({checked})}
-            onmouseup={(e) => {
-                onChange(val), scrollView(e.currentTarget);
-            }}
+            onmouseup={() => onSelect(val)}
         >
             {val}
         </button>
