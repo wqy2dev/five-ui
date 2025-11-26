@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Select, Form, FormField, Input, Textarea, Button, Switch, RadioGroup, Radio, Checkbox, CheckboxGroup, Message, type MessageInstance, KVGroup, Editor, type KVGroupInstance, TimePicker } from "$lib/index.ts";
+import { Select, Form, FormField, Input, Textarea, Button, Switch, RadioGroup, Radio, Checkbox, CheckboxGroup, Message, type MessageInstance, KVGroup, Editor, type KVGroupInstance, TimePicker } from "$lib/index.js";
 
 const sizes = ["sm", "md", "lg"];
 

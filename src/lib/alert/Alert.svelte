@@ -1,7 +1,7 @@
 <script module lang="ts">
 import { type VariantProps, tv } from "tailwind-variants";
 import { type Snippet, onMount } from "svelte";
-import { InfoCircleSolid, SuccessCircleSolid, ErrorCircleSolid, WarnCircleSolid, Close } from "$lib/icons/index.ts";
+import { InfoCircleSolid, SuccessCircleSolid, ErrorCircleSolid, WarnCircleSolid, Close } from "$lib/icons/index.js";
 
 const alertVariants = tv({
 	base: "flex rounded-md p-2 text-sm border border-solid border-transparent",

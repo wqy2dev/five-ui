@@ -2,7 +2,7 @@
 import { tv } from "tailwind-variants";
 import { type Snippet, getContext, onMount } from "svelte";
 import { type AccordionContext } from "./Accordion.svelte";
-import { ChevronRight } from "$lib/icons/index.ts";
+import { ChevronRight } from "$lib/icons/index.js";
 import { fade, slide } from "svelte/transition";
 
 const accordionItemVariants = tv({

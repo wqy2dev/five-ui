@@ -1,8 +1,8 @@
 <script lang="ts" module>
 import { type VariantProps, tv } from "tailwind-variants";
 import { onMount, type Snippet } from "svelte";
-import { Overlay, Button } from "$lib/index.ts";
-import { Close } from "$lib/icons/index.ts";
+import { Overlay, Button } from "$lib/index.js";
+import { Close } from "$lib/icons/index.js";
 import { type Backdrop } from "$lib/overlay/Overlay.svelte";
 
 const modalVariants = tv({

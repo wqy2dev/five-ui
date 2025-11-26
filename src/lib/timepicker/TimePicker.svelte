@@ -32,7 +32,7 @@ export type TimePickerProps = {
 
 <!-- svelte-ignore non_reactive_update -->
 <script lang="ts">
-import { Popper, Input, type PopperInstance } from "$lib/index.ts";
+import { Popper, Input, type PopperInstance } from "$lib/index.js";
 import Clock from "$lib/icons/Clock.svelte";
 import TimePanel, { TimeFormat, type PanelValue } from "$lib/timepicker/TimePanel.svelte";
 import type { FormFieldContext } from "$lib/form/FormField.svelte";

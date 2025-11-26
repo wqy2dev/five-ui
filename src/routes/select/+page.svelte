@@ -1,6 +1,6 @@
 <script lang="ts">
-import { Search, UserOutline } from "$lib/icons/index.ts";
-import { Select } from "$lib/index.ts";
+import { Search, UserOutline } from "$lib/icons/index.js";
+import { Select } from "$lib/index.js";
 
 const sizes = ["sm", "md", "lg"];
 const radius = ["full", "sm", "md", "lg", "xl", "none"];

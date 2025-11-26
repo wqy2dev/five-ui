@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Button, KVGroup, type KVGroupInstance } from "$lib/index.ts";
+import { Button, KVGroup, type KVGroupInstance } from "$lib/index.js";
 
 const sizes = ["sm", "md", "lg"];
 const radius = ["full", "sm", "md", "lg", "xl", "none"];

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Breadcrumb, BreadcrumbItem } from "$lib/index.ts";
+import { Breadcrumb, BreadcrumbItem } from "$lib/index.js";
 
 </script>
 

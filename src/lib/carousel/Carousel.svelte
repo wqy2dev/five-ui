@@ -81,7 +81,7 @@ type CarouselProps = {
 </script>
 
 <script lang="ts">
-import { ChevronLeft, ChevronRight } from "$lib/icons/index.ts";
+import { ChevronLeft, ChevronRight } from "$lib/icons/index.js";
 
 const {
     id,

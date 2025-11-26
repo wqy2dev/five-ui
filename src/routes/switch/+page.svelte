@@ -1,6 +1,6 @@
 <script lang="ts">
-import {  Sun, Moon } from "$lib/icons/index.ts";
-import { Switch } from "$lib/index.ts";
+import {  Sun, Moon } from "$lib/icons/index.js";
+import { Switch } from "$lib/index.js";
 
 const sizes = ["sm", "md", "lg"];
 const radius = ["sm", "md", "lg", "full"];

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Carousel, CarouselItem } from "$lib/index.ts";
+import { Carousel, CarouselItem } from "$lib/index.js";
 
 </script>
 

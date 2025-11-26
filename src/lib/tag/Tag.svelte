@@ -1,7 +1,7 @@
 <script lang="ts" module>
 import { type VariantProps, tv } from "tailwind-variants";
 import { type Snippet, onMount } from "svelte";
-import { Close } from "$lib/icons/index.ts";
+import { Close } from "$lib/icons/index.js";
 
 const tagVariants = tv({
     base: "inline-flex items-center gap-1 py-1 font-semibold",

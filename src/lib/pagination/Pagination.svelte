@@ -120,7 +120,7 @@ function paginate(pages:number, current:number = 1, siblings:number, boundaries:
 </script>
 
 <script lang="ts">
-import { ChevronDoubleLeft, ChevronDoubleRight, ChevronLeft, ChevronRight, EllipsisHorizontal } from "$lib/icons/index.ts";
+import { ChevronDoubleLeft, ChevronDoubleRight, ChevronLeft, ChevronRight, EllipsisHorizontal } from "$lib/icons/index.js";
 
 type PaginationProps = {
     id?:string;

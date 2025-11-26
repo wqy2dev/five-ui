@@ -2,8 +2,8 @@
 import { getContext, type Snippet } from "svelte";
 import type { MenuContext } from "./Menu.svelte";
 import { tv } from "tailwind-variants";
-import { Dropdown } from "$lib/index.ts";
-import { ChevronRight } from "$lib/icons/index.ts";
+import { Dropdown } from "$lib/index.js";
+import { ChevronRight } from "$lib/icons/index.js";
 
 const meunSubVariants = tv({
     base: "relative flex flex-row w-full items-center h-fit hover:bg-slate-100 truncate text-sm text-left text-slate-700 rounded-md cursor-pointer",

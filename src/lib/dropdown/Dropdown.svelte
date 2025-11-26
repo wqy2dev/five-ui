@@ -1,5 +1,5 @@
 <script lang="ts">
-import { type PopperProps, Popper } from "$lib/popper/index.ts";
+import { type PopperProps, Popper } from "$lib/popper/index.js";
 
 interface DropdownProps extends Omit<PopperProps, "when"|"class"> {
     

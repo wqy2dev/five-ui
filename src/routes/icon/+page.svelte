@@ -1,6 +1,6 @@
 <script lang="ts">
-import { Tooltip } from "$lib/index.ts";
-import { icons } from "$lib/icons/index.ts";
+import { Tooltip } from "$lib/index.js";
+import { icons } from "$lib/icons/index.js";
 import LoadIcon from "./LoadIcon.svelte";
 import Input from "$lib/input/Input.svelte";
 import Search from "$lib/icons/Search.svelte";

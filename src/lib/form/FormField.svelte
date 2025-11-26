@@ -57,8 +57,8 @@ export type FormFieldProps = {
 
 <script lang="ts">
 import { getContext, onMount, setContext, type Snippet } from "svelte";
-import { Tooltip } from "$lib/index.ts";
-import { HelpCircleOutline } from "$lib/icons/index.ts";
+import { Tooltip } from "$lib/index.js";
+import { HelpCircleOutline } from "$lib/icons/index.js";
 import type { FormContext, FormValidateResult } from "./Form.svelte";
 
 const ctx = getContext("form") as FormContext;

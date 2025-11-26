@@ -13,7 +13,7 @@ export type MessageOption = {
 
 <script lang="ts">
 import { fly } from "svelte/transition";
-import { InfoCircleSolid, SuccessCircleSolid, ErrorCircleSolid, WarnCircleSolid, Close } from "$lib/icons/index.ts";
+import { InfoCircleSolid, SuccessCircleSolid, ErrorCircleSolid, WarnCircleSolid, Close } from "$lib/icons/index.js";
 import { linear } from "svelte/easing";
 
 let {

@@ -1,6 +1,6 @@
 <script lang="ts">
     import Button from "$lib/button/Button.svelte";
-import { Checkbox, CheckboxGroup } from "$lib/index.ts";
+import { Checkbox, CheckboxGroup } from "$lib/index.js";
 
 const sizes = ["sm", "md", "lg"];
 

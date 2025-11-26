@@ -3,8 +3,8 @@ import { getContext, onMount, type Snippet } from "svelte";
 import { twMerge } from "tailwind-merge";
 import { type Size, type Radius } from "$lib/input/Input.svelte";
 import { type FormFieldContext } from "$lib/form/FormField.svelte";
-import { ChevronDown } from "$lib/icons/index.ts";
-import { Popper, Input, Menu, MenuItem } from "$lib/index.ts";
+import { ChevronDown } from "$lib/icons/index.js";
+import { Popper, Input, Menu, MenuItem } from "$lib/index.js";
 
 export type SelectOption = {
     value:string;

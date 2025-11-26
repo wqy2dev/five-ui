@@ -1,7 +1,7 @@
 <script lang="ts" module>
 import { onMount, type Snippet } from "svelte";
 import { slide } from "svelte/transition";
-import { Overlay } from "$lib/index.ts";
+import { Overlay } from "$lib/index.js";
 import { type VariantProps, tv } from "tailwind-variants";
 import { type Backdrop } from "$lib/overlay/Overlay.svelte";
 

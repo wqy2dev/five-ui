@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Layout, Side, Header, Content, Button } from "$lib/index.ts";
+import { Layout, Side, Header, Content, Button } from "$lib/index.js";
 
 let collapsible = $state(false);
 

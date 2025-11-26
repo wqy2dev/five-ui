@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Menu, MenuItem, MenuGroup, MenuSub  } from "$lib/index.ts";
+import { Menu, MenuItem, MenuGroup, MenuSub  } from "$lib/index.js";
 </script>
 
 <svelte:head>

@@ -1,7 +1,7 @@
 <script lang="ts">
 import Avatar from "$lib/avatar/Avatar.svelte";
-import { UserOutline, CogOutline, EllipsisHorizontal } from "$lib/icons/index.ts";
-import { Card, CardContent } from "$lib/index.ts";
+import { UserOutline, CogOutline, EllipsisHorizontal } from "$lib/icons/index.js";
+import { Card, CardContent } from "$lib/index.js";
 </script>
 
 <svelte:head>
