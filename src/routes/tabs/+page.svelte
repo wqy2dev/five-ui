@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Tab, TabContent, Tabs, TabBar } from "$lib/index.js";
+import { Tab, TabContent, Tabs, TabBar } from "$lib/index.ts";
 
 const radius = ["sm", "md", "lg", "xl", "full"];
 

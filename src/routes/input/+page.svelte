@@ -1,6 +1,6 @@
 <script lang="ts">
-import { Calendar, Search } from "$lib/icons/index.js";
-import { Input, } from "$lib/index.js";
+import { Calendar, Search } from "$lib/icons/index.ts";
+import { Input, } from "$lib/index.ts";
 
 const sizes = ["sm", "md", "lg"];
 const radius = ["full", "sm", "md", "lg", "xl", "none"];

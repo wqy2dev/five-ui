@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Alert } from "$lib/index.js";
+    import { Alert } from "$lib/index.ts";
 
     const variants = [
         "info",

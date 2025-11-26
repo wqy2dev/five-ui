@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Textarea, } from "$lib/index.js";
+import { Textarea, } from "$lib/index.ts";
 
 const radius = ["sm", "md", "lg", "xl", "none"];
 

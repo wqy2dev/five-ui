@@ -1,5 +1,5 @@
 <script lang="ts">
-import { type IconProps } from "./index.js";
+import { type IconProps } from "./index.ts";
 
 let {
     size = 18,

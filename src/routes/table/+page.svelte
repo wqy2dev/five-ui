@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Table, Button, Tooltip } from "$lib/index.js";
+import { Table, Button, Tooltip } from "$lib/index.ts";
 
 const dataSource = [
     {

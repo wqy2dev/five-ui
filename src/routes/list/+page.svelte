@@ -1,6 +1,6 @@
 <script lang="ts">
     import Button from "$lib/button/Button.svelte";
-import { List } from "$lib/index.js";
+import { List } from "$lib/index.ts";
 </script>
 
 <svelte:head>

@@ -12,17 +12,14 @@ export default defineConfig({
 		},
 	},
 	resolve: {
-		alias: {
-		},
+		alias: {},
 	},
 	server: {
 		hmr: {
 			overlay: true,
 		},
 	},
-	define: {
-		
-	},
+	define: {},
 	build: {
 		minify: "terser",
     }

@@ -1,6 +1,6 @@
 <script lang="ts">
-import { SuccessCircleSolid } from "$lib/icons/index.js";
-import { Layout, Side, Header, Content } from "$lib/index.js";
+import { SuccessCircleSolid } from "$lib/icons/index.ts";
+import { Layout, Side, Header, Content } from "$lib/index.ts";
 // import { tweened } from 'svelte/motion';
 // import { cubicOut } from 'svelte/easing';
 

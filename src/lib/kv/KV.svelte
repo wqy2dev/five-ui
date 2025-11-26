@@ -1,7 +1,7 @@
 <script lang="ts" module>
 import { type Snippet } from "svelte";
 import { type VariantProps, tv } from "tailwind-variants";
-import { Minus } from "$lib/icons/index.js";
+import { Minus } from "$lib/icons/index.ts";
 
 const inputVariants = tv({
 	slots: {

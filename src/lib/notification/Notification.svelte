@@ -12,7 +12,7 @@ export interface NotificationProps {
 </script>
 
 <script lang="ts">
-import { InfoCircleSolid, SuccessCircleSolid, ErrorCircleSolid, WarnCircleSolid, Close } from "$lib/icons/index.js";
+import { InfoCircleSolid, SuccessCircleSolid, ErrorCircleSolid, WarnCircleSolid, Close } from "$lib/icons/index.ts";
 
 let {
     title,

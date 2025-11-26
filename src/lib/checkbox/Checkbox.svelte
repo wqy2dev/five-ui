@@ -1,7 +1,7 @@
 <script lang="ts" module>
 import { onMount, getContext, type Snippet } from "svelte";
 import { tv, type VariantProps } from "tailwind-variants";
-import { Check } from "$lib/icons/index.js";
+import { Check } from "$lib/icons/index.ts";
 import { twMerge } from "tailwind-merge";
 import { type CheckboxContext } from "./CheckboxGroup.svelte";
 

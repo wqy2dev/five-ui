@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Drawer, Button } from "$lib/index.js";
+import { Drawer, Button } from "$lib/index.ts";
 
 let show = $state(false);
 let showWhenOverlayClicked = $state(false);

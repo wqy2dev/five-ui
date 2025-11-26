@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Dropdown, Button, Menu, MenuGroup, MenuItem, MenuSub } from "$lib/index.js";
+import { Dropdown, Button, Menu, MenuGroup, MenuItem, MenuSub } from "$lib/index.ts";
 
 const placements = [
     ["topStart", "top", "topEnd"],

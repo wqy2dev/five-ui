@@ -1,6 +1,6 @@
 <script lang="ts">
-import { LockCloseOutline, LockOpenOutline, Plus, Minus } from "$lib/icons/index.js";
-import { Accordion, AccordionItem } from "$lib/index.js";
+import { LockCloseOutline, LockOpenOutline, Plus, Minus } from "$lib/icons/index.ts";
+import { Accordion, AccordionItem } from "$lib/index.ts";
 </script>
 
 <svelte:head>

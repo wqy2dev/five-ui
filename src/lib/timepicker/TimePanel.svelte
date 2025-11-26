@@ -36,7 +36,7 @@ export type PickerProps = {
 </script>
 
 <script lang="ts">
-import { Button } from "$lib/index.js";
+import { Button } from "$lib/index.ts";
 import TimeScale from "$lib/timepicker/TimeScale.svelte";
 
 let {

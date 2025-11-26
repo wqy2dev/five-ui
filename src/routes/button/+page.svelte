@@ -1,6 +1,7 @@
 <script lang="ts">
-import { Download, SquaresPlus, TrashOutline } from "$lib/icons/index.js";
-import { Button, Editor } from "$lib/index.js";
+
+import { Download, SquaresPlus, TrashOutline } from "$lib/icons/index.ts";
+import { Button, Editor } from "$lib/index.ts";
 
 const variants = ["primary", "danger", "secondary", "link", "outline", "ghost", "flat"];
 const sizes = ["xs", "sm", "md", "lg"];
@@ -99,10 +100,7 @@ const radius = ["full", "sm", "md", "lg", "xl", "none"];
 
             <Editor
         value={`
-<script>
-import { Download, TrashOutline } from "$lib/icons/index.js";
-
-</script>
+import { Download, TrashOutline } from "$lib/icons/index.ts";
 
 <Button> 
     <Download/>
@@ -130,9 +128,8 @@ import { Download, TrashOutline } from "$lib/icons/index.js";
     </Button>
 
         <Editor
-        value={`<script>
-import { Download, SquaresPlus } from "$lib/icons/index.js";
-</script>
+        value={`
+import { Download, SquaresPlus } from "$lib/icons/index.ts";
 
 <Button type="link" href="/button" target="_blank"> 
     <Download/> Link 1

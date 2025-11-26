@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Radio, RadioGroup } from "$lib/index.js";
+import { Radio, RadioGroup } from "$lib/index.ts";
 import { twMerge } from "tailwind-merge";
 
 const sizes = ["sm", "md", "lg"];

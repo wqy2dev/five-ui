@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Message, type MessageInstance, Button } from "$lib/index.js";
+import { Message, type MessageInstance, Button } from "$lib/index.ts";
 
 let message:MessageInstance;
 let max = $state(0);

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Watermark } from "$lib/index.js";
+import { Watermark } from "$lib/index.ts";
 
 </script>
 

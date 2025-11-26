@@ -1,6 +1,6 @@
 <script lang="ts">
-import { InfoCircleSolid } from "$lib/icons/index.js";
-import { Tag } from "$lib/index.js";
+import { InfoCircleSolid } from "$lib/icons/index.ts";
+import { Tag } from "$lib/index.ts";
 
 const variants = [
     "black",

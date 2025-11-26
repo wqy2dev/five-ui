@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Pagination } from "$lib/index.js";
+import { Pagination } from "$lib/index.ts";
 
 const variants = ["flat", "outline", "ghost"];
 const radius = ["xl","lg", "md", "sm", "full", "none"];

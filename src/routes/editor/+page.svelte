@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Editor } from "$lib/index.js";
+import { Editor } from "$lib/index.ts";
 
 let focus = $state(false);
 let blur = $state(false);

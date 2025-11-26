@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Tooltip, Button } from "$lib/index.js";
+import { Tooltip, Button } from "$lib/index.ts";
 
 const placements = [
     ["topStart", "top", "topEnd"],

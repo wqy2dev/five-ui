@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Modal, Button } from "$lib/index.js";
+import { Modal, Button } from "$lib/index.ts";
 
 let show = $state(false);
 let showModalWithSize = $state({

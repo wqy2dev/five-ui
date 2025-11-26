@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Notification, type NotificationInstance, Button } from "$lib/index.js";
+import { Notification, type NotificationInstance, Button } from "$lib/index.ts";
 
 let notification:NotificationInstance;
 let max = $state(0);

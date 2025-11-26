@@ -1,7 +1,7 @@
 
 <script lang="ts">
 import Editor from "$lib/editor/Editor.svelte";
-import { TimePicker, } from "$lib/index.js";
+import { TimePicker, } from "$lib/index.ts";
 
 const radius = ["sm", "md", "lg", "xl", "none"];
 
