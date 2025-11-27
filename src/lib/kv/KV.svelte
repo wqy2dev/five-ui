@@ -16,7 +16,10 @@ type KVLabel = {
     action: string;
     action_edit: string;
     action_remove: string;
-    modal_title: string;
+    modal_title_add: string;
+    modal_title_edit: string;
+    modal_cancel: string;
+    modal_ok: string;
 }
 
 type KVProps = {
@@ -25,6 +28,7 @@ type KVProps = {
     valueLength?:number;
     keyTip?:string;
     valueTip?:string;
+    actionWidth?:string;
     keyRules?:FormFieldRule[];
     valueRules?:FormFieldRule[];
     onchange?:{(data:any):void};
@@ -43,10 +47,14 @@ let {
         action: "Action",
         action_edit: "Edit",
         action_remove: "Remove",
-        modal_title: "Add KV",
+        modal_title_add: "Add KV",
+        modal_title_edit: "Edit KV",
+        modal_cancel: "Cancel",
+        modal_ok: "Ok",
     },
     keyTip = "",
     valueTip = "",
+    actionWidth = "200px",
     keyRules = [{
         rule: (v) => v?.length > 0,
         msg: "Key is required",
@@ -132,14 +140,14 @@ $effect(() => {
     columns={[
         {label: label.key, key: "key"},
         {label: label.value, key: "value"},
-        {label: label.action, key: "_", width: "240px", render:actionRender}
+        {label: label.action, key: "_", width: actionWidth, render:actionRender}
     ]}
     source={data}
 />
 
 {#if modal.show}
     <Modal
-        title={label.modal_title}
+        title={modal.value.index === -1 ? label.modal_title_edit : label.modal_title_add}
         onok={onsubmit}
         oncancel={oncancel}
     >
