@@ -369,7 +369,7 @@ function onenter(e:Event) {
 function onleave(e:Event) {
     timer = window.setTimeout(() => {
         show = false, timer = 0;
-    }, 500);
+    }, 200);
 }
 
 function onblur(e:Event) {
