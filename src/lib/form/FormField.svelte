@@ -26,8 +26,6 @@ const formFieldVariants = tv({
     },
 });
 
-type FormFieldLayout = VariantProps<typeof formFieldVariants>["layout"];
-
 export type FormFieldContext = {
     name:string;
     value:any;
@@ -47,7 +45,6 @@ export type FormFieldProps = {
     required?:boolean;
     tooltip?:string;
     class?:string;
-    layout?:FormFieldLayout;
     rules?:FormFieldRule[];
     onchange?:{(value?:any):void};
     children:Snippet;
@@ -71,7 +68,6 @@ let {
     value:defaultValue,
     class:className,
     rules = [],
-    layout = "row",
     label:title,
     labelClass,
     tooltip,
@@ -128,7 +124,7 @@ const {
     label,
     input,
 } = formFieldVariants({
-    layout,
+    layout: ctx.layout,
 });
 
 </script>

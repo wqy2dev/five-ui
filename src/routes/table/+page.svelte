@@ -213,6 +213,30 @@ const dataSource = [
 
 <div class="space-y-4 mt-5">
     <h4 class="text-base indent-2 bg-slate-100 my-3">
+        Compact
+    </h4>
+
+    <Table
+        columns={[
+            {key: "company", label: "Company", width: "300px", render:titleRender},
+            {key: "address", label: "Address", width: "300px"},
+            {key: "no", label: "No", width: "200px"},
+            {key: "progress", label: "Process", width: "200px"},
+            {key: "duration", label: "Time", width: "200px"},
+            {key: "person", label: "Contacts", align: "center", width: "200px"},
+            {key: "telphone", label: "Telphone", width: "200px"},
+            {key: "operate", label: "Action", align: "center", width: "150px",render:operateRender},
+        ]}
+        source={dataSource}
+        compact
+        bordered
+    >
+        
+    </Table>
+</div>
+
+<div class="space-y-4 mt-5">
+    <h4 class="text-base indent-2 bg-slate-100 my-3">
         Empty
     </h4>
 

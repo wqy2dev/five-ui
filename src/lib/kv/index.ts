@@ -1,1 +1,2 @@
-export { default as KVGroup, type KVGroupInstance } from "./KVGroup.svelte";
+export { default as KV, type KVInstance } from "./KV.svelte";
+

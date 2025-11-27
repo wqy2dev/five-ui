@@ -1,13 +1,14 @@
 <script lang="ts" module>
 import { tv } from "tailwind-variants";
 import { onMount, type Snippet } from "svelte";
+import { Squares4 } from "$lib/icons/index.js";
 
 const tableVariants = tv({
 	slots: {
         wrapper: "relative rounded-lg min-w-full overflow-x-auto overflow-y-hidden",
         table: "w-full border-collapse border-spacing-0 table table-fixed",
         row: "h-12",
-        column: "text-sm text-slate-700 truncate px-2",
+        column: "text-sm text-slate-600 truncate px-2",
     },
 	variants: {
         effect: {
@@ -47,12 +48,21 @@ const tableVariants = tv({
                 wrapper: "border-solid border border-slate-200",
             },
         },
+        compact: {
+            true: {
+                row: "h-10",
+            },
+            false: {
+                row: "h-12",
+            },
+        },
 	},
 	defaultVariants: {
         align: "left",
         bordered: false,
         rowBordered: false,
         columnBordered: false,
+        compact: false,
 	},
 });
 
@@ -85,6 +95,8 @@ type TableProps = {
     effect?: "striped" | "hover";
     // with border
     bordered?:boolean;
+    // compact mode
+    compact?:boolean;
 }
 
 </script>
@@ -99,7 +111,8 @@ let {
     source,
     effect,
     bordered,
-    placeholder,
+    compact = false,
+    placeholder = "No data",
 }:TableProps = $props();
 
 let el: HTMLElement;
@@ -134,7 +147,7 @@ const {
         </colgroup>
 
         <thead>
-            <tr class={row({effect:"header", rowBordered: true})}>
+            <tr class={row({effect:"header", rowBordered: true, compact})}>
                 {#each columns as c,i}
                     <th class={column({align:c.align, columnBordered: bordered && columns.length !== i+1})}>
                         {#if typeof c.label === "string"}
@@ -148,11 +161,11 @@ const {
         </thead>
 
         <tbody>
-            {#if source}
+            {#if source && source.length > 0}
                 {#each source as r, i}
-                    <tr class={row({effect, rowBordered: source.length !== i+1})}>
-                        {#each columns as c,i}
-                            <td class={column({align:c.align, columnBordered: bordered && columns.length !== i+1})}>
+                    <tr class={row({effect, rowBordered: source.length !== i+1, compact})}>
+                        {#each columns as c,j}
+                            <td class={column({align:c.align, columnBordered: bordered && columns.length !== j+1})}>
                                 {#if c.render}
                                     {@render c.render(r, i)}
                                 {:else}
@@ -165,17 +178,13 @@ const {
             {:else}
                 <tr class="h-40 border-solid border-b border-slate-100">
                     <td 
-                        class="text-center text-base text-slate-600 text-nowrap"
+                        class="text-center"
                         colspan={columns.length}
                     >
-                        {#if placeholder}
-                            {#if typeof placeholder === "string"}
-                                {placeholder}
-                            {:else}
-                                {@render placeholder()}
-                            {/if}
+                        {#if typeof placeholder === "string"}
+                            <span class="text-slate-400 text-sm">{placeholder}</span>
                         {:else}
-                            empty Data
+                            {@render placeholder()}
                         {/if}
                     </td>
                 </tr>

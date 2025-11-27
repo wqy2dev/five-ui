@@ -134,7 +134,6 @@ let kvRef:KVGroupInstance;
         <FormField
             label="爱好"
             name="hobby"
-            layout="col"
             required
             onchange={value => {
                 console.log("hobby:", value);
@@ -164,7 +163,6 @@ let kvRef:KVGroupInstance;
         <FormField
             label="性别"
             name="sex"
-            layout="col"
             required
             rules={[
                 {
@@ -192,7 +190,6 @@ let kvRef:KVGroupInstance;
         <FormField
             label="职业"
             name="career"
-            layout="col"
             required
             rules={[
                 {
@@ -218,7 +215,6 @@ let kvRef:KVGroupInstance;
         <FormField
             label="登录账号"
             name="username"
-            layout="col"
             tooltip="Username is required"
             required
             rules={[
@@ -237,7 +233,6 @@ let kvRef:KVGroupInstance;
         <FormField
             label="登录密码"
             name="Password"
-            layout="col"
             required
             tooltip="登录密码"
             rules={[
@@ -256,7 +251,6 @@ let kvRef:KVGroupInstance;
         <FormField
             label="开始时间"
             name="start_time"
-            layout="col"
             required
             tooltip="开始时间"
             rules={[
@@ -272,7 +266,6 @@ let kvRef:KVGroupInstance;
         <FormField
             label="说明"
             name="remark"
-            layout="col"
             required
             rules={[
                 {
@@ -287,7 +280,6 @@ let kvRef:KVGroupInstance;
         <FormField
             label="环境变量"
             name="env"
-            layout="col"
             value={{k:"GOPATH", v:"/go"}}
             required
             rules={[
@@ -319,7 +311,6 @@ let kvRef:KVGroupInstance;
         <FormField
             label="构建命令"
             name="code"
-            layout="col"
             value="#!/bin/bash"
             required
             rules={[
@@ -344,7 +335,6 @@ let kvRef:KVGroupInstance;
         <FormField
             label="启用"
             name="switch"
-            layout="col"
             required
             rules={[
                 {
