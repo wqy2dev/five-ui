@@ -20,6 +20,7 @@ type KVLabel = {
     modal_title_edit: string;
     modal_cancel: string;
     modal_ok: string;
+    placeholder: string;
 }
 
 type KVProps = {
@@ -51,6 +52,7 @@ let {
         modal_title_edit: "Edit KV",
         modal_cancel: "Cancel",
         modal_ok: "Ok",
+        placeholder: "No data",
     },
     keyTip = "",
     valueTip = "",
@@ -143,6 +145,7 @@ $effect(() => {
         {label: label.action, key: "_", width: actionWidth, render:actionRender}
     ]}
     source={data}
+    placeholder={label.placeholder}
 />
 
 {#if modal.show}

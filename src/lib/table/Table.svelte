@@ -176,7 +176,7 @@ const {
                     </tr>
                 {/each}
             {:else}
-                <tr class="h-40 border-solid border-b border-slate-100">
+                <tr class="h-32 border-solid border-b border-slate-100">
                     <td 
                         class="text-center"
                         colspan={columns.length}
