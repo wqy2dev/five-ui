@@ -8,6 +8,7 @@ import { type Backdrop } from "$lib/overlay/Overlay.svelte";
 const modalVariants = tv({
 	slots: {
 		base: "flex flex-col w-full text-slate-700 bg-white shadow-sm overflow-hidden",
+		title: "flex flex-row items-center px-5 py-2 text-base text-slate-700",
 		overlay: "flex justify-center py-14",
 		content: "px-5 grow text-sm",
 		footer: "px-5 flex justify-end py-2 gap-4",
@@ -85,6 +86,7 @@ type ModalProps = {
 	id?:string;
     class?:{
 		outline?:string;
+		title?:string;
 		body?:string;
 		footer?:string;
 	};
@@ -142,6 +144,7 @@ function onOverlay(ev:MouseEvent) {
 const { 
 	base, 
 	overlay,
+	title:titleClass,
 	content,
 	footer,
 } = modalVariants({
@@ -161,10 +164,10 @@ const {
 	<div 
 		bind:this={el}
 		id={id}
-		class={base({className: className.outline})}
+		class={base({class:className.outline})}
 	>
 		{#if title}
-			<div class="flex flex-row items-center px-5 py-2 text-base text-slate-700">
+			<div class={titleClass({class:className.title})}>
 				<div class="grow leading-none">
 					{#if typeof title === "string"}
 						{title}
