@@ -1,6 +1,7 @@
 export type IconProps = {
   size?:number;
   class?:string;
+  ref?:{(el:SVGElement):void};
 }
 
 export { default as ArrowDown } from "./ArrowDown.svelte";
