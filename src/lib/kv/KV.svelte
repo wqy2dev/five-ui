@@ -148,6 +148,8 @@ $effect(() => {
 {#if modal.show}
     <Modal
         title={modal.value.index === -1 ? label.modal_title_add : label.modal_title_edit}
+        okText={label.modal_ok}
+        cancelText={label.modal_cancel}
         onok={onsubmit}
         oncancel={oncancel}
     >
