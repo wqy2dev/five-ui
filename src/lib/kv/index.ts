@@ -1,2 +1,2 @@
-export { default as KV, type KVInstance } from "./KV.svelte";
+export { default as KV, type KVInstance, type KVProps } from "./KV.svelte";
 

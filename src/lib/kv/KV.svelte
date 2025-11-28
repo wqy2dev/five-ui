@@ -23,7 +23,7 @@ type KVLabel = {
     placeholder: string;
 }
 
-type KVProps = {
+export type KVProps = {
     label?:KVLabel,
     value?:KVRow[];
     valueLength?:number;
