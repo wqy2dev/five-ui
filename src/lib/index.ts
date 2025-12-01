@@ -33,7 +33,7 @@ export { Slider } from "./slider/index.js";
 export { Space } from "./space/index.js";
 export { Steps } from "./steps/index.js";
 export { Switch } from "./switch/index.js";
-export { Table, type TableColumn } from "./table/index.js";
+export { Table, type TableColumn, type TableColRender } from "./table/index.js";
 export { Tab, TabBar, TabContent, Tabs } from "./tabs/index.js";
 export { Tag } from "./tag/index.js";
 export { Textarea } from "./textarea/index.js";

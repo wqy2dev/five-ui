@@ -1,5 +1,6 @@
 <script lang="ts" module>
-import { Button, Table, Modal, Form, FormField, FormHideField, Input, type FormFieldRule, type FormValidateError, type FormInstance } from "$lib/index.js";
+import { Button, Table, Modal, Form, FormField, FormHideField, Input, type FormFieldRule, type FormValidateError, type FormInstance, type TableColRender } from "$lib/index.js";
+import type { Snippet } from "svelte";
 
 export type KVInstance = {
     add: {():void};
@@ -26,12 +27,15 @@ type KVLabel = {
 export type KVProps = {
     label?:KVLabel,
     value?:KVRow[];
-    valueLength?:number;
     keyTip?:string;
     valueTip?:string;
     actionWidth?:string;
     keyRules?:FormFieldRule[];
     valueRules?:FormFieldRule[];
+    keyInput?:Snippet;
+    valueInput?:Snippet;
+    keyColRender?:TableColRender;
+    valueColRender?:TableColRender;
     onchange?:{(data:any):void};
 }
 
@@ -41,7 +45,6 @@ export type KVProps = {
 
 let {
     value = [],
-    valueLength,
     label = {
         key: "Key",
         value: "Value",
@@ -65,6 +68,10 @@ let {
         rule: (v) => v?.length > 0,
         msg: "Value is required",
     }],
+    keyInput,
+    valueInput,
+    keyColRender,
+    valueColRender,
     onchange,
 }:KVProps = $props();
 
@@ -140,8 +147,8 @@ $effect(() => {
     compact
     effect="hover"
     columns={[
-        {label: label.key, key: "key"},
-        {label: label.value, key: "value"},
+        {label: label.key, key: "key", render:keyColRender},
+        {label: label.value, key: "value", render:valueColRender},
         {label: label.action, key: "_", width: actionWidth, render:actionRender}
     ]}
     source={data}
@@ -169,8 +176,13 @@ $effect(() => {
                 rules={keyRules}
                 tooltip={keyTip}
             >
-                <Input/>
+                {#if keyInput}
+                    {@render keyInput()}
+                {:else}
+                    <Input/>
+                {/if}
             </FormField>
+
             <FormField
                 label={label.value}
                 name="value"
@@ -179,10 +191,11 @@ $effect(() => {
                 rules={valueRules}
                 tooltip={valueTip}
             >
-                <Input
-                    showCount={valueLength !== undefined}
-                    maxlength={valueLength}
-                />
+                {#if valueInput}
+                    {@render valueInput()}
+                {:else}
+                    <Input/>
+                {/if}
             </FormField>
 
             <FormHideField

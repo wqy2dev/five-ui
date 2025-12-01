@@ -1,1 +1,1 @@
-export { default as Table, type TableColumn } from "./Table.svelte";
+export { default as Table, type TableColumn, type TableColRender } from "./Table.svelte";

@@ -1,7 +1,6 @@
 <script lang="ts" module>
 import { tv } from "tailwind-variants";
 import { onMount, type Snippet } from "svelte";
-import { Squares4 } from "$lib/icons/index.js";
 
 const tableVariants = tv({
 	slots: {
@@ -66,6 +65,8 @@ const tableVariants = tv({
 	},
 });
 
+export type TableColRender = Snippet<[Record<string, any>, number]>;
+
 export type TableColumn = {
     // unique key
     key:string;
@@ -76,7 +77,7 @@ export type TableColumn = {
     // text alignment
     align?: "left"|"center"|"right",
     // custom render
-    render?:Snippet<[Record<string, any>, number]>;
+    render?:TableColRender;
     // column width
     width?:string;
 }
