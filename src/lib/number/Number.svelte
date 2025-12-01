@@ -240,8 +240,12 @@ const {
 
 	{#if !disabled && clearable && hover && value }
 		<div class={slot({slot:"erase"})}>
-			<button onmouseup={onErase}>
-				<Close size={15}/>
+			<button 
+			    type="button"
+			    onmouseup={onErase}
+				class="outline-none border-none bg-transparent leading-none inline w-[15px] h-[15px]"
+			>
+				<Close size={15} class="pointer-events-none inline"/>
 			</button>
 		</div>
 	{/if}
