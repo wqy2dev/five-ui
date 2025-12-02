@@ -52,7 +52,7 @@ let {
     size = "md",
     disabled,
     link,
-    target = "_blank",
+    target,
     children,
 }:MenuItemProps = $props();
 
