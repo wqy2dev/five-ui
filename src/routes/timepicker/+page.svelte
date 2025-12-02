@@ -20,7 +20,7 @@ const radius = ["sm", "md", "lg", "xl", "none"];
 </h4>
 
 <TimePicker 
-    value="12:30:145"
+    value="12:30:45"
     placeholder="TimePicker"
     placement="bottomStart"
     clearable={true}
@@ -38,3 +38,15 @@ const radius = ["sm", "md", "lg", "xl", "none"];
 </h4>
 
 <TimePicker disabled/>
+
+
+<h4 class="my-5 text-base indent-2 bg-slate-100">
+    Placement
+</h4>
+
+<TimePicker 
+    value="12:30:45"
+    placeholder="TimePicker"
+    placement="topStart"
+    clearable={true}
+/>
