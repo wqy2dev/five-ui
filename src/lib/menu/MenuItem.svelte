@@ -31,7 +31,7 @@ type MenuItemProps = {
     value?:string;
     size?:"sm"|"md"|"lg";
     link?:boolean;
-    target?:HTMLAttributeAnchorTarget;
+    target?:HTMLAttributeAnchorTarget | null;
     children:Snippet;
 }
 
