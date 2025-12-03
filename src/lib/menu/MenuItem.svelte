@@ -5,7 +5,7 @@ import { tv } from "tailwind-variants";
 import type { HTMLAttributeAnchorTarget } from "svelte/elements";
 
 const meunItemVariants = tv({
-    base: "relative flex flex-row items-center w-full h-fit mb-[2px] hover:bg-slate-100 disabled:hover:bg-transparent truncate text-left text-slate-600 disabled:text-slate-400 disabled:cursor-not-allowed rounded-md",
+    base: "relative flex flex-row items-center justify-between w-full h-fit mb-[2px] truncate text-left rounded-md",
     variants: {
         checked: {
             true: "bg-slate-100 text-slate-700",
@@ -14,15 +14,28 @@ const meunItemVariants = tv({
             sm: "py-1 px-2 text-[13px]",
             md: "py-2 px-4 text-[14px]",
             lg: "py-3 px-5 text-[15px]"
-        }
+        },
+        disabled: {
+            true: "text-slate-400 cursor-not-allowed",
+            false: "text-slate-600 cursor-pointer hover:bg-slate-100",
+        },
     },
     defaultVariants: {
         size: "md",
         checked: false,
+        disabled: false,
     },
 });
 
-type MenuItemProps = {
+type MenuItemExtra = {
+    label?:string;
+    value?:string;
+    link?:boolean;
+    disabled?:boolean;
+    target?:HTMLAttributeAnchorTarget | null;
+}
+
+export type MenuItemProps = {
     id?:string;
     class?:string;
     ref?:{(el:HTMLElement):void};
@@ -31,6 +44,7 @@ type MenuItemProps = {
     value?:string;
     link?:boolean;
     target?:HTMLAttributeAnchorTarget | null;
+    extra?:Snippet<[MenuItemExtra]>;
     children:Snippet;
 }
 
@@ -51,12 +65,15 @@ let {
     disabled,
     link,
     target,
+    extra,
     children,
 }:MenuItemProps = $props();
 
-function oncommand(_:Event) {
+function oncommand(e:Event) {
     if(!disabled) {
         ctx.value = value, ctx.label = label;
+    } else {
+        e.preventDefault();
     }
 }
 
@@ -77,26 +94,18 @@ function mount(el:HTMLElement) {
 
 </script>
 
-{#if link}
-    <a 
-        use:mount
-        id={id}
-        href={value}
-        target={target}
-        class={meunItemVariants({size:ctx.size, checked, className})}
-        onmousedown={oncommand}
-    >
-        {@render children()}
-    </a>
-{:else}
-    <button
-        use:mount
-        id={id}
-        type="button"
-        disabled={disabled}
-        class={meunItemVariants({size:ctx.size, checked, className})}
-        onmousedown={oncommand}
-    >
-        {@render children()}
-    </button>
-{/if}
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<svelte:element
+    use:mount
+    id={id}
+    this={link ? "a":"button"}
+    class={meunItemVariants({size:ctx.size, checked, disabled, className})}
+    onclick={oncommand}
+    {...(link ? {href:value, target}: {type: "button", disabled})}
+>
+    {@render children()}
+
+    {#if extra}
+        {@render extra({label, value, link, target})}
+    {/if}
+</svelte:element>

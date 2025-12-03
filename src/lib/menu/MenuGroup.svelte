@@ -4,8 +4,8 @@ import { tv } from "tailwind-variants";
 
 const meunGroupVariants = tv({
     slots: {
-        base: "w-full h-fit py-1 border-solid border-b border-slate-200",
-        title: "w-full h-fit text-slate-700",
+        base: "w-full h-fit border-solid border-b border-slate-200",
+        title: "w-full h-fit text-slate-800",
     },
     variants: {
         size: {
