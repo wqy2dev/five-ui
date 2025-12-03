@@ -31,7 +31,7 @@ const timeScaleVariants = tv({
 function scrollView(el:HTMLElement) {
     tick().then(() => {
         if(el.parentElement) {
-            el.parentElement.scrollTo({behavior:"smooth", top:el.offsetTop});
+            el.parentElement.scrollTo({behavior:"smooth", top:el.offsetTop - 4});
         }
     });
 }
