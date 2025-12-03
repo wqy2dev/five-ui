@@ -4,7 +4,7 @@ import { tv } from "tailwind-variants";
 
 const timeScaleVariants = tv({
     slots: {
-        base: "w-16 h-56 pl-2 pb-48 overflow-y-auto overflow-x-hidden",
+        base: "w-16 h-56 pl-2 pb-48 box-border overflow-y-auto overflow-x-hidden",
         button: "block w-full h-8 leading-8 rounded-md text-sm text-slate-700 hover:bg-slate-100"
     },
     variants: {
@@ -30,7 +30,9 @@ const timeScaleVariants = tv({
 
 function scrollView(el:HTMLElement) {
     tick().then(() => {
-        el.scrollIntoView({block:"start", behavior:"smooth"});
+        if(el.parentElement) {
+            el.parentElement.scrollTo({behavior:"smooth", top:el.offsetTop});
+        }
     });
 }
 
