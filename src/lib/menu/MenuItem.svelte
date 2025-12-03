@@ -5,15 +5,15 @@ import { tv } from "tailwind-variants";
 import type { HTMLAttributeAnchorTarget } from "svelte/elements";
 
 const meunItemVariants = tv({
-    base: "relative flex flex-row items-center w-full h-fit hover:bg-slate-100 disabled:hover:bg-transparent truncate text-left text-slate-700 disabled:text-slate-400 disabled:cursor-not-allowed rounded-md",
+    base: "relative flex flex-row items-center w-full h-fit hover:bg-slate-100 disabled:hover:bg-transparent truncate text-left text-slate-600 disabled:text-slate-400 disabled:cursor-not-allowed rounded-md",
     variants: {
         checked: {
-            true: "bg-slate-100",
+            true: "bg-slate-100 text-slate-700",
         },
         size: {
             sm: "py-1 px-2 text-[13px]",
-            md: "py-2 px-4 text-sm",
-            lg: "py-3 px-5 text-sm"
+            md: "py-2 px-4 text-[14px]",
+            lg: "py-3 px-5 text-[15px]"
         }
     },
     defaultVariants: {
@@ -29,7 +29,6 @@ type MenuItemProps = {
     disabled?:boolean;
     label?:string;
     value?:string;
-    size?:"sm"|"md"|"lg";
     link?:boolean;
     target?:HTMLAttributeAnchorTarget | null;
     children:Snippet;
@@ -49,7 +48,6 @@ let {
     ref,
     label,
     value,
-    size = "md",
     disabled,
     link,
     target,
@@ -85,7 +83,8 @@ function mount(el:HTMLElement) {
         id={id}
         href={value}
         target={target}
-        class={meunItemVariants({size, checked, className})}
+        class={meunItemVariants({size:ctx.size, checked, className})}
+        onmousedown={oncommand}
     >
         {@render children()}
     </a>
@@ -95,7 +94,7 @@ function mount(el:HTMLElement) {
         id={id}
         type="button"
         disabled={disabled}
-        class={meunItemVariants({size, checked, className})}
+        class={meunItemVariants({size:ctx.size, checked, className})}
         onmousedown={oncommand}
     >
         {@render children()}

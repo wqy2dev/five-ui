@@ -1,18 +1,22 @@
 <script lang="ts" module>
 
+export type MenuSize = "sm"|"md"|"lg";
+
 export type MenuContext = {
     label?:string;
     value?:string;
+    size?:MenuSize;
     stateful?:boolean;
 }
 
-type MenuProps = {
+export type MenuProps = {
     id?:string;
     class?:string;
     ref?:{(el:HTMLElement):void};
     children:Snippet;
     value?:string;
     stateful?:boolean;
+    size?:MenuSize;
     oncommand?:{(value?:string, label?:string):void};
 }
 
@@ -28,6 +32,7 @@ let {
     children,
     oncommand,
     value,
+    size = "md",
     stateful = false,
     class:className,
 }:MenuProps = $props();
@@ -37,6 +42,7 @@ let version = value;
 const ctx = $state({
     label: undefined,
     value,
+    size,
     stateful,
 });
 

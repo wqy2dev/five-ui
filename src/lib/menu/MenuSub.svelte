@@ -6,12 +6,12 @@ import { Dropdown } from "$lib/index.js";
 import { ChevronRight } from "$lib/icons/index.js";
 
 const meunSubVariants = tv({
-    base: "relative flex flex-row w-full items-center h-fit hover:bg-slate-100 truncate text-sm text-left text-slate-700 rounded-md cursor-pointer",
+    base: "relative flex flex-row w-full items-center h-fit hover:bg-slate-100 truncate text-left text-slate-600 rounded-md cursor-pointer",
     variants: {
         size: {
-            sm: "py-1 px-2",
-            md: "py-2 px-4",
-            lg: "py-3 px-5"
+            sm: "py-1 px-2 text-[13px]",
+            md: "py-2 px-4 text-[14px]",
+            lg: "py-3 px-5 text-[15px]"
         },
         disabled: {
             true: "hover:bg-transparent text-slate-400 cursor-not-allowed",
@@ -27,7 +27,6 @@ type MenuSubProps = {
     id?:string;
     class?:string;
     title:string;
-    size?:"sm"|"md"|"lg";
     placement?:"leftStart"|"leftEnd"|"rightStart"|"rightEnd";
     disabled?:boolean;
     children:Snippet;
@@ -45,7 +44,6 @@ let {
     id,
     class:className,
     title,
-    size = "md",
     placement = "rightStart",
     disabled = false,
     children,
@@ -60,7 +58,7 @@ let {
     {#snippet target(ref)}
         <div
             id={id}
-            class={meunSubVariants({size, disabled, className})}
+            class={meunSubVariants({size:ctx.size, disabled, className})}
             use:ref
         >
             {title}

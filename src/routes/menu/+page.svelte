@@ -71,16 +71,17 @@ import { Menu, MenuItem, MenuGroup, MenuSub  } from "$lib/index.js";
     <div class=" relative w-52 ">
         <Menu
             class="shadow-outline-md" 
+            size="sm"
             oncommand={(v, l) => {
                 console.log("value:", v, "l:", l);
             }}
         >
-            <MenuSub title="Operation" size="sm">
+            <MenuSub title="Operation">
                 <MenuItem value="copy">Copy</MenuItem>
                 <MenuItem value="delete">Delete</MenuItem>
             </MenuSub>
 
-            <MenuSub title="Export/Import" size="sm">
+            <MenuSub title="Export/Import">
                 <MenuItem value="export">Export</MenuItem>
                 <MenuItem value="import">Import</MenuItem>
             </MenuSub>
@@ -88,4 +89,23 @@ import { Menu, MenuItem, MenuGroup, MenuSub  } from "$lib/index.js";
             <MenuItem value="About">Delete</MenuItem>
         </Menu>
     </div>
+</div>
+
+<h4 class="my-5 text-base indent-2 bg-slate-100">
+    Stateful
+</h4>
+
+<div class="w-full">
+    <Menu class="shadow-outline-md" stateful={true}>
+        <MenuGroup title="功能">
+            <MenuItem value="copy">Copy</MenuItem>
+            <MenuItem value="delete">Delete</MenuItem>
+        </MenuGroup>
+        <MenuGroup title="操作">
+            <MenuItem value="export">Export</MenuItem>
+            <MenuItem value="import">Import</MenuItem>
+        </MenuGroup>
+        <MenuItem value="Share" disabled>Copy</MenuItem>
+        <MenuItem value="/" link={true}>Link</MenuItem>
+    </Menu>
 </div>
