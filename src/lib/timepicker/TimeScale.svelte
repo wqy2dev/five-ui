@@ -1,5 +1,5 @@
 <script lang="ts" module>
-import { tick } from "svelte";
+import { onMount, tick } from "svelte";
 import { tv } from "tailwind-variants";
 
 const timeScaleVariants = tv({
@@ -63,14 +63,18 @@ const elements:Record<string, HTMLElement> = {};
 
 function mount(el:HTMLElement, val:string) {
     elements[val] = el;
-
-    if(val === value) {
-        onchange?.(index, val), scrollView(el);
-    }
 }
 
 $effect(() => {
     current = value, elements[value] && scrollView(elements[value]);
+});
+
+onMount(() => {
+    if(elements[value]) {
+        scrollView(elements[value]);
+    }
+
+    onchange?.(index, value);
 });
 
 let {
