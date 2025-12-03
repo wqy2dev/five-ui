@@ -6,7 +6,7 @@ import { Dropdown } from "$lib/index.js";
 import { ChevronRight } from "$lib/icons/index.js";
 
 const meunSubVariants = tv({
-    base: "relative flex flex-row w-full items-center h-fit hover:bg-slate-100 truncate text-left text-slate-600 rounded-md cursor-pointer",
+    base: "relative flex flex-row w-full items-center h-fit mb-[2px] hover:bg-slate-100 truncate text-left text-slate-600 rounded-md cursor-pointer",
     variants: {
         size: {
             sm: "py-1 px-2 text-[13px]",

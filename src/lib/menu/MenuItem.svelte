@@ -5,7 +5,7 @@ import { tv } from "tailwind-variants";
 import type { HTMLAttributeAnchorTarget } from "svelte/elements";
 
 const meunItemVariants = tv({
-    base: "relative flex flex-row items-center w-full h-fit hover:bg-slate-100 disabled:hover:bg-transparent truncate text-left text-slate-600 disabled:text-slate-400 disabled:cursor-not-allowed rounded-md",
+    base: "relative flex flex-row items-center w-full h-fit mb-[2px] hover:bg-slate-100 disabled:hover:bg-transparent truncate text-left text-slate-600 disabled:text-slate-400 disabled:cursor-not-allowed rounded-md",
     variants: {
         checked: {
             true: "bg-slate-100 text-slate-700",
