@@ -83,9 +83,7 @@ $effect(() => {
     checked = ctx.stateful === true && ctx.value === value;
 });
 
-let el:HTMLElement;
-
-onMount(() => {
+function mount(el:HTMLElement) {
     ref?.(el);
 
     if(ctx.value === value) {
@@ -96,13 +94,13 @@ onMount(() => {
             ctx.target = el;
         }
     }
-});
+}
 
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <svelte:element
-    bind:this={el}
+    use:mount
     id={id}
     this={link ? "a":"button"}
     class={meunItemVariants({size:ctx.size, checked, disabled, className})}
