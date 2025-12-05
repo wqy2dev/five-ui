@@ -79,8 +79,8 @@ const kv = {
             modal_title_edit: "编辑环境变量",
             modal_cancel: "取消",
             modal_ok: "确认",
-            placeholder: "没有数据",
         }}
+        placeholder="没有数据"
     />
     <div>
         output: {JSON.stringify(output1)}
@@ -117,8 +117,8 @@ const kv = {
             modal_title_edit: "编辑",
             modal_cancel: "取消",
             modal_ok: "确认",
-            placeholder: "没有数据",
         }}
+        placeholder="没有数据"
     >
         {#snippet keyInput()}
             
