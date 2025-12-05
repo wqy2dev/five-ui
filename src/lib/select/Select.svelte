@@ -1,5 +1,5 @@
 <script lang="ts" module>
-import { getContext, onMount, type Snippet } from "svelte";
+import { getContext, onMount, tick, type Snippet } from "svelte";
 import { twMerge } from "tailwind-merge";
 import { type Size, type Radius } from "$lib/input/Input.svelte";
 import { type FormFieldContext } from "$lib/form/FormField.svelte";
@@ -27,7 +27,8 @@ type SelectProps = {
     optionsClass?:string;
     searchable?:boolean;
     clearable?:boolean;
-    empty?:Snippet;
+    locatable?:boolean;
+    empty?:Snippet|string;
     head?:Snippet;
     tail?:Snippet;
     onsearch?:{(value?:string):void};
@@ -50,7 +51,8 @@ let {
     disabled,
     placeholder,
     searchable = false,
-    clearable = true,
+    clearable = false,
+    locatable = true,
     options = [],
     option:optionRender,
     optionsClass,
@@ -58,7 +60,7 @@ let {
     radius,
     head,
     tail:tailSnippet,
-    empty,
+    empty = "No data",
     onsearch:onSearch,
     onchange,
     onkeypress,
@@ -92,8 +94,14 @@ let selected = $state<{
     value?:string,
 }>({label:"", value});
 
-function onselect(value?:string, label?:string) {
+function onselect(value?:string, label?:string, target?:HTMLElement) {
     selected = {label, value};
+
+    if(locatable && target) {
+        tick().then(() => {
+            target.parentElement!.scrollTo({behavior:"smooth", top:target.offsetTop});
+        });
+    }
 }
 
 let focused = $state(false);
@@ -212,10 +220,10 @@ let fitWidth = $state("");
                 </Menu>
             {:else}
                 <div class="flex items-center justify-center py-5 text-sm text-slate-400">
-                    {#if empty}
-                        {@render empty()}
+                    {#if typeof empty === "string"}
+                        {empty}
                     {:else}
-                        Empty data
+                        {@render empty?.()}
                     {/if}
                 </div>
             {/if}

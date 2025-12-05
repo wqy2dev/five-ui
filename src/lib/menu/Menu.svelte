@@ -5,6 +5,7 @@ export type MenuSize = "sm"|"md"|"lg";
 export type MenuContext = {
     label?:string;
     value?:string;
+    target?:HTMLElement;
     size?:MenuSize;
     stateful?:boolean;
 }
@@ -17,7 +18,7 @@ export type MenuProps = {
     value?:string;
     stateful?:boolean;
     size?:MenuSize;
-    oncommand?:{(value?:string, label?:string):void};
+    oncommand?:{(value?:string, label?:string, target?:HTMLElement):void};
 }
 
 </script>
@@ -39,9 +40,10 @@ let {
 
 let version = value;
 
-const ctx = $state({
+const ctx = $state<MenuContext>({
     label: undefined,
     value,
+    target: undefined,
     size,
     stateful,
 });
@@ -59,7 +61,7 @@ $effect(() => {
 });
 
 $effect(() => {
-    oncommand?.(ctx.value, ctx.label);
+    oncommand?.(ctx.value, ctx.label, ctx.target);
 });
 
 let el:HTMLElement;

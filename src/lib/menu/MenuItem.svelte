@@ -1,5 +1,5 @@
 <script lang="ts" module>
-import { getContext, type Snippet } from "svelte";
+import { getContext, onMount, type Snippet } from "svelte";
 import type { MenuContext } from "./Menu.svelte";
 import { tv } from "tailwind-variants";
 import type { HTMLAttributeAnchorTarget } from "svelte/elements";
@@ -83,20 +83,26 @@ $effect(() => {
     checked = ctx.stateful === true && ctx.value === value;
 });
 
-function mount(el:HTMLElement) {
+let el:HTMLElement;
+
+onMount(() => {
     ref?.(el);
 
     if(ctx.value === value) {
         ctx.label = label;
         ctx.value = value;
+
+        if(ctx.stateful === true) {
+            ctx.target = el;
+        }
     }
-}
+});
 
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <svelte:element
-    use:mount
+    bind:this={el}
     id={id}
     this={link ? "a":"button"}
     class={meunItemVariants({size:ctx.size, checked, disabled, className})}

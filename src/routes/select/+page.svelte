@@ -11,6 +11,17 @@ function onsearch(value?:string) {
     keywords = value ?? "";
 }
 
+const options = [
+            {value:"polo", label:"菠萝"},
+            {value:"apple", label:"苹果"},
+            {value:"orange", label:"橘子"},
+            {value:"putao", label:"葡萄", disabled:true},
+            {value:"banana", label:"香蕉"},
+            {value:"pear", label:"梨子"},
+            {value:"lz", label:"荔枝"},
+            {value:"mg", label:"芒果"},
+        ];
+
 </script>
 
 <svelte:head>
@@ -28,16 +39,10 @@ function onsearch(value?:string) {
 <div class="flex flex-row gap-5">
     <Select
         name="a" 
-        value={"0"}
+        value={"mg"}
         onchange={v => console.log("select:", v)}
         placeholder="please select"
-        options={[
-            {value:"polo", label:"菠萝"},
-            {value:"apple", label:"苹果"},
-            {value:"orange", label:"橘子"},
-            {value:"putao", label:"葡萄", disabled:true},
-            {value:"mg", label:"芒果"},
-        ]}
+        options={options}
     >
         {#snippet head()}
             <UserOutline/>
@@ -53,18 +58,12 @@ function onsearch(value?:string) {
 <div class="flex flex-row gap-5">
     <Select
         name="b" 
-        value="apple"
+        value="bannana"
         onchange={v => console.log("select:", v)}
         placeholder="please select"
         searchable
         onsearch={onsearch}
-        options={[
-            {value:"polo", label:"菠萝"},
-            {value:"apple", label:"苹果"},
-            {value:"juezi", label:"橘子"},
-            {value:"putao", label:"葡萄", disabled:true},
-            {value:"mg", label:"芒果"},
-        ].filter(v => v.label.indexOf(keywords) > -1)}
+        options={options.filter(v => v.label.indexOf(keywords) > -1)}
     >
         {#snippet option(opt)}
             🍉 {opt.label}
@@ -83,23 +82,17 @@ function onsearch(value?:string) {
 <div class="flex flex-row gap-5">
     <Select
         name="b" 
-        value="juezi"
+        value="lz"
         onchange={v => console.log("select:", v)}
         placeholder="please select"
-        options={[
-            {value:"polo", label:"菠萝"},
-            {value:"apple", label:"苹果"},
-            {value:"juezi", label:"橘子"},
-            {value:"putao", label:"葡萄", disabled:true},
-            {value:"mg", label:"芒果"},
-        ]}
+        options={options}
         disabled
     >
     </Select>
 </div>
 
 <h4 class="my-5 text-base indent-2 bg-slate-100">
-    Empty Data
+    No Data
 </h4>
 
 <div class="flex flex-row gap-5">
@@ -121,19 +114,13 @@ function onsearch(value?:string) {
     {#each sizes as size}
         <Select
             name="b" 
-            value="apple"
+            value="orange"
             size={size as any}
             onchange={v => console.log("select:", v)}
             placeholder="please select"
             searchable
             onsearch={onsearch}
-            options={[
-                {value:"polo", label:"菠萝"},
-                {value:"apple", label:"苹果"},
-                {value:"juezi", label:"橘子"},
-                {value:"putao", label:"葡萄", disabled:true},
-                {value:"mg", label:"芒果"},
-            ].filter(v => v.label.indexOf(keywords) > -1)}
+            options={options.filter(v => v.label.indexOf(keywords) > -1)}
         >
             {#snippet option(opt)}
                 🍉 {opt.label}
@@ -155,19 +142,13 @@ function onsearch(value?:string) {
     {#each radius as rds}
         <Select
             name="b" 
-            value="apple"
+            value="pear"
             radius={rds as any}
             onchange={v => console.log("select:", v)}
             placeholder="please select"
             searchable
             onsearch={onsearch}
-            options={[
-                {value:"polo", label:"菠萝"},
-                {value:"apple", label:"苹果"},
-                {value:"juezi", label:"橘子"},
-                {value:"putao", label:"葡萄", disabled:true},
-                {value:"mg", label:"芒果"},
-            ].filter(v => v.label.indexOf(keywords) > -1)}
+            options={options.filter(v => v.label.indexOf(keywords) > -1)}
         >
             {#snippet option(opt)}
                 🍉 {opt.label}
