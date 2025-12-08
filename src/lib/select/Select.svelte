@@ -89,17 +89,17 @@ function when(targetEl:HTMLElement, floatEl:HTMLElement) {
     return overflowRef.contains(targetEl) && targetEl.tagName === "BUTTON";
 }
 
-let selected = $state<{
-    label?:string,
-    value?:string,
-}>({label:"", value});
+let selected = $state<{label?:string, value?:string}>({label:"", value});
 
-function onselect(value?:string, label?:string, target?:HTMLElement) {
+function oncommand(value?:string, label?:string, target?:HTMLElement) {
     selected = {label, value};
 
     if(locatable && target) {
         tick().then(() => {
-            target.parentElement!.scrollTo({behavior:"smooth", top:target.offsetTop});
+            target.parentElement!.scrollTo({
+                top:target.offsetTop,
+                behavior:"smooth"
+            });
         });
     }
 }
@@ -199,7 +199,7 @@ let fitWidth = $state("");
             {#if options && options.length > 0}
                 <Menu 
                     class={twMerge("max-h-56 overflow-y-auto overflow-x-hidden", optionsClass)}
-                    oncommand={onselect}
+                    oncommand={oncommand}
                     value={selected.value}
                     stateful={true}
                     ref={ el => overflowRef = el }

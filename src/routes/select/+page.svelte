@@ -19,7 +19,12 @@ const options = [
             {value:"banana", label:"香蕉"},
             {value:"pear", label:"梨子"},
             {value:"lz", label:"荔枝"},
-            {value:"mg", label:"芒果"},
+            {value:"watermelon", label:"西瓜"},
+            {value:"jujube", label:"枣子"},
+            {value:"persimmon", label:"柿子"},
+            {value:"cantaloupe", label:"哈密瓜"},
+            {value:"longan", label:"龙眼"},
+            {value:"durian", label:"榴莲"},
         ];
 
 </script>

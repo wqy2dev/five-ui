@@ -1,8 +1,8 @@
 <script lang="ts" module>
-import { getContext, onMount, type Snippet } from "svelte";
+import { getContext, type Snippet } from "svelte";
 import type { MenuContext } from "./Menu.svelte";
-import { tv } from "tailwind-variants";
 import type { HTMLAttributeAnchorTarget } from "svelte/elements";
+import { tv } from "tailwind-variants";
 
 const meunItemVariants = tv({
     base: "relative flex flex-row items-center justify-between w-full h-fit mb-[2px] truncate text-left rounded-md",
@@ -39,10 +39,10 @@ export type MenuItemProps = {
     id?:string;
     class?:string;
     ref?:{(el:HTMLElement):void};
-    disabled?:boolean;
     label?:string;
-    value?:string;
+    value:string;
     link?:boolean;
+    disabled?:boolean;
     target?:HTMLAttributeAnchorTarget | null;
     extra?:Snippet<[MenuItemExtra]>;
     children:Snippet;
@@ -69,30 +69,25 @@ let {
     children,
 }:MenuItemProps = $props();
 
-function oncommand(e:Event) {
-    if(!disabled) {
-        ctx.value = value, ctx.label = label;
-    } else {
-        e.preventDefault();
-    }
-}
-
-let checked = $state(false);
-
-$effect(() => {
-    checked = ctx.stateful === true && ctx.value === value;
-});
+let elRef:HTMLElement;
 
 function mount(el:HTMLElement) {
     ref?.(el);
 
-    if(ctx.value === value) {
-        ctx.label = label;
-        ctx.value = value;
+    if(ctx.stateful) {
+        elRef = el;
+    }
 
-        if(ctx.stateful === true) {
-            ctx.target = el;
-        }
+    if(ctx.value === value) {
+        ctx.oncommand?.(value, label, el);
+    }
+}
+
+function oncommand(e:Event) {
+    if(disabled) {
+        e.preventDefault();
+    } else {
+        ctx.value = value, ctx.oncommand?.(value, label, elRef);
     }
 }
 
@@ -103,7 +98,7 @@ function mount(el:HTMLElement) {
     use:mount
     id={id}
     this={link ? "a":"button"}
-    class={meunItemVariants({size:ctx.size, checked, disabled, className})}
+    class={meunItemVariants({size:ctx.size, checked: ctx.stateful === true && ctx.value === value, disabled, className})}
     onclick={oncommand}
     {...(link ? {href:value, target}: {type: "button", disabled})}
 >

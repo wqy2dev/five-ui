@@ -3,11 +3,10 @@
 export type MenuSize = "sm"|"md"|"lg";
 
 export type MenuContext = {
-    label?:string;
-    value?:string;
-    target?:HTMLElement;
+    value:string;
     size?:MenuSize;
     stateful?:boolean;
+    oncommand?:{(value?:string, label?:string, target?:HTMLElement):void};
 }
 
 export type MenuProps = {
@@ -24,56 +23,37 @@ export type MenuProps = {
 </script>
 
 <script lang="ts">
-import { onMount, setContext, type Snippet } from "svelte";
+import { setContext, type Snippet } from "svelte";
 import { twMerge } from "tailwind-merge";
 
 let {
     id,
     ref,
     children,
-    oncommand,
     value,
     size = "md",
     stateful = false,
     class:className,
+    oncommand,
 }:MenuProps = $props();
 
-let version = value;
+function mount(el:HTMLElement) {
+    ref?.(el);
+}
 
-const ctx = $state<MenuContext>({
-    label: undefined,
+let context = $state({
     value,
-    target: undefined,
     size,
     stateful,
+    oncommand,
 });
 
-setContext("menu", ctx);
-
-$effect(() => {
-    if(version !== value) {
-        ctx.value = version = value;
-
-        if(value === undefined || value === "") {
-            ctx.label = undefined;
-        }
-    }
-});
-
-$effect(() => {
-    oncommand?.(ctx.value, ctx.label, ctx.target);
-});
-
-let el:HTMLElement;
-
-onMount(() => {
-    ref?.(el);
-});
+setContext("menu", context);
 
 </script>
 
 <div
-    bind:this={el}
+    use:mount
     id={id}
     class={twMerge("w-full h-fit space-y-1 bg-white", className)}
 >

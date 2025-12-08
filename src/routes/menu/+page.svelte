@@ -1,5 +1,9 @@
 <script lang="ts">
 import { Menu, MenuItem, MenuGroup, MenuSub, Tag  } from "$lib/index.js";
+
+function oncommand(value?:string, label?:string, target?:HTMLElement) {
+    console.log("cmd::", `${value}-${label}`);
+}
 </script>
 
 <svelte:head>
@@ -15,7 +19,7 @@ import { Menu, MenuItem, MenuGroup, MenuSub, Tag  } from "$lib/index.js";
 </h4>
 
 <div class="w-52">
-    <Menu class="shadow-outline-md">
+    <Menu class="shadow-outline-md" oncommand={oncommand}>
         <MenuGroup title="Action">
             <MenuItem value="copy">
                 Copy
@@ -48,7 +52,7 @@ import { Menu, MenuItem, MenuGroup, MenuSub, Tag  } from "$lib/index.js";
 </h4>
 
 <div class="w-52">
-    <Menu class="shadow-outline-md">
+    <Menu class="shadow-outline-md" oncommand={oncommand}>
         <MenuGroup title="功能">
             <MenuItem value="copy">Copy</MenuItem>
             <MenuItem value="delete">Delete</MenuItem>
@@ -66,9 +70,7 @@ import { Menu, MenuItem, MenuGroup, MenuSub, Tag  } from "$lib/index.js";
 
 <div class="flex flex-row w-[800px] gap-7">
     <div class=" relative w-52 ">
-        <Menu size="lg" class="shadow-outline-md" oncommand={(v, l) => {
-            console.log("value:", v, "l:", l);
-        }}>
+        <Menu size="lg" class="shadow-outline-md" oncommand={oncommand}>
             <MenuSub title="Operation">
                 {#snippet extra()}
                     <Tag variant="red">10</Tag>
@@ -91,9 +93,7 @@ import { Menu, MenuItem, MenuGroup, MenuSub, Tag  } from "$lib/index.js";
         </Menu>
     </div>
     <div class=" relative w-52 ">
-        <Menu class="shadow-outline-md" oncommand={(v, l) => {
-            console.log("value:", v, "l:", l);
-        }}>
+        <Menu class="shadow-outline-md" oncommand={oncommand}>
             <MenuSub title="Operation">
                 <MenuItem value="copy">Copy</MenuItem>
                 <MenuItem value="delete">Delete</MenuItem>
@@ -112,9 +112,7 @@ import { Menu, MenuItem, MenuGroup, MenuSub, Tag  } from "$lib/index.js";
         <Menu
             class="shadow-outline-md" 
             size="sm"
-            oncommand={(v, l) => {
-                console.log("value:", v, "l:", l);
-            }}
+            oncommand={oncommand}
         >
             <MenuSub title="Operation">
                 <MenuItem value="copy">Copy</MenuItem>
@@ -136,7 +134,7 @@ import { Menu, MenuItem, MenuGroup, MenuSub, Tag  } from "$lib/index.js";
 </h4>
 
 <div class="w-52">
-    <Menu class="shadow-outline-md" stateful={true}>
+    <Menu class="shadow-outline-md" stateful={true} oncommand={oncommand}>
         <MenuGroup title="功能">
             <MenuItem value="copy">Copy</MenuItem>
             <MenuItem value="delete">Delete</MenuItem>
