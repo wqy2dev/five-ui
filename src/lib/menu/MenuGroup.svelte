@@ -31,7 +31,10 @@ if(!hasContext("menu")) {
 
 type MenuGroupProps = {
     id?:string;
-    class?:string;
+    class?:{
+        base?:string;
+        title?:string;
+    };
     ref?:{(el:HTMLElement):void};
     title:string;
     children:Snippet;
@@ -60,9 +63,9 @@ let {
 <div
     bind:this={el}
     id={id}
-    class={base({className})}
+    class={base({class:className?.base})}
 >
-    <div class={titleClass()}>
+    <div class={titleClass({class:className?.title})}>
         {title}
     </div>
 
