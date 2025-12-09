@@ -36,7 +36,7 @@ type MenuGroupProps = {
         title?:string;
     };
     ref?:{(el:HTMLElement):void};
-    title:string;
+    title:string|Snippet;
     children:Snippet;
 }
 
@@ -66,7 +66,11 @@ let {
     class={base({class:className?.base})}
 >
     <div class={titleClass({class:className?.title})}>
-        {title}
+        {#if typeof title === "string" }
+            {title}
+        {:else}
+            {@render title()}
+        {/if}
     </div>
 
     {@render children()}
