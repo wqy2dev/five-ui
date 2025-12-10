@@ -27,11 +27,13 @@ const meunItemVariants = tv({
     },
 });
 
-type MenuItemExtra = {
+export type MenuItemExtra = {
     label?:string;
     value?:string;
     link?:boolean;
+    checked?:boolean;
     disabled?:boolean;
+    hover?:boolean;
     target?:HTMLAttributeAnchorTarget | null;
 }
 
@@ -91,6 +93,16 @@ function oncommand(e:Event) {
     }
 }
 
+let hover = $state(false);
+
+function onhover(e:Event) {
+    hover = e.type === "mouseenter";
+}
+
+let checked = $derived.by(() => {
+    return ctx.stateful === true && ctx.value === value;
+});
+
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -98,13 +110,17 @@ function oncommand(e:Event) {
     use:mount
     id={id}
     this={link ? "a":"button"}
-    class={meunItemVariants({size:ctx.size, checked: ctx.stateful === true && ctx.value === value, disabled, className})}
+    class={meunItemVariants({size:ctx.size, disabled, checked, className})}
     onclick={oncommand}
+    {...(extra && !disabled ? {
+        onmouseenter:onhover,
+        onmouseleave:onhover
+    }:{})}
     {...(link ? {href:value, target}: {type: "button", disabled})}
 >
     {@render children()}
 
     {#if extra}
-        {@render extra({label, value, link, target})}
+        {@render extra({label, value, link, target, hover, checked, disabled})}
     {/if}
 </svelte:element>

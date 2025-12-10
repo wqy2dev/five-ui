@@ -1,5 +1,6 @@
 <script lang="ts">
-import { Menu, MenuItem, MenuGroup, MenuSub, Tag  } from "$lib/index.js";
+import { FolderPlus, Plus, TrashOutline } from "$lib/icons/index.js";
+import { Menu, MenuItem, MenuGroup, MenuSub, Tag, type MenuItemExtra  } from "$lib/index.js";
 
 function oncommand(value?:string, label?:string, target?:HTMLElement) {
     console.log("cmd::", `${value}-${label}`);
@@ -146,5 +147,35 @@ function oncommand(value?:string, label?:string, target?:HTMLElement) {
         <MenuItem value="share" disabled>Copy</MenuItem>
         <MenuItem value="share" link={true} disabled>Disable Link</MenuItem>
         <MenuItem value="/" link={true}>Link</MenuItem>
+    </Menu>
+</div>
+
+<h4 class="my-5 text-base indent-2 bg-slate-100">
+    With Operation
+</h4>
+
+<div class="w-52">
+    {#snippet menuExtra(params:MenuItemExtra)}
+        {#if params.hover || params.checked}
+            <TrashOutline size={14}/>
+        {/if}
+    {/snippet}
+
+    <Menu class="shadow-outline-md" stateful={true} oncommand={oncommand}>
+        <MenuGroup title="功能">
+            {#snippet extra(hover)}
+                {#if hover}
+                    <FolderPlus size={16}/>
+                {/if}
+            {/snippet}
+
+            <MenuItem value="copy" extra={menuExtra}>Copy</MenuItem>
+            <MenuItem value="delete" extra={menuExtra}>Delete</MenuItem>
+            <MenuItem value="export" extra={menuExtra}>Export</MenuItem>
+            <MenuItem value="import" extra={menuExtra}>Import</MenuItem>
+            <MenuItem value="share" disabled>Copy</MenuItem>
+            <MenuItem value="share" extra={menuExtra} link={true} disabled>Disable Link</MenuItem>
+            <MenuItem value="/" extra={menuExtra} link={true}>Link</MenuItem>
+        </MenuGroup>
     </Menu>
 </div>
