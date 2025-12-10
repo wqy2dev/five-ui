@@ -4,17 +4,20 @@ export type AccordionOnChange = {(key:string, expand:boolean):void};
 export type AccordionShrink = {(key:string, fn:{():void}):void};
 
 export interface AccordionContext {
-    expandKeys?:string[];
-    disableKeys?:string[];
+    expandKeys:string[];
+    disableKeys:string[];
     shrink:AccordionShrink;
     onchange?:AccordionOnChange;
 }
 
-interface AccordionItemProps extends Omit<AccordionContext, "shrink"> {
+interface AccordionItemProps {
     id?:string;
     class?:string;
     accordion?:boolean;
     ref?:{(el:HTMLElement):void};
+    expandKeys?:string[];
+    disableKeys?:string[];
+    onchange?:AccordionOnChange;
     children?:Snippet;
 }
 
@@ -29,8 +32,8 @@ let {
 	ref,
     class:className,
     accordion,
-    disableKeys,
-    expandKeys,
+    disableKeys = [],
+    expandKeys = [],
     onchange:onChange,
     children
 }:AccordionItemProps = $props();

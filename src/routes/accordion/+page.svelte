@@ -1,5 +1,6 @@
 <script lang="ts">
-import { LockCloseOutline, LockOpenOutline, Plus, Minus } from "$lib/icons/index.js";
+    import Button from "$lib/button/Button.svelte";
+import { LockCloseOutline, LockOpenOutline, Plus, Minus, Star, Camera } from "$lib/icons/index.js";
 import { Accordion, AccordionItem } from "$lib/index.js";
 </script>
 
@@ -16,6 +17,15 @@ import { Accordion, AccordionItem } from "$lib/index.js";
         Default
     </h4>
 
+    {#snippet view(expand:boolean)}
+        <Button size="sm" variant="ghost">
+            <Camera/>
+        </Button>
+        <Button size="sm" variant="ghost">
+            <Star/>
+        </Button>
+    {/snippet}
+
     <Accordion
         onchange={(key, expand) => {
             console.log("Accordion:", key, expand);
@@ -25,18 +35,21 @@ import { Accordion, AccordionItem } from "$lib/index.js";
             key="A"
             title="Summary of Famous Phrases"
             class="AccordionItem"
+            extra={view}
         >
             "‘I’m fine’ doesn’t mean you’ve finally reached a point where you have money, friends, and people to care for you. Instead, it means you’ve finally grown accustomed to days without money, without friends, and without anyone to look after you. ‘I’m fine’ is telling them that you are increasingly able to accept reality, rather than becoming more pragmatic. I’m not as fragile as you think; even without you, I can still live very well."
         </AccordionItem>
         <AccordionItem
             key="B"
             title="Summary of Famous Phrases"
+            extra={view}
         >
             "‘I’m fine’ doesn’t mean you’ve finally reached a point where you have money, friends, and people to care for you. Instead, it means you’ve finally grown accustomed to days without money, without friends, and without anyone to look after you. ‘I’m fine’ is telling them that you are increasingly able to accept reality, rather than becoming more pragmatic. I’m not as fragile as you think; even without you, I can still live very well."
         </AccordionItem>
         <AccordionItem
             key="C"
             title="Summary of Famous Phrases"
+            extra={view}
         >
             "‘I’m fine’ doesn’t mean you’ve finally reached a point where you have money, friends, and people to care for you. Instead, it means you’ve finally grown accustomed to days without money, without friends, and without anyone to look after you. ‘I’m fine’ is telling them that you are increasingly able to accept reality, rather than becoming more pragmatic. I’m not as fragile as you think; even without you, I can still live very well."
         </AccordionItem>

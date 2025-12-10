@@ -9,7 +9,7 @@ const accordionItemVariants = tv({
     slots: {
         base: "relative w-full",
         arrow: "transition-transform",
-        button: "w-full flex flex-row items-center py-3 text-sm",
+        button: "w-full h-fit flex flex-row items-center py-3 text-sm",
     },
     variants: {
         expand: {
@@ -37,6 +37,7 @@ type AccordionItemProps = {
     key:string;
     title:string|Snippet;
     icon?:Snippet<[boolean]>;
+    extra?:Snippet<[boolean]>;
     children?:Snippet;
 }
 
@@ -57,6 +58,7 @@ let {
     class:className,
     headerClass:headerClassName,
     icon,
+    extra,
     children
 }:AccordionItemProps = $props();
 
@@ -98,23 +100,26 @@ onMount(() => {
         class={button({disable, className:headerClassName })}
         onclick={onclick}
     >
-        <div class="grow text-start">
-            {#if typeof title === "string"}
-                <span>
+        <div class="relative grow text-start flex flex-row items-center justify-between">
+            <div class="grow">
+                {#if typeof title === "string"}
                     {title}
-                </span>
-            {:else}
-                {@render title()}
+                {:else}
+                    {@render title()}
+                {/if}
+            </div>
+            
+            {#if extra}
+                <div class="w-fit shrink-0 mr-2">
+                    {@render extra(expand)}
+                </div>
             {/if}
         </div>
         <div class="flex items-center ml-auto shrink-0 text-slate-400">
             {#if icon}
-                {@render icon(!!expand)}
+                {@render icon(expand)}
             {:else}
-                <ChevronRight 
-                    size={14}
-                    class={arrow({expand})}
-                />
+                <ChevronRight size={14} class={arrow({expand})}/>
             {/if}
         </div>
     </button>
