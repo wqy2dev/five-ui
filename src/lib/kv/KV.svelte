@@ -1,6 +1,7 @@
 <script lang="ts" module>
+import type { FormFieldContext } from "$lib/form/index.js";
 import { Button, Table, Modal, Form, FormField, FormHideField, Input, type FormFieldRule, type FormValidateError, type FormInstance, type TableColRender } from "$lib/index.js";
-import type { Snippet } from "svelte";
+import { getContext, type Snippet } from "svelte";
 
 export type KVInstance = {
     add: {():void};
@@ -74,6 +75,15 @@ let {
     placeholder = "No data",
     onchange,
 }:KVProps = $props();
+
+const fieldContext = getContext<FormFieldContext>("formField");
+if(fieldContext) {
+    onchange = fieldContext.onchange, value = [];
+
+    if(fieldContext.value instanceof Array) {
+        value = fieldContext.value;
+    }
+}
 
 let data = $state(value);
 

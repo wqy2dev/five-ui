@@ -170,8 +170,8 @@ function onErase(_:MouseEvent) {
 	if(inner) {
 		inner.focus();
 	}
-console.log("Input onErase");
-    onchange?.("");
+
+	onchange?.("");
 }
 
 function onFocus(e:FocusEvent) {
