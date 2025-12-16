@@ -14,7 +14,7 @@ export { DatePicker } from "./datepicker/index.js";
 export { Drawer } from "./drawer/index.js";
 export { Dropdown } from "./dropdown/index.js";
 export { Editor, Langs, Themes } from "./editor/index.js";
-export { Form, FormField, FormHideField, type FormInstance, type FormValidateError, type FormFieldProps, type FormFieldRule } from "./form/index.js";
+export { Form, FormField, FormHideField, type FormInstance, type FormValidateError, type FormFieldProps, type FormFieldRule, type FormFieldContext } from "./form/index.js";
 export { Input } from "./input/index.js";
 export { KV, type KVInstance, type KVProps } from "./kv/index.js";
 export { Layout, Side, Header, Content } from "./layout/index.js";
