@@ -1,16 +1,11 @@
 <script lang="ts" module>
-/// 12:00:00 or 12:00
-export const TimeFormat = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/;
 
-// Parse time value
-function parse(value:string, count:number) {
-    if(value === "" || !TimeFormat.test(value)) {
-        return Array(count).fill("");
-    }
-    return value.split(":").slice(0, count);
+function isFilled(value:string[], size:number) {
+    let ok = value[0] !== "" && value[1] !== "";
+    return size === 2 ? ok : ok && value[2] !== "";
 }
 
-function timeNow( withSeconds:boolean ) {
+function timeNow(withSeconds:boolean) {
     const date = new Date();
     const hours = String(date.getHours()).padStart(2, '0'); 
     const minutes = String(date.getMinutes()).padStart(2, '0');
@@ -23,8 +18,8 @@ export type PanelValue = {
     value:string[];
 }
 
-export type PickerProps = {
-    value?:string; // 12:00:00 or 12:00
+export type TimePanelProps = {
+    value:string[]; // 12:00:00 or 12:00
     okText?:string;
 	nowText?:string;
     ranges:number[];
@@ -40,27 +35,19 @@ import { Button } from "$lib/index.js";
 import TimeScale from "$lib/timepicker/TimeScale.svelte";
 
 let {
-    value = "",
+    value,
     okText = "OK",
     nowText = "Now",
     ranges,
     onok,
     onhover,
     onchange,
-}:PickerProps = $props();
+}:TimePanelProps = $props();
 
-let hms = $state({event:false, value:parse(value, ranges.length)});
+let hms = $state({event:false, value});
+
 let ok = $derived.by(() => {
-    let b = hms.value[0] !== "" && hms.value[1] !== "";
-    if(ranges.length === 2) {
-        return b;
-    }
-
-    return b && hms.value[2] !== "";
-});
-
-$effect(() => {
-    hms = {event:false, value:parse(value, ranges.length)};
+    return isFilled(hms.value, ranges.length);
 });
 
 function onChange(index:number, value:string) {
@@ -70,6 +57,10 @@ function onChange(index:number, value:string) {
 function onSave(v:PanelValue) {
     onok?.(v);
 }
+
+$effect(() => {
+    hms = {event:false, value};
+});
 
 $effect(() => {
     if(ok) {

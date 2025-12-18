@@ -4,6 +4,19 @@ import { twMerge } from "tailwind-merge";
 import type { FullAutoFill } from "svelte/elements";
 import type { Radius, Size } from "$lib/input/Input.svelte";
 
+const Scales = [24, 60, 60];
+
+/// 12:00:00 or 12:00
+const TimeFormat = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/;
+
+// Parse time value
+function parseValue(value:string, size:number) {
+    if(value === "" || !TimeFormat.test(value)) {
+        return Array(size).fill("");
+    }
+    return value.split(":").slice(0, size);
+}
+
 export type TimePickerProps = {
 	id?:string;
 	class?:string;
@@ -34,7 +47,7 @@ export type TimePickerProps = {
 <script lang="ts">
 import { Popper, Input, type PopperInstance } from "$lib/index.js";
 import Clock from "$lib/icons/Clock.svelte";
-import TimePanel, { TimeFormat, type PanelValue } from "$lib/timepicker/TimePanel.svelte";
+import TimePanel, { type PanelValue } from "$lib/timepicker/TimePanel.svelte";
 import type { FormFieldContext } from "$lib/form/FormField.svelte";
 
 let {
@@ -43,7 +56,7 @@ let {
     head,
     name,
     class:className,
-    value:defaultValue,
+    value:defaultValue = "",
     size,
 	radius,
     disabled,
@@ -66,8 +79,7 @@ if(fieldContext) {
     defaultValue = "";
     onchange = fieldContext.onchange;
 
-    let t = typeof fieldContext.value;
-	if(t === "string") {
+	if(typeof fieldContext.value === "string") {
         defaultValue = fieldContext.value;
     }
 } else {
@@ -76,8 +88,15 @@ if(fieldContext) {
 	});
 }
 
+const partSize = format === "hh:mm" ? 2 : 3;
+
 let value = $state(defaultValue);
 let placeholder = $state({show:false, text:""});
+
+// value array
+let valueArray = $derived.by(() => {
+	return parseValue(value, partSize);
+});
 
 // input onChange
 function onChange(v:string) {
@@ -169,6 +188,8 @@ $effect(() => {
 {#if disabled}
     {@render input(true, undefined)}
 {:else}
+    {@const ranges = Scales.slice(0, partSize)}
+
 	<Popper
 		bind:this={popper}
 		class={{
@@ -186,8 +207,8 @@ $effect(() => {
 		{/snippet}
 
 		<TimePanel
-			value={value}
-			ranges={[24, 60, 60].slice(0, format === "hh:mm" ? 2 : 3)}
+			value={valueArray}
+			ranges={ranges}
 			okText={okText}
 			nowText={nowText}
 			onok={onSave}
