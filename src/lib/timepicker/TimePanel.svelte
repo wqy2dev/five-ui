@@ -19,7 +19,7 @@ export type PanelValue = {
 }
 
 export type TimePanelProps = {
-    value:string[]; // 12:00:00 or 12:00
+    value:string[];
     okText?:string;
 	nowText?:string;
     ranges:number[];
