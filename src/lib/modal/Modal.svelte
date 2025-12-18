@@ -192,10 +192,10 @@ const {
 			{@render children()}
 		</div>
 
-		<div class={footer({className: className.footer})}>
-			{#if footerSnippet}
-				{@render footerSnippet()}
-			{:else}
+		{#if footerSnippet}
+			{@render footerSnippet()}
+		{:else}
+			<div class={footer({className: className.footer})}>
 				<Button
 					size="sm"
 					variant="outline"
@@ -209,7 +209,7 @@ const {
 				>
 					{okText}
 				</Button>
-			{/if}
-		</div>
+			</div>
+		{/if}
 	</div>
 </Overlay>
