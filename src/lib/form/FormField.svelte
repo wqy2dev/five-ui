@@ -3,7 +3,7 @@ import { tv, type VariantProps } from "tailwind-variants";
 
 const formFieldVariants = tv({
     slots: {
-        base: "w-full shrink-0 leading-none mb-1",
+        base: "w-full shrink-0 leading-none mb-4",
         label: "relative flex flex-row items-center text-sm text-slate-700",
         input: "relative",
     },
@@ -165,7 +165,7 @@ const {
         {@render children()}
 
         {#if fieldError}
-            <div class="text-red-500 text-[13px] leading-5">
+            <div class="text-red-500 text-[13px] h-6 leading-6">
                 {fieldError}
             </div>
         {/if}
