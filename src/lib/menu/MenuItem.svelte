@@ -7,9 +7,6 @@ import { tv } from "tailwind-variants";
 const meunItemVariants = tv({
     base: "relative flex flex-row items-center justify-between w-full h-fit mb-[2px] truncate text-left rounded-md",
     variants: {
-        checked: {
-            true: "bg-slate-100 text-slate-700",
-        },
         size: {
             sm: "py-1 px-2 text-[13px]",
             md: "py-2 px-4 text-[14px]",
@@ -17,7 +14,10 @@ const meunItemVariants = tv({
         },
         disabled: {
             true: "text-slate-400 cursor-not-allowed",
-            false: "text-slate-600 cursor-pointer hover:bg-slate-100",
+            false: "text-slate-700 cursor-pointer hover:bg-slate-100",
+        },
+        checked: {
+            true: "bg-slate-100 text-primary-700",
         },
     },
     defaultVariants: {

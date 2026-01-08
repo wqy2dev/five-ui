@@ -61,6 +61,7 @@ export { default as EllipsisHorizontal } from "./EllipsisHorizontal.svelte";
 export { default as EllipsisVertical } from "./EllipsisVertical.svelte";
 export { default as ErrorCircleOutline } from "./ErrorCircleOutline.svelte";
 export { default as ErrorCircleSolid } from "./ErrorCircleSolid.svelte";
+export { default as DocumentText } from "./DocumentText.svelte";
 export { default as Flag } from "./Flag.svelte";
 export { default as Folder } from "./Folder.svelte";
 export { default as FolderArrowDown } from "./FolderArrowDown.svelte";

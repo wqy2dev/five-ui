@@ -8,7 +8,7 @@ interface DropdownProps extends Omit<PopperProps, "when"|"class"> {
 let {
     children,
     placement = "bottomStart",
-    useArrow = true,
+    useArrow = false,
     trigger = "toggle",
     ...restProps
 }:DropdownProps = $props();

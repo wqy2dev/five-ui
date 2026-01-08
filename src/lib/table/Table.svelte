@@ -7,7 +7,8 @@ const tableVariants = tv({
         wrapper: "relative rounded-lg min-w-full overflow-x-auto overflow-y-hidden",
         table: "w-full border-collapse border-spacing-0 table table-fixed",
         row: "h-12",
-        column: "text-sm text-slate-600 truncate px-2",
+        column: "text-sm text-slate-700 truncate px-2",
+        empty: "h-40 border-solid border-b border-slate-100",
     },
 	variants: {
         effect: {
@@ -84,7 +85,10 @@ export type TableColumn = {
 
 type TableProps = {
     id?:string;
-    class?:string;
+    class?:{
+        base?:string,
+        empty?:string,
+    };
     ref?:{(el:HTMLElement):void};
     // table columns
     columns:TableColumn[];
@@ -103,6 +107,7 @@ type TableProps = {
 </script>
 
 <script lang="ts">
+import DocumentText from "$lib/icons/DocumentText.svelte";
 
 let {
     id,
@@ -127,6 +132,7 @@ const {
     table,
     row,
     column,
+    empty,
 } = tableVariants({
     bordered,
 });
@@ -136,7 +142,7 @@ const {
 <div
     bind:this={el}
     id={id}
-    class={wrapper({className})}
+    class={wrapper({className: className?.base})}
 >
     <table class={table()}>
         <colgroup>
@@ -177,13 +183,22 @@ const {
                     </tr>
                 {/each}
             {:else}
-                <tr class="h-32 border-solid border-b border-slate-100">
+                <tr class={empty({className: className?.empty})}>
                     <td 
                         class="text-center"
                         colspan={columns.length}
                     >
                         {#if typeof placeholder === "string"}
-                            <span class="text-slate-400 text-sm">{placeholder}</span>
+                            <span class="inline-block">
+                                <DocumentText
+                                    class="block text-slate-200"
+                                    size={60}
+                                />
+
+                                <span class="text-slate-400 text-[13px]">
+                                    {placeholder}
+                                </span>
+                            </span>
                         {:else}
                             {@render placeholder()}
                         {/if}

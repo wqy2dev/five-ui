@@ -3,7 +3,7 @@ import { getContext, onMount, tick, type Snippet } from "svelte";
 import { twMerge } from "tailwind-merge";
 import { type Size, type Radius } from "$lib/input/Input.svelte";
 import { type FormFieldContext } from "$lib/form/FormField.svelte";
-import { ChevronDown } from "$lib/icons/index.js";
+import { ChevronDown, DocumentText } from "$lib/icons/index.js";
 import { Popper, Input, Menu, MenuItem } from "$lib/index.js";
 
 export type SelectOption = {
@@ -28,6 +28,7 @@ type SelectProps = {
     searchable?:boolean;
     clearable?:boolean;
     locatable?:boolean;
+    useArrow?:boolean;
     empty?:Snippet|string;
     head?:Snippet;
     tail?:Snippet;
@@ -53,6 +54,7 @@ let {
     searchable = false,
     clearable = false,
     locatable = true,
+    useArrow = false,
     options = [],
     option:optionRender,
     optionsClass,
@@ -186,7 +188,7 @@ let fitWidth = $state("");
         when={when}
         trigger="toggle"
         placement="bottom"
-        useArrow={true}
+        useArrow={useArrow}
     >
         {#snippet target(ref)}
             {@render input(false, ref)}
@@ -219,9 +221,18 @@ let fitWidth = $state("");
                     {/each}
                 </Menu>
             {:else}
-                <div class="flex items-center justify-center py-5 text-sm text-slate-400">
+                <div class="text-center py-5">
                     {#if typeof empty === "string"}
-                        {empty}
+                        <span class="inline-block">
+                            <DocumentText
+                                class="block text-slate-200"
+                                size={60}
+                            />
+
+                            <span class="text-slate-400 text-[13px]">
+                                {empty}
+                            </span>
+                        </span>
                     {:else}
                         {@render empty?.()}
                     {/if}

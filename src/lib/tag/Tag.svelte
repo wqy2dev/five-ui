@@ -4,7 +4,7 @@ import { type Snippet, onMount } from "svelte";
 import { Close } from "$lib/icons/index.js";
 
 const tagVariants = tv({
-    base: "inline-flex items-center gap-1 py-1 font-semibold",
+    base: "inline-flex items-center gap-1 py-1",
     variants: {
         variant: {
             amber: "bg-amber-100 text-amber-600",
