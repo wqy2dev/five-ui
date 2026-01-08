@@ -252,6 +252,7 @@ let kv:KVInstance;
             name="start_time"
             required
             tooltip="开始时间"
+            offset={10}
             rules={[
                 {
                     rule: (value) => value !== "",

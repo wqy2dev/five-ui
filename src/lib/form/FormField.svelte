@@ -44,6 +44,7 @@ export type FormFieldProps = {
     labelClass?:string;
     required?:boolean;
     tooltip?:string;
+    offset?:number;
     class?:string;
     rules?:FormFieldRule[];
     onchange?:{(value?:any):void};
@@ -71,6 +72,7 @@ let {
     label:title,
     labelClass,
     tooltip,
+    offset = 0,
     required,
     onchange:watch,
     children,
@@ -144,6 +146,7 @@ const {
         {#if tooltip}
             <Tooltip
                 placement="bottom"
+                offset={offset}
             >
                 {#snippet target(ref)}
                     <span class="inline-block" use:ref>

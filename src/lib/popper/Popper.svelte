@@ -7,7 +7,7 @@ export type Trigger = "hover" | "focus" | "click" | "toggle";
 export type Placement = "top" | "topStart" | "topEnd" | "bottom" | "bottomStart" | "bottomEnd" | "left" | "leftStart" | "leftEnd" | "right" | "rightStart" | "rightEnd";
 
 // Calculate the position of the popper
-function position(refEl:HTMLElement, floatEl:HTMLElement, placement:Placement, offset:number) {
+function position(refEl:HTMLElement, floatEl:HTMLElement, placement:Placement, margin:number, offset:number) {
     let { 
         top,
         left
@@ -15,48 +15,52 @@ function position(refEl:HTMLElement, floatEl:HTMLElement, placement:Placement, o
 
     switch (placement){
         case "top":
-            top  = top - floatEl.offsetHeight - offset;
-            left = left + (refEl.offsetWidth - floatEl.offsetWidth) / 2;
+            top  = top - floatEl.offsetHeight - margin;
+            left = left + (refEl.offsetWidth - floatEl.offsetWidth) / 2 + offset;
             break;
         case "topStart":
-            top  = top - floatEl.offsetHeight - offset;
+            top  = top - floatEl.offsetHeight - margin;
+            left += offset;
             break;
         case "topEnd":
-            top  = top - floatEl.offsetHeight - offset;
-            left = refEl.offsetWidth - floatEl.offsetWidth + left;
+            top  = top - floatEl.offsetHeight - margin;
+            left = refEl.offsetWidth - floatEl.offsetWidth + left + offset;
             break;
         case "bottom":
-            top  = top + refEl.offsetHeight + offset;
-            left = left + (refEl.offsetWidth - floatEl.offsetWidth) / 2;
+            top  = top + refEl.offsetHeight + margin;
+            left = left + (refEl.offsetWidth - floatEl.offsetWidth) / 2 + offset;
             break;
         case "bottomStart":
-            top = top + refEl.offsetHeight + offset;
+            top = top + refEl.offsetHeight + margin;
+            left += offset;
             break;
         case "bottomEnd":
-            top  = top + refEl.offsetHeight + offset;
-            left = refEl.offsetWidth - floatEl.offsetWidth + left;
+            top  = top + refEl.offsetHeight + margin;
+            left = refEl.offsetWidth - floatEl.offsetWidth + left + offset;
             break;
         case "left":
-            left = left - floatEl.offsetWidth - offset;
-            top  = top + (refEl.offsetHeight - floatEl.offsetHeight) / 2;
+            left = left - floatEl.offsetWidth - margin;
+            top  = top + (refEl.offsetHeight - floatEl.offsetHeight) / 2 + offset;
             break;
         case "leftStart":
-            left = left - floatEl.offsetWidth - offset;
+            left = left - floatEl.offsetWidth - margin;
+            top += offset;
             break;
         case "leftEnd":
-            left = left - floatEl.offsetWidth - offset;
-            top  = refEl.offsetHeight - floatEl.offsetHeight + top;
+            left = left - floatEl.offsetWidth - margin;
+            top  = refEl.offsetHeight - floatEl.offsetHeight + top + offset;
             break;
         case "right":
-            top  = top + (refEl.offsetHeight - floatEl.offsetHeight) / 2;
-            left = left + refEl.offsetWidth + offset;
+            top  = top + (refEl.offsetHeight - floatEl.offsetHeight) / 2 + offset;
+            left = left + refEl.offsetWidth + margin;
             break;
         case "rightStart":
-            left = left + refEl.offsetWidth + offset;
+            left = left + refEl.offsetWidth + margin;
+            top += offset;
             break;
         case "rightEnd":
             top  = refEl.offsetHeight - floatEl.offsetHeight + top;
-            left = left + refEl.offsetWidth + offset;
+            left = left + refEl.offsetWidth + margin + offset;
             break;
     }
 
@@ -75,57 +79,57 @@ function position(refEl:HTMLElement, floatEl:HTMLElement, placement:Placement, o
 }
 
 // Calculate the position of the arrow
-function arrowPosition(refEl:HTMLElement, floatEl:HTMLElement, arrowEl:HTMLElement, placement:Placement) {
+function arrowPosition(refEl:HTMLElement, floatEl:HTMLElement, arrowEl:HTMLElement, placement:Placement, offset:number) {
     let top = 0, left = 0;
 
     switch (placement){
         case "top":
             top = floatEl.offsetHeight - arrowEl.offsetHeight / 2;
-            left = (floatEl.offsetWidth - arrowEl.offsetWidth) / 2;
+            left = (floatEl.offsetWidth - arrowEl.offsetWidth) / 2 - offset;
             break;
         case "topStart":
             top = floatEl.offsetHeight - arrowEl.offsetHeight / 2;
-            left = (floatEl.offsetWidth <= refEl.offsetWidth ? floatEl.offsetWidth : refEl.offsetWidth) / 2 - (arrowEl.offsetWidth / 2);
+            left = (floatEl.offsetWidth <= refEl.offsetWidth ? floatEl.offsetWidth : refEl.offsetWidth) / 2 - (arrowEl.offsetWidth / 2) - offset;
             break;
         case "topEnd":
             top = floatEl.offsetHeight - arrowEl.offsetHeight / 2;
-            left = (floatEl.offsetWidth <= refEl.offsetWidth ? floatEl.offsetWidth / 2 : floatEl.offsetWidth - (refEl.offsetWidth / 2)) - (arrowEl.offsetWidth / 2);
+            left = (floatEl.offsetWidth <= refEl.offsetWidth ? floatEl.offsetWidth / 2 : floatEl.offsetWidth - (refEl.offsetWidth / 2)) - (arrowEl.offsetWidth / 2) - offset;
             break;
         case "bottom":
             top = - arrowEl.offsetHeight / 2;
-            left = (floatEl.offsetWidth - arrowEl.offsetWidth) / 2;
+            left = (floatEl.offsetWidth - arrowEl.offsetWidth) / 2 - offset;
             break;
         case "bottomStart":
             top = - arrowEl.offsetHeight / 2;
-            left = (floatEl.offsetWidth <= refEl.offsetWidth ? floatEl.offsetWidth : refEl.offsetWidth) / 2 - (arrowEl.offsetWidth / 2);
+            left = (floatEl.offsetWidth <= refEl.offsetWidth ? floatEl.offsetWidth : refEl.offsetWidth) / 2 - (arrowEl.offsetWidth / 2) - offset;
             break;
         case "bottomEnd":
             top = - arrowEl.offsetHeight / 2;
-            left = (floatEl.offsetWidth <= refEl.offsetWidth ? floatEl.offsetWidth / 2 : floatEl.offsetWidth - (refEl.offsetWidth / 2)) - (arrowEl.offsetWidth / 2);
+            left = (floatEl.offsetWidth <= refEl.offsetWidth ? floatEl.offsetWidth / 2 : floatEl.offsetWidth - (refEl.offsetWidth / 2)) - (arrowEl.offsetWidth / 2) - offset;
             break;
         case "left":
             left = floatEl.offsetWidth - arrowEl.offsetWidth / 2;
-            top = (floatEl.offsetHeight - arrowEl.offsetHeight) / 2;
+            top = (floatEl.offsetHeight - arrowEl.offsetHeight) / 2 - offset;
             break;
         case "leftStart":
             left = floatEl.offsetWidth - arrowEl.offsetWidth / 2;
-            top = (floatEl.offsetHeight <= refEl.offsetHeight ? floatEl.offsetHeight : refEl.offsetHeight) / 2 - (arrowEl.offsetHeight / 2);
+            top = (floatEl.offsetHeight <= refEl.offsetHeight ? floatEl.offsetHeight : refEl.offsetHeight) / 2 - (arrowEl.offsetHeight / 2) - offset;
             break;
         case "leftEnd":
             left = floatEl.offsetWidth - arrowEl.offsetWidth / 2;
-            top = (floatEl.offsetHeight <= refEl.offsetHeight ? floatEl.offsetHeight / 2 : floatEl.offsetHeight - (refEl.offsetHeight / 2)) - (arrowEl.offsetHeight / 2);
+            top = (floatEl.offsetHeight <= refEl.offsetHeight ? floatEl.offsetHeight / 2 : floatEl.offsetHeight - (refEl.offsetHeight / 2)) - (arrowEl.offsetHeight / 2) - offset;
             break;
         case "right":
             left = - arrowEl.offsetWidth / 2;
-            top = (floatEl.offsetHeight - arrowEl.offsetHeight) / 2;
+            top = (floatEl.offsetHeight - arrowEl.offsetHeight) / 2 - offset;
             break;
         case "rightStart":
             left = - arrowEl.offsetWidth / 2;
-            top = (floatEl.offsetHeight <= refEl.offsetHeight ? floatEl.offsetHeight : refEl.offsetHeight) / 2 - (arrowEl.offsetHeight / 2);
+            top = (floatEl.offsetHeight <= refEl.offsetHeight ? floatEl.offsetHeight : refEl.offsetHeight) / 2 - (arrowEl.offsetHeight / 2) - offset;
             break;
         case "rightEnd":
             left = - arrowEl.offsetWidth / 2;
-            top = (floatEl.offsetHeight <= refEl.offsetHeight ? floatEl.offsetHeight / 2 : floatEl.offsetHeight - (refEl.offsetHeight / 2)) - (arrowEl.offsetHeight / 2);
+            top = (floatEl.offsetHeight <= refEl.offsetHeight ? floatEl.offsetHeight / 2 : floatEl.offsetHeight - (refEl.offsetHeight / 2)) - (arrowEl.offsetHeight / 2) - offset;
             break;
     }
 
@@ -174,7 +178,7 @@ function scaleXY(node:HTMLElement, params:TransitionScaleXY):TransitionConfig {
     }
 }
 
-const arrowBeforeOffset = "2px";
+const ArrowBeforeOffset = "2px";
 
 export type PopperInstance = {
     display:{(visible:boolean):void};
@@ -188,10 +192,16 @@ export type PopperProps = {
         content?:string;
         arrow?:string;
     };
+    // Trigger event type
     trigger?:Trigger;
+    // Placement of popper
     placement?:Placement;
+    // Fine-tuning offset
     offset?:number;
+    // Margin value
+    margin?:number;
     zIndex?:number;
+    // With arrow
     useArrow?:boolean;
     arrowSize?:number;
     duration?:number;
@@ -212,9 +222,10 @@ export type PopperProps = {
 let {
     target,
     class:decoration = {},
-    offset = 12,
+    offset = 0,
+    margin = 12,
     zIndex = 40,
-    useArrow,
+    useArrow = false,
     arrowSize = 9,
     duration = 200,
     trigger = "hover",
@@ -266,31 +277,31 @@ function arrow(el:HTMLElement) {
     };
 
     if(placement.indexOf("top") > -1) {
-        pseudoStyle.paddingTop = arrowBeforeOffset;
-        pseudoStyle.paddingLeft = arrowBeforeOffset;
-        pseudoStyle.marginTop = `-${arrowBeforeOffset}`;
-        pseudoStyle.marginLeft = `-${arrowBeforeOffset}`;
+        pseudoStyle.paddingTop = ArrowBeforeOffset;
+        pseudoStyle.paddingLeft = ArrowBeforeOffset;
+        pseudoStyle.marginTop = `-${ArrowBeforeOffset}`;
+        pseudoStyle.marginLeft = `-${ArrowBeforeOffset}`;
     }
 
     if(placement.indexOf("bottom") > -1) {
-        pseudoStyle.paddingBottom = arrowBeforeOffset;
-        pseudoStyle.paddingRight = arrowBeforeOffset;
-        pseudoStyle.marginBottom = `-${arrowBeforeOffset}`;
-        pseudoStyle.marginRight = `-${arrowBeforeOffset}`;
+        pseudoStyle.paddingBottom = ArrowBeforeOffset;
+        pseudoStyle.paddingRight = ArrowBeforeOffset;
+        pseudoStyle.marginBottom = `-${ArrowBeforeOffset}`;
+        pseudoStyle.marginRight = `-${ArrowBeforeOffset}`;
     }
 
     if(placement.indexOf("left") > -1) {
-        pseudoStyle.paddingBottom = arrowBeforeOffset;
-        pseudoStyle.paddingLeft = arrowBeforeOffset;
-        pseudoStyle.marginBottom = `-${arrowBeforeOffset}`;
-        pseudoStyle.marginLeft = `-${arrowBeforeOffset}`;
+        pseudoStyle.paddingBottom = ArrowBeforeOffset;
+        pseudoStyle.paddingLeft = ArrowBeforeOffset;
+        pseudoStyle.marginBottom = `-${ArrowBeforeOffset}`;
+        pseudoStyle.marginLeft = `-${ArrowBeforeOffset}`;
     }
 
     if(placement.indexOf("right") > -1) {
-        pseudoStyle.paddingTop = arrowBeforeOffset;
-        pseudoStyle.paddingRight = arrowBeforeOffset;
-        pseudoStyle.marginTop = `-${arrowBeforeOffset}`;
-        pseudoStyle.marginRight = `-${arrowBeforeOffset}`;
+        pseudoStyle.paddingTop = ArrowBeforeOffset;
+        pseudoStyle.paddingRight = ArrowBeforeOffset;
+        pseudoStyle.marginTop = `-${ArrowBeforeOffset}`;
+        pseudoStyle.marginRight = `-${ArrowBeforeOffset}`;
     }
 
     const pseudo = document.createElement("before");
@@ -330,7 +341,8 @@ function update() {
             anchorEl,
             floatEl,
             placement,
-            offset
+            margin,
+            offset,
         );
 
         floatEl.style.left = `${p.left}px`;
@@ -342,6 +354,7 @@ function update() {
                 floatEl,
                 arrowEl,
                 placement,
+                offset
             );
 
             arrowEl.style.left = `${p.left}px`;
