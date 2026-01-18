@@ -6,8 +6,8 @@ const tableVariants = tv({
 	slots: {
         wrapper: "relative rounded-lg min-w-full overflow-x-auto overflow-y-hidden",
         table: "w-full border-collapse border-spacing-0 table table-fixed",
-        row: "h-12",
-        column: "text-sm text-slate-600 truncate font-light px-2",
+        row: "",
+        column: "text-sm text-slate-600 truncate font-normal px-2",
         empty: "h-40 border-solid border-b border-slate-100",
     },
 	variants: {
@@ -50,10 +50,10 @@ const tableVariants = tv({
         },
         compact: {
             true: {
-                row: "h-10",
+                column: "h-10",
             },
             false: {
-                row: "h-12",
+                column: "h-12",
             },
         },
 	},

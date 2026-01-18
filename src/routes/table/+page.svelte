@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { HelpCircleOutline } from "$lib/icons/index.js";
 import { Table, Button, Tooltip } from "$lib/index.js";
 
 const dataSource = [
@@ -94,6 +95,20 @@ const dataSource = [
     <Button size="xs">Log</Button>
 {/snippet}
 
+{#snippet noLabel()}
+    <span class="inline-block leading-[1] align-middle">
+        No
+    </span>
+    <Tooltip placement="top">
+        {#snippet target(ref)}
+            <span use:ref class="inline-block leading-[1] align-middle">
+                <HelpCircleOutline/>
+            </span>
+        {/snippet}
+        This is No.
+    </Tooltip>
+{/snippet}
+
 <div class="space-y-4 mt-5">
     <h4 class="text-base indent-2 bg-slate-100 my-3">
         Default
@@ -103,7 +118,7 @@ const dataSource = [
         columns={[
             {key: "company", label: "Company", width: "160px",  render:titleRender},
             {key: "address", label: "Address"},
-            {key: "no", label: "No"},
+            {key: "no", label: noLabel},
             {key: "progress", label: "Process"},
             {key: "duration", label: "Time"},
             {key: "person", label: "Contacts", align: "center"},
