@@ -7,7 +7,7 @@ const tableVariants = tv({
         wrapper: "relative rounded-lg min-w-full overflow-x-auto overflow-y-hidden",
         table: "w-full border-collapse border-spacing-0 table table-fixed",
         row: "h-12",
-        column: "text-sm text-slate-700 truncate px-2",
+        column: "text-sm text-slate-600 truncate font-light px-2",
         empty: "h-40 border-solid border-b border-slate-100",
     },
 	variants: {
@@ -81,6 +81,8 @@ export type TableColumn = {
     render?:TableColRender;
     // column width
     width?:string;
+    // column class
+    class?:string;
 }
 
 type TableProps = {
@@ -156,7 +158,7 @@ const {
         <thead>
             <tr class={row({effect:"header", rowBordered: true, compact})}>
                 {#each columns as c,i}
-                    <th class={column({align:c.align, columnBordered: bordered && columns.length !== i+1})}>
+                    <th class={column({align:c.align, columnBordered: bordered && columns.length !== i+1, class: c.class})}>
                         {#if typeof c.label === "string"}
                             {c.label}
                         {:else}
@@ -172,7 +174,7 @@ const {
                 {#each source as r, i}
                     <tr class={row({effect, rowBordered: source.length !== i+1, compact})}>
                         {#each columns as c,j}
-                            <td class={column({align:c.align, columnBordered: bordered && columns.length !== j+1})}>
+                            <td class={column({align:c.align, columnBordered: bordered && columns.length !== j+1, class: c.class})}>
                                 {#if c.render}
                                     {@render c.render(r, i)}
                                 {:else}
